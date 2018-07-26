@@ -60,8 +60,5 @@
 					He has a Samsung Galaxy Note 8 running the latest Android build to keep up with his clients and do day-to-day tasks.
 				</p>
 
-		<a href="anthonyUseCase.php">Anthony's Use Case</a>
-		<a href="conceptualModel.php">Conceptual Model</a>
-
 	</body>
 </html>
