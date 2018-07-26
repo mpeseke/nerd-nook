@@ -2,6 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
+		<link rel="stylesheet" href="style.css"/>
 		<title>Conceptual Model</title>
 	</head>
 	<body>
