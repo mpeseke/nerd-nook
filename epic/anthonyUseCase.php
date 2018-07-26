@@ -7,8 +7,8 @@
 	</head>
 	<body>
 		<h1>Use Case</h1>
-		<p>As a newbie to the nerd scene, I would like to be able to find like minded individuals who can guide me in the<br>
-			right direction of interest while also being able to attend events I am interested and showcase my new skills</p>
+		<p>As a newcomer to this community, Anthony is looking for a quick way to login and make a quick connection with the local nerding community. <br/>
+		He is also looking to get his brother engaged and interested while expanding his horizons and learning more about what the community has to offer on a local level.</p>
 		<h1>User Story</h1>
 		<p>Anthony is looking for a quick way to meet up with a consistent group of people in the tabletop gaming community. </p>
 		<h1>Interaction Flow</h1>
