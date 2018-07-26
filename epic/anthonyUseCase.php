@@ -22,5 +22,7 @@
 			<li>Anthony adds to the “Comments” and begins to discuss where the group will “Check-In” to the “Event.”</li>
 		</ul>
 
+		<a href="index.php">Home</a>
+
 	</body>
 </html>
