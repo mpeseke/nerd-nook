@@ -13,7 +13,7 @@
 		<li>profileEmail</li>
 		<li>profileHash (For Account Password)</li>
 	</ul>
-	<p>Relations</p>
+	<p>Relationships</p>
 	<ul>
 		<li>One profile can attend multiple events (1 to n)</li>
 		<li>One profile can obtain multiple reputation points(1 to n)</li>
