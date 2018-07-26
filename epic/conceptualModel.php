@@ -6,7 +6,7 @@
 	</head>
 	<body>
 	<h1> Entities & Attributes</h1>
-	<p>Profile</p>
+	<h3>Profile</h3>
 	<ul>
 		<li>profileId (Primary Key)</li>
 		<li>profileActivationToken (For Account Verification)</li>
