@@ -16,7 +16,7 @@
 			<li>Anthony logs onto the NerdNook </li>
 			<li>The NerdNook displays a home page with sections divided into interest categories.</li>
 			<li>Anthony navigates to the tabletop RPG portion of the site.  </li>
-			<li>NerdNook populates a list of “Events” created by other uses who are looking for game groups, in order from most recent to latest.</li>
+			<li>NerdNook populates a list of upcoming “Events” created by other uses who are looking for game groups.</li>
 			<li>Anthony selects an “Event” that interests him, with a game that he already plays, Pathfinder. </li>
 			<li>NerdNook opens the “Event”, displayed with multiple “Comments”, created by a user with high “Reputation.” </li>
 			<li>Anthony adds to the “Comments” and begins to discuss where the group will “Check-In” to the “Event.”</li>
