@@ -16,6 +16,7 @@
 	<body>
 		<h1>Nerd Nook Capstone Nav</h1>
 			<ul>
+				<!-- Links to Persona's, Use case, and conceptual model -->
 				<li><a href="anthonyPersona.php">Persona- Anthony McMillan</a></li>
 				<li><a href="anthonyUseCase.php">Use Case- Anthony McMillan</a></li>
 				<li><a href="carla.php">Persona- Carla Higgins</a></li>

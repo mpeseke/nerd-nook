@@ -9,6 +9,7 @@
 		<h1>Carla Higgins</h1>
 		<img src="images/carla.jpg" alt="Carla">
 		<br>
+		<!-- Persona Info -->
 		<p>
 			<strong>Name:Carla Higgins</strong>  <br>
 			<strong>Gender:Female</strong><br>
@@ -17,6 +18,7 @@
 			<strong>Profession:Postal Service clerk</strong> <br>
 			<strong>Income Range:$50K - $60K</strong>
 		</p>
+		<!-- Attitude -->
 
 		<h1>Attitude:</h1>
 
@@ -33,7 +35,7 @@
 			community that share her same interests who can help make her dreams become reality and<br>
 			make some great friends in the process</p>
 
-
+		<!-- Likes -->
 		<h1>Likes:</h1>
 		<ul>
 			<li>Collecting POP’s</li>
@@ -42,6 +44,7 @@
 			<li>Video Games</li>
 			<li>Playing Pokemon GO!</li>
 		</ul>
+		<!-- Needs -->
 		<h1>Needs:</h1>
 		<ul>
 			<li>Carla needs to be able to ask questions specifically related to her preferred interest and know she<br>
@@ -58,6 +61,7 @@
 			<li>She also knows how misleading information can be on the interwebs<br>
 				and  is sick of the phoney’s leading her in circles. </li>
 		</ul>
+		<!-- Technology Comfort -->
 		<h1>Technology</h1>
 		<h3>Comfort level :</h3>
 		<ul>
@@ -69,5 +73,8 @@
 			<li>Home computer- Apple - 27" iMac® (Latest Model) - Intel Core i5 (3.4GHz) - 8GB Memory - 1TB Fusion Drive - Silver</li>
 			<li>iPhone X iOS 11: 2436x1125px</li>
 		</ul>
+		<!-- Link Home -->
+		<li><a href="index.php">Home</a></li>
+
 	</body>
 </html>

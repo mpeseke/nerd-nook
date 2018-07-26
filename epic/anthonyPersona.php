@@ -56,5 +56,7 @@
 					He has a Samsung Galaxy Note 8 running the latest Android build to keep up with his clients and do day-to-day tasks.
 				</p>
 
+		<a href="index.php">Home</a>
+
 	</body>
 </html>

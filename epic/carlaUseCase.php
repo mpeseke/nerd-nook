@@ -6,14 +6,17 @@
 		<title>Use Case & User Story</title>
 	</head>
 	<body>
+		<!-- Carla's Use Case -->
 		<h1>Use Case</h1>
 		<p>As a newbie to the nerd scene, I would like to be able to find like minded individuals who can guide me in the<br>
 			right direction of interest while also being able to attend events I am interested and showcase my new skills</p>
+		<!-- Carla's User Story-->
 		<h1>User Story</h1>
 		<p>Carla’s job keeps her on the go at all times. She will need to be able to have access to the app remotely<br>
 			as well as when she is at home. Ideally, Carla would like to be notified when a new event is posted and if<br>
 			interested have the ability to show interest without being obligated to attend should she not get answers to<br>
 			possible questions and or other obligations she may have.</p>
+		<!-- Interaction Flow for Carla Higgins -->
 		<h1>Interaction Flow</h1>
 		<ul>
 			<li>Carla logs into nerds nook and is alerted of a new event that has been created for her interest of cosplay.</li>
@@ -25,6 +28,8 @@
 			<li>When the event has concluded, the event will no longer
 				be active.</li>
 		</ul>
+
+		<a href="index.php">Home</a>
 
 	</body>
 </html>
