@@ -7,29 +7,37 @@
 	<body>
 	<h1> Entities & Attributes</h1>
 	<h3>Profile</h3>
-	<ul>
-		<li>profileId (Primary Key)</li>
-		<li>profileActivationToken (For Account Verification)</li>
-		<li>profileAtHandle</li>
-		<li>profileEmail</li>
-		<li>profileHash (For Account Password)</li>
-	</ul>
+		<ul>
+			<li>profileId (Primary Key)</li>
+			<li>profileActivationToken (For Account Verification)</li>
+			<li>profileAtHandle</li>
+			<li>profileEmail</li>
+			<li>profileHash (For Account Password)</li>
+		</ul>
 	<h3>Comments</h3>
-	<ul>
-		<li>commentId (primary key)</li>
-		<li>commentProfileId (foreign key) </li>
-		<li>commentEventId(foreign key)</li>
-		<li>commentContent</li>
-		<li>commentDate</li>
-	</ul>
-	<h1> Relationships </h1>
-	<ul>
-	<li>One profile can attend multiple events (1 to n)</li>
-	<li>One profile can obtain multiple reputation points(1 to n)</li>
-	<li>One profile can comment multiple (1 to n)</li>
-	<li>many comments can be posted to one event ( 1 to n)</li>
-	<li>many comments can be posted by 1 profile (m to 1 )</li>
-	</ul>
+		<ul>
+			<li>commentId (primary key)</li>
+			<li>commentProfileId (foreign key) </li>
+			<li>commentEventId(foreign key)</li>
+			<li>commentContent</li>
+			<li>commentDate</li>
+		</ul>
+	<h3>Reputation</h3>
+		<ul>
+			<li>repCheckId(ForeignKey)</li>
+			<li>repComId(ForeignKey)</li>
+			<li>repEventId(ForeignKey)</li>
+			<li>repProfileId(ForeignKey)</li>
+		</ul>
+	<h3> Relationships </h3>
+		<ul>
+			<li>One profile can attend multiple events (1 to n)</li>
+			<li>One profile can obtain multiple reputation points(1 to n)</li>
+			<li>One profile can comment multiple (1 to n)</li>
+			<li>many comments can be posted to one event (1 to n)</li>
+			<li>many comments can be posted by 1 profile (m to 1)</li>
+			<li>One reputation can belong to one profile (1 to 1)</li>
+		</ul>
 	<a href="carlaUseCase.php">Use Case</a>
 	<a href="carla.php">Persona</a>
 	</body>
