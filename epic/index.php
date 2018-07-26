@@ -15,8 +15,11 @@
 	<body>
 		<h1>Nerd Nook Capstone Nav</h1>
 			<ul>
-				<li> <a href="anthonyPersona.php"> </a>Anthony McMillan<br></li>
-				<li> <a href="carla.php"> </a>Carla Higgins</li>
+				<li><a href="anthonyPersona.php">Persona- Anthony McMillan</a></li>
+				<li><a href="anthonyUseCase.php">Use Case- Anthony McMillan</a></li>
+				<li><a href="carla.php">Persona- Carla Higgins</a></li>
+				<li><a href="carlaUseCase.php">Use Case- Carla Higgins</a></li>
+				<li><a href="conceptualModel.php">Conceptual Model</a></li>
 			</ul>
 
 	</body>

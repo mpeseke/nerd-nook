@@ -4,7 +4,7 @@
 		<meta charset="UTF-8">
 		<title>Conceptual Model</title>
 	</head>
-	<h3> Entity & Attributes</h3>
+	<h3> Entities & Attributes</h3>
 	<p>Profile</p>
 	<ul>
 		<li>profileId (Primary Key)</li>
@@ -32,6 +32,4 @@
 	<li>many comments can be posted to one event ( 1 to n)</li>
 	<li>many comments can be posted by 1 profile (n to 1 )</li>
 	</ul>
-	<a href="carlaUseCase.php">Use Case</a>
-	<a href="carla.php">Persona</a>
 </html>
