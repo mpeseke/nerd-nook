@@ -14,36 +14,32 @@
 			<li>profileAtHandle</li>
 			<li>profileEmail</li>
 			<li>profileHash (For Account Password)</li>
+			<li>profileRep</li>
 		</ul>
 	<h3>Comments</h3>
 		<ul>
 			<li>commentId (primary key)</li>
-			<li>commentProfileId (foreign key) </li>
 			<li>commentEventId(foreign key)</li>
+			<li>commentProfileId (foreign key) </li>
 			<li>commentContent</li>
 			<li>commentDate</li>
-		</ul>
-	<h3>Reputation</h3>
-		<ul>
-			<li>repCheckId(ForeignKey)</li>
-			<li>repComId(ForeignKey)</li>
-			<li>repEventId(ForeignKey)</li>
-			<li>repProfileId(ForeignKey)</li>
 		</ul>
 	<h3>Events</h3>
 		<ul>
 			<li>eventId (Primary Key)</li>
 			<li>eventProfileId (foreign key)</li>
+			<li>eventDateTime</li>
 			<li>eventDetails </li>
 			<li>eventLocation</li>
-			<li>eventDateTime</li>
+			<li>eventRep</li>
+			<li>eventType</li>
 		</ul>
 	<h3>Check-In</h3>
 		<ul>
 			<li>checkEventId (foreign key)</li>
 			<li>checkProfileId (foreign key)</li>
-			<li>checkLocateId (foreign key)</li>
 			<li>checkDateTime </li>
+			<li>checkInRep</li>
 		</ul>
 	<h3> Relationships </h3>
 		<ul>
@@ -55,7 +51,6 @@
 			<li>many Events can have many Comments (m to n)</li>
 			<li>One Event can have many Check-Ins (1 to n)</li>
 			<li>One Check-In to One Profile to One Event (1 to 1 to 1)</li>
-			<li>One reputation can belong to one profile (1 to 1)</li>
 		</ul>
 
 		<a href="anthonyPersona.php">Persona- Anthony McMillan</a>
