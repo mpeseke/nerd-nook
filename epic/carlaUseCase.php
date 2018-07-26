@@ -26,5 +26,6 @@
 		</ul>
 
 		<a href="carla.php">Persona</a>
+		<a href="conceptualModel.php">Conceptual Model</a>
 	</body>
 	</html>
