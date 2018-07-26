@@ -35,21 +35,27 @@
 
 		<h1>Likes:</h1>
 		<ul>
-			<li></li>
-			<li></li>
-			<li></li>
-			<li></li>
+			<li>Collecting POP’s</li>
+			<li>Cruising YouTube</li>
+			<li>Harry Potter</li>
+			<li>Video Games</li>
+			<li>Playing Pokemon GO!</li>
 		</ul>
 		<h1>Needs:</h1>
 		<ul>
-			<li>Corey needs to be notified when his answer/correction has been received</li>
-			<li> Corey also needs to be alerted if a response is made on the current thread </li>
-			<li> Corey also needs the ability to un-subscribe to a thread if needed</li>
+			<li>Carla needs to be able to ask questions specifically related to her preferred interest and know she<br>
+				is getting reliable information </li>
+			<li>Carla also needs the ability to attend an event for experience and network</li>
+			<li>Carla needs to be able to check herself into an event to gain a reputation within the nerds nook</li>
+			<li>Carla needs friends</li>
 		</ul>
 		<h1>Frustrations:</h1>
 		<ul>
-			<li>He does not like having to be redirected to a log in page in order to leave comments, or answers<br>
-				to questions regarding different products offered </li>
+			<li>Carla is frustrated with forums and tutorials. She has been through YouTube<br>
+				and similar sites for research but wants to start actually participating and moving<br>
+				forward in her preferred interests.</li>
+			<li>She also knows how misleading information can be on the interwebs<br>
+				and  is sick of the phoney’s leading her in circles. </li>
 		</ul>
 		<h1>Technology</h1>
 		<h3>Comfort level :</h3>
@@ -57,7 +63,6 @@
 			<li>Very comfortable with technology and gaming due to interest & hobby, but also occupation</li>
 			<li>HP - ENVY x360 2-in-1 13.3" Touch-Screen Laptop - AMD Ryzen 5 - 8GB Memory - 128GB Solid State Drive</li>
 			<li>Super Nintendo</li>
-			<li></li>
 			<li>Atari</li>
 			<li>Nintendo Wii</li>
 			<li>Home computer- Apple - 27" iMac® (Latest Model) - Intel Core i5 (3.4GHz) - 8GB Memory - 1TB Fusion Drive - Silver</li>
