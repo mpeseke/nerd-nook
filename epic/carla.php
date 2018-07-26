@@ -17,7 +17,7 @@
 			<strong>Income Range:$50K - $60K</strong>
 		</p>
 
-		<h1>Attitude:</h1>
+		<h1>Attitude-</h1>
 
 		<p>Carla is a quiet homebody who is looking for some more substance in her life.<br>
 			She has several interests in the "nerd community" but is unaware how to pursue these interests<br>
