@@ -4,7 +4,21 @@
 		<meta charset="UTF-8">
 		<title>Conceptual Model</title>
 	</head>
-	<h1> Entity & Attributes</h1>
+	<h3> Entity & Attributes</h3>
+	<p>Profile</p>
+	<ul>
+		<li>profileId (Primary Key)</li>
+		<li>profileActivationToken (For Account Verification)</li>
+		<li>profileAtHandle</li>
+		<li>profileEmail</li>
+		<li>profileHash (For Account Password)</li>
+	</ul>
+	<p>Relations</p>
+	<ul>
+		<li>One profile can attend multiple events (1 to n)</li>
+		<li>One profile can obtain multiple reputation points(1 to n)</li>
+		<li>One profile can comment multiple (1 to n)</li>
+	</ul>
 	<h3>Comments</h3>
 	<ul>
 		<li>commentId (primary key)</li>
