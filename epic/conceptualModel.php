@@ -18,11 +18,11 @@
 		</ul>
 	<h3>Comments</h3>
 		<ul>
-			<li>commentId (primary key)</li>
-			<li>commentEventId(foreign key)</li>
-			<li>commentProfileId (foreign key) </li>
 			<li>commentContent</li>
 			<li>commentDate</li>
+			<li>commentEventId(foreign key)</li>
+			<li>commentId (primary key)</li>
+			<li>commentProfileId (foreign key) </li>
 		</ul>
 	<h3>Events</h3>
 		<ul>
@@ -44,9 +44,8 @@
 	<h3> Relationships </h3>
 		<ul>
 			<li>One profile can attend multiple events (1 to n)</li>
-			<li>One profile can obtain multiple reputation points(1 to n)</li>
 			<li>One profile can comment multiple (1 to n)</li>
-			<li>many comments can be posted to one event (1 to n)</li>
+			<li>many comments can be posted to one event (m to 1)</li>
 			<li>many comments can be posted by 1 profile (m to 1)</li>
 			<li>many Events can have many Comments (m to n)</li>
 			<li>One Event can have many Check-Ins (1 to n)</li>
