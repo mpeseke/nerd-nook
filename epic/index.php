@@ -16,6 +16,7 @@
 		<h1>Nerd Nook Capstone Nav</h1>
 			<ul>
 				<li> <a href="anthony.php"> </a>Anthony McMillan</li>
+				<li> <a href="carla.php"> </a>Carla Higgins</li>
 			</ul>
 
 	</body>
