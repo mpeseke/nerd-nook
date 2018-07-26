@@ -8,7 +8,7 @@
 	<body>
 		<!-- Carla's User Story -->
 		<h1>User Story</h1>
-		<p>As a new nerd I would like to be able to find like minded individuals who can guide me in the<br>
+		<p>As a new nerd, Carla would like to be able to find like minded individuals who can guide me in the<br>
 			right direction of interest and also attend specific events.</p>
 		<!-- Carla's Use Case-->
 		<h1>Use Case</h1>
