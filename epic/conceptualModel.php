@@ -51,6 +51,8 @@
 			<li>One Check-In to One Profile to One Event (1 to 1 to 1)</li>
 		</ul>
 
+		<img src="content/capstone-erg.svg" alt="Nerd Nook ERD">
+
 		<a href="anthonyPersona.php">Persona- Anthony McMillan</a>
 		<a href="anthonyUseCase.php">Use Case- Anthony McMillan</a>
 		<a href="carla.php">Persona- Carla Higgins</a>
