@@ -18,11 +18,11 @@
 		</ul>
 	<h3>Comments</h3>
 		<ul>
+			<li>commentId (primary key)</li>
+			<li>commentEventId(foreign key)</li>
+			<li>commentProfileId (foreign key) </li>
 			<li>commentContent</li>
 			<li>commentDate</li>
-			<li>commentEventId(foreign key)</li>
-			<li>commentId (primary key)</li>
-			<li>commentProfileId (foreign key) </li>
 		</ul>
 	<h3>Events</h3>
 		<ul>
