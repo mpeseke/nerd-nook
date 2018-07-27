@@ -46,7 +46,7 @@
 			<li>One profile can attend multiple events (1 to n)</li>
 			<li>One profile can comment multiple (1 to n)</li>
 			<li>many comments can be posted to one event (m to 1)</li>
-			<li>many comments can be posted by 1 profile (m to 1)</li>
+			<li> <s>many comments can be posted by 1 profile (m to 1)</s></li>
 			<li>many Events can have many Comments (m to n)</li>
 			<li>One Event can have many Check-Ins (1 to n)</li>
 			<li>One Check-In to One Profile to One Event (1 to 1 to 1)</li>
