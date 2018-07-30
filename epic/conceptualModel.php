@@ -48,12 +48,13 @@
 		</ul>
 	<h3> Relationships </h3>
 		<ul>
-			<li>One profile can attend multiple events (1 to n)</li>
-			<li>One profile can add multiple comments (1 to n)</li>
-			<li>many comments can be posted to one event (m to 1)</li>
+			<li>one Profile can attend multiple Events (1 to n)</li>
+			<li>one Profile can add multiple Comments (1 to n)</li>
+			<li>many Comments can be posted to one Event (m to 1)</li>
+			<li>one Category can have many Events</li>
 			<li>many Events can have many Comments (m to n)</li>
-			<li>One Event can have many Check-Ins (1 to n)</li>
-			<li>One Check-In to One Profile to One Event (1 to 1 to 1)</li>
+			<li>one Event can have many Check-Ins (1 to n)</li>
+			<li>one Check-In to One Profile to One Event (1 to 1 to 1)</li>
 		</ul>
 
 		<img src="content/capstone-erg.svg" alt="Nerd Nook ERD">
