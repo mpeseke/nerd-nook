@@ -66,12 +66,12 @@
 		<h3>Comfort level :</h3>
 		<ul>
 			<li>Very comfortable with technology and gaming due to interest & hobby, but also occupation</li>
-			<li>Customize your 13‑inch MacBook Pro - Space Gray Add To Favorites 2.3GHz quad‑core 8th‑generation Intel Core i5 processor, Turbo Boost up to 3.8GHz</li>
+			<li>13‑inch MacBook Pro -  macOS X High Sierra 10.13.6 with 2.3GHz quad‑core 8th‑generation Intel Core i5 processor, Turbo Boost up to 3.8GHz</li>
 			<li>Super Nintendo</li>
 			<li>Atari</li>
 			<li>Nintendo Wii</li>
-			<li>Home computer- Apple - 27" iMac® (Latest Model) - Intel Core i5 (3.4GHz) - 8GB Memory - 1TB Fusion Drive - Silver</li>
-			<li>iPhone X iOS 11: 2436x1125px</li>
+			<li>Home computer- Apple - 27" iMac macOS X High Sierra 10.13.6  with Intel Core i5 (3.4GHz) - 8GB Memory - 1TB Fusion Drive - Silver</li>
+			<li>iPhone X iOS 11.4.1 with a screen resolution of  2436&times;1125px</li>
 		</ul>
 		<!-- Link Home -->
 		<li><a href="index.php">Home</a></li>
