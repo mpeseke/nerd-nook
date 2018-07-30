@@ -29,7 +29,6 @@
 			<li>The Nerd Nook populates the event thread and details. </li>
 			<li>Anthony checks-in to the "Event". </li>
 			<li>The Nerd Nook applies Anthony's check-in Reputation to his profile. </li>
-
 		</ul>
 
 
