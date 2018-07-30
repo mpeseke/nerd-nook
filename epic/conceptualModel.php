@@ -23,6 +23,12 @@
 			<li>commentContent</li>
 			<li>commentDate</li>
 		</ul>
+		<h3>Categories</h3>
+		<ul>
+			<li>categoryId (primary key)</li>
+			<li>categoryName</li>
+			<li>categoryType</li>
+		</ul>
 	<h3>Events</h3>
 		<ul>
 			<li>eventId (Primary Key)</li>
