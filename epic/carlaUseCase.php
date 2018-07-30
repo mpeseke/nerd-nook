@@ -20,13 +20,12 @@
 		<h1>Interaction Flow</h1>
 		<ul>
 			<li>Carla logs into nerds nook </li>
-			<li>Carla views "interest tiles" of a preferred interests</li>
-			<li>Carla selects interest tile</li>
-			<li>Carla is directed to a new page that has information, possible event, and comments related to interest selected</li>
-			<li>Carla sees an event in cosplay coming up and is interested in attending</li>
+			<li>Carla selects cosplay category</li>
+			<li>Carla is directed to a new page that has information and possible events</li>
+			<li>Carla sees an event coming up and is interested in attending</li>
 			<li>Carla marks herself as interested in attending.</li>
 			<li>Carla has a few questions before she gets started on her cosplay and post’s her question to the event </li>
-			<li> Carla awaits other possible interested parties/users to respond.</li>
+			<li>Carla awaits other possible interested profiles to respond.</li>
 			<li>Once Carla is present at the event, Carla will check herself in and earn “points” for attending that will later be used to up her
 				reputation with nerds nook and help up her skill level.</li>
 			<li>When the event has concluded, the event will no longer
