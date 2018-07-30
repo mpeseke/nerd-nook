@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<h1>Carla Higgins</h1>
-		<img src="images/carla.jpg" alt="Carla">
+		<img src="content/carla.jpg" alt="Carla">
 		<br>
 		<!-- Persona Info -->
 		<p>
@@ -74,7 +74,6 @@
 			<li>iPhone X iOS 11.4.1 with a screen resolution of  2436&times;1125px</li>
 		</ul>
 		<!-- Link Home -->
-		<li><a href="index.php">Home</a></li>
-
+		<p><a href="index.php">Home</a></p>
 	</body>
 </html>
