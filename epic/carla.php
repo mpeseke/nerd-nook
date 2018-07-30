@@ -66,7 +66,7 @@
 		<h3>Comfort level :</h3>
 		<ul>
 			<li>Very comfortable with technology and gaming due to interest & hobby, but also occupation</li>
-			<li>HP - ENVY x360 2-in-1 13.3" Touch-Screen Laptop - AMD Ryzen 5 - 8GB Memory - 128GB Solid State Drive</li>
+			<li>Customize your 13‑inch MacBook Pro - Space Gray Add To Favorites 2.3GHz quad‑core 8th‑generation Intel Core i5 processor, Turbo Boost up to 3.8GHz</li>
 			<li>Super Nintendo</li>
 			<li>Atari</li>
 			<li>Nintendo Wii</li>

@@ -21,7 +21,7 @@
 			<li>commentEventId(foreign key)</li>
 			<li>commentProfileId (foreign key) </li>
 			<li>commentContent</li>
-			<li>commentDate</li>
+			<li>commentDateTime</li>
 		</ul>
 		<h3>Categories</h3>
 		<ul>
