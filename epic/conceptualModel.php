@@ -51,7 +51,7 @@
 			<li>one Profile can attend multiple Events (1 to n)</li>
 			<li>one Profile can add multiple Comments (1 to n)</li>
 			<li>many Comments can be posted to one Event (m to 1)</li>
-			<li>one Category can have many Events</li>
+			<li>one Category can have many Events(1 to n)</li>
 			<li>many Events can have many Comments (m to n)</li>
 			<li>one Event can have many Check-Ins (1 to n)</li>
 			<li>one Check-In to One Profile to One Event (1 to 1 to 1)</li>
