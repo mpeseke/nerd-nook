@@ -50,10 +50,8 @@
 		<ul>
 			<li>Many Profiles can attend multiple Events (m to n)</li>
 			<li>Many profiles can add multiple Comments (m to n)</li>
-			<li>one Category can have many Events(1 to n)</li>
-			<li>many Events can have many Comments (m to n)</li>
-			<li>one Event can have many Check-Ins (1 to n)</li>
-			<li>one Check In to One Profile to One Event (1 to 1 to 1)</li>
+			<li>One category can have many Events(1 to n)</li>
+			<li>Many profiles can have many Check-Ins (m to n)</li>
 		</ul>
 
 		<img src="content/capstone-erg.svg" alt="Nerd Nook ERD">
