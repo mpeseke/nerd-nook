@@ -14,7 +14,6 @@
 			<li>profileAtHandle</li>
 			<li>profileEmail</li>
 			<li>profileHash (For Account Password)</li>
-			<li>profileRep</li>
 		</ul>
 	<h3>Comments</h3>
 		<ul>
@@ -31,7 +30,6 @@
 			<li>eventDateTime</li>
 			<li>eventDetails </li>
 			<li>eventLocation</li>
-			<li>eventRep</li>
 			<li>eventType</li>
 		</ul>
 	<h3>Check-In</h3>
