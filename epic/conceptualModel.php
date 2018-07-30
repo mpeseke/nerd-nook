@@ -49,7 +49,7 @@
 	<h3> Relationships</h3>
 		<ul>
 			<li>Many Profiles can attend multiple Events (m to n)</li>
-			<li>Many profiles can add multiple Comments (m to n)</li>
+			<li>Many profiles can comment on many events (m to n)</li>
 			<li>One category can have many Events(1 to n)</li>
 			<li>Many profiles can have many Check-Ins (m to n)</li>
 		</ul>
