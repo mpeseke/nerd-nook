@@ -50,7 +50,7 @@
 		<h1> Technology:</h1>
 			<h3> Comfort Level and Hardware </h3>
 				<p>
-					Anthony uses a early-2017 MacBook Air with 1.8GHz dual-core Intel Core i5 processor, Turbo Boost up to 2.9GHz, 8GB 1600MHz LPDDR3 memory,
+					Anthony uses a early-2017 MacBook Air running OSX High Sierra with 1.8GHz dual-core Intel Core i5 processor, Turbo Boost up to 2.9GHz, 8GB 1600MHz LPDDR3 memory,
 					512GB SSD storage, Intel HD Graphics 6000 as his primary computer, mostly for business use.
 					<br/>
 					He has a Samsung Galaxy Note 8 running the latest Android build, Oreo, to keep up with his clients and do day-to-day tasks.
