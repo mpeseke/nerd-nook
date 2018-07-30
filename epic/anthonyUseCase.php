@@ -12,6 +12,7 @@
 		<h1>User Story</h1>
 		<p>Anthony is looking for a quick way to meet up with a consistent group of people in the tabletop gaming community. </p>
 		<h1>Interaction Flow</h1>
+		<h3>Log In</h3>
 		<ul>
 			<li>Anthony logs onto the NerdNook </li>
 			<li>The NerdNook displays a home page with sections divided into interest categories.</li>
@@ -21,6 +22,16 @@
 			<li>NerdNook opens the “Event”, displayed with multiple “Comments”, created by a user with high “Reputation.” </li>
 			<li>Anthony adds to the “Comments” and begins to discuss where the group will “Check-In” to the “Event.”</li>
 		</ul>
+
+		<h3>Check In</h3>
+		<ul>
+			<li>Anthony selects an event he has previously shown interest in and arrives at the event location.</li>
+			<li>The Nerd Nook populates the event thread and details. </li>
+			<li>Anthony checks-in to the "Event". </li>
+			<li>The Nerd Nook applies Anthony's check-in Reputation to his profile. </li>
+
+		</ul>
+
 
 		<a href="index.php">Home</a>
 
