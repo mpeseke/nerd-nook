@@ -33,6 +33,7 @@
 		<ul>
 			<li>eventId (Primary Key)</li>
 			<li>eventProfileId (foreign key)</li>
+			<li>eventCategory (foreign key)</li>
 			<li>eventDateTime</li>
 			<li>eventDetails </li>
 			<li>eventLocation</li>
