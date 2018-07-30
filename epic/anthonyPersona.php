@@ -11,7 +11,7 @@
 
 	<body>
 		<h1>Anthony McMillan</h1>
-		<img src="../epic/images/anthony-image.jpg" alt="image of Anthony"/>
+		<img src="./content/anthony-image.jpg" alt="image of Anthony"/>
 		<br/>
 			<p>
 			<strong>Name: Anthony McMillan </strong> <br/>
