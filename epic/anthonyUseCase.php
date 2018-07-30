@@ -25,9 +25,11 @@
 
 		<h3>Check In</h3>
 		<ul>
-			<li>Anthony selects an event he has previously shown interest in using the and arrives at the event location.</li>
+			<li>Anthony logs onto the NerdNook </li>
+			<li>The NerdNook displays a home page with interest sections and an event section.</li>
+			<li>Anthony uses search to narrow down events to those he is interested in and selects "Table Game" events near him.</li>
 			<li>The Nerd Nook populates the event thread and details. </li>
-			<li>Anthony checks-in to the "Event". </li>
+			<li>Anthony checks-in to an "Event". </li>
 			<li>The Nerd Nook applies Anthony's check-in Reputation to his profile. </li>
 		</ul>
 
