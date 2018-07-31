@@ -14,7 +14,7 @@
 		<h1>Interaction Flow</h1>
 		<h3>Log In</h3>
 		<ul>
-			<li>Anthony logs onto the NerdNook </li>
+			<li>Anthony logs onto the NerdNook.</li>
 			<li>The NerdNook displays a home page with sections divided into interest categories.</li>
 			<li>Anthony navigates to the tabletop RPG portion of the site.  </li>
 			<li>NerdNook populates a list of upcoming “Events” created by other uses who are looking for game groups.</li>
