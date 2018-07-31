@@ -55,6 +55,7 @@
 		</ul>
 
 		<img src="../epic/content/capstone-erg.svg" alt="Nerd Nook ERD">
+		<img src="../epic/content/capstone-erg.jpeg" alt="Nerd Nook ERD JPG">
 
 		<a href="anthonyPersona.php">Persona- Anthony McMillan</a>
 		<a href="anthonyUseCase.php">Use Case- Anthony McMillan</a>
