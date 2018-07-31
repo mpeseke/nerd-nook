@@ -17,23 +17,23 @@
 		</ul>
 	<h3>Comment</h3>
 		<ul>
-			<li>commentId (primary key)</li>
-			<li>commentEventId(foreign key)</li>
-			<li>commentProfileId (foreign key) </li>
+			<li>commentId (Primary Key)</li>
+			<li>commentEventId (Foreign Key)</li>
+			<li>commentProfileId (Foreign Key) </li>
 			<li>commentContent</li>
 			<li>commentDateTime</li>
 		</ul>
 	<h3>Category</h3>
 	<ul>
-		<li>categoryId (primary key)</li>
+		<li>categoryId (Primary Key)</li>
 		<li>categoryName</li>
 		<li>categoryType</li>
 	</ul>
 	<h3>Event</h3>
 		<ul>
 			<li>eventId (Primary Key)</li>
-			<li>eventProfileId (foreign key)</li>
-			<li>eventCategoryId (foreign key)</li>
+			<li>eventProfileId (Foreign Key)</li>
+			<li>eventCategoryId (Foreign Key)</li>
 			<li>eventDateTime</li>
 			<li>eventDetails </li>
 			<li>eventLocation</li>
@@ -41,8 +41,8 @@
 		</ul>
 	<h3>Check In</h3>
 		<ul>
-			<li>checkInEventId (foreign key)</li>
-			<li>checkInProfileId (foreign key)</li>
+			<li>checkInEventId (Foreign Key)</li>
+			<li>checkInProfileId (Foreign Key)</li>
 			<li>checkInDateTime</li>
 			<li>checkInRep</li>
 		</ul>
