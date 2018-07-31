@@ -54,7 +54,7 @@
 			<li>Many profiles can have many check ins(m to n)</li>
 		</ul>
 
-		<img src="content/capstone-erg.svg" alt="Nerd Nook ERD">
+		<img src="../epic/content/capstone-erg.svg" alt="Nerd Nook ERD">
 
 		<a href="anthonyPersona.php">Persona- Anthony McMillan</a>
 		<a href="anthonyUseCase.php">Use Case- Anthony McMillan</a>
