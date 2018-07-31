@@ -48,10 +48,10 @@
 		</ul>
 	<h3> Relationships</h3>
 		<ul>
-			<li>One category can have many events(1 to n)</li>
+			<li>One category can have many events (1 to n)</li>
 			<li>Many profiles can attend multiple events (m to n)</li>
 			<li>Many profiles can comment on many events (m to n)</li>
-			<li>Many profiles can have many check ins(m to n)</li>
+			<li>Many profiles can have many check ins (m to n)</li>
 		</ul>
 
 		<img src="../epic/content/capstone-erg.svg" alt="Nerd Nook ERD">
