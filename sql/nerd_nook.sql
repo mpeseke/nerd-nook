@@ -36,7 +36,7 @@ CREATE TABLE comment (
 	INDEX(commentProfileId),
 	/*  this creates the foreign key */
 	FOREIGN KEY(commentEventId) REFERENCES event(eventId),
-	FOREIGN KEY(commentProfileId) REFERENCES profile(commentProfileId),
+	FOREIGN KEY(commentProfileId) REFERENCES profile(profileId),
 	/*  and finally create the primary key */
 	PRIMARY KEY (commentId)
 );
