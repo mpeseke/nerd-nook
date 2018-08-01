@@ -34,7 +34,6 @@
 			<li>eventId (Primary Key)</li>
 			<li>eventProfileId (Foreign Key)</li>
 			<li>eventCategoryId (Foreign Key)</li>
-			<li>eventDateTime</li>
 			<li>eventDetails </li>
 			<li>eventLocation</li>
 			<li>eventType</li>
