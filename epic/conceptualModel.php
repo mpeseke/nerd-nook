@@ -38,6 +38,8 @@
 			<li>eventDetails </li>
 			<li>eventLocation</li>
 			<li>eventType</li>
+			<li>eventStart</li>
+			<li>eventEnd</li>
 		</ul>
 	<h3>Check In</h3>
 		<ul>
