@@ -236,6 +236,24 @@ class Profile {
 	}
 
 
+	/**
+	 * inserts this Profile into mySQL
+	 *
+	 * @param \PDO $pdo connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 **/
+	public function insert(\PDO $pdo): void{
+		// create query template
+		$query = "INSERT INTO profile(profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash) VALUES (:profileId, :profileActivationToken, :profileAtHandle, :profileEmail, :profileHash)";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["profileId" => $this->profileId->getBytes(), "profileActivationToken" => $this->profileActivationToken, "profileAtHandle" => $this->profileAtHandle, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash];
+		$statement->execute($parameters);
+	}
+
+
+
 
 
 
