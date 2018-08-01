@@ -1,7 +1,7 @@
 -- This will drop any currently existing tables --
-DROP TABLE IF EXISTS event;
 DROP TABLE IF EXISTS comment;
 DROP TABLE IF EXISTS checkIn;
+DROP TABLE IF EXISTS event;
 DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS profile;
 
@@ -25,6 +25,33 @@ CREATE TABLE category (
 	categoryName VARCHAR(32) NOT NULL,
 	categoryType VARCHAR(12) NOT NULL,
 	PRIMARY KEY (categoryId)
+);
+
+-- creates the event table --
+CREATE TABLE event (
+	-- creating attributes for primary key --
+	-- NOT NULL = is required --
+	eventId BINARY(16) NOT NULL,
+	eventProfileId BINARY(16) NOT NULL,
+	eventCategoryId BINARY(16) NOT NULL,
+	eventDetails VARCHAR(512) NOT NULL,
+	eventEnd DATETIME(6),
+	eventLocation VARCHAR(256),
+	eventStart DATETIME(6),
+	eventType VARCHAR(32) NOT NULL,
+
+	-- creating Indices --
+	INDEX(eventCategoryId),
+	INDEX(eventProfileId),
+	INDEX(eventLocation),
+	INDEX(eventType),
+
+	-- this creates the foreign keys --
+	FOREIGN KEY(eventProfileId) REFERENCES profile(profileId),
+	FOREIGN KEY(eventCategoryId) REFERENCES category(categoryId),
+
+	-- this creates the primary key --
+	PRIMARY KEY(eventId)
 );
 
 -- creates the checkIn table --
@@ -57,30 +84,5 @@ CREATE TABLE comment (
 	PRIMARY KEY (commentId)
 );
 
--- creates the event table --
-CREATE TABLE event (
-	-- creating attributes for primary key --
-	-- NOT NULL = is required --
-	eventId BINARY(16) NOT NULL,
-	eventProfileId BINARY(16) NOT NULL,
-	eventCategoryId BINARY(16) NOT NULL,
-	eventDetails VARCHAR(512) NOT NULL,
-	eventEnd DATETIME(6),
-	eventLocation VARCHAR(256),
-	eventStart DATETIME(6),
-	eventType VARCHAR(32) NOT NULL,
 
-	-- creating Indices --
-	INDEX(eventCategoryId),
-	INDEX(eventProfileId),
-	INDEX(eventLocation),
-	INDEX(eventType),
-
-	-- this creates the foreign keys --
-	FOREIGN KEY(eventProfileId) REFERENCES profile(profileId),
-	FOREIGN KEY(eventCategoryId) REFERENCES category(categoryId),
-
-	-- this creates the primary key --
-	PRIMARY KEY(eventId)
-);
 
