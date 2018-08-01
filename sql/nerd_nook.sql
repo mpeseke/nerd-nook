@@ -6,7 +6,7 @@ DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS checkIn;
 
 
-/* creates the category table */
+-- creates the category table --
 CREATE TABLE category (
 	categoryId BINARY(16) NOT NULL,
 	categoryName VARCHAR(32) NOT NULL,
@@ -14,37 +14,37 @@ CREATE TABLE category (
 	PRIMARY KEY (categoryId)
 );
 
-/* creates the checkIn table */
+-- creates the checkIn table --
 CREATE TABLE checkIn (
 	checkInEventId BINARY(16) NOT NULL,
 	checkInProfileId BINARY(16) NOT NULL,
 	checkInDateTime DATETIME,
-	checkInRep SMALLINT
+	checkInRep TINYINT
 );
 
-/* creates the comment table */
+-- creates the comment table --
 CREATE TABLE comment (
-	/*  this is for the primary key */
+	--  this is for the primary key --
 	commentId Binary(16) NOT NULL,
-	/*  this will be a foreign key */
+	--  this will be a foreign key --
 	commentEventId BINARY (16) NOT NULL,
 	commentProfileId BINARY (16) NOT NULL,
 	commentContent VARCHAR(500) NOT NULL,
 	commentDate DATETIME(6) NOT NULL,
-	/*  this creates an index before making a foreign key */
+	--  this creates an index before making a foreign key --
 	INDEX(commentEventId),
 	INDEX(commentProfileId),
-	/*  this creates the foreign key */
+	--  this creates the foreign key --
 	FOREIGN KEY(commentEventId) REFERENCES event(eventId),
 	FOREIGN KEY(commentProfileId) REFERENCES profile(profileId),
-	/*  and finally create the primary key */
+	--  and finally create the primary key --
 	PRIMARY KEY (commentId)
 );
 
-/* creates the event table */
+-- creates the event table --
 CREATE TABLE event (
-	/*creating attributes for primary key*/
-	/*NOT NULL = is required*/
+	-- creating attributes for primary key --
+	-- NOT NULL = is required --
 	eventId BINARY(16) NOT NULL,
 	eventProfileId BINARY(16) NOT NULL,
 	eventCategoryId BINARY(16) NOT NULL,
@@ -53,7 +53,7 @@ CREATE TABLE event (
 	eventLocation VARCHAR(256),
 	eventType VARCHAR(32) NOT NULL,
 
-	/*creating Indices*/
+	-- creating Indices --
 	INDEX(eventId),
 	INDEX(eventCategoryId),
 	INDEX(eventProfileId),
@@ -61,15 +61,15 @@ CREATE TABLE event (
 	INDEX(eventLocation),
 	INDEX(eventType),
 
-	/*this creates the foreign keys*/
+	-- this creates the foreign keys --
 	FOREIGN KEY(eventProfileId) REFERENCES profile(profileId),
 	FOREIGN KEY(eventCategoryId) REFERENCES category(categoryId),
 
-	/*this creates the primary key*/
+	-- this creates the primary key --
 	PRIMARY KEY(eventId)
 );
 
-/* creates the profile table */
+-- creates the profile table --
 CREATE TABLE profile (
 	profileId BINARY (16) NOT NULL,
 	profileActivationToken CHAR (32),
