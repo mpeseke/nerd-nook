@@ -73,7 +73,7 @@ CREATE TABLE comment (
 	commentEventId BINARY (16) NOT NULL,
 	commentProfileId BINARY (16) NOT NULL,
 	commentContent VARCHAR(500) NOT NULL,
-	commentDate DATETIME(6) NOT NULL,
+	commentDateTime DATETIME(6) NOT NULL,
 	--  this creates an index before making a foreign key --
 	INDEX(commentEventId),
 	INDEX(commentProfileId),
