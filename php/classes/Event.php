@@ -207,7 +207,10 @@ class Event {
 		 * @throws \InvalidArgumentException if $newEventEndDateTime is not a valid object
 		 * @throws \RangeException if $newEventEndDateTime is a date that does not exist
 		 */
-	public function setEventEndDateTime(DateTime $eventEndDateTime): void {
+	public function setEventEndDateTime(\DateTime $newEventEndDateTime): void {
+		if(empty($newEventEndDateTime) === true) {
+			throw(new \InvalidArgumentException("Event must have a valid end date and time."));
+		}
 		try {
 			$newEventEndDateTime = self::validateDateTime($newEventEndDateTime);
 		} catch(\InvalidArgumentException | \RangeException $exception) {
@@ -216,4 +219,36 @@ class Event {
 		}
 		$this->eventEndDateTime = $newEventEndDateTime;
 	}
+
+		/**
+		 * accessor method for new Event Latitude location
+		 * @returns float value of the latitude location
+		 */
+
+		/**
+		 * accessor method for the Event Start Time
+		 * @returns \DateTime value of the event Start Time
+		 */
+		public function getEventStartDateTime() : \DateTime {
+			return ($this->eventStartDateTime);
+		}
+
+		/**
+		 * mutator method for event Start Time
+		 * @param \DateTime $newEventStartDateTime is a DateTime object
+		 * @throws \InvalidArgumentException if $newEventStartDateTime is not a valid object
+		 * @throws \RangeException if $newEventStartDateTime is a date that does not exist
+		 */
+		public function setEventStartDateTime(\DateTime $newEventStartDateTime): void {
+			if(empty($newEventStartDateTime) === true) {
+				throw(new \InvalidArgumentException("Event must have a valid start date and time."));
+			}
+			try {
+				$newEventStartDateTime = self::validateDateTime($newEventStartDateTime);
+			} catch(\InvalidArgumentException | \RangeException $exception) {
+				$exceptionType = get_class($exception);
+				throw (new $exceptionType($exception->getMessage(), 0, $exception));
+			}
+			$this->eventStartDateTime = $newEventStartDateTime;
+		}
 }
