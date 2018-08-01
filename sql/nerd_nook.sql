@@ -61,10 +61,11 @@ CREATE TABLE event (
 	eventId BINARY(16) NOT NULL,
 	eventProfileId BINARY(16) NOT NULL,
 	eventCategoryId BINARY(16) NOT NULL,
-	eventDateTime DATETIME(6),
 	eventDetails VARCHAR(512) NOT NULL,
-	eventLat DECIMAL(69),
-	eventLong DECIMAL(69),
+	eventEnd DATETIME(6),
+	eventLat DECIMAL(9,6),
+	eventLong DECIMAL(9,6),
+	eventStart DATETIME(6),
 
 	-- creating Indices --
 	INDEX(eventCategoryId),
