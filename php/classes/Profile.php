@@ -69,7 +69,7 @@ class Profile {
 	 * accessor method for profile id
 	 *
 	 * @return Uuid value for profile id
-	 */
+	 **/
 	public function getProfileId(): void {
 		return ($this->profileId);
 	}
@@ -94,9 +94,39 @@ class Profile {
 		$this->profileId = $uuid;
 	}
 
+	/**
+	 * accessor method for profile activation token
+	 *
+	 * @return string value of the activation token
+	 **/
+	public function getProfileActivationToken() : string {
+		return ($this->profileActivationToken);
+	}
 
 
+	/**
+	 * mutator method for profile activation token
+	 *
+	 * @param string $newProfileActivationToken
+	 * @throws \InvalidArgumentException if the token is not a string or insecure
+	 * @throws \RangeException if the token is not exactly 32 characters
+	 * @throws \TypeError if the activation token is not a string
+	 *
+	 **/
+	public function setProfileActivationToken(?string $newProfileActivationToken): void {
+		if($newProfileActivationToken === null) {
+			$this->profileActivationToken = null;
+			return;
+		}
 
+		$newProfileActivationToken = strtolower(trim($newProfileActivationToken));
+		if(ctype_xdigit($newProfileActivationToken) === false) {
+			throw(new\RangeException("profile activation token has to be 32"));
+		}
+
+		// convert and store profile hash
+		$this->profileActivationToken = $newProfileActivationToken;
+	}
 
 
 }
