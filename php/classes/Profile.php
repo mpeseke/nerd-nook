@@ -128,5 +128,41 @@ class Profile {
 		$this->profileActivationToken = $newProfileActivationToken;
 	}
 
+	/**
+	 * accessor method for at handle
+	 *
+	 * @return string value of at handle
+	 **/
+	public function getProfileAtHandle(): string {
+		return ($this->profileAtHandle);
+	}
+
+	/**
+	 * mutator method for at handle
+	 *
+	 * @param string $newProfileAtHandle new value of at handle
+	 * @throws \InvalidArgumentException if at handle is not a string or insecure
+	 * @throws \RangeException if at handle is > 32 characters
+	 * @throws \TypeError if at handle is not a string
+	 **/
+	public function setProfileAtHandle(string $newProfileAtHandle): void {
+		// verify the at handle is secure
+		$newProfileAtHandle = trim($newProfileAtHandle);
+		$newProfileAtHandle = filter_var($newProfileAtHandle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newProfileAtHandle) === true) {
+			throw(new\InvalidArgumentException("profile at handle is empty or insecure"));
+
+		}
+		// verify the at handle will fit in the database
+		if(strlen($newProfileAtHandle) > 32) {
+			throw(new\RangeException("profile at handle is too large"));
+		}
+		$this->profileAtHandle = $newProfileAtHandle;
+	}
+
+
+
+
+
 
 }
