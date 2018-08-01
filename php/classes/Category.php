@@ -88,11 +88,11 @@ class Category {
 		//convert and store the category name
 		$this->categoryName = $uuid;
 	}
-		/**
-		 * accessor method for category type
-		 *
-		 * @return Uuid values of category type
-		 **/
+	/**
+	 * accessor method for category type
+	 *
+	 * @return Uuid values of category type
+	 **/
 	public function getCategoryType(): Uuid{
 		return $this->categoryType;
 	}
