@@ -128,3 +128,4 @@ class Category {
 		$query = "INSERT INTO category(categoryId, categoryName, categoryType) VALUES (:categoryId, :categoryName, :categoryType)";
 		$statement = $pdo->prepare($query);
 	}
+}
