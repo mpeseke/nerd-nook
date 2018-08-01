@@ -112,4 +112,29 @@ class Event {
 			$this->eventId = $uuid;
 		}
 
+		/**
+		 * accessor method for the event profile Id
+		 * @return Uuid value of the event profile Id
+		 */
+		public function getEventProfileId(): Uuid {
+			return ($this->eventProfileId);
+		}
+
+		/** mutator method for the event profile Id
+		 * @param string $newEventProfileId new value of the EventProfileId
+		 * @throws \RangeException if $newEventProfileId is not positive
+		 * @throws \TypeError if $newEventProfileId is not a Uuid or string
+		 */
+
+		public function setEventProfileId ( $newEventProfileId) : void {
+			try {
+				$uuid = self::validateUuid($newEventProfileId);
+			} catch(\RangeException | \TypeError $exception) {
+				$exceptionType = get_class($exception);
+				throw(new $exceptionType($exception->getMessage(), 0, $exception));
+			}
+			//converts and stores the event Profile Id
+			$this->eventProfileId = $uuid;
+		}
+
 }
