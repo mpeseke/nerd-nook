@@ -32,7 +32,10 @@ CREATE TABLE checkIn (
 	checkInEventId BINARY(16) NOT NULL,
 	checkInProfileId BINARY(16) NOT NULL,
 	checkInDateTime DATETIME,
-	checkInRep TINYINT
+	checkInRep TINYINT,
+
+	FOREIGN KEY (checkInEventId) REFERENCES event(eventId),
+	FOREIGN KEY (checkInProfileId) REFERENCES profile (profileId)
 );
 
 -- creates the comment table --
