@@ -194,4 +194,49 @@ class Profile {
 		$this->profileEmail = $newProfileEmail;
 	}
 
+	/**
+	 * accessor method for profile hash
+	 *
+	 * @return string value of hash
+	 **/
+	public function getProfileHash() {
+		return $this->profileHash;
+	}
+
+	/**
+	 * mutator method for profile hash password
+	 *
+	 * @param string $newProfileHash
+	 * @throws \InvalidArgumentException if the hash is not secure
+	 * @throws \RangeException if the hash is not 128 characters
+	 * @throws \TypeError if profile hash is not a string
+	 **/
+	public function setProfileHash(string $newProfileHash): void {
+		// enforce that the hash is properly formatted
+		$newProfileHash = trim($newProfileHash);
+		if(empty($newProfileHash) === true) {
+			throw(new\InvalidArgumentException("profile password hash empty or insecure"));
+
+		}
+
+		// enforce that the hash is really an Argon Hash
+		$profileHashInfo = password_get_info($newProfileHash);
+		if(empty($profileHashInfo) === true) {
+			throw(new\InvalidArgumentException("profile hash is not a valid hash"));
+
+		}
+
+		// enforce the hash is exactly 97 characters
+		if(strlen($newProfileHash) !== 97) {
+			throw(new\RangeException("profile hash must be 97 characters"));
+		}
+
+		// store the hash
+		$this->profileHash = $newProfileHash;
+	}
+
+
+
+
+
 }
