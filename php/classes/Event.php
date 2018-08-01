@@ -89,14 +89,15 @@ class Event {
 	}
 
 		/**
-		 * accessor method fo the event Id
+		 * accessor method for the event Id
 		 * @return Uuid value of the event
 		 **/
 		public function getEventId(): Uuid {
 			return ($this->eventId);
 		}
 
-		/** mutator function for the event Id
+		/**
+		 * mutator function for the event Id
 		 * @param Uuid|string $newEventId new value of the Event
 		 * @throws \RangeException if $newEventId is not positive
 		 * @throws \TypeError if $newEventId is not a Uuid or string
@@ -120,12 +121,12 @@ class Event {
 			return ($this->eventProfileId);
 		}
 
-		/** mutator method for the event profile Id
-		 * @param string $newEventProfileId new value of the EventProfileId
+		/**
+		 * mutator method for the event profile Id
+		 * @param Uuid|string $newEventProfileId new value of the eventProfileId
 		 * @throws \RangeException if $newEventProfileId is not positive
 		 * @throws \TypeError if $newEventProfileId is not a Uuid or string
 		 */
-
 		public function setEventProfileId ( $newEventProfileId) : void {
 			try {
 				$uuid = self::validateUuid($newEventProfileId);
@@ -137,4 +138,82 @@ class Event {
 			$this->eventProfileId = $uuid;
 		}
 
+		/**
+		 * accessor method for the event Category Id
+		 * @return Uuid value of the event Category
+		 */
+		public function getEventCategoryId(): Uuid {
+			return($this->eventCategoryId);
+		}
+
+		/**
+		 * mutator method for the event Category Id
+		 * @param Uuid|string $newEventCategoryId new value of the eventCategoryId
+		 * @throws \RangeException if $newEventCategoryId is not positive
+		 * @throws \TypeError if $newEventCategoryId is not a Uuid or string
+		 */
+		public function setEventCategoryId ( $newEventCategoryId) : void {
+			try {
+				$uuid = self::validateUuid($newEventCategoryId);
+			} catch(\RangeException | \TypeError $exception) {
+				$exceptionType = get_class($exception);
+				throw(new $exceptionType($exception->getMessage(), 0, $exception));
+			}
+			//converts and stores the event Category Id
+			$this->eventCategoryId = $uuid;
+		}
+
+		/**
+		 * accessor method for the event Details
+		 * @return string value of the event Details
+		 */
+		public function getEventDetails() : string {
+			return($this->eventCategoryId);
+		}
+
+		/**
+		 * mutator method for event Details
+		 * @param string $newEventDetails new value of the eventDetails
+		 * @throws \InvalidArgumentException if the values are invalid
+		 * @throws \RangeException if $newEventDetails are not positive or more than 512 characters
+		 * @throws \TypeError if $newEventDetails are not a string
+		 */
+		public function setEventDetails ( $newEventDetails) : void {
+			// verify Event Details are secure
+			$newEventDetails = trim($newEventDetails);
+			$newEventDetails = filter_var($newEventDetails, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+			if(empty($newEventDetails) === true){
+				throw(new \InvalidArgumentException("Event details are empty or includes insecure data."));
+			}
+			//verify content will fit into the database
+			if(strlen($newEventDetails) > 512) {
+				throw(new \RangeException("Please limit event details to 512 characters or less."));
+			}
+			//store Detail content
+			$this->eventDetails = $newEventDetails;
+		}
+
+		/**
+		 * accessor method for the Event End Time
+		 * @returns \DateTime value of the event End Time
+		 */
+		public function getEventEndDateTime() : \DateTime {
+			return ($this->eventEndDateTime);
+		}
+
+		/**
+		 * mutator method for event End Time
+		 * @param \DateTime $newEventEndDateTime is a DateTime object
+		 * @throws \InvalidArgumentException if $newEventEndDateTime is not a valid object
+		 * @throws \RangeException if $newEventEndDateTime is a date that does not exist
+		 */
+	public function setEventEndDateTime(DateTime $eventEndDateTime): void {
+		try {
+			$newEventEndDateTime = self::validateDateTime($newEventEndDateTime);
+		} catch(\InvalidArgumentException | \RangeException $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		$this->eventEndDateTime = $newEventEndDateTime;
+	}
 }
