@@ -1,10 +1,23 @@
 -- This will drop any currently existing tables --
-DROP TABLE IF EXISTS profile;
 DROP TABLE IF EXISTS event;
 DROP TABLE IF EXISTS comment;
-DROP TABLE IF EXISTS category;
 DROP TABLE IF EXISTS checkIn;
+DROP TABLE IF EXISTS category;
+DROP TABLE IF EXISTS profile;
 
+-- creates the profile table --
+CREATE TABLE profile (
+	profileId BINARY (16) NOT NULL,
+	profileActivationToken CHAR (32),
+	profileAtHandle VARCHAR (32) NOT NULL,
+	profileEmail VARCHAR (128) NOT NULL,
+	profileHash CHAR (97) NOT NULL,
+	-- unique index to avoid duplicate data
+	UNIQUE (profileAtHandle),
+	UNIQUE (profileEmail),
+	-- officiates primary key for reviewer
+	PRIMARY KEY(profileId)
+);
 
 -- creates the category table --
 CREATE TABLE category (
@@ -54,7 +67,6 @@ CREATE TABLE event (
 	eventLong DECIMAL(69),
 
 	-- creating Indices --
-	INDEX(eventId),
 	INDEX(eventCategoryId),
 	INDEX(eventProfileId),
 
@@ -66,16 +78,4 @@ CREATE TABLE event (
 	PRIMARY KEY(eventId)
 );
 
--- creates the profile table --
-CREATE TABLE profile (
-	profileId BINARY (16) NOT NULL,
-	profileActivationToken CHAR (32),
-	profileAtHandle VARCHAR (32) NOT NULL,
-	profileEmail VARCHAR (128) NOT NULL,
-	profileHash CHAR (97) NOT NULL,
-	-- unique index to avoid duplicate data
-	UNIQUE (profileAtHandle),
-	UNIQUE (profileEmail),
-	-- officiates primary key for reviewer
-	PRIMARY KEY(profileId)
-);
+;
