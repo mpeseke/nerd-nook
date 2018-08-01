@@ -35,10 +35,12 @@
 			<li>eventProfileId (Foreign Key)</li>
 			<li>eventCategoryId (Foreign Key)</li>
 			<li>eventDetails </li>
-			<li>eventLocation</li>
-			<li>eventType</li>
-			<li>eventStart</li>
 			<li>eventEnd</li>
+			<li>eventLocation</li>
+			<li>eventStart</li>
+			<li>eventType</li>
+
+
 		</ul>
 	<h3>Check In</h3>
 		<ul>
