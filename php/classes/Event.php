@@ -57,9 +57,9 @@ class Event {
 	private $eventStartDateTime;
 
 	/** Event Constructor for Nerd Nook
-	 * @param Uuid $newEventId the Uuid representation of the new Event
-	 * @param Uuid $newEventProfileId the Uuid representation of the new event Creator
-	 * @param Uuid $newEventCategoryId the Uuid representation of the new event Category
+	 * @param string|Uuid $newEventId the Uuid representation of the new Event
+	 * @param string|Uuid $newEventProfileId the Uuid representation of the new event Creator
+	 * @param string|Uuid $newEventCategoryId the Uuid representation of the new event Category
 	 * @param string $newEventDetails the string value containing the event's Details
 	 * @param \DateTime $newEventEndDateTime the End Time DateTime for the new Event
 	 * @param float $newEventLat the latitudinal value of the new Event
@@ -72,7 +72,7 @@ class Event {
 	 */
 
 	public function __construct($newEventId, $newEventProfileId, $newEventCategoryId, string $newEventDetails,
-\DateTime $newEventEndDateTime, float $newEventLat, float $newEventLong, \DateTime $newEventStartDateTime) {
+		\DateTime $newEventEndDateTime, float $newEventLat, float $newEventLong, \DateTime $newEventStartDateTime) {
 		try {
 			$this->eventId = $newEventId;
 			$this->eventProfileId = $newEventProfileId;
@@ -85,6 +85,31 @@ class Event {
 		} catch (\InvalidArgumentException| \RangeException| \TypeError| \Exception $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
-		}
+			}
 	}
+
+		/**
+		 * accessor method fo the event Id
+		 * @return Uuid value of the event
+		 **/
+		public function getEventId(): Uuid {
+			return ($this->eventId);
+		}
+
+		/** mutator function for the event Id
+		 * @param Uuid|string $newEventId new value of the Event
+		 * @throws \RangeException if $newEventId is not positive
+		 * @throws \TypeError if $newEventId is not a Uuid or string
+		 */
+		public function setEventId( $newEventId) : void {
+			try {
+				$uuid = self::validateUuid($newEventId);
+			} catch(\RangeException | \TypeError $exception) {
+				$exceptionType = get_class($exception);
+				throw(new $exceptionType($exception->getMessage(), 0, $exception));
+			}
+			//convert and store the event Id
+			$this->eventId = $uuid;
+		}
+
 }
