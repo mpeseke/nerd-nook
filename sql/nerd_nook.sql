@@ -36,8 +36,8 @@ CREATE TABLE event (
 	eventCategoryId BINARY(16) NOT NULL,
 	eventDetails VARCHAR(512) NOT NULL,
 	eventEnd DATETIME(6),
-	eventLong DECIMAL (9,6),
 	eventLat DECIMAL (9,6),
+	eventLong DECIMAL (9,6),
 	eventStart DATETIME(6),
 	eventType VARCHAR(32) NOT NULL,
 
