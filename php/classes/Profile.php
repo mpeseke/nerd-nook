@@ -157,12 +157,41 @@ class Profile {
 		if(strlen($newProfileAtHandle) > 32) {
 			throw(new\RangeException("profile at handle is too large"));
 		}
+		// store the at handle
 		$this->profileAtHandle = $newProfileAtHandle;
 	}
 
+	/**
+	 * accessor method for profile email
+	 *
+	 * @return string value of email
+	 **/
+	public function getProfileEmail(): string {
+		return $this->profileEmail;
+	}
 
+	/**
+	 * mutator method for profile email
+	 *
+	 * @param string $newProfileEmail new value of email
+	 * @throws \InvalidArgumentException if profile email is not a valid email or insecure
+	 * @throws \RangeException if profile email is > 128 characters
+	 * @throws \TypeError if profile email is not a string
+	 **/
+	public function setProfileEmail(string $newProfileEmail): void {
+		$newProfileEmail = trim($newProfileEmail);
+		$newProfileEmail = filter_var($newProfileEmail, FILTER_VALIDATE_EMAIL);
+		if(empty($newProfileEmail) === true) {
+			throw(new\InvalidArgumentException("profile email is empty or insecure"));
 
+		}
+		// verify the email will fit in the database
+		if(strlen($newProfileEmail) > 128) {
+			throw(new\RangeException("profile email is too large"));
 
-
+		}
+		// store the email
+		$this->profileEmail = $newProfileEmail;
+	}
 
 }
