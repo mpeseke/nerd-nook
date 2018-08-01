@@ -25,7 +25,6 @@ class Profile {
 	/**
 	 * at handle for this Profile; this is a unique index
 	 * @var string $profileAtHandle
-	 *
 	 **/
 	private $profileAtHandle;
 	/**
@@ -37,6 +36,7 @@ class Profile {
 	 * hash for profile password
 	 * @var $profileHash
 	 **/
+	private $profileHash;
 
 
 	/**
@@ -213,7 +213,7 @@ class Profile {
 	 **/
 	public function setProfileHash(string $newProfileHash): void {
 		// enforce that the hash is properly formatted
-		$newProfileHash = trim($newProfileHash);
+		$profileHash = trim($newProfileHash);
 		if(empty($newProfileHash) === true) {
 			throw(new\InvalidArgumentException("profile password hash empty or insecure"));
 
@@ -232,7 +232,7 @@ class Profile {
 		}
 
 		// store the hash
-		$this->profileHash = $newProfileHash;
+		$this->$profileHash = $newProfileHash;
 	}
 
 
