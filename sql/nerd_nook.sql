@@ -48,9 +48,9 @@ CREATE TABLE event (
 	eventId BINARY(16) NOT NULL,
 	eventProfileId BINARY(16) NOT NULL,
 	eventCategoryId BINARY(16) NOT NULL,
-	eventDateTime DATETIME(6)
+	eventDateTime DATETIME(6),
 	eventDetails VARCHAR(512) NOT NULL,
-	eventLocation VARCHAR(256)
+	eventLocation VARCHAR(256),
 	eventType VARCHAR(32) NOT NULL,
 
 	/*creating Indices*/
