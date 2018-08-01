@@ -1,5 +1,14 @@
 <?php
 
+
+/**
+ * Class Event
+ *
+ * This data is representative of the stored data for a Nerd Nook Event.
+ *
+ * @author Marlon Peseke <mpeseke@gmail.com>
+ **/
+
 class Event {
 
 	/**
@@ -33,6 +42,21 @@ class Event {
 	private $eventEndDateTime;
 
 	/**
-	 * id for the event location
+	 * id for the event location, listed in latitude and longitude
+	 * @var float $eventLat
+	 * @var float $eventLong
+	 */
+	private $eventLat;
+
+	private $eventLong;
+
+	/**
+	 * id for the event Start Time
+	 * @var DateTime $eventStartDateTime;
+	 */
+	private $eventStartDateTime;
+
+	/** Event Constructor for Nerd Nook
+	 *
 	 */
 }
