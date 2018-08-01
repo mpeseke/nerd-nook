@@ -36,14 +36,14 @@ CREATE TABLE event (
 	eventCategoryId BINARY(16) NOT NULL,
 	eventDetails VARCHAR(512) NOT NULL,
 	eventEnd DATETIME(6),
-	eventLocation VARCHAR(256),
+	eventLong DECIMAL (9,6),
+	eventLat DECIMAL (9,6),
 	eventStart DATETIME(6),
 	eventType VARCHAR(32) NOT NULL,
 
 	-- creating Indices --
 	INDEX(eventCategoryId),
 	INDEX(eventProfileId),
-	INDEX(eventLocation),
 	INDEX(eventType),
 
 	-- this creates the foreign keys --
