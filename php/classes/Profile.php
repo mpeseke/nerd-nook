@@ -269,6 +269,20 @@ class Profile {
 		$statement->execute($parameters);
 	}
 
+	/**
+	 * updates this Profile in mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 **/
+	public function update(\PDO $pdo): void {
+		// create query template
+		$query = "UPDATE profile SET profileActivationToken = profileActivationToken, profileAtHandle = :profileAtHandle, profileEmail = :profileEmail, profileHash = :profileHash";
+		$statement = $pdo->prepare($query);
 
+		// bind the profile variables to the place holders in the template
+		$parameters = ["profileId" => $this->profileId->getBytes(), "profileActivationToken" => $this->profileActivationToken, "profileAtHandle" => $this->profileAtHandle, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash];
+		$statement->execute($parameters);
+	}
 
 }
