@@ -57,6 +57,34 @@ class Event {
 	private $eventStartDateTime;
 
 	/** Event Constructor for Nerd Nook
-	 *
+	 * @param Uuid $newEventId the Uuid representation of the new Event
+	 * @param Uuid $newEventProfileId the Uuid representation of the new event Creator
+	 * @param Uuid $newEventCategoryId the Uuid representation of the new event Category
+	 * @param string $newEventDetails the string value containing the event's Details
+	 * @param \DateTime $newEventEndDateTime the End Time DateTime for the new Event
+	 * @param float $newEventLat the latitudinal value of the new Event
+	 * @param float $newEventLong the longitudinal value of the new Event
+	 * @param \DateTime $newEventStartDateTime the Start Time DateTime for the new Event
+	 * @throws \InvalidArgumentException if values are invalid|
+	 * @throws \RangeException if the values are out of bound of the character limit|
+	 * @throws \TypeError if the argument does not match the corresponding function return|
+	 * @throws \Exception on any other exception
 	 */
+
+	public function __construct($newEventId, $newEventProfileId, $newEventCategoryId, string $newEventDetails,
+\DateTime $newEventEndDateTime, float $newEventLat, float $newEventLong, \DateTime $newEventStartDateTime) {
+		try {
+			$this->eventId = $newEventId;
+			$this->eventProfileId = $newEventProfileId;
+			$this->eventCategoryId = $newEventCategoryId;
+			$this->eventDetails = $newEventDetails;
+			$this->eventEndDateTime = $newEventEndDateTime;
+			$this->eventLat = $newEventLat;
+			$this->eventLong = $newEventLong;
+			$this->eventStartDateTime = $newEventStartDateTime;
+		} catch (\InvalidArgumentException| \RangeException| \TypeError| \Exception $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+	}
 }
