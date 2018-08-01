@@ -23,7 +23,7 @@ CREATE TABLE profile (
 CREATE TABLE category (
 	categoryId BINARY(16) NOT NULL,
 	categoryName VARCHAR(32) NOT NULL,
-	categoryType VARCHAR(12) NOT NULL,
+	categoryType VARCHAR(24) NOT NULL,
 	PRIMARY KEY (categoryId)
 );
 
@@ -35,10 +35,10 @@ CREATE TABLE event (
 	eventProfileId BINARY(16) NOT NULL,
 	eventCategoryId BINARY(16) NOT NULL,
 	eventDetails VARCHAR(512) NOT NULL,
-	eventEnd DATETIME(6),
+	eventEndDateTime DATETIME(6),
 	eventLat DECIMAL (9,6),
 	eventLong DECIMAL (9,6),
-	eventStart DATETIME(6),
+	eventStartDateTime DATETIME(6),
 
 
 	-- creating Indices --
@@ -68,7 +68,7 @@ CREATE TABLE checkIn (
 -- creates the comment table --
 CREATE TABLE comment (
 	--  this is for the primary key --
-	commentId Binary(16) NOT NULL,
+	commentId BINARY(16) NOT NULL,
 	--  this will be a foreign key --
 	commentEventId BINARY (16) NOT NULL,
 	commentProfileId BINARY (16) NOT NULL,
