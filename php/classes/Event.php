@@ -42,12 +42,15 @@ class Event {
 	private $eventEndDateTime;
 
 	/**
-	 * id for the event location, listed in latitude and longitude
+	 * id for the event location, listed in latitude
 	 * @var float $eventLat
-	 * @var float $eventLong
 	 */
 	private $eventLat;
 
+	/**
+ 	* id for the event location, listed in longitude
+	* @var float $eventLong
+   */
 	private $eventLong;
 
 	/**
