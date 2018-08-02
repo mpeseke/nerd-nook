@@ -178,7 +178,7 @@ class Event {
 		 * @throws \RangeException if $newEventDetails are not positive or more than 512 characters
 		 * @throws \TypeError if $newEventDetails are not a string
 		 */
-		public function setEventDetails ( $newEventDetails) : void {
+		public function setEventDetails (?string $newEventDetails) : void {
 			// verify Event Details are secure
 			$newEventDetails = trim($newEventDetails);
 			$newEventDetails = filter_var($newEventDetails, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -217,13 +217,53 @@ class Event {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
+		//store the new Event End Time
 		$this->eventEndDateTime = $newEventEndDateTime;
 	}
 
 		/**
 		 * accessor method for new Event Latitude location
-		 * @returns float value of the latitude location
+		 * @returns float value of the Latitudinal location
 		 */
+		public function getEventLat(): float {
+			return ($this->eventLat);
+		}
+
+		/**
+		 * mutator method for the new Event Latitude location
+		 * @param float $newEventLat is a float object
+		 * @throws \TypeError if $newEventLat is not a float
+		 * @throws \RangeException if $newEventLat is less than -90, more than 90, or empty string
+		 */
+		public function setEventLat(?float $newEventLat) : void {
+				if($newEventLat < -90 || $newEventLat > 90 || empty($newEventLat) === true) {
+					throw(new \RangeException("Latitude must be between -90 and 90"));
+				}
+				//Store new Event Latitude value
+				$this->eventLat = $newEventLat;
+			}
+
+		/**
+		 * accessor method for new Event Longitude location
+		 * @returns float value of the Longitudinal location
+		 */
+		public function getEventLong(): float {
+			return $this->eventLong;
+		}
+
+		/**
+		 * mutator method for the new Event Longitude location
+		 * @param float $newEventLong is a float object
+		 * @throws \TypeError if $newEventLong is not a float
+		 * @throws \RangeException if $newEventLong is less than -180, more than 180, or empty string
+		 */
+		public function setEventLong(float $eventLong): void {
+			if($newEventLong < -180 || $newEventLong > 180 || empty($newEventLong) === true) {
+				throw(new \RangeException("Longitude must be between -180 and 180"));
+			}
+			//store new Event Longitude Location
+			$this->eventLong = $eventLong;
+		}
 
 		/**
 		 * accessor method for the Event Start Time
