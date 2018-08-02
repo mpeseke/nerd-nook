@@ -331,14 +331,14 @@ class Profile {
 
 
 	/**
-	 * get the Profile by email
+	 * gets the Profile by email
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param string $profileEmail email to search for
 	 * @return Profile|null Profile or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not correct data type
-	 */
+	 **/
 	public static function getProfileByProfileEmail(\PDO $pdo, string $profileEmail): ?Profile {
 		// sanitize the email before searching
 		$profileEmail = trim($profileEmail);
@@ -369,6 +369,47 @@ class Profile {
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
 		return($profile);
+	}
+
+	/**
+	 * gets the Profile by at handle
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $profileAtHandle at handle to search for
+	 * @return \SplFixedArray of all profiles found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+	public static function getProfileByProfileAtHandle(\PDO $pdo, string $profileAtHandle): \SplFixedArray {
+		// sanitize the at handle before searching
+		$profileAtHandle = trim($profileAtHandle);
+		$profileAtHandle = filter_var($profileAtHandle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($profileAtHandle) === true) {
+			throw(new\PDOException("not a valid at handle"));
+		}
+
+		// create query template
+		$query = "SELECT profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash";
+		$statement = $pdo->prepare($query);
+
+		// bind the profile at handle to the place holder in the template
+		$parameters = ["profileAtHandle" => $profileAtHandle];
+		$statement->execute($parameters);
+
+		$profiles = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+
+		while (($row = $statement->fetch()) !== false) {
+			try {
+				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileAtHandle"], $row["profileEmail"], $row["profileHash"]);
+				$profile[$profiles->key()] = $profile;
+				$profiles->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($profiles);
 	}
 
 
