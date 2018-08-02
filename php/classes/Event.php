@@ -18,16 +18,16 @@ class Event {
 	private $eventId;
 
 	/**
-	 * id of the event creator; foreign key
-	 * @var Uuid $eventProfileId
-	 */
-	private $eventProfileId;
-
-	/**
 	 * id for the event Category; foreign key
 	 * @var Uuid $eventCategoryId
 	 */
 	private $eventCategoryId;
+
+	/**
+	 * id of the event creator; foreign key
+	 * @var Uuid $eventProfileId
+	 */
+	private $eventProfileId;
 
 	/**
 	 * id for the event's Details
@@ -117,31 +117,6 @@ class Event {
 		}
 
 		/**
-		 * accessor method for the event profile Id
-		 * @return Uuid value of the event profile Id
-		 */
-		public function getEventProfileId(): Uuid {
-			return ($this->eventProfileId);
-		}
-
-		/**
-		 * mutator method for the event profile Id
-		 * @param Uuid|string $newEventProfileId new value of the eventProfileId
-		 * @throws \RangeException if $newEventProfileId is not positive
-		 * @throws \TypeError if $newEventProfileId is not a Uuid or string
-		 */
-		public function setEventProfileId ( $newEventProfileId) : void {
-			try {
-				$uuid = self::validateUuid($newEventProfileId);
-			} catch(\RangeException | \TypeError $exception) {
-				$exceptionType = get_class($exception);
-				throw(new $exceptionType($exception->getMessage(), 0, $exception));
-			}
-			//converts and stores the event Profile Id
-			$this->eventProfileId = $uuid;
-		}
-
-		/**
 		 * accessor method for the event Category Id
 		 * @return Uuid value of the event Category
 		 */
@@ -166,6 +141,31 @@ class Event {
 			$this->eventCategoryId = $uuid;
 		}
 
+	/**
+	 * accessor method for the event profile Id
+	 * @return Uuid value of the event profile Id
+	 */
+	public function getEventProfileId(): Uuid {
+		return ($this->eventProfileId);
+	}
+
+	/**
+	 * mutator method for the event profile Id
+	 * @param Uuid|string $newEventProfileId new value of the eventProfileId
+	 * @throws \RangeException if $newEventProfileId is not positive
+	 * @throws \TypeError if $newEventProfileId is not a Uuid or string
+	 */
+	public function setEventProfileId ( $newEventProfileId) : void {
+		try {
+			$uuid = self::validateUuid($newEventProfileId);
+		} catch(\RangeException | \TypeError $exception) {
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+		//converts and stores the event Profile Id
+		$this->eventProfileId = $uuid;
+	}
+
 		/**
 		 * accessor method for the event Details
 		 * @return string value of the event Details
@@ -181,7 +181,7 @@ class Event {
 		 * @throws \RangeException if $newEventDetails are not positive or more than 512 characters
 		 * @throws \TypeError if $newEventDetails are not a string
 		 */
-		public function setEventDetails (?string $newEventDetails) : void {
+		public function setEventDetails (string $newEventDetails) : void {
 			// verify Event Details are secure
 			$newEventDetails = trim($newEventDetails);
 			$newEventDetails = filter_var($newEventDetails, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -238,7 +238,7 @@ class Event {
 		 * @throws \TypeError if $newEventLat is not a float
 		 * @throws \RangeException if $newEventLat is less than -90, more than 90, or empty string
 		 */
-		public function setEventLat(?float $newEventLat) : void {
+		public function setEventLat(float $newEventLat) : void {
 				if($newEventLat < -90 || $newEventLat > 90 || empty($newEventLat) === true) {
 					throw(new \RangeException("Latitude must be between -90 and 90"));
 				}
@@ -294,4 +294,61 @@ class Event {
 			}
 			$this->eventStartDateTime = $newEventStartDateTime;
 		}
+	/* Begin PDO Methods
+	 *
+	 * inserts Event into SQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL relations error occurs
+	 * @throws \TypeError if $pdo is not a PDO connection object
+    */
+
+	public function insert(\PDO $pdo): void {
+		//create a query template for the insert method
+		$query = "INSERT INTO event(eventId, eventCategoryId, eventProfileId, eventDetails, eventEndDateTime, eventLat, eventLong, eventStartDateTime) VALUES (:eventId, :eventCategoryId, :eventProfileId, :eventDetails, :eventEndDateTime, :eventLat, :eventLong, :eventStartDateTime)";
+		$statement = $pdo->prepare($query);
+
+		//bind variables to their place in the query template
+		$parameters =["eventId" => $this->eventId->getBytes(), "eventCategoryId" => $this->eventCategoryId->getBytes(), "eventProfileId" => $this->eventProfileId->getBytes(), "eventDetails" => $this->eventDetails, "eventEndDateTime" => $this->eventEndDateTime, "eventLat" => $this->eventLat, "eventLong" => $this->eventLong, "eventStartDateTime" => $this->eventStartDateTime];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * deletes the Event from SQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
+
+	public function delete(\PDO $pdo): void {
+		//create query template for the delete method
+		$query = "DELETE FROM event WHERE eventId = :eventId";
+		$statement = $pdo->prepare($query);
+
+		//bind variables to their place in the query template
+		$parameters = ["eventId" => $this->eventId->getBytes()];
+		$statement->execute($parameters);
+	}
+
+	/**
+	 * updates the Event in SQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
+
+	public function update(\PDO $pdo): void {
+		//create query template for the update method
+		$query = "UPDATE event SET eventId = :eventId, eventCategoryId = :eventCategoryId, eventProfileId = :eventProfileId, eventDetails = :eventDetails, eventEndDateTime = :eventEndDateTime, eventLat = :eventLat, eventLong = :eventLong, eventStartDateTime = :eventStartDateTime WHERE eventId = :eventId";
+		$statement = $pdo->prepare($query);
+
+		//bind variable to their place in the query template
+		$parameters = ["eventId" => $this->eventId->getBytes(), "eventCategoryId" => $this->eventCategoryId->getBytes(), "eventProfileId" => $this->eventProfileId->getBytes(), "eventDetails" => $this->eventDetails, "eventEndDateTime" => $this->eventEndDateTime, "eventLat" => $this->eventLat, "eventLong" => $this->eventLong, "eventStartDateTime" => $this->eventStartDateTime];
+		$statement->execute($parameters);
+	}
+
+
 }
+
