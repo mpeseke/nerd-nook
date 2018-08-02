@@ -15,7 +15,7 @@ CREATE TABLE profile (
 	-- unique index to avoid duplicate data
 	UNIQUE (profileAtHandle),
 	UNIQUE (profileEmail),
-	-- officiates primary key for reviewer
+	-- officiates primary key for profile
 	PRIMARY KEY(profileId)
 );
 
