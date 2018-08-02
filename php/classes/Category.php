@@ -5,7 +5,7 @@ namespace CalebMHeckendorn\NerdNook;
 require_once("autoload.php");
 require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 
-//use Ramsey\Uuid\Uuid; WIP
+use Ramsey\Uuid\Uuid;
 /**
  * @author Caleb Heckendorn <checkendorn@cnm.edu>
  * @version 1.0
@@ -120,7 +120,7 @@ class Category {
 	 * inserts this category id into mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @throws \PDOExceptionwhen mySQL errors happen
+	 * @throws \PDOException when mySQL errors happen
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 */
 	public function insert (\PDO $pdo): void {
