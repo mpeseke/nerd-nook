@@ -1,4 +1,9 @@
 <?php
+namespace ChelseaDavid\NerdNook;
+require_once("autoload.php");
+require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
+
+
 
 /**
  *Small cross section of a Nerd Nook comment
@@ -9,7 +14,7 @@
  *@version 1.0
  **/
 
-class comment {
+class comment implements \JsonSerializable {
 	/*
 	*id or this comment; this is the primary key
 	*@var Uuid $comment
@@ -163,7 +168,7 @@ class comment {
 	/*
 	 * mutator method for commentContent
 	 *
-	 * @param string $newCommentConent new value of commentContent
+	 * @param string $newCommentContent new value of commentContent
 	 * @throws \InvalidArgumentException if $newCommentContent is not a string or insecure
 	 * @throws \RangeException if $newCommentContent is > 500 characters
 	 * @throws \TypeError is $newCommentContent is not a string
@@ -176,7 +181,7 @@ class comment {
 		if(empty($newCommentContent) === true) {
 			throw(new\InvalidArgumentException("Comment is empty or insecure"));
 		}
-		//verify the comment content will fir in the database
+		//verify the comment content will fit in the database
 		if(strlen($newCommentContent) > 500) {
 			throw(new \RangeException("Comment must not exceed 500 characters"));
 		}
@@ -272,45 +277,6 @@ class comment {
 	}
 
 	/*
-	 * gets this comment by commentId
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @param string|UUid $commentId comment id to search for
-	 * @return Comment|null Comment found or null if not found
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError when a variable is not the correct data type
-	 */
-	public static function getComentByCommentId(\PDO $pdo, $commentId): ?Comment {
-		//sanitize the commentId before searching
-		try {
-			$commentId = self::validateUuid($commentId);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | TypeError $exception) {
-			throw (new \PDOException($exception->getMessage(), 0, $exception));
-		}
-		//create query teplate
-		$query = "SELECT commentId,commentEventId, commentProfileId, commentContent, commentDateTime FROM comment WHERE commentId = :commentId";
-		$statement = $pdo->prepare($query);
-
-		// bind the comment id to the place holder in the template
-		$parameters = ["commentId" => $commentId->getBytes()];
-		$statement->execute($parameters);
-
-		//grab the comment from mySQL
-		try {
-			$comment = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
-				$comment = new Comment($row["commentId"], $row["commentEventId"], $row["commentProfileId"], $row["commentContent"], $row["commentDateTime"]);
-			}
-		} catch(\Exception $exception) {
-			//if the row couldn't be converted, rethrow it
-			throw(new \PDOExecption($exception->getMessage(), 0, $exception));
-		}
-		return ($comment);
-	}
-
-	/*
 	 * gets the Comment by event Id
 	 *
 	 * @param \PDO $pdo PDO connection object
@@ -385,75 +351,6 @@ class comment {
 		return($comments);
 	}
 
-	/*
-	 * gets the Comment by content
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @param string $commentContent comment content to search for
-	 * @return \SplFixedArray SplFixedArray of comments found
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError when variables are not the correct data type
-	 */
-
-	public static function getCommentByCommentContent(\PDO $pdo, string $commentContent) : \SPLFixedArray {
-		// sanitize the description before searching
-		$commentContent = trim($commentContent);
-		$commentContent = filter_var($commentContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($commentContent) === true) {
-			throw(new \PDOException("comment content is invalid"));
-		}
-		// escape any mySQL wild cards
-		$commentContent = str_replace("_", "\\_", str_replace("%", "\\%", $commentContent));
-		// create query template
-		$query = "SELECT commentId,commentEventId, commentProfileId, commentContent, commentDateTime FROM comment WHERE commentContent LIKE :commentContent";
-		$statement = $pdo->prepare($query);
-		// bind the comment content to the place holder in the template
-		$commentContent = "%$commentContent%";
-		$parameters = ["commentContent" => $commentContent];
-		$statement->execute($parameters);
-		// build an array of comments
-		$comments = new \SplFixedArray($statement->rowCount());
-		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		while(($row = $statement->fetch()) !== false) {
-			try {
-				$comment = new Comment($row["commentId"], $row["commentEventId"], $row["commentProfileId"], $row["commentContent"], $row["commentDateTime"]);
-				$comments[$comments->key()] = $comment;
-				$comments->next();
-			} catch(\Exception $exception) {
-				// if the row couldn't be converted, rethrow it
-				throw(new \PDOException($exception->getMessage(), 0, $exception));
-			}
-		}
-		return($comments);
-	}
-	/**
-	 * gets all Comments
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @return \SplFixedArray SplFixedArray of Comments found or null if not found
-	 * @throws \PDOException when mySQL related errors occur
-	 * @throws \TypeError when variables are not the correct data type
-	 **/
-	public static function getAllComments(\PDO $pdo) : \SPLFixedArray {
-		// create query template
-		$query = "SELECT commentId, commentEventId, commentProfileId, commentContent, commentDateTime FROM comment";
-		$statement = $pdo->prepare($query);
-		$statement->execute();
-		// build an array of comments
-		$comments = new \SplFixedArray($statement->rowCount());
-		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-		while(($row = $statement->fetch()) !== false) {
-			try {
-				$comment = new Comment($row["commentId"],$row["commentEventId"], $row["commentProfileId"], $row["commentContent"], $row["commentDateTime"]);
-				$comments[$comments->key()] = $comment;
-				$comments->next();
-			} catch(\Exception $exception) {
-				// if the row couldn't be converted, rethrow it
-				throw(new \PDOException($exception->getMessage(), 0, $exception));
-			}
-		}
-		return ($comments);
-	}
 	/**
 	 * formats the state variables for JSON serialization
 	 *
