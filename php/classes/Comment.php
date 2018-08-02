@@ -197,7 +197,7 @@ class comment implements \JsonSerializable {
 	 * @return \DateTime value of questionDateTime
 	 */
 
-	public function getCommentDateTime(): DateTime {
+	public function getCommentDateTime(): \DateTime {
 		return $this->commentDateTime;
 	}
 
@@ -207,6 +207,7 @@ class comment implements \JsonSerializable {
 	@param \DateTime|string|null $newCommentDateTime comment date as a DateTime object or a string (or null to load the current time)
 	@throws \InvalidArgumentException if $newCommentDateTime is not a valid object or string
 	@throws \RangeException if $newCommentDateTime is a date that does not exist.
+	@throws \Exception on all other exceptions
 	 */
 	public function setCommentDateTime($newCommentDateTime = null): void {
 		// base case: if the date is null, use the current date and time
