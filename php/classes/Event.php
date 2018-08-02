@@ -480,5 +480,36 @@ class Event {
 		return($events);
 		}
 
+	/**
+	 * get all of the Events
+	 *
+	 * @param \PDO $pdo connection object
+	 * @return \SplFixedArray SplFixedArray of the Events found or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 **/
+
+	public static function getAllEvents(\PDO $pdo) : \SplFixedArray {
+			//create query template
+			$query = "SELECT eventId, eventCategoryId, eventProfileId, eventDetails, eventEndDateTime, eventLat, eventLong, eventStartDateTime FROM event";
+			$statement = $pdo->prepare($query);
+			$statement->execute();
+
+			//build an array of Events
+			$events = new \SplFixedArray($statement->rowCount());
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			while(($row = $statement->fetch()) !== false) {
+				try {
+						$event = new Event($row["eventId"], $row["eventCategoryId"], $row["eventProfileId"], $row["eventDetails"], $row["eventEndDateTime"], $row["eventLat"], $row["eventLong"], $row["eventStartDateTime"]);
+						$events[$events->key()] = $event;
+						$events->next();
+				} catch(\Exception $exception) {
+					//if the row can't be converted, throw again
+					throw(new \PDOException($exception->getMessage(),0, $exception));
+				}
+			}
+			return($events);
+		}
+
 	}
 
