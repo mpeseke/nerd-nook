@@ -3,6 +3,8 @@ namespace Mpeseke\NerdNook;
 require_once ("autoload.php");
 require_once(dirname(__DIR__,2) . "../vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
+use Rbecker8\NerdNook\ValidateUuid;
+
 /**
  * Class Event
  *
@@ -12,6 +14,8 @@ use Ramsey\Uuid\Uuid;
  **/
 
 class Event {
+	use ValidateDate;
+	use ValidateUuid;
 
 	/**
 	 * Id for the event itself; this is the primary key
