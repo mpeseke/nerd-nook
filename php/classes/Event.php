@@ -257,12 +257,12 @@ class Event {
 		 * @throws \TypeError if $newEventLong is not a float
 		 * @throws \RangeException if $newEventLong is less than -180, more than 180, or empty string
 		 */
-		public function setEventLong(float $eventLong): void {
+		public function setEventLong(float $newEventLong): void {
 			if($newEventLong < -180 || $newEventLong > 180 || empty($newEventLong) === true) {
 				throw(new \RangeException("Longitude must be between -180 and 180"));
 			}
 			//store new Event Longitude Location
-			$this->eventLong = $eventLong;
+			$this->eventLong = $newEventLong;
 		}
 
 		/**
