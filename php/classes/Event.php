@@ -511,5 +511,24 @@ class Event {
 			return($events);
 		}
 
+
+	/**
+	 * format the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize.
+	 */
+
+	public function jsonSerialize() : array {
+		$fields = get_object_vars($this);
+
+		$fields["eventId"] = $this->eventId->toString();
+		$fields["eventCategoryId"] = $this->eventCategoryId->toString();
+		$fields["eventProfileId"] = $this->eventProfileId->toString();
+
+		//format the date for front end consumption
+		$fields["eventEndDateTime"] = round(floatval($this->eventEndDateTime->format("U.u")) * 1000);
+		$fields["eventStartDateTime"] = round(floatval($this->eventStartDateTime->format("U.u")) * 1000);
+		return($fields);
+		}
 	}
 
