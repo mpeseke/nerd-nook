@@ -74,8 +74,7 @@ class Event {
 	 * @throws \Exception on any other exception
 	 */
 
-	public function __construct($newEventId, $newEventProfileId, $newEventCategoryId, string $newEventDetails,
-		\DateTime $newEventEndDateTime, float $newEventLat, float $newEventLong, \DateTime $newEventStartDateTime) {
+	public function __construct($newEventId, $newEventProfileId, $newEventCategoryId, string $newEventDetails, \DateTime $newEventEndDateTime, float $newEventLat, float $newEventLong, \DateTime $newEventStartDateTime) {
 		try {
 			$this->eventId = $newEventId;
 			$this->eventProfileId = $newEventProfileId;
@@ -294,8 +293,12 @@ class Event {
 			}
 			$this->eventStartDateTime = $newEventStartDateTime;
 		}
-	/* Begin PDO Methods
-	 *
+
+	/**
+	 * Begin PDO Methods
+	 */
+
+	/**
 	 * inserts Event into SQL
 	 *
 	 * @param \PDO $pdo PDO connection object
