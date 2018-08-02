@@ -1,4 +1,7 @@
 <?php
+namespace Mpeseke\NerdNook;
+require_once ("autoload.php");
+
 
 
 /**
