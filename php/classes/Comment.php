@@ -2,8 +2,8 @@
 namespace ChelseaDavid\NerdNook;
 require_once("autoload.php");
 require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
-
-
+use Rbecker8\NerdNook\ValidateUuid;
+use Mpeseke\NerdNook\ValidateDate;
 
 /**
  *Small cross section of a Nerd Nook comment
@@ -15,6 +15,8 @@ require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
  **/
 
 class comment implements \JsonSerializable {
+	use ValidateUuid;
+	use ValidateDate;
 	/*
 	*id or this comment; this is the primary key
 	*@var Uuid $comment
