@@ -83,14 +83,14 @@ class Event {
 
 	public function __construct($newEventId, $newEventProfileId, $newEventCategoryId, string $newEventDetails, \DateTime $newEventEndDateTime, float $newEventLat, float $newEventLong, \DateTime $newEventStartDateTime) {
 		try {
-			$this->eventId = $newEventId;
-			$this->eventProfileId = $newEventProfileId;
-			$this->eventCategoryId = $newEventCategoryId;
-			$this->eventDetails = $newEventDetails;
-			$this->eventEndDateTime = $newEventEndDateTime;
-			$this->eventLat = $newEventLat;
-			$this->eventLong = $newEventLong;
-			$this->eventStartDateTime = $newEventStartDateTime;
+			$this->setEventId = $newEventId;
+			$this->setEventProfileId = $newEventProfileId;
+			$this->setEventCategoryId = $newEventCategoryId;
+			$this->setEventDetails = $newEventDetails;
+			$this->setEventEndDateTime = $newEventEndDateTime;
+			$this->setEventLat = $newEventLat;
+			$this->setEventLong = $newEventLong;
+			$this->setEventStartDateTime = $newEventStartDateTime;
 		} catch(\InvalidArgumentException| \RangeException| \TypeError| \Exception $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
@@ -215,6 +215,7 @@ class Event {
 	 * @param \DateTime $newEventEndDateTime is a DateTime object
 	 * @throws \InvalidArgumentException if $newEventEndDateTime is not a valid object
 	 * @throws \RangeException if $newEventEndDateTime is a date that does not exist
+	 * @throws \Exception on all other exceptions
 	 */
 	public function setEventEndDateTime(\DateTime $newEventEndDateTime): void {
 		if(empty($newEventEndDateTime) === true) {
@@ -287,6 +288,7 @@ class Event {
 	 * @param \DateTime $newEventStartDateTime is a DateTime object
 	 * @throws \InvalidArgumentException if $newEventStartDateTime is not a valid object
 	 * @throws \RangeException if $newEventStartDateTime is a date that does not exist
+	 * @throws \Exception on all other Exceptions
 	 */
 	public function setEventStartDateTime(\DateTime $newEventStartDateTime): void {
 		if(empty($newEventStartDateTime) === true) {
