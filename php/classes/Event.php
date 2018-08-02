@@ -4,6 +4,7 @@ require_once ("autoload.php");
 require_once(dirname(__DIR__,2) . "../vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 use Rbecker8\NerdNook\ValidateUuid;
+use Mpeseke\NerdNook\ValidateDate;
 
 /**
  * Class Event
@@ -43,7 +44,7 @@ class Event {
 
 	/**
 	 * id for the event's End Time
-	 * @var DateTime $eventEndDateTime ;
+	 * @var \DateTime $eventEndDateTime ;
 	 */
 	private $eventEndDateTime;
 
@@ -61,7 +62,7 @@ class Event {
 
 	/**
 	 * id for the event Start Time
-	 * @var DateTime $eventStartDateTime ;
+	 * @var \DateTime $eventStartDateTime ;
 	 */
 	private $eventStartDateTime;
 
