@@ -1,8 +1,7 @@
 <?php
 namespace Rbecker8\NerdNook;
-require_once("autoload.php");
-require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
-
+require_once(dirname(__DIR__, 2) . "../vendor/autoload.php");
+use Ramsey\Uuid\Uuid;
 
 /**
  * Class Profile
@@ -44,7 +43,7 @@ class Profile {
 
 	/**
 	 * Profile constructor
-	 * @param string\Uuid $newProfileId string containing id of this profile
+	 * @param string|Uuid $newProfileId id of this profile
 	 * @param string $newProfileActivationToken string containing activation token to safe guard against malicious accounts
 	 * @param string $newProfileAtHandle string containing at handle
 	 * @param string $newProfileEmail string containing email
@@ -73,7 +72,7 @@ class Profile {
 	 *
 	 * @return Uuid value for profile id
 	 **/
-	public function getProfileId(): void {
+	public function getProfileId(): Uuid {
 		return ($this->profileId);
 	}
 
