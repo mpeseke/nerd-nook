@@ -113,7 +113,7 @@ class CheckIn {
 	 */
 	public function setCheckInDateTime($newCheckInDateTime): void {
 		try {
-			$uuid = self::validateDateTime($newCheckInDateTime);
+			$newCheckInDateTime = self::validateDateTime($newCheckInDateTime);
 		} catch(\RangeException | \TypeError $exception){
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
@@ -140,11 +140,8 @@ class CheckIn {
 	 * @throws \TypeError if $newCheckInRep is not a int
 	 */
 	public function setCheckInRep($newCheckInRep): void {
-		try {
-			$uuid = self::validateUuid($newCheckInRep);
-		} catch(\RangeException | \TypeError $exception){
-			$exceptionType = get_class($exception);
-			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		if ($newCheckInRep < 0){
+			throw(new \RangeException("cannot be less than 0"));
 		}
 
 		//convert and store the check in rep
