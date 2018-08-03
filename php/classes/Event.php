@@ -483,6 +483,10 @@ class Event {
 		}
 
 	/**
+	 * get Event by Event Date Range
+	 */
+
+	/**
 	 * get all of the Events
 	 *
 	 * @param \PDO $pdo connection object

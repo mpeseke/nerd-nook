@@ -22,11 +22,6 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
  **/
 
 class EventTest extends NerdNookTest {
-	/**
-	 * Valid Id of the Event
-	 * @var Uuid $VALID_EVENTID
-	 **/
-	protected $VALID_EVENTID = "4b437a4e-b55e-42b9-8508-f57f6f47326f";
 
 	/**
 	 * Category the Event falls under; this is for the foreign key relations
@@ -117,7 +112,15 @@ public final function setUp() : void {
 	$this->VALID_EVENTENDDATETIME = new \DateTime();
 	$this->VALID_EVENTSTARTDATETIME = new \DateTime();
 
+	// create and insert a Category to own the test Event
+	$this->category = new Category(generateUuidV4(), "Dungeons and Dragons", "Table Top Games");
+	$this->category->insert($this->getPDO());
+
+
 	}
+
+
+
 
 	/**
 	 * test creating a valid Event and verify that the actual mySQL data matches
