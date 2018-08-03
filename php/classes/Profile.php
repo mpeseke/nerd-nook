@@ -305,7 +305,7 @@ class Profile {
 		}
 
 		// create query template
-		$query = "SELECT profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash";
+		$query = "SELECT profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash FROM profile WHERE profileId = :profileId";
 		$statement = $pdo->prepare($query);
 
 		// bind the profile id to the place holder in the template
@@ -346,7 +346,7 @@ class Profile {
 		}
 
 		// create query template
-		$query = "SELECT profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash";
+		$query = "SELECT profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash FROM profile WHERE profileId = :profileId";
 		$statement = $pdo->prepare($query);
 
 		// bind the profile id to the place holder in the template
@@ -386,7 +386,7 @@ class Profile {
 		}
 
 		// create query template
-		$query = "SELECT profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash";
+		$query = "SELECT profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash FROM profile WHERE profileId = :profileId";
 		$statement = $pdo->prepare($query);
 
 		// bind the profile at handle to the place holder in the template
@@ -409,6 +409,45 @@ class Profile {
 		return($profiles);
 	}
 
+	/**
+	 * gets the Profile by activation token
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $profileActivationToken activation token to search for
+	 * @return Profile|null Profile or null if not found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not correct data type
+	 **/
+	public static function getProfileByProfileActivationToken(\PDO $pdo, string $profileActivationToken) : ?Profile {
+		// sanitize the token before searching
+		$profileActivationToken = trim($profileActivationToken);
+		$profileActivationToken = filter_var($profileActivationToken, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($profileActivationToken) === true) {
+			throw(new\PDOException("not a valid token"));
+		}
+
+		// create a query template
+		$query = "SELECT profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash FROM profile WHERE profileId = :profileId";
+		$statement = $pdo->prepare($query);
+
+		// bind the profile activation token to the place holder in the template
+		$parameters = ["profileActivationToken" => $profileActivationToken];
+		$statement->execute($parameters);
+
+		// grab the Profile from mySQL
+		try {
+			$profile = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileAtHandle"], $row["profileEmail"], $row["profileHash"]);
+			}
+		} catch(\Exception $exception) {
+			// if row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($profile);
+	}
 
 	/**
 	 * format the state variables for JSON serialization
