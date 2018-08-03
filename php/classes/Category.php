@@ -156,4 +156,32 @@ class Category {
 		 * @throws \PDOException when mySQL errors happen
 		 * @throws \TypeError when a variable is not the correct data type
 		 */
+
+	public static function getCategoryByCategoryId(\PDO $pdo, string $categoryId):?Category {
+		//sanitize the category id before searching
+		try {
+			$categoryId =self::validateUuid($categoryId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw (new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		//create query template
+		$query = "SELECT categoryId, categoryName, categoryType FROM category WHERE categoryId = :categoryId";
+		$statement = $pdo->prepare($query);
+		//bind the category id to the placeholder in the template
+		$parameters = ["categoryId" => $categoryId->getBytes()];
+		$statement->execute($parameters);
+		//grab the Category from mySQL
+		try {
+			$category = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$category = new Category($row["categoryId"], $row["categoryName"], $row["categoryType"]);
+			}
+		} catch(\Exception $exception) {
+			//if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(),0, $exception));
+		}
+		return ($category);
+	}
 }
