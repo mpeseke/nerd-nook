@@ -91,7 +91,155 @@ class CheckIn {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
+
+		//convert and store the check in profile id
 		$this->checkInProfileId = $newCheckInProfileId;
+	}
+	/**
+	 * accessor method for check in date time
+	 *
+	 * @return Uuid value of check in date time
+	 */
+	public function getCheckInDateTime(): Uuid {
+		return $this->checkInDateTime;
+	}
+
+	/**
+	 * mutator method for check in date time
+	 *
+	 * @param Uuid|string $newCheckInDateTime new value of check in date time
+	 * @throws \RangeException if $newCheckInDateTime is \mysqli_sql_exception
+	 * @throws \TypeError if $newCheckInDateTime is not a uuid.e
+	 */
+	public function setCheckInDateTime($newCheckInDateTime): void {
+		try {
+			$uuid = self::validateUuid($newCheckInDateTime);
+		} catch(\RangeException | \TypeError $exception){
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+
+		//convert and store the check in date time
+		$this->checkInDateTime = $newCheckInDateTime;
+	}
+
+	/**
+	 * accessor method for check in rep
+	 *
+	 * @return Uuid value of check in rep
+	 */
+	public function getCheckInRep(): Uuid {
+		return $this->checkInRep;
+	}
+
+	/**
+	 * mutator method for check in rep
+	 *
+	 * @param Uuid|string $newCheckInRep new value of check in rep
+	 * @throws \RangeException if $newCheckInRep is \mysqli_sql_exception
+	 * @throws \TypeError if $newCheckInRep is not a uuid.e
+	 */
+	public function setCheckInRep($newCheckInRep): void {
+		try {
+			$uuid = self::validateUuid($newCheckInRep);
+		} catch(\RangeException | \TypeError $exception){
+			$exceptionType = get_class($exception);
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
+		}
+
+		//convert and store the check in rep
+		$this->checkInRep = $newCheckInRep;
+	}
+
+
+	/*
+	 * checkInEventId
+	 * checkInProfileId
+	 * checkInDateTime
+	 * checkInRep
+	 */
+
+
+
+
+	/**
+	 * inserts this check in event id into mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL errors happen
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
+	public function insert (\PDO $pdo): void {
+		//create query template
+		$query = "INSERT INTO checkIn(checkInEventId, checkInProfileId, chekInDateTime, checkInRep) VALUES (:checkInEventId, :checkInProfileId, :checkInDateTime, :checkInRep)";
+		$statement = $pdo->prepare($query);
+		$parameters = ["checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInDateTime" => $this->checkInDateTime->getBytes(), "checkInRep" => $this->checkInRep->getBytes()];
+		$statement->execute($parameters);
+	}
+	/**
+	 * delete the check in  from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
+	public function delete(\PDO $pdo): void {
+		//create query template
+		$query = "DELETE FROM checkIn WHERE checkInProfileId = :checkInProfileId";
+		$statement = $pdo->prepare($query);
+		//bind the member variables to the place holders in the template
+		$parameters = ["checkInProfileId" => $this->checkInProfileId->getBytes()];
+		$statement->execute($parameters);
+	}
+	/**
+	 * updates the CheckIn from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL errors happen
+	 */
+	public function update(\PDO $pdo): void {
+		//create query template
+		$query = "UPDATE checkIn SET checkInEventId = :checkInEventId, checkInDateTime = :checkInDateTime, checkInRep = :checkInRep";
+		$statement = $pdo->prepare($query);
+		//bind the member variables to the place holders in the template
+		$parameters = ["checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInEventId" => $this->checkInEventId, "checkInDateTime" => $this->checkInDateTime, "checkInRep" => $this->checkInRep];
+		$statement->execute($parameters);
+	}
+	/**
+	 * gets the CheckIn by check in profile id
+	 *
+	 * @param \PDO $pdo $pdo PDO connection object
+	 * @return CheckIn|null CheckIn or null if not found
+	 * @throws \PDOException when mySQL errors happen
+	 * @throws \TypeError when a variable is not the correct data type
+	 */
+
+	public static function getCheckInByCheckInProfileId(\PDO $pdo, string $checkInProfileId):?CheckIn {
+		//sanitize the check in profile id before searching
+		try {
+			$checkInProfileId =self::validateUuid($checkInProfileId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw (new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		//create query template
+		$query = "SELECT checkInEventId, checkInProfileId, checkInDateTime, checkInRep FROM checkIn WHERE checkInProfileId = :checkInProfileId";
+		$statement = $pdo->prepare($query);
+		//bind the check in profile id to the placeholder in the template
+		$parameters = ["checkInProfileId" => $checkInProfileId->getBytes()];
+		$statement->execute($parameters);
+		//grab the CheckIn from mySQL
+		try {
+			$checkIn  = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$checkIn = new CheckIn($row["checkInEventId"], $row["checkInProfileId"], $row["checkInDateTime"], $row["checkInRep"]);
+			}
+		} catch(\Exception $exception) {
+			//if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(),0, $exception));
+		}
+		return ($checkIn);
 	}
 }
 
