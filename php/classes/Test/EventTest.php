@@ -23,6 +23,12 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
 
 class EventTest extends NerdNookTest {
 	/**
+	 * Valid Id of the Event
+	 * @var Uuid $VALID_EVENTID
+	 **/
+	protected $VALID_EVENTID = "4b437a4e-b55e-42b9-8508-f57f6f47326f";
+
+	/**
 	 * Category the Event falls under; this is for the foreign key relations
 	 * @var Category category
 	 */
@@ -44,15 +50,22 @@ class EventTest extends NerdNookTest {
 
 	/**
 	 * Event Content
-	 * @var string $VALID_EVENTCONTENT
+	 * @var string $VALID_EVENTDETAILS
 	 */
-	protected $VALID_EVENTCONTENT = "Event content is good.";
+	protected $VALID_EVENTDETAILS = "Event content is good.";
 
 	/**
 	 * Updated Event Content
-	 * @var string $VALID_EVENTCONTENT2
+	 * @var string $VALID_EVENTDETAILS2
 	 */
-	protected $VALID_EVENTCONTENT2 = "Event content is better.";
+	protected $VALID_EVENTDETAILS2 = "Event content is better.";
+
+	/**
+	 * Event End Date
+	 * @var \DateTime $VALID_EVENTENDDATETIME
+	 */
+	protected $VALID_EVENTENDDATETIME = null;
+
 
 	//Used the actual GPS coordinates of Active Imagination and Twin Suns Comics and Games
 
@@ -79,4 +92,10 @@ class EventTest extends NerdNookTest {
 	 * @var float $VALID_EVENTLONG2
 	 */
 	protected $VALID_EVENTLONG2 = -106.680244;
+
+	/**
+	 * Event Start Date
+	 * @var \DateTime $VALID_EVENTSTARTDATETIME
+	 */
+	protected $VALID_EVENTSTARTDATETIME = null;
 }
