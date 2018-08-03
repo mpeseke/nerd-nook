@@ -109,11 +109,11 @@ class CheckIn {
 	 *
 	 * @param \DateTime $newCheckInDateTime new value of check in date time
 	 * @throws \RangeException if $newCheckInDateTime is \mysqli_sql_exception
-	 * @throws \TypeError if $newCheckInDateTime is not a uuid.e
+	 * @throws \TypeError if $newCheckInDateTime is not a valid date time
 	 */
 	public function setCheckInDateTime($newCheckInDateTime): void {
 		try {
-			$uuid = self::validateUuid($newCheckInDateTime);
+			$uuid = self::validateDateTime($newCheckInDateTime);
 		} catch(\RangeException | \TypeError $exception){
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
@@ -126,18 +126,18 @@ class CheckIn {
 	/**
 	 * accessor method for check in rep
 	 *
-	 * @return Uuid value of check in rep
+	 * @return int value of check in rep
 	 */
-	public function getCheckInRep(): Uuid {
+	public function getCheckInRep(): int {
 		return $this->checkInRep;
 	}
 
 	/**
 	 * mutator method for check in rep
 	 *
-	 * @param Uuid|string $newCheckInRep new value of check in rep
+	 * @param int $newCheckInRep new value of check in rep
 	 * @throws \RangeException if $newCheckInRep is \mysqli_sql_exception
-	 * @throws \TypeError if $newCheckInRep is not a uuid.e
+	 * @throws \TypeError if $newCheckInRep is not a int
 	 */
 	public function setCheckInRep($newCheckInRep): void {
 		try {
