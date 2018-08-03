@@ -145,10 +145,21 @@ class Category {
 		$parameters = ["categoryId" => $this->categoryId->getBytes()];
 		$statement->execute($parameters);
 	}
-
-
-
-	/*
+	/**
+	 * updates the Category from mySQL
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @throws \PDOException when mySQL errors happen
+	 */
+	public function update(\PDO $pdo): void {
+		//create query template
+		$query = "UPDATE category SET categoryName = :categoryName, categoryType = :categoryType";
+		$statement = $pdo->prepare($query);
+		//bind the member variables to the place holders in the template
+		$parameters = ["categoryId" => $this->categoryId->getBytes(), "categoryName" => $this->categoryName, "categoryType" => $this->categoryType];
+		$statement->execute($parameters);
+		}
+		/**
 		 * gets the Category by category id
 		 *
 		 * @param \PDO $pdo $pdo PDO connection object
