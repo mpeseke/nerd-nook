@@ -128,4 +128,28 @@ class CommentTest extends NerdNookTest {
 		//format the date to seconds since the beginning of time to avoid round off error
 		$this->assertEquals($pdoComment->getCommentDate()->getTimeStamp(), $this->VALID_COMMENTDATE->getTimestamp());
 	}
+
+	/*
+	 *
+	 * test creating a comment and then deleting it.
+	 *
+	 */
+	public function testDeleteValidComment() : void {
+		//count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("comment");
+
+		//create a new comment and insert into mySQL
+		$commentId = generateUuidV4();
+		$comment = new Comment($commentId, $this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_COMMENTCONTENT, $this->VALID_COMMENTDATE);
+		$comment->insert($this->getPDO());
+
+		//delete the comment from mySQL
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("comment"));
+		$comment->delete($this->getPDO());
+
+		//grab the data from mySQL ad enforce the Comment does not exist
+		$pdoComment = Comment::getComentByCommentId($this->getPDO(), $comment->getCommentId());
+		$this->assertNull($pdoComment);
+		$this->assertEquals($numRows, $this->getConnection()->getRowCount("comment"));
+	}
 }
