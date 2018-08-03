@@ -152,4 +152,11 @@ class CommentTest extends NerdNookTest {
 		$this->assertNull($pdoComment);
 		$this->assertEquals($numRows, $this->getConnection()->getRowCount("comment"));
 	}
+	// test grabbing a comment that does not exist
+
+	public function testGetInvalidCommentByCommentId() : void {
+		// grab a profile id the exceeds the maximum allowable profile id
+		$comment = Comment::getCommentByCommentId($this->getPDO(), generateUuidV4());
+		$this->assertNull($comment);
+	}
 }
