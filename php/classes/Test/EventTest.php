@@ -98,4 +98,42 @@ class EventTest extends NerdNookTest {
 	 * @var \DateTime $VALID_EVENTSTARTDATETIME
 	 */
 	protected $VALID_EVENTSTARTDATETIME = null;
+
+/**
+ * create dependent objects before running each of our tests
+ */
+
+public final function setUp() : void {
+	//run default setUp() method first
+	parent::setUp();
+	$password = "marlonIsAwesome1916";
+	$this->VALID_PROFILE_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
+
+	// create and insert a Profile to own the test Event
+	$this->profile = new Profile(generateUuidV4(), null, "@handle", "test@iloveunittests.com", $this->VALID_PROFILE_HASH);
+	$this->profile->insert($this->getPDO());
+
+	//calc the date
+	$this->VALID_EVENTENDDATETIME = new \DateTime();
+	$this->VALID_EVENTSTARTDATETIME = new \DateTime();
+
+	}
+
+	/**
+	 * test creating a valid Event and verify that the actual mySQL data matches
+	 **/
+
+	public function testInsertValidEvent() : void {
+		//count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("event");
+
+		//create a new Event and insert into mySQL
+		$eventId = generateUuidV4();
+		$event = new Event($eventId, $this->profile->getProfileId(), $this->VALID_EVENTDETAILS, $this->VALID_EVENTENDDATETIME, $this->VALID_EVENTSTARTDATETIME);
+		$event->insert($this->getPDO());
+
+
+	}
+
+
 }
