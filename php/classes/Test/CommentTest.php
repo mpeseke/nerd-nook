@@ -88,7 +88,7 @@ class CommentTest extends NerdNookTest {
 		$numRows = $this->getConnection()->getRowCount("comment");
 		// create a new Comment and insert to into mySQL
 		$commentId = generateUuidV4();
-		$comment = new Comment($commentId, $this->profile->getEventId(), $this->profile->getProfileId(), $this->VALID_COMMENTCONTENT, $this->VALID_COMMENTDATE);
+		$comment = new Comment($commentId, $this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_COMMENTCONTENT, $this->VALID_COMMENTDATE);
 		$comment->insert($this->getPDO());
 		// grab the data from mySQL and enforce the fields match our expectations
 		$pdoComment = Comment::getCommentByCommentId($this->getPDO(), $comment->getCommentId());
