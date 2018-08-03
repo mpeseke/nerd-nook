@@ -131,7 +131,7 @@ class Category {
 		$statement->execute($parameters);
 	}
 	/**
-	 * delete the category id frommySQL
+	 * delete the category id from mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException
