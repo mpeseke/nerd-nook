@@ -32,10 +32,10 @@ class CheckIn {
 
 	public function __construct($newCheckInEventId, $newCheckInProfileId, $newCheckInDateTime, $newCheckInRep) {
 		try {
-			$this->checkInEventId($newCheckInEventId);
-			$this->checkInProfileId($newCheckInProfileId);
-			$this->checkInDateTime($newCheckInDateTime);
-			$this->checkInRep($newCheckInRep);
+			$this->setCheckInEventId($newCheckInEventId);
+			$this->setCheckInProfileId($newCheckInProfileId);
+			$this->setCheckInDateTime($newCheckInDateTime);
+			$this->setCheckInRep($newCheckInRep);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
 			$exceptionType = get_class($exception);
 			throw (new $exceptionType($exception->getMessage(), 0, $exception));
@@ -98,16 +98,16 @@ class CheckIn {
 	/**
 	 * accessor method for check in date time
 	 *
-	 * @return Uuid value of check in date time
+	 * @return \DateTime value of check in date time
 	 */
-	public function getCheckInDateTime(): Uuid {
+	public function getCheckInDateTime(): \DateTime {
 		return $this->checkInDateTime;
 	}
 
 	/**
 	 * mutator method for check in date time
 	 *
-	 * @param Uuid|string $newCheckInDateTime new value of check in date time
+	 * @param \DateTime $newCheckInDateTime new value of check in date time
 	 * @throws \RangeException if $newCheckInDateTime is \mysqli_sql_exception
 	 * @throws \TypeError if $newCheckInDateTime is not a uuid.e
 	 */
