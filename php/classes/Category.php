@@ -81,21 +81,21 @@ class Category {
 		// verify the
 
 		//convert and store the category name
-		$this->categoryName = $uuid;
+		$this->categoryName = $newCategoryName;
 	}
 	/**
 	 * accessor method for category type
 	 *
-	 * @return Uuid values of category type
+	 * @return string values of category type
 	 **/
-	public function getCategoryType(): Uuid{
+	public function getCategoryType(): string{
 		return $this->categoryType;
 	}
 
 	/**
 	 * mutator method for category type
 	 *
-	 * @param string | Uuid $newCategoryType new value of category type
+	 * @param string $newCategoryType new value of category type
 	 * @throws \RangeException if $newCategoryType is > 12 characters
 	 * @throws \TypeError if $newCategoryType is not a string
 	 **/
@@ -108,7 +108,7 @@ class Category {
 		}
 
 		//convert and store the category type
-		$this->categoryType = $uuid;
+		$this->categoryType = $newCategoryType;
 	}
 
 	/**
@@ -125,43 +125,6 @@ class Category {
 		$parameters = ["categoryId" => $this->categoryId->getBytes(), "categoryName" => $this->categoryName->getBytes(), "categoryType" => $this->categoryType->getBytes()];
 		$statement->execute($parameters);
 	}
-	/**
-	 * delete the category id from mySQL
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @throws \PDOException
-	 * @throws \TypeError if $pdo is not a PDO connection object
-	 */
-	public function delete(\PDO $pdo): void {
-		//create query template
-		$query = "DELETE FROM category WHERE categoryId = :categoryId AND categoryName = :categoryName AND categoryType = :categoryType";
-		$statement = $pdo->prepare($query);
-		//bind the member variables to the place holders in the template
-		$parameters = ["categoryId" => $this->categoryId->getBytes()];
-		$statement->execute($parameters);
-	}
-	/**
-	 * updates the Category from mySQL
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @throws \PDOException when mySQL errors happen
-	 */
-	public function update(\PDO $pdo): void {
-		//create query template
-		$query = "UPDATE category SET categoryName = :categoryName, categoryType = :categoryType";
-		$statement = $pdo->prepare($query);
-		//bind the member variables to the place holders in the template
-		$parameters = ["categoryId" => $this->categoryId->getBytes(), "categoryName" => $this->categoryName, "categoryType" => $this->categoryType];
-		$statement->execute($parameters);
-		}
-		/**
-		 * gets the Category by category id
-		 *
-		 * @param \PDO $pdo $pdo PDO connection object
-		 * @return Category|null Category or null if not found
-		 * @throws \PDOException when mySQL errors happen
-		 * @throws \TypeError when a variable is not the correct data type
-		 */
 
 	public static function getCategoryByCategoryId(\PDO $pdo, string $categoryId):?Category {
 		//sanitize the category id before searching
@@ -191,3 +154,5 @@ class Category {
 		return ($category);
 	}
 }
+//get all categories NEEDED
+//JSON serializer NEEDED
