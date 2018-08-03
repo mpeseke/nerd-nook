@@ -17,11 +17,11 @@ class Category {
 	 */
 	private $categoryId;
 	/**
-	 * @var Uuid $categoryName
+	 * @var string $categoryName
 	 */
 	private $categoryName;
 	/**
-	 * @var Uuid $categoryType
+	 * @var string $categoryType
 	 */
 	private $categoryType;
 
@@ -65,25 +65,20 @@ class Category {
 	/**
 	 * accessor method for category name
 	 *
-	 * @return Uuid values of category name
+	 * @return string category name
 	 **/
-	public function getCategoryName() : Uuid {
+	public function getCategoryName() : string {
 		return $this->categoryName;
 	}
 	/**
 	 * mutator method for category id
 	 *
-	 * @param string | Uuid $newCategoryName new value of category name
+	 * @param string $newCategoryName new value of category name
 	 * @throws \RangeException if $newCategoryName is > 32 Characters
 	 * @throws \TypeError if $newCategoryNae is not a string
 	 */
-	public function setCategoryName(Uuid $newCategoryName): void {
-		try {
-			$uuid = self::validateUuid($newCategoryName);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
-			$exceptionType = get_class($exception);
-			throw(new $exceptionType($exception->getMessage(), 0, $exception));
-		}
+	public function setCategoryName(string $newCategoryName): void {
+		// verify the
 
 		//convert and store the category name
 		$this->categoryName = $uuid;
