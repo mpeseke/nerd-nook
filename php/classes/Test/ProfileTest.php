@@ -255,6 +255,12 @@ class ProfileTest extends NerdNookTest {
 		$this->assertEquals($pdoProfile->getProfileHash(), $this->VALID_HASH);
 	}
 
-
-
+	/**
+	 * test grabbing a Profile by an email that does not exist
+	 **/
+	public function testGetInvalidProfileActivation() : void {
+		// grab an email that does not exist
+		$profile = Profile::getProfileByActivationToken($this->getPDO(), "6675636b646f6e616c646472756d7066");
+		$this->assertNull($profile);
+	}
 }
