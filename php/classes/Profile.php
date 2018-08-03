@@ -15,9 +15,9 @@ use Ramsey\Uuid\Uuid;
 class Profile {
 	use ValidateUuid;
 	/**
-	 * id for Profile; this is a primary key
-	 * @var Uuid $profileId
-	 **/
+ * id for Profile; this is a primary key
+ * @var Uuid $profileId
+ **/
 	private $profileId;
 	/**
 	 * token handed out to verify that the profile is valid and not malicious
