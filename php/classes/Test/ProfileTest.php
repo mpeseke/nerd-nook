@@ -164,7 +164,15 @@ class ProfileTest extends NerdNookTest {
 		$this->assertEquals($pdoProfile->getProfileHash(), $this->VALID_HASH);
 	}
 
-
+	/**
+	 * test grabbing a Profile that does not exist
+	 **/
+	public function testGetInvalidProfileByProfileId(): void {
+		// grab a profile id that exceeds the maximum allowable profile id
+		$fakeProfileId = generateUuidV4();
+		$profile = Profile::getProfileByProfileId($this->getPDO(), $fakeProfileId);
+		$this->assertNull($profile);
+	}
 
 
 
