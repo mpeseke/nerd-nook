@@ -132,7 +132,9 @@ public final function setUp() : void {
 		$event = new Event($eventId, $this->profile->getProfileId(), $this->VALID_EVENTDETAILS, $this->VALID_EVENTENDDATETIME, $this->VALID_EVENTSTARTDATETIME);
 		$event->insert($this->getPDO());
 
-
+		// retrieve data from mySQL and enforce the fields match our expectations
+		$pdoEvent = Event::getEventByEventId($this->getPDO(), $event->getEventId());
+		//not finished
 	}
 
 
