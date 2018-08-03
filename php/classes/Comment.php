@@ -4,6 +4,7 @@ require_once("autoload.php");
 require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 use Rbecker8\NerdNook\ValidateUuid;
 use Mpeseke\NerdNook\ValidateDate;
+use Ramsey\Uuid\Uuid;
 
 /**
  *Small cross section of a Nerd Nook comment
