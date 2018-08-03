@@ -145,70 +145,15 @@ class Category {
 		$parameters = ["categoryId" => $this->categoryId->getBytes()];
 		$statement->execute($parameters);
 	}
-	/**
-	 * gets the Category by category
-	 *
-	 *
-	 * @param \PDO $pdo PDO Connection object
-	 * @return Category|null Category or null if not found
-	 * @throws \PDOException when mySQL errors happen
-	 * @throws \TypeError when a variable is not the correct data type
-	 */
-	public static function getCategoryByCategoryIdAndCategoryNameAndCategoryType(\PDO $pdo, string $categoryId, string $categoryName, string $categoryType):?Category {
-		//sanitize the category id before searching
-		try {
-			$categoryId = self::ValidateUuid($categoryId);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-			throw (new \PDOException($exception->getMessage(), 0, $exception));
-		}
-		try {
-			$categoryName = self::ValidateUuid($categoryName);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-			throw (new \PDOException($exception->getMessage(), 0, $exception));
-		}
-		try {
-			$categoryType = self::ValidateUuid($categoryType);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
-			throw (new \PDOException($exception->getMessage(), 0, $exception));
-		}
-		//
-	}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	/*
+		 * gets the Category by category id
+		 *
+		 * @param \PDO $pdo $pdo PDO connection object
+		 * @return Category|null Category or null if not found
+		 * @throws \PDOException when mySQL errors happen
+		 * @throws \TypeError when a variable is not the correct data type
+		 */
 }
