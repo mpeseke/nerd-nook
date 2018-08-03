@@ -29,7 +29,7 @@ require_once(dirname(__DIR__, 3) . "/vendor/autoload.php");
  *
  * @author Dylan McDonald <dmcdonald21@cnm.edu>
  **/
-abstract class DataDesignTest extends TestCase {
+abstract class NerdNookTest extends TestCase {
 
 	use TestCaseTrait;
 

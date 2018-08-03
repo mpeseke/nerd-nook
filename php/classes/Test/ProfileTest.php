@@ -30,3 +30,4 @@ class ProfileTest extends DataDesignTest {
 	 *
 	 */
 	protected $VALID_ACTIVATION;
+}
