@@ -11,7 +11,7 @@ use Mpeseke\NerdNook\ValidateDate;
  *
  * This data is representative of the stored data for a Nerd Nook Event.
  *
- * @author Marlon Peseke <mpeseke@gmail.com>
+ * @author Marlon Oliver Peseke <mpeseke@gmail.com>
  **/
 
 class Event {
