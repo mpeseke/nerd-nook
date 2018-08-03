@@ -196,6 +196,17 @@ class ProfileTest extends NerdNookTest {
 		$this->assertEquals($pdoProfile->getProfileHash(), $this->VALID_HASH);
 	}
 
+	/**
+	 * test grabbing a Profile by at handle that does not exist
+	 **/
+	public function testGetInvalidProfileByAtHandle(): void {
+		// grab an at handle that does not exist
+		$profile = Profile::getProfileByProfileAtHandle($this->getPDO(), "@doesnotexist");
+		$this->assertCount(0, $profile);
+	}
+
+
+
 
 
 
