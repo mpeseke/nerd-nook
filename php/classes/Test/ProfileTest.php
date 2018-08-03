@@ -246,7 +246,7 @@ class ProfileTest extends NerdNookTest {
 		$profile->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$pdoProfile = Profile::getProfileByActivationtoken($this->getPDO(), $profile->getProfileActivationToken());
+		$pdoProfile = Profile::getProfileByProfileActivationToken($this->getPDO(), $profile->getProfileActivationToken());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
 		$this->assertEquals($pdoProfile->getProfileId(), $profileId);
 		$this->assertEquals($pdoProfile->getProfileActivationToken(), $this->VALID_ACTIVATION);
@@ -260,7 +260,7 @@ class ProfileTest extends NerdNookTest {
 	 **/
 	public function testGetInvalidProfileActivation() : void {
 		// grab an email that does not exist
-		$profile = Profile::getProfileByActivationToken($this->getPDO(), "6675636b646f6e616c646472756d7066");
+		$profile = Profile::getProfileByProfileActivationToken($this->getPDO(), "6675636b646f6e616c646472756d7066");
 		$this->assertNull($profile);
 	}
 }
