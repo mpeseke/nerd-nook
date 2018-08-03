@@ -408,4 +408,20 @@ class Profile {
 		}
 		return($profiles);
 	}
+
+
+	/**
+	 * format the state variables for JSON serialization
+	 *
+	 * @return array resulting state variables to serialize.
+	 **/
+
+	public function jsonSerialize() : array {
+		$fields = get_object_vars($this);
+
+		$fields["profileId"] = $this->profileId;
+		$fields["profileEmail"]=$this->profileEmail;
+
+		return($fields);
+	}
 }
