@@ -289,7 +289,7 @@ class comment implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when a variable is not the correct data type
 	 */
-	public static function getComentByCommentId(\PDO $pdo, $commentId): ?Comment {
+	public static function getCommentByCommentId(\PDO $pdo, $commentId): ?Comment {
 		//sanitize the commentId before searching
 		try {
 			$commentId = self::validateUuid($commentId);
