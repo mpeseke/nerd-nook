@@ -386,7 +386,7 @@ class Event {
 		$statement = $pdo->prepare($query);
 
 		//binding the eventId to the placeholders in the template
-		$parameters = ["eventId => $eventId->getBytes()"];
+		$parameters = ["eventId" => $eventId->getBytes()];
 		$statement->execute($parameters);
 
 		//retrieve the event from mySQL
@@ -484,18 +484,81 @@ class Event {
 
 	/**
 	 * get Event by Event Date Range
+	 * @param \PDO $pdo connection object
+	 * @param \DateTime $eventEndDateTime
+	 * @return \SplFixedArray of all the events within a given range
+	 * @throws \PDOException
+	 * @throws \TypeError when variables are not the correct data type
 	 */
 
+	public static function getEventByEventEndDateTime(\PDO $pdo, $eventEndDateTime) : \SplFixedArray {
+		//sanitize the \DateTime $eventEndDateTime before handling
+		try {
+			$eventEndDateTime = self::validateDateTime($eventEndDateTime);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(),0, $exception));
+		}
+
+		//create a query template
+		$query = "SELECT eventId, eventCategoryId, eventProfileId, eventDetails, eventEndDateTime, eventLat, eventLong, eventStartDateTime FROM event WHERE eventEndDateTime = :eventEndDateTime";
+		$statement = $pdo->prepare($query);
+		//bind the event End Date Id to the placeholder in the template
+		$parameters = ["eventEndDateTime" => $eventEndDateTime->getTimestamp()];
+		$statement->execute(($parameters));
+		//builds an array of Events
+		$events = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$event = new Event($row["eventId"], $row["eventCategoryId"], $row["eventProfileId"], $row["eventDetails"], $row["eventEndDateTime"], $row["eventLat"], $row["eventLong"], $row["eventStartDateTime"]);
+				$events[$events->key()] = $event;
+				$events->next();
+			} catch(\Exception $exception) {
+				//if cannot be converted, throw again
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($events);
+	}
+
 	/**
-	 * get all of the Events
-	 *
+	 * get Event by Event Date Range
 	 * @param \PDO $pdo connection object
-	 * @return \SplFixedArray SplFixedArray of the Events found or null if not found
-	 * @throws \PDOException when mySQL related errors occur
+	 * @param \DateTime $eventStartDateTime
+	 * @return \SplFixedArray of all the events within a given range
+	 * @throws \PDOException
 	 * @throws \TypeError when variables are not the correct data type
-	 **/
+	 */
 
+	public static function getEventByEventStartDateTime(\PDO $pdo, $eventStartDateTime) : \SplFixedArray {
+		//sanitize the \DateTime $eventStartDateTime before handling
+		try {
+			$eventStartDateTime = self::validateDateTime($eventStartDateTime);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(),0, $exception));
+		}
 
+		//create a query template
+		$query = "SELECT eventId, eventCategoryId, eventProfileId, eventDetails, eventEndDateTime, eventLat, eventLong, eventStartDateTime FROM event WHERE eventStartDateTime = :eventStartDateTime";
+		$statement = $pdo->prepare($query);
+		//bind the event Start Date Id to the placeholder in the template
+		$parameters = ["eventStartDateTime" => $eventStartDateTime->getTimestamp()];
+		$statement->execute(($parameters));
+		//builds an array of Events
+		$events = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$event = new Event($row["eventId"], $row["eventCategoryId"], $row["eventProfileId"], $row["eventDetails"], $row["eventEndDateTime"], $row["eventLat"], $row["eventLong"], $row["eventStartDateTime"]);
+				$events[$events->key()] = $event;
+				$events->next();
+			} catch(\Exception $exception) {
+				//if cannot be converted, throw again
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($events);
+	}
 
 	/**
 	 * format the state variables for JSON serialization
