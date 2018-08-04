@@ -153,6 +153,27 @@ class Category {
 		}
 		return ($category);
 	}
+	public static function getAllCategories (\PDO $pdo): \SplFixedArray {
+		//creates the query template
+		$query = "SELECT categoryId, categoryName, categoryType FROM category WHERE categoryId = :categoryId";
+		$statement = $pdo->prepare($query);
+		//bind the category id to the placeholder in the template
+		$parameters = ["categoryId" => $categoryId->getBytes()];
+		$statement->execute($parameters);
+		//grab the Category from mySQL
+		try {
+			$category = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$category = new Category($row["categoryId"], $row["categoryName"], $row["categoryType"]);
+			}
+		} catch(\Exception $exception) {
+			//if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($category);
+	}
 }
 //get all categories NEEDED
 //JSON serializer NEEDED
