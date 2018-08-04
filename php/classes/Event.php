@@ -247,7 +247,7 @@ class Event {
 	 */
 	public function setEventLat(float $newEventLat): void {
 		if($newEventLat < -90 || $newEventLat > 90 || empty($newEventLat) === true) {
-			throw(new \RangeException("Latitude must be between -90 and 90"));
+			throw(new \RangeException("Latitude must be between -90 and 90 and must be a float."));
 		}
 		//Store new Event Latitude value
 		$this->eventLat = $newEventLat;
@@ -269,7 +269,7 @@ class Event {
 	 */
 	public function setEventLong(float $newEventLong): void {
 		if($newEventLong < -180 || $newEventLong > 180 || empty($newEventLong) === true) {
-			throw(new \RangeException("Longitude must be between -180 and 180"));
+			throw(new \RangeException("Longitude must be between -180 and 180 and must be a float."));
 		}
 		//store new Event Longitude Location
 		$this->eventLong = $newEventLong;
@@ -491,7 +491,7 @@ class Event {
 	 * @throws \TypeError when variables are not the correct data type
 	 */
 
-	public static function getEventByEventEndDateTime(\PDO $pdo, $eventEndDateTime) : \SplFixedArray {
+	public static function getEventByEventEndTime(\PDO $pdo, $eventEndDateTime) : \SplFixedArray {
 		//sanitize the \DateTime $eventEndDateTime before handling
 		try {
 			$eventEndDateTime = self::validateDateTime($eventEndDateTime);
@@ -518,7 +518,7 @@ class Event {
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return($events);
+		return range($eventEndDateTime, $eventEndDateTime);
 	}
 
 	/**
@@ -557,7 +557,7 @@ class Event {
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return($events);
+		return range ($eventStartDateTime, $eventStartDateTime);
 	}
 
 	/**
