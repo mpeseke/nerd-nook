@@ -132,13 +132,82 @@ public final function setUp() : void {
 
 		//create a new Event and insert into mySQL
 		$eventId = generateUuidV4();
-		$event = new Event($eventId, $this->profile->getProfileId(), $this->VALID_EVENTDETAILS, $this->VALID_EVENTENDDATETIME, $this->VALID_EVENTSTARTDATETIME);
+		$event = new Event($eventId, $this->profile->getProfileId(), $this->VALID_EVENTDETAILS, $this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTSTARTDATETIME);
 		$event->insert($this->getPDO());
 
 		// retrieve data from mySQL and enforce the fields match our expectations
 		$pdoEvent = Event::getEventByEventId($this->getPDO(), $event->getEventId());
-		//not finished
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("event"));
+		$this->assertEquals($pdoEvent->getEventId(), $eventId);
+		$this->assertEquals($pdoEvent->getEventCategoryId()->$this->category->getCategoryId());
+		$this->assertEquals($pdoEvent->getEventProfileId()->$this->profile->getEventProfileId());
+		$this->assertEquals($pdoEvent->getEventDetails(), $this->VALID_EVENTDETAILS);
+		//format the date to seconds since the beginning of time to avoid round off error
+		$this->assertEquals($pdoEvent->getEventEndDateTime()->getTimestamp(), $this->VALID_EVENTENDDATETIME->getTimestamp());
+		$this->assertEquals($pdoEvent->getEventStartDateTime()->getTimestamp(), $this->VALID_EVENTSTARTDATETIME->getTimestamp());
+		//GPS Coordinates
+		$this->assertEquals($pdoEvent->getEventLat(), $this->VALID_EVENTLAT);
+		$this->assertEquals($pdoEvent->getEventLong(), $this->VALID_EVENTLONG);
 	}
+
+	/**
+	 * test inserting an Event, editing, and then updating
+	 **/
+
+	public function testUpdateValidEvent(): void {
+		// count the number of rows and save for later
+		$numRows = $this->getConnection()->getRowCount("event");
+
+		//create a new Event and insert into mySQL
+		$eventId = generateUuidV4();
+		$event = new Event($eventId, $this->profile->getProfileId(), $this->VALID_EVENTDETAILS, $this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTSTARTDATETIME);
+		$event->insert($this->getPDO());
+
+		//edit the Event and update in mySQL
+		$event->setEventDetails($this->VALID_EVENTDETAILS2);
+		$event->update($this->getPDO());
+
+		// grab the data from mySQL and enforce the fields match our expectations
+		$pdoEvent = Event::getEventByEventId($this->getPDO(), $event->getEventId());
+		$this->assertEquals($pdoEvent->getEventId(), $eventId);
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("event"));
+		$this->assertEquals($pdoEvent->getEventCategoryId(), $this->category->getCategoryId());
+		$this->assertEquals($pdoEvent->getEventProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoEvent->getEventDetails(), $this->VALID_EVENTDETAILS2);
+		//format the date to second since the beginning of time to avoid round off error
+		$this->assertEquals($pdoEvent->getEventEndDateTime()->getTimestamp(), $this->VALID_EVENTENDDATETIME->getTimestamp());
+		$this->assertEquals($pdoEvent->getEventStartDateTime()->getTimestamp(), $this->VALID_EVENTSTARTDATETIME->getTimestamp());
+		//GPS Coordinates
+		$this->assertEquals($pdoEvent->getEventLat(), $this->VALID_EVENTLAT2);
+		$this->assertEquals($pdoEvent->getEventLong(), $this->VALID_EVENTLONG2);
+	}
+
+	/**
+	 * test creating an Event and then deleting it
+	 **/
+	public function testDeleteValidEvent() : void {
+		//count the number of rows and save for later
+		$numRows = $this->getConnection()->getRowCount("event");
+
+		//create the new Event and inject into mySQL
+		$eventId = generateUuidV4();
+		$event = new Event($eventId, $this->profile->getProfileId(), $this->VALID_EVENTDETAILS, $this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTSTARTDATETIME);
+		$event->insert($this->getPDO());
+
+		//delete the Event from mySQL
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("event"));
+		$event->delete($this->getPDO());
+
+		//grab the data from mySQL and enforce that there is no spoon, oh, um Event
+		$pdoEvent = Event::getEventByEventId($this->getPDO(), $event->getEventId());
+		$this->assertNull($pdoEvent);
+		$this->assertEquals($numRows, $this->getConnection()->getRowCount("event"));
+	}
+
+	/**
+	 * test grabbing an Event that does not exist
+	 */
+
 
 
 }
