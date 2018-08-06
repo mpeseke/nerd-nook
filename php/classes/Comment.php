@@ -349,7 +349,7 @@ class comment implements \JsonSerializable {
 				$comments[$comments->key()] = $comment;
 				$comments->next();
 			} catch(\Exception $exception) {
-				//if the row couldnt be converted, rethrow it
+				//if the row couldn't be converted, rethrow it
 				throw(new \PDOException($exception->getMessage(), 0 , $exception));
 			}
 		}
