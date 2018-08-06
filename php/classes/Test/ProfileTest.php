@@ -27,8 +27,6 @@ class ProfileTest extends NerdNookTest {
 	/**
 	 * placeholder until account activation is created
 	 * @var string $VALID_ACTIVATION
-	 *
-	 *
 	 */
 	protected $VALID_ACTIVATION;
 
@@ -241,7 +239,7 @@ class ProfileTest extends NerdNookTest {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("profile");
 
-		$profileId = genereateUuidV4();
+		$profileId = generateUuidV4();
 		$profile = new Profile($profileId, $this->VALID_ACTIVATION, $this->VALID_ATHANDLE, $this->VALID_EMAIL, $this->VALID_HASH);
 		$profile->insert($this->getPDO());
 
