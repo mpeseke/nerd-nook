@@ -235,7 +235,7 @@ class CommentTest extends NerdNookTest {
 	 * test grabbing a Comment by content that does not exist
 	 **/
 	public function testGetInvalidCommentByCommentContent() : void {
-		// grab a tweet by content that does not exist
+		// grab a comment by content that does not exist
 		$comment = Comment::getCommentByCommentContent($this->getPDO(), "Comcast has the best service EVER #comcastLove");
 		$this->assertCount(0, $comment);
 	}
