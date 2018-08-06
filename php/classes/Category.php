@@ -126,6 +126,13 @@ class Category {
 		$statement->execute($parameters);
 	}
 
+	/**
+	 * get Category by Category Id
+	 * @param \PDO $pdo
+	 * @param string $categoryId
+	 * @return Category|null
+	 */
+
 	public static function getCategoryByCategoryId(\PDO $pdo, string $categoryId):?Category {
 		//sanitize the category id before searching
 		try {
