@@ -157,23 +157,23 @@ class Category {
 		//creates the query template
 		$query = "SELECT categoryId, categoryName, categoryType FROM category WHERE categoryId = :categoryId";
 		$statement = $pdo->prepare($query);
-		//bind the category id to the placeholder in the template
-		$parameters = ["categoryId" => $categoryId->getBytes()];
-		$statement->execute($parameters);
-		//grab the Category from mySQL
+		$statement->execute();
+
+		//build an array of Categories
+		$categories = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
 		try {
-			$category = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
-				$category = new Category($row["categoryId"], $row["categoryName"], $row["categoryType"]);
-			}
+			$category = new Category($row["categoryId"], $row["categoryName"], $row["categoryType"]);
+			$categories[$categories->key()] = $category;
+			$categories->next();
 		} catch(\Exception $exception) {
-			//if the row couldn't be converted, rethrow it
+			//if the row cannot be converted, throw again
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
+				}
+			}
+			return ($categories);
 		}
-		return ($category);
-	}
 }
-//get all categories NEEDED
+
 //JSON serializer NEEDED
