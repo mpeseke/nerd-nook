@@ -55,6 +55,12 @@ class EventTest extends NerdNookTest {
 	 */
 	protected $VALID_EVENTDETAILS2 = "Event content is better.";
 
+	/**
+	 * Event End Date
+	 * @var \DateTime $VALID_EVENTENDDATETIME
+	 */
+	protected $VALID_EVENTENDDATETIME = null;
+
 
 	//Used the actual GPS coordinates of Active Imagination and Twin Suns Comics and Games
 
@@ -82,10 +88,27 @@ class EventTest extends NerdNookTest {
 	 */
 	protected $VALID_EVENTLONG2 = -106.680244;
 
+	/**
+	 * Event Start Date
+	 * @var \DateTime $VALID_EVENTSTARTDATETIME
+	 */
+	protected $VALID_EVENTSTARTDATETIME = null;
+
+	/**
+	 * Valid timestamp to use as sunriseEventDate
+	 */
+	protected $VALID_SUNRISEDATE = null;
+
+	/**
+	 * Valid timestamp to use as sunsetEventDate
+	 */
+	protected $VALID_SUNSETDATE = null;
 
 /**
  * create dependent objects before running each of our tests
  */
+
+
 
 public final function setUp() : void {
 	//run default setUp() method first
@@ -100,6 +123,14 @@ public final function setUp() : void {
 	//calc the date
 	$this->VALID_EVENTENDDATETIME = new \DateTime();
 	$this->VALID_EVENTSTARTDATETIME = new \DateTime();
+
+	//format the sunrise date to use for testing
+	$this->VALID_SUNRISEDATE = new \DateTime();
+	$this->VALID_SUNRISEDATE->sub(new \DateInterval("P10D"));
+
+	//format the sunset date to use for testing
+	$this->VALID_SUNSETDATE = new\DateTime();
+	$this->VALID_SUNSETDATE->add(new \DateInterval("P10D"));
 
 	// create and insert a Category to own the test Event
 	$this->category = new Category(generateUuidV4(), "Dungeons and Dragons", "Table Top Games");

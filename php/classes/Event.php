@@ -492,7 +492,7 @@ class Event {
 
 	public static function getEventByDateRange(\PDO $pdo) : \SplFixedArray {
 		$query = "SELECT eventId, eventCategoryId, eventProfileId, eventDetails, eventEndDateTime, eventLat, eventLong, eventStartDateTime 
-							FROM event WHERE  eventEndDateTime > now()";
+						FROM event WHERE eventStartDateTime > now()";
 		$statement = $pdo->prepare($query);
 		//bind the variables to their place holders
 
