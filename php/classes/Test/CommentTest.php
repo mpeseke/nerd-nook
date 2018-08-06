@@ -160,6 +160,40 @@ class CommentTest extends NerdNookTest {
 		$this->assertNull($comment);
 	}
 
+	/**
+	 * test inserting a Comment and re-grabbing it from mySQL
+	 **/
+	public function testGetValidCommentByCommentEventId() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("comment");
+		// create a new Comment and insert to into mySQL
+		$commentId = generateUuidV4();
+		$comment = new Comment($commentId, $this->event->geteventId(), $this->VALID_COMMENTCONTENT, $this->VALID_COMMENTDATE);
+		$comment->insert($this->getPDO());
+		// grab the data from mySQL and enforce the fields match our expectations
+		$results = Comment::getCommentByCommentEventId($this->getPDO(), $comment->getCommentEventId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("comment"));
+		$this->assertCount(1, $results);
+		$this->assertContainsOnlyInstancesOf("ChelseaDavid\\NerdNook\\Comment", $results);
+		// grab the result from the array and validate it
+		$pdoComment = $results[0];
+
+		$this->assertEquals($pdoComment->getCommentId(), $commentId);
+		$this->assertEquals($pdoComment->getCommentEventId(), $this->event->getEventId());
+		$this->assertEquals($pdoComment->getCommentContent(), $this->VALID_COMMENTCONTENT);
+		//format the date too seconds since the beginning of time to avoid round off error
+		$this->assertEquals($pdoComment->getCommentDate()->getTimestamp(), $this->VALID_COMMENTDATE->getTimestamp());
+	}
+	/**
+	 * test grabbing a Comment that does not exist
+	 **/
+	public function testGetInvalidCommentByCommentEventId() : void {
+		// grab a profile id that exceeds the maximum allowable profile id
+		$comment = Comment::getCommentByCommentEventId($this->getPDO(), generateUuidV4());
+		$this->assertCount(0, $comment);
+	}
+
+
 	/*
  *
  * test grabbing a comment by comment content
