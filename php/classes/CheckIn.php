@@ -237,5 +237,15 @@ class CheckIn {
 		return ($checkIn);
 	}
 
+	/**
+	 * formats the variables for serialization
+	 * @return array
+	 */
+	function jsonSerialize() : array{
+		$fields = get_object_vars($this);
+
+		$fields["checkInEventId"] = $this->checkInEventId->toString();
+		$fields["checkInProfileId"] = $this->checkInProfileId->toString();
+	}
 }
 

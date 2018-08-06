@@ -10,7 +10,7 @@ use Ramsey\Uuid\Uuid;
  * @author Caleb Heckendorn <checkendorn@cnm.edu>
  * @version 1.0
  */
-class Category {
+class Category implements \JsonSerializable {
 	/**
 	 * id for Category; this is the primary key
 	 * @var Uuid $categoryId
