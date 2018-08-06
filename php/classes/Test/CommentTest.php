@@ -1,7 +1,11 @@
 <?php
 namespace ChelseaDavid\NerdNook\Test;
 
-use ChelseaDavid\NerdNook\{Event,Profile,Comment};
+
+use Mpeseke\NerdNook\Test\NerdNookTest;
+use ChelseaDavid\NerdNook\Comment;
+use Mpeseke\NerdNook\Event;
+
 
 // grab the class under scrutiny
 require_once (dirname(__DIR__) . "/autoload.php");
