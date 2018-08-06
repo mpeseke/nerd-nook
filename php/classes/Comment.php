@@ -1,7 +1,8 @@
 <?php
 namespace ChelseaDavid\NerdNook;
 require_once("autoload.php");
-require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
+require_once(dirname(__DIR__, 2) . "../vendor/autoload.php");
+
 use Rbecker8\NerdNook\ValidateUuid;
 use Mpeseke\NerdNook\ValidateDate;
 use Ramsey\Uuid\Uuid;
@@ -59,7 +60,7 @@ class comment implements \JsonSerializable {
 	 * @throwsTypeError
 	 */
 
-	public function __construct(string $newCommentId, string $newCommentEventId, string $newCommentProfileId, string $newCommentContent, string $newCommentDateTime) {
+	public function __construct($newCommentId,$newCommentEventId,$newCommentProfileId, string $newCommentContent, string $newCommentDateTime) {
 		try {
 			$this->setCommentId($newCommentId);
 			$this->setCommentEventId($newCommentEventId);
@@ -203,20 +204,19 @@ class comment implements \JsonSerializable {
 	}
 
 	/*
-	 * mutator method for commentDateTime
+	 * mutator method for comment date
 
 	@param \DateTime|string|null $newCommentDateTime comment date as a DateTime object or a string (or null to load the current time)
 	@throws \InvalidArgumentException if $newCommentDateTime is not a valid object or string
 	@throws \RangeException if $newCommentDateTime is a date that does not exist.
-	@throws \Exception on all other exceptions
 	 */
 	public function setCommentDateTime($newCommentDateTime = null): void {
 		// base case: if the date is null, use the current date and time
 		if($newCommentDateTime === null) {
 			$this->commentDateTime = new \DateTime();
 			return;
-			//store the date using the validateDate
 		}
+		//store the date using the validateDate
 		try {
 			$newCommentDateTime = self::validateDateTime($newCommentDateTime);
 		} catch(\InvalidArgumentException | \RangeException $exception) {
@@ -272,7 +272,7 @@ class comment implements \JsonSerializable {
 	 */
 	public function update(\PDO $pdo): void {
 		//create query template
-		$query = "UPDATE comment SET commentEventId = :commentEventId, commentProfileId = :commentProfileId, commentContent = :commentContent, commentDateTime = :commentDateTime WHERE commenId = :commentId";
+		$query = "UPDATE comment SET commentEventId = :commentEventId, commentProfileId = :commentProfileId, commentContent = :commentContent, commentDateTime = :commentDateTime WHERE commentId = :commentId";
 		$statement = $pdo->prepare($query);
 
 		$formattedDate = $this->commentId - format("Y-m-d H:i:s.u");
@@ -293,7 +293,7 @@ class comment implements \JsonSerializable {
 		//sanitize the commentId before searching
 		try {
 			$commentId = self::validateUuid($commentId);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | TypeError $exception) {
+		} catch(\InvalidArgumentException | \RangeException | \Exception $exception) {
 			throw (new \PDOException($exception->getMessage(), 0, $exception));
 		}
 		//create query teplate

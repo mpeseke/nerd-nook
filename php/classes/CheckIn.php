@@ -205,6 +205,39 @@ class CheckIn {
 
 	/**
 	 * @param \PDO $pdo
+	 * @param string $checkInEventId
+	 * @return CheckIn|null
+	 */
+	public static function getCheckInByCheckInEventId(\PDO $pdo, string $checkInEventId):?CheckIn {
+		//Sanitize the Check In Event Id before searching
+		try{
+			$checkInEventId =self::validateUuid($checkInEventId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		//create query template
+		$query = "SELECT checkInEventId, checkInProfileId, checkInDateTime, checkInRep FROM checkIn WHERE checkInEventId = :checkInEventId";
+		$statement = $pdo->prepare($query);
+		//bind the check in event id to the placeholder in the template
+		$parameters = ["checkInEventId" => $checkInEventId->getBytes()];
+		$statement->execute($parameters);
+		//grab the CheckIn from mySQL
+		try{
+			$checkIn = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false){
+				$checkIn = new CheckIn($row["checkInEventId"], $row["checkInProfileId"], $row["checkInDateTime"], $row["checkInRep"]);
+			}
+		} catch(\Exception $exception){
+			//if the row can't be converted rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($checkIn);
+	}
+
+	/**
+	 * @param \PDO $pdo
 	 * @param string $checkInProfileId
 	 * @return CheckIn|null
 	 */
