@@ -1,0 +1,17 @@
+<!-- PHP Unit Test Configuration File -->
+
+<phpunit>
+	<testsuites>
+		<testsuite name="Nerd Nook Unit Tests">
+			<file>EventTest.php</file>
+			<file>CommentTest.php</file>
+			<file>ProfileTest.php</file>
+		</testsuite>
+	</testsuites>
+
+	<filter>
+		<whitelist processUncoveredFilesFromWhitelist="true">
+			<directory suffix=".php">  </directory>
+		</whitelist>
+	</filter>
+</phpunit>
