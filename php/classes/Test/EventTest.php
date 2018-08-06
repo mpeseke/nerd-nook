@@ -55,12 +55,6 @@ class EventTest extends NerdNookTest {
 	 */
 	protected $VALID_EVENTDETAILS2 = "Event content is better.";
 
-	/**
-	 * Event End Date
-	 * @var \DateTime $VALID_EVENTENDDATETIME
-	 */
-	protected $VALID_EVENTENDDATETIME = null;
-
 
 	//Used the actual GPS coordinates of Active Imagination and Twin Suns Comics and Games
 
@@ -88,11 +82,6 @@ class EventTest extends NerdNookTest {
 	 */
 	protected $VALID_EVENTLONG2 = -106.680244;
 
-	/**
-	 * Event Start Date
-	 * @var \DateTime $VALID_EVENTSTARTDATETIME
-	 */
-	protected $VALID_EVENTSTARTDATETIME = null;
 
 /**
  * create dependent objects before running each of our tests
@@ -337,9 +326,8 @@ public final function setUp() : void {
 		$this->assertCount(0,$event);
 	}
 
-	/**
-	 * test grabbing an Event by eventEndDateTime
-	 */
+
+	/*
 	public function testGetValidEventByEndDateTime(): void {
 		//count the number of rows and save for later
 		$numRows = $this->getConnection()->getRowCount("event");
@@ -369,18 +357,14 @@ public final function setUp() : void {
 		$this->assertEquals($pdoEvent->getEventLong(), $this->VALID_EVENTLONG);
 	}
 
-	/**
-	 * test grabbing an Event that does not exist; eventEndDateTime
-	 */
+
 	public function testGetInvalidEventByEventEndDateTime() : void {
 		//grab a profile id that exceed the max allowable profile Id
 		$event = Event::getEventByEventEndDateTime($this->getPDO(), "null");
 		$this->assertCount(0, $event);
 	}
 
-	/**
-	 * test grabbing an Event by eventStartDateTime
-	 */
+
 	public function testGetValidEventByStartDateTime(): void {
 		//count the number of rows and save for later
 		$numRows = $this->getConnection()->getRowCount("event");
@@ -410,12 +394,11 @@ public final function setUp() : void {
 		$this->assertEquals($pdoEvent->getEventLong(), $this->VALID_EVENTLONG);
 	}
 
-	/**
-	 * test grabbing an Event that does not exist; eventStartDateTime
-	 */
+
 	public function testGetInvalidEventByEventStartDateTime() : void {
 		//grab a profile id that exceed the max allowable profile Id
 		$event = Event::getEventByEventStartDateTime($this->getPDO(), "null");
 		$this->assertCount(0, $event);
 	}
+	*/
 }

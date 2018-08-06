@@ -485,12 +485,35 @@ class Event {
 	/**
 	 * get Event by Event Date Range
 	 * @param \PDO $pdo connection object
-	 * @param \DateTime $eventEndDateTime
 	 * @return \SplFixedArray of all the events within a given range
 	 * @throws \PDOException
 	 * @throws \TypeError when variables are not the correct data type
-	 */
+	*/
 
+	public static function getEventByDateRange(\PDO $pdo) : \SplFixedArray {
+		$query = "SELECT eventId, eventCategoryId, eventProfileId, eventDetails, eventEndDateTime, eventLat, eventLong, eventStartDateTime 
+							FROM event WHERE  eventEndDateTime > now()";
+		$statement = $pdo->prepare($query);
+		//bind the variables to their place holders
+
+		$statement->execute();
+		//builds an array of Events
+		$events = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$event = new Event($row["eventId"], $row["eventCategoryId"], $row["eventProfileId"], $row["eventDetails"], $row["eventEndDateTime"], $row["eventLat"], $row["eventLong"], $row["eventStartDateTime"]);
+				$events[$events->key()] = $event;
+				$events->next();
+			} catch(\Exception $exception) {
+				//if cannot be converted, throw again
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return ($events);
+	}
+
+/*
 	public static function getEventByEventEndTime(\PDO $pdo, $eventEndDateTime) : \SplFixedArray {
 		//sanitize the \DateTime $eventEndDateTime before handling
 		try {
@@ -520,16 +543,9 @@ class Event {
 		}
 		return range($eventEndDateTime, $eventEndDateTime);
 	}
+*/
 
-	/**
-	 * get Event by Event Date Range
-	 * @param \PDO $pdo connection object
-	 * @param \DateTime $eventStartDateTime
-	 * @return \SplFixedArray of all the events within a given range
-	 * @throws \PDOException
-	 * @throws \TypeError when variables are not the correct data type
-	 */
-
+/*
 	public static function getEventByEventStartDateTime(\PDO $pdo, $eventStartDateTime) : \SplFixedArray {
 		//sanitize the \DateTime $eventStartDateTime before handling
 		try {
@@ -557,8 +573,9 @@ class Event {
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return range ($eventStartDateTime, $eventStartDateTime);
+		return range($eventStartDateTime, $eventStartDateTime);
 	}
+*/
 
 	/**
 	 * format the state variables for JSON serialization
