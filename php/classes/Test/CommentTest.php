@@ -5,13 +5,14 @@ namespace ChelseaDavid\NerdNook\Test;
 use Mpeseke\NerdNook\Test\NerdNookTest;
 use ChelseaDavid\NerdNook\Comment;
 use Mpeseke\NerdNook\Event;
+use Rbecker8\NerdNook\Profile;
 
 
 // grab the class under scrutiny
 require_once (dirname(__DIR__) . "/autoload.php");
 
 //grab the uuid generator
-require_once (dirname(__DIR__, 2) . "/lib/uuid.php");
+require_once (dirname(__DIR__, 2) . "../lib/uuid.php");
 /**
  * Full PHPUnit test for the Comment class
  *
@@ -29,9 +30,9 @@ class CommentTest extends NerdNookTest {
 	protected $event = null;
 
 	/**
-	 * Event that this comment is posted to; this is for foreign key relations
+	 * Profile that this comment is posted to; this is for foreign key relations
 	 * @var Profile profile
-	 */
+	 **/
 
 	protected $profile = null;
 	/**
