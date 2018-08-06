@@ -66,7 +66,7 @@ class ProfileTest extends NerdNookTest {
 			parent::setUp();
 
 			//
-			$password = "abc123"
+			$password = "abc123";
 			$this->VALID_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
 			$this->VALID_ACTIVATION = bin2hex(random_bytes(16));
 	}
@@ -84,7 +84,7 @@ class ProfileTest extends NerdNookTest {
 		$profile->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our exceptions
-		$pdoProfile = Profile::getProfileByProfileId(), $profile->getProfileId();
+		$pdoProfile = Profile::getProfileByProfileId($this->getPDO(), $profile->getProfileId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
 		$this->assertEquals($pdoProfile->getProfileId(), $profileId);
 		$this->assertEquals($pdoProfile->getProfileActivationToken(), $this->VALID_ACTIVATION);
@@ -102,7 +102,7 @@ class ProfileTest extends NerdNookTest {
 		$numRows = $this->getConnection()->getRowCount("profile");
 
 		// create a new Profile and insert it into mySQL
-		$profile = generateUuidV4();
+		$profileId = generateUuidV4();
 		$profile = new Profile($profileId, $this->VALID_ACTIVATION, $this->VALID_ATHANDLE, $this->VALID_EMAIL, $this->VALID_HASH);
 		$profile->insert($this->getPDO());
 
