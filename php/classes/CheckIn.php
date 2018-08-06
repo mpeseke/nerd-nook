@@ -22,11 +22,11 @@ class CheckIn {
 	 */
 	private $checkInProfileId;
 	/**
-	 * @var Uuid $checkInDateTime;
+	 * @var \DateTime $checkInDateTime;
 	 */
 	private $checkInDateTime;
 	/**
-	 * @var Uuid $checkInRep
+	 * @var int $checkInRep
 	 */
 	private $checkInRep;
 
@@ -168,7 +168,7 @@ class CheckIn {
 	 */
 	public function insert (\PDO $pdo): void {
 		//create query template
-		$query = "INSERT INTO checkIn(checkInEventId, checkInProfileId, chekInDateTime, checkInRep) VALUES (:checkInEventId, :checkInProfileId, :checkInDateTime, :checkInRep)";
+		$query = "INSERT INTO checkIn(checkInEventId, checkInProfileId, checkInDateTime, checkInRep) VALUES (:checkInEventId, :checkInProfileId, :checkInDateTime, :checkInRep)";
 		$statement = $pdo->prepare($query);
 		$parameters = ["checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInDateTime" => $this->checkInDateTime->getBytes(), "checkInRep" => $this->checkInRep->getBytes()];
 		$statement->execute($parameters);
@@ -202,13 +202,11 @@ class CheckIn {
 		$parameters = ["checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInEventId" => $this->checkInEventId, "checkInDateTime" => $this->checkInDateTime, "checkInRep" => $this->checkInRep];
 		$statement->execute($parameters);
 	}
+
 	/**
-	 * gets the CheckIn by check in profile id
-	 *
-	 * @param \PDO $pdo $pdo PDO connection object
-	 * @return CheckIn|null CheckIn or null if not found
-	 * @throws \PDOException when mySQL errors happen
-	 * @throws \TypeError when a variable is not the correct data type
+	 * @param \PDO $pdo
+	 * @param string $checkInProfileId
+	 * @return CheckIn|null
 	 */
 
 	public static function getCheckInByCheckInProfileId(\PDO $pdo, string $checkInProfileId):?CheckIn {
@@ -238,5 +236,6 @@ class CheckIn {
 		}
 		return ($checkIn);
 	}
+
 }
 

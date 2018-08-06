@@ -187,7 +187,12 @@ class Category {
 				}
 			}
 			return ($categories);
-		}
+	}
+	function jsonSerialize() : array{
+		$fields = get_object_vars($this);
+		$fields["categoryId"] = $this->categoryId->toString();
+		return($fields);
+	}
 }
 
 //JSON serializer NEEDED
