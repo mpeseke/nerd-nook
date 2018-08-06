@@ -308,6 +308,8 @@ public final function setUp() : void {
 		$this->assertEquals($pdoEvent->getEventLat(), $this->VALID_EVENTLAT);
 		$this->assertEquals($pdoEvent->getEventLong(), $this->VALID_EVENTLONG);
 	}
+
+
 	/**
 	 * test grabbing an Event that does not exist; eventCategoryId
 	 */
@@ -316,6 +318,20 @@ public final function setUp() : void {
 		$event = Event::getEventByEventCategoryId($this->getPDO(), generateUuidV4());
 		$this->assertCount(0, $event);
 	}
+
+	/**
+	 * test grabbing an Event by date Range
+	 */
+	public function testGetEventByDateRange() : void {
+		//count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("event");
+		// create a new Event and inject into mySQL
+		$eventId = generateUuidV4();
+		$event = new Event($eventId, $this->profile->getProfileId(), $this->VALID_EVENTDETAILS, $this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTSTARTDATETIME);
+		$event->insert($this->getPDO());
+		//grab the event data from mySQL and enforce the fields match our expectations
+
+}
 
 	/**
 	 * test grabbing an Event by eventDetails
