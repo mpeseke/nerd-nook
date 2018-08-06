@@ -166,6 +166,7 @@ class Category {
 	 * @param \PDO $pdo
 	 * @return \SplFixedArray
 	 */
+
 	public static function getAllCategories (\PDO $pdo): \SplFixedArray {
 		//creates the query template
 		$query = "SELECT categoryId, categoryName, categoryType FROM category WHERE categoryId = :categoryId";
