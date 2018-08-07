@@ -271,7 +271,31 @@ class CheckIn {
 	}
 
 	public static function getCheckInByProfileId(\PDO $pdo, uuid $profileId):?Profile{
-
+		//sanitize the profile id before searching
+		try{
+			$profileId = self::validateUuid($profileId);
+		}catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
+			throw (new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		//create query template
+		$query = "SELECT checkInEventId, checkInProfileId, checkInDateTime, checkInRep FROM checkIn WHERE checkInRep = :checkInRep";
+		$statement = $pdo->prepare($query);
+		//bind the profile id to the placeholder in the template
+		$parameters = ["checkInRep" => $checkInRep->getBytes()];
+		$statement->execute($parameters);
+		//grab the CheckIn from mySQL
+		try {
+			$checkIn  = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$checkIn = new CheckIn($row["checkInEventId"], $row["checkInProfileId"], $row["checkInDateTime"], $row["checkInRep"]);
+			}
+		} catch(\Exception $exception) {
+//			if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return
 	}
 	/**
 	 * formats the variables for serialization
