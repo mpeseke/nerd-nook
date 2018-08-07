@@ -270,6 +270,9 @@ class CheckIn {
 		return ($checkIn);
 	}
 
+	public static function getCheckInByProfileId(\PDO $pdo, uuid $profileId):?Profile{
+
+	}
 	/**
 	 * formats the variables for serialization
 	 * @return array

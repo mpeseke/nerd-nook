@@ -1,5 +1,5 @@
 <?php
-namespace CalebMHeckendorn\NerdNook\Test;
+namespace Mpeseke\NerdNook\Test;
 
 use CalebMHeckendorn\NerdNook\{CheckIn, Event, Profile};
 
