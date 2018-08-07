@@ -104,7 +104,11 @@ class CheckInTest extends NerdNookTest{
 		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP);
 	}
 
-	public function getInvalidCheckInByEventId
+	public function getInvalidCheckInByEventId(): void {
+		$checkIn = CheckIn::getCheckInByCheckInEventId($this->getPDO(), generateUuidV4());
+		$this->assertCount(0, $checkIn);
+	}
+
 	public function getValidCheckInByProfileId
 	public function getInvalidCheckInByProfileId
 }
