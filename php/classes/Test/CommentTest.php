@@ -200,36 +200,4 @@ class CommentTest extends NerdNookTest {
 		$this->assertCount(0, $comment);
 	}
 
-	/**
-	 *
-	 * test grabbing a comment by comment content
-	 *
-	 **/
-	public function testGetValidCommentByCommentContent() : void {
-		//count the number of rows and save it for later
-		$numRows = $this->getConnection()->getRowCount("comment");
-
-		//create a new Comment and insert it into mySQL
-		$commentId = generateUUidV4();
-		$comment = new Comment($commentId, $this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_COMMENTCONTENT, $this->VALID_COMMENTDATE);
-		$comment->insert($this->getPDO());
-
-		//grab the data from mySQL and enforce the fields match our expectations
-		$results = Comment::getCommentByCommentContent($this->getPDO(), $comment->getCommentContent());
-		$this->assertEquals($numRows + 1, $this->geetConnection()->getRowCount("comment"));
-		$this->assertCount(1, $results);
-
-		// enforce no other objects are bleeding into the test
-		$this->assertContainsOnlyInstanceOf("ChelseaDavid\\NerdNook\\Comment", $results);
-
-		// grab the results from the array and validate it
-		$pdoComment = $results[0];
-		$this->assertEquals($pdoComment->getCommentId(), $commentId);
-		$this->assertEquals($pdoComment->getCommentEventId(), $this->event->getEventId());
-		$this->assertEquals($pdoComment->getCommentProfileId(), $this->profile->getprofileId());
-		$this->assertEquals($pdoComment->getCommentContent(), $this->VALID_COMMENTCONTENT);
-		//format the date to seconds since the beginning of time to avoid round off error
-		$this->assertEqual($pdoComment->getCommentDate()->getTimeStamp(), $this->VALID_COMMENTDATE->getTimestamp());
-	}
-
 }
