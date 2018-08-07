@@ -15,7 +15,7 @@ use NerdCore\NerdNook\ValidateDate;
  * @author Marlon Oliver Peseke <mpeseke@gmail.com>
  **/
 
-class Event {
+class Event implements \JsonSerializable {
 	use ValidateDate;
 	use ValidateUuid;
 
