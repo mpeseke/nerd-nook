@@ -270,6 +270,11 @@ class CheckIn {
 		return ($checkIn);
 	}
 
+	/**
+	 * @param \PDO $pdo
+	 * @param Uuid $profileId
+	 * @return Profile|null
+	 */
 	public static function getCheckInByProfileId(\PDO $pdo, uuid $profileId):?Profile{
 		//sanitize the profile id before searching
 		try{
@@ -281,7 +286,7 @@ class CheckIn {
 		$query = "SELECT checkInEventId, checkInProfileId, checkInDateTime, checkInRep FROM checkIn WHERE checkInRep = :checkInRep";
 		$statement = $pdo->prepare($query);
 		//bind the profile id to the placeholder in the template
-		$parameters = ["checkInRep" => $checkInRep->getBytes()];
+		$parameters = ["profileId" => $profileId->getBytes()];
 		$statement->execute($parameters);
 		//grab the CheckIn from mySQL
 		try {
@@ -295,7 +300,7 @@ class CheckIn {
 //			if the row couldn't be converted, rethrow it
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return
+		return($profileId);
 	}
 	/**
 	 * formats the variables for serialization
