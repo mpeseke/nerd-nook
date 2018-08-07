@@ -77,7 +77,7 @@ class Category implements \JsonSerializable {
 	 */
 	public function setCategoryName(string $newCategoryName): void {
 		// verify the categoryName is secure
-		$newCategoryName = trim($newCategoryName);\
+		$newCategoryName = trim($newCategoryName);
 		$newCategoryName = filter_var($newCategoryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 		if(empty($newCategoryName) === true) {
 			throw(new \InvalidArgumentException("Category must have a name."));
