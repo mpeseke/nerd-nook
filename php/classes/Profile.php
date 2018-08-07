@@ -201,7 +201,7 @@ class Profile {
 	 *
 	 * @return string value of hash
 	 **/
-	public function getProfileHash() {
+	public function getProfileHash(): string {
 		return $this->profileHash;
 	}
 
