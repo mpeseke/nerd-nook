@@ -3,9 +3,7 @@ namespace NerdCore\NerdNook\Test;
 
 
 use NerdCore\NerdNook\Test\NerdNookTest;
-use NerdCore\NerdNook\Comment;
-use NerdCore\NerdNook\Event;
-use NerdCore\NerdNook\Profile;
+use NerdCore\NerdNook\{Comment, Event, Profile};
 
 
 // grab the class under scrutiny

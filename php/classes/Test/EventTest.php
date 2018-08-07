@@ -1,9 +1,7 @@
 <?php
 namespace NerdCore\NerdNook\Test;
 
-use NerdCore\NerdNook\Category;
-use NerdCore\NerdNook\Event;
-use NerdCore\NerdNook\Profile;
+use NerdCore\NerdNook\{Category, Event, Profile};
 
 //grab the class we want to look at
 require_once(dirname(__DIR__) . "/autoload.php");

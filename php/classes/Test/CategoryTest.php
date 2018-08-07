@@ -3,7 +3,7 @@
 namespace NerdCore\NerdNook\Test;
 
 //grab the class we want to look at
-use CalebMHeckendorn\NerdNook\Category;
+use NerdCore\NerdNook\Category;
 use Ramsey\Uuid\Uuid;
 
 require_once(dirname(__DIR__) . "/autoload.php");
