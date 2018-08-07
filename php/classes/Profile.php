@@ -12,7 +12,7 @@ use Ramsey\Uuid\Uuid;
  * @version 1.0
  **/
 
-class Profile {
+class Profile implements \JsonSerializable {
 	use ValidateUuid;
 	/**
  * id for Profile; this is a primary key
