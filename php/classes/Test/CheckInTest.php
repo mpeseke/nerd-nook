@@ -39,13 +39,13 @@ class CheckInTest extends NerdNookTest{
 		$this->profile = new Profile(generateUuidV4(), null, "@phpunit", "bob@bobspace.com");
 		$this->profile->insert($this->getPDO());
 		$this->VALID_DATETIME = new \DateTime();
-		$this->event=new Event(generateUuidV4(), null, null, "This is a meet-up to...", null, )
+		$this->event=new Event(generateUuidV4(), null, null, "This is a meet-up to...", "6:00", "35.086111", "-106.649944", "2:00");
 	}
 	public function testInsertValidCheckIn() : void {
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 		$checkInEventId = generateUuidV4();
 		$checkInProfileId = generateUuidV4();
-
+		$checkIn = new CheckIn($checkInEventId, $this->event->getEventId(), $this->VALID_DATETIME);
 	}
 
 }
