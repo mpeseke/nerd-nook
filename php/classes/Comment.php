@@ -318,6 +318,48 @@ class comment implements \JsonSerializable {
 		}
 		return ($comment);
 	}
+
+	/*
+ * gets the Comment by content
+ *
+ * @param \PDO $pdo PDO connection object
+ * @param string $commentContent comment content to search for
+ * @return \SplFixedArray SplFixedArray of comments found
+ * @throws \PDOException when mySQL related errors occur
+ * @throws \TypeError when variables are not the correct data type
+ */
+
+	public static function getCommentByCommentContent(\PDO $pdo, string $commentContent) : \SPLFixedArray {
+		// sanitize the description before searching
+		$commentContent = trim($commentContent);
+		$commentContent = filter_var($commentContent, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($commentContent) === true) {
+			throw(new \PDOException("comment content is invalid"));
+		}
+		// escape any mySQL wild cards
+		$commentContent = str_replace("_", "\\_", str_replace("%", "\\%", $commentContent));
+		// create query template
+		$query = "SELECT commentId,commentEventId, commentProfileId, commentContent, commentDateTime FROM comment WHERE commentContent LIKE :commentContent";
+		$statement = $pdo->prepare($query);
+		// bind the comment content to the place holder in the template
+		$commentContent = "%$commentContent%";
+		$parameters = ["tweetContent" => $commentContent];
+		$statement->execute($parameters);
+		// build an array of comments
+		$tweets = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
+				$comment = new Comment($row["commentId"], $row["commentEventId"], $row["commentProfileId"], $row["commentContent"], $row["commentDateTime"]);
+				$comments[$comments->key()] = $comment;
+				$comments->next();
+			} catch(\Exception $exception) {
+				// if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
+			}
+		}
+		return($comments);
+	}
 	/*
 	 * gets the Comment by event Id
 	 *
