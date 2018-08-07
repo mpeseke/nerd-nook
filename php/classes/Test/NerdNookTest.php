@@ -1,5 +1,5 @@
 <?php
-namespace Mpeseke\NerdNook\Test;
+namespace NerdCore\NerdNook\Test;
 
 use PHPUnit\Framework\TestCase;
 use PHPUnit\DbUnit\TestCaseTrait;

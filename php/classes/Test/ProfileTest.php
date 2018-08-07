@@ -1,9 +1,9 @@
 <?php
 
-namespace Mpeseke\NerdNook\Test;
+namespace NerdCore\NerdNook\Test;
 
 
-use Mpeseke\NerdNook\Profile;
+use NerdCore\NerdNook\Profile;
 
 
 

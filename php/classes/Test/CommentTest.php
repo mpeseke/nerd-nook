@@ -1,5 +1,5 @@
 <?php
-namespace ChelseaDavid\NerdNook\Test;
+namespace NerdCore\NerdNook\Test;
 
 
 use Mpeseke\NerdNook\Test\NerdNookTest;

@@ -1,10 +1,11 @@
 <?php
-namespace Mpeseke\NerdNook;
+namespace NerdCore\NerdNook;
 require_once ("autoload.php");
 require_once(dirname(__DIR__,2) . "../vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
-use Rbecker8\NerdNook\ValidateUuid;
-use Mpeseke\NerdNook\ValidateDate;
+
+use NerdCore\NerdNook\ValidateUuid;
+use NerdCore\NerdNook\ValidateDate;
 
 /**
  * Class Event

@@ -1,6 +1,6 @@
 <?php
 
-namespace Mpeseke\NerdNook\Test;
+namespace NerdCore\NerdNook\Test;
 
 //grab the class we want to look at
 use CalebMHeckendorn\NerdNook\Category;
