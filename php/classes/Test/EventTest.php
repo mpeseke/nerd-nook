@@ -8,7 +8,7 @@ use Rbecker8\NerdNook\Profile;
 //grab the class we want to look at
 require_once(dirname(__DIR__) . "/autoload.php");
 
-//grab the uuid generator (still have to add this to directory)
+//grab the uuid generator
 require_once(dirname(__DIR__, 2) . "../lib/uuid.php");
 
 /**
@@ -113,7 +113,7 @@ class EventTest extends NerdNookTest {
 public final function setUp() : void {
 	//run default setUp() method first
 	parent::setUp();
-	$password = "marlonIsAwesome1916";
+	$password = "iLikeTurtles1916";
 	$this->VALID_PROFILE_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
 
 	// create and insert a Profile to own the test Event

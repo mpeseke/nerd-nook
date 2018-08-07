@@ -63,32 +63,37 @@ class Category implements \JsonSerializable {
 		$this->categoryId = $uuid;
 	}
 	/**
-	 * accessor method for category name
-	 *
-	 * @return string category name
+	 * accessor method for category Name
+	 * @return string category Name
 	 **/
 	public function getCategoryName() : string {
 		return $this->categoryName;
 	}
 	/**
-	 * mutator method for category id
-	 *
+	 * mutator method for category Name
 	 * @param string $newCategoryName new value of category name
 	 * @throws \RangeException if $newCategoryName is > 32 Characters
-	 * @throws \TypeError if $newCategoryNae is not a string
+	 * @throws \TypeError if $newCategoryName is not a string
 	 */
 	public function setCategoryName(string $newCategoryName): void {
-		// verify the
-
+		// verify the categoryName is secure
+		$newCategoryName = trim($newCategoryName);\
+		$newCategoryName = filter_var($newCategoryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newCategoryName) === true) {
+			throw(new \InvalidArgumentException("Category must have a name."));
+		}
+		if(strlen($newCategoryName) > 32) {
+			throw(new \RangeException("Category name is too large"));
+		}
 		//convert and store the category name
 		$this->categoryName = $newCategoryName;
 	}
+
 	/**
 	 * accessor method for category type
-	 *
 	 * @return string values of category type
 	 **/
-	public function getCategoryType(): string{
+	public function getCategoryType(): string {
 		return $this->categoryType;
 	}
 
@@ -99,14 +104,14 @@ class Category implements \JsonSerializable {
 	 * @throws \RangeException if $newCategoryType is > 12 characters
 	 * @throws \TypeError if $newCategoryType is not a string
 	 **/
-	public function setCategoryType(Uuid $newCategoryType): void {
+
+	public function setCategoryType(string $newCategoryType): void {
 		try {
 			$uuid = self::validateUuid($newCategoryType);
 		} catch(\RangeException | \TypeError $exception) {
 			$exceptionType = get_class($exception);
 			throw (new $exceptionType($exception->getMessage(), 0, $exception));
 		}
-
 		//convert and store the category type
 		$this->categoryType = $newCategoryType;
 	}
@@ -188,6 +193,12 @@ class Category implements \JsonSerializable {
 			}
 			return ($categories);
 	}
+
+	/**
+	 * format the state variables for JSON serialization
+	 * @return array resulting state variables to serialize.
+	 */
+
 	function jsonSerialize() : array{
 		$fields = get_object_vars($this);
 		$fields["categoryId"] = $this->categoryId->toString();
@@ -195,4 +206,4 @@ class Category implements \JsonSerializable {
 	}
 }
 
-//JSON serializer NEEDED
+

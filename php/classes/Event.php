@@ -579,7 +579,6 @@ class Event {
 
 	/**
 	 * format the state variables for JSON serialization
-	 *
 	 * @return array resulting state variables to serialize.
 	 */
 
