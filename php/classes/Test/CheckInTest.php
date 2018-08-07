@@ -109,14 +109,6 @@ class CheckInTest extends NerdNookTest{
 		$this->assertCount(0, $checkIn);
 	}
 
-
-
-
-
-
-
-
-
 	public function getValidCheckInByProfileId() : void {
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 
@@ -137,7 +129,7 @@ class CheckInTest extends NerdNookTest{
 	}
 
 	public function getInvalidCheckInByProfileId(): void {
-		$checkIn = CheckIn::getCheckInByCheckInEventId($this->getPDO(), generateUuidV4());
+		$checkIn = CheckIn::getCheckInByCheckInProfileId($this->getPDO(), generateUuidV4());
 		$this->assertCount(0, $checkIn);
 	}
 }
