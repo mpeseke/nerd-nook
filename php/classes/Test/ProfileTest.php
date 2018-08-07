@@ -1,9 +1,9 @@
 <?php
 
-namespace Rbecker8\NerdNook\Test;
+namespace Mpeseke\NerdNook\Test;
 
-use Mpeseke\NerdNook\Test\NerdNookTest;
-use Rbecker8\NerdNook\Profile;
+
+use Mpeseke\NerdNook\Profile;
 
 
 
@@ -11,7 +11,7 @@ use Rbecker8\NerdNook\Profile;
 require_once(dirname(__DIR__) . "/autoload.php");
 
 // grab the uuid generator
-require_once(dirname(__DIR__, 2). "../lib/uuid.php");
+require_once(dirname(__DIR__, 2). "/lib/uuid.php");
 
 /**
  * Full PHPUnit test for the Profile class
