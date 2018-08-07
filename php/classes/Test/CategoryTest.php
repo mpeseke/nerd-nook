@@ -112,5 +112,36 @@ class CategoryTest extends NerdNookTest {
 		$this->assertEquals($pdoCategory->getCategoryName(), $this->VALID_CATEGORYNAME2);
 		$this->assertEquals($pdoCategory->getCategoryType(), $this->VALID_CATEGORYTYPE2);
 	}
+	/**
+	 * test grabbing an event that does not exist
+	 */
+	public function testGetInvalidCategoryByCategoryId(): void {
+		$category = Category::getCategoryByCategoryId($this->getPDO(), generateUuidV4());
+		$this->assertCount(0, $category);
+	}
 
+	/**
+	 * test grabbing all Categories
+	 */
+	public function testGetAllValidCategories() : void {
+		//count the number of Rows and save for later
+		$numRows = $this->getConnection()->getRowCount("category");
+
+		//create a new Category and insert into mySQL
+		$categoryId = generateUuidV4();
+		$category = new Category($categoryId, $this->VALID_CATEGORYNAME, $this->VALID_CATEGORYTYPE);
+		$category->insert($this->getPDO());
+
+		//grab the data from mySQL and enforce that the fields match our expectations
+		$results = Category::getAllCategories($this->getPDO());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("category"));
+		$this->assertCount(1, $results);
+		$this->assertContainsOnlyInstancesOf("CalebMHeckendorn\\NerdNook", $results);
+
+		//grab the result from the array and validate the information
+		$pdoCategory = $results[0];
+		$this->assertEquals($pdoCategory->getCategoryId(), $categoryId);
+		$this->assertEquals($pdoCategory->getCategoryName(), $this->VALID_CATEGORYNAME);
+		$this->assertEquals($pdoCategory->getCategoryType(), $this->VALID_CATEGORYTYPE);
+	}
 }
