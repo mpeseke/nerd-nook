@@ -223,7 +223,7 @@ class Profile {
 
 		// enforce that the hash is really an Argon Hash
 		$profileHashInfo = password_get_info($newProfileHash);
-		if(empty($profileHashInfo) === true) {
+		if($profileHashInfo["algoName"] !== "argon2i") {
 			throw(new\InvalidArgumentException("profile hash is not a valid hash"));
 
 		}
