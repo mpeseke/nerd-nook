@@ -1,29 +1,54 @@
 <?php
-
 namespace NerdCore\NerdNook;
 
 require_once("autoload.php");
 require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 
+use http\Exception\InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
 /**
+ * Cross Section of the the Nerd Nook Category Class
+ * This class illustrates the back end for the Category class and the data it can hold, and can be extended for more
+ * features in the future.
+ *
  * @author Caleb Heckendorn <checkendorn@cnm.edu>
+ * @author Marlon Oliver Peseke <mpeseke@gmail.com>
  * @version 1.0
  */
+
+
 class Category implements \JsonSerializable {
+	use ValidateDate;
+	use ValidateUuid;
+
 	/**
 	 * id for Category; this is the primary key
 	 * @var Uuid $categoryId
 	 */
 	private $categoryId;
+
 	/**
+	 * the name of the Category
 	 * @var string $categoryName
 	 */
 	private $categoryName;
+
 	/**
+	 * the Type of Category
 	 * @var string $categoryType
 	 */
 	private $categoryType;
+
+	/**
+	 * Category constructor.
+	 * @param $newCategoryId
+	 * @param string $newCategoryName
+	 * @param string $newCategoryType
+	 * @throws \InvalidArgumentException if data type is not valid
+	 * @throws \RangeException if data is out of bounds
+	 * @throws \TypeError if the data types are invalid
+	 * @throws \Exception if some other exception occurs
+	 */
 
 	public function __construct($newCategoryId, string $newCategoryName, string $newCategoryType) {
 		try {
@@ -37,7 +62,6 @@ class Category implements \JsonSerializable {
 	}
 	/**
 	 * accessor method for categoryId
-	 *
 	 * @return Uuid value of category id
 	 **/
 	public function getCategoryId(): Uuid {
@@ -47,11 +71,11 @@ class Category implements \JsonSerializable {
 	 * mutator method for category id
 	 *
 	 * @param Uuid|string $newCategoryId new value of personality id
-	 * @throws \RangeException if $newCategoryId is n
-	 * @throws \TypeError if $newPersonalityId is not a uuid.e
+	 * @throws \RangeException if $newCategoryId is not positive
+	 * @throws \TypeError if $newPersonalityId is not a uuid
 	 **/
 
-	public function setCategoryId(Uuid $newCategoryId): void {
+	public function setCategoryId( $newCategoryId): void {
 		try {
 			$uuid = self::validateUuid($newCategoryId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){

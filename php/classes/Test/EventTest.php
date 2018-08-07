@@ -133,8 +133,6 @@ public final function setUp() : void {
 	// create and insert a Category to own the test Event
 	$this->category = new Category(generateUuidV4(), "Dungeons and Dragons", "Table Top Games");
 	$this->category->insert($this->getPDO());
-
-
 	}
 
 
