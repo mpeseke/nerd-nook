@@ -233,8 +233,6 @@ class Profile {
 			throw(new\RangeException("profile hash must be 97 characters"));
 		}
 
-		var_dump($newProfileHash);
-
 		// store the hash
 		$this->profileHash = $newProfileHash;
 	}
