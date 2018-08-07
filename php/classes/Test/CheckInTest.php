@@ -1,7 +1,7 @@
 <?php
 namespace NerdCore\NerdNook\Test;
 
-use CalebMHeckendorn\NerdNook\{CheckIn, Event, Profile};
+use NerdCore\NerdNook\{CheckIn, Event, Profile};
 
 
 //this Grabs the class we want to look at

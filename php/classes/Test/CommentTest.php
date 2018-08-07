@@ -2,10 +2,8 @@
 namespace NerdCore\NerdNook\Test;
 
 
-use Mpeseke\NerdNook\Test\NerdNookTest;
-use ChelseaDavid\NerdNook\Comment;
-use Mpeseke\NerdNook\Event;
-use Rbecker8\NerdNook\Profile;
+use NerdCore\NerdNook\Test\NerdNookTest;
+use NerdCore\NerdNook\{Comment, Event, Profile};
 
 
 // grab the class under scrutiny
