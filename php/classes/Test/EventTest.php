@@ -330,12 +330,33 @@ public final function setUp() : void {
 		$event = new Event($eventId, $this->profile->getProfileId(), $this->VALID_EVENTDETAILS, $this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTSTARTDATETIME);
 		$event->insert($this->getPDO());
 		//grab the event data from mySQL and enforce the fields match our expectations
+		$results = Event::getEventByDateRange($this->getPDO());
+		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("event"));
+		$this->assertCount(1, $results);
 
-}
+		//take the event result from the array and validate the information
+		$pdoEvent = $results[0];
 
-	/**
-	 * test grabbing an Event by eventDetails
-	 */
+		$this->assertEquals($pdoEvent->getEventId(), $eventId);
+		$this->assertEquals($pdoEvent->getEventProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoEvent->getEventCategoryId(), $this->category->getCategoryId());
+		$this->assertEquals($pdoEvent->getEventDetails(), $this->VALID_EVENTDETAILS);
+		//format the date to seconds since the beginning of time to avoid round off error
+		$this->assertEquals($pdoEvent->getEventEndDateTime()->getTimestamp(), $this->VALID_EVENTENDDATETIME->getTimestamp());
+		$this->assertEquals($pdoEvent->getEventStartDateTime()->getTimestamp(), $this->VALID_EVENTSTARTDATETIME->getTimestamp());
+		//GPS Coordinates
+		$this->assertEquals($pdoEvent->getEventLat(), $this->VALID_EVENTLAT);
+		$this->assertEquals($pdoEvent->getEventLong(), $this->VALID_EVENTLONG);
+	}
+
+	public function testGetInvalidEventByDateRange() : void {
+		//grab an Event that falls outside the date Range.
+		$event = Event::getEventByDateRange($this->getPDO(), "Meet on Tuesday");
+		$this->assertCount(0, $event);
+	}
+
+//Event Details are not searchable, wrote the code anyway. #MDav
+	/*
 	public function testGetValidEventByEventDetails() : void {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("event");
@@ -364,15 +385,13 @@ public final function setUp() : void {
 		$this->assertEquals($pdoEvent->getEventLat(), $this->VALID_EVENTLAT);
 		$this->assertEquals($pdoEvent->getEventLong(), $this->VALID_EVENTLONG);
 	}
-	/**
-	 * test grabbing an Event that will NEVER exist; eventDetails
-	 */
+
 	public function testGetInvalidEventByEventDetails(): void {
 		//grab a profile id that exceed the max allowable profile Id
 		$event = Event::getEventByEventDetails($this->getPDO(), "Let's get together and talk about the successes of MDav!");
 		$this->assertCount(0,$event);
 	}
-
+*/
 
 	/*
 	public function testGetValidEventByEndDateTime(): void {
