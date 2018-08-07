@@ -10,7 +10,7 @@ use Ramsey\Uuid\Uuid;
  * @author Caleb Heckendorn <checkendorn@cnm.edu>
  * @version 1.0
  */
-class CheckIn {
+class CheckIn implements \JsonSerializable {
 	/**
 	 * id for the check in event id; this is a foreign key
 	 * @var Uuid $checkInEventId

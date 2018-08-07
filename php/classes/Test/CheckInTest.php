@@ -31,15 +31,17 @@ class CheckInTest extends NerdNookTest{
 	protected $VALID_REP = 10;
 	protected $VALID_REP2 = 20;
 	protected $VALID_ACTIVATION;
+	protected $VALID_AT_HANDLE;
 
 	public final function setUp(): void {
 		parent::setUp();
 		$password = "abc123";
 		$this->VALID_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
 		$this->VALID_ACTIVATION = bin2hex(random_bytes(16));
-		$this->profile = new Profile(generateUuidV4(), null, "@phpunit", "bob@bobspace.com");
+		$this->profile = new Profile(generateUuidV4(), null, "@phpunit", "bob@bobspace.com", $this->VALID_HASH);
 		$this->profile->insert($this->getPDO());
 		$this->VALID_DATETIME = new \DateTime();
+		$this->VALID_AT_HANDLE = new \AtHandle();
 		$this->event=new Event(generateUuidV4(), null, null, "This is a meet-up to...", "6:00", "35.086111", "-106.649944", "2:00");
 	}
 	public function testInsertValidCheckIn() : void {
