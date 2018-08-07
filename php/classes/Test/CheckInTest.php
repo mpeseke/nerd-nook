@@ -93,10 +93,18 @@ class CheckInTest extends NerdNookTest{
 
 		$results = CheckIn::getCheckInByCheckInEventId($this->getPDO(), $this->event->getEventId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("checkIn"));
+		$this->assertCount(1, $results);
+		$this->assertContainsOnlyInstancesOf("CalebMHeckendorn\\NerdNook\\CheckIn", $results);
 
+		$pdoCheckIn = $results[0];
 
+		$this->assertEquals($pdoCheckIn->getCheckInEventId(), $this->event->getEventId());
+		$this->assertEquals($pdoCheckIn->getCheckInProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimeStamp(), $this->VALID_DATETIME->getTimestamp());
+		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP);
 	}
+
 	public function getInvalidCheckInByEventId
-		public function getValidCheckInByProfileId
+	public function getValidCheckInByProfileId
 	public function getInvalidCheckInByProfileId
 }
