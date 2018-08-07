@@ -215,7 +215,7 @@ class Profile {
 	 **/
 	public function setProfileHash(string $newProfileHash): void {
 		// enforce that the hash is properly formatted
-		$profileHash = trim($newProfileHash);
+		$newProfileHash = trim($newProfileHash);
 		if(empty($newProfileHash) === true) {
 			throw(new\InvalidArgumentException("profile password hash empty or insecure"));
 
@@ -233,8 +233,10 @@ class Profile {
 			throw(new\RangeException("profile hash must be 97 characters"));
 		}
 
+		var_dump($newProfileHash);
+
 		// store the hash
-		$this->$profileHash = $newProfileHash;
+		$this->profileHash = $newProfileHash;
 	}
 
 
@@ -249,6 +251,8 @@ class Profile {
 		// create query template
 		$query = "INSERT INTO profile(profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash) VALUES (:profileId, :profileActivationToken, :profileAtHandle, :profileEmail, :profileHash)";
 		$statement = $pdo->prepare($query);
+
+		var_dump($this->profileHash);
 
 		$parameters = ["profileId" => $this->profileId->getBytes(), "profileActivationToken" => $this->profileActivationToken, "profileAtHandle" => $this->profileAtHandle, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash];
 		$statement->execute($parameters);
