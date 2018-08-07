@@ -29,6 +29,7 @@ class CheckInTest extends NerdNookTest{
 	protected $VALID_HASH;
 	protected $VALID_DATETIME;
 	protected $VALID_REP = 10;
+	protected $VALID_REP2 = 20;
 	protected $VALID_ACTIVATION;
 
 	public final function setUp(): void {
@@ -43,9 +44,15 @@ class CheckInTest extends NerdNookTest{
 	}
 	public function testInsertValidCheckIn() : void {
 		$numRows = $this->getConnection()->getRowCount("checkIn");
-		$checkInEventId = generateUuidV4();
-		$checkInProfileId = generateUuidV4();
-		$checkIn = new CheckIn($checkInEventId, $this->event->getEventId(), $this->VALID_DATETIME);
+
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATETIME, $this->VALID_REP);
+		$checkIn->insert($this->getPDO());
+
+		$pdoCheckIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoCheckIn->getCheckInEventId(), $this->event->getEventId());
+		$this->assertEquals($pdoCheckIn->getCheckInProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimeStamp(), $this->VALID_DATETIME->getTimestamp());
+		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP);
 	}
 
 }
