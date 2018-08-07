@@ -80,7 +80,7 @@ class Profile {
 	/**
 	 * mutator method for profile id
 	 *
-	 * @param Uuid/string $newProfileId new value of profile id
+	 * @param Uuid| string $newProfileId new value of profile id
 	 * @throws \RangeException if $newProfileId is not positive
 	 * @throws \TypeError if $newProfileId is not a uuid.e
 	 */
@@ -249,8 +249,6 @@ class Profile {
 		// create query template
 		$query = "INSERT INTO profile(profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash) VALUES (:profileId, :profileActivationToken, :profileAtHandle, :profileEmail, :profileHash)";
 		$statement = $pdo->prepare($query);
-
-		var_dump($this->profileHash);
 
 		$parameters = ["profileId" => $this->profileId->getBytes(), "profileActivationToken" => $this->profileActivationToken, "profileAtHandle" => $this->profileAtHandle, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash];
 		$statement->execute($parameters);
