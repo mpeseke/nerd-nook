@@ -55,4 +55,35 @@ class CheckInTest extends NerdNookTest{
 		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP);
 	}
 
+	public function testUpdateValidCheckIn() : void {
+		$numRows = $this->getConnection()->getRowCount("checkIn");
+
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATETIME, $this->VALID_REP);
+		$checkIn->insert($this->getPDO());
+
+		$checkIn->setCheckInRep($this->VALID_REP2);
+		$checkIn->update($this->getPDO());
+
+		$pdoCheckIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoCheckIn->getCheckInEventId(), $this->event->getEventId());
+		$this->assertEquals($pdoCheckIn->getCheckInProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimeStamp(), $this->VALID_DATETIME->getTimestamp());
+		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP2);
+	}
+
+	public function testDeleteValidCheckIn() : void {
+		$numRows = $this->getConnection()->getRowCount("checkIn");
+
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATETIME, $this->VALID_REP);
+		$checkIn->insert($this->getPDO());
+
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("checkIn"));
+		$checkIn->delete($this->getPDO());
+
+		$pdoCheckIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
+		$this->assertNull($pdoCheckIn);
+		$this->assertEquals($numRows, $this->getConnection()->getRowCount("checkIn"));
+
+
+	}
 }
