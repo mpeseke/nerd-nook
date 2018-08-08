@@ -69,8 +69,8 @@ class Event implements \JsonSerializable {
 
 	/** Event Constructor for Nerd Nook
 	 * @param string|Uuid $newEventId the Uuid representation of the new Event
-	 * @param string|Uuid $newEventProfileId the Uuid representation of the new event Creator
 	 * @param string|Uuid $newEventCategoryId the Uuid representation of the new event Category
+	 * @param string|Uuid $newEventProfileId the Uuid representation of the new event Creator
 	 * @param string $newEventDetails the string value containing the event's Details
 	 * @param \DateTime $newEventEndDateTime the End Time DateTime for the new Event
 	 * @param float $newEventLat the latitudinal value of the new Event
@@ -82,7 +82,7 @@ class Event implements \JsonSerializable {
 	 * @throws \Exception on any other exception
 	 */
 
-	public function __construct($newEventId, $newEventProfileId, $newEventCategoryId, string $newEventDetails, \DateTime $newEventEndDateTime, float $newEventLat, float $newEventLong, \DateTime $newEventStartDateTime) {
+	public function __construct($newEventId, $newEventCategoryId, $newEventProfileId, string $newEventDetails, $newEventEndDateTime, float $newEventLat, float $newEventLong, $newEventStartDateTime) {
 		try {
 			$this->setEventId($newEventId);
 			$this->setEventCategoryId($newEventCategoryId);
@@ -97,6 +97,7 @@ class Event implements \JsonSerializable {
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 	}
+
 
 	/**
 	 * accessor method for the event Id
@@ -207,7 +208,7 @@ class Event implements \JsonSerializable {
 	 * accessor method for the Event End Time
 	 * @returns \DateTime value of the event End Time
 	 */
-	public function getEventEndDateTime(): \DateTime {
+	public function getEventEndDateTime(): \DateTime{
 		return ($this->eventEndDateTime);
 	}
 
@@ -216,15 +217,16 @@ class Event implements \JsonSerializable {
 	 * @param \DateTime $newEventEndDateTime is a DateTime object
 	 * @throws \InvalidArgumentException if $newEventEndDateTime is not a valid object
 	 * @throws \RangeException if $newEventEndDateTime is a date that does not exist
+	 * @throws \TypeError on invalid format
 	 * @throws \Exception on all other exceptions
 	 */
-	public function setEventEndDateTime(\DateTime $newEventEndDateTime): void {
+	public function setEventEndDateTime( $newEventEndDateTime): void {
 		if(empty($newEventEndDateTime) === true) {
-			throw(new \InvalidArgumentException("Event must have a valid end date and time."));
+			throw(new \TypeError("Date is not formatted correctly."));
 		}
 		try {
 			$newEventEndDateTime = self::validateDateTime($newEventEndDateTime);
-		} catch(\InvalidArgumentException | \RangeException $exception) {
+		} catch(\InvalidArgumentException | \RangeException | \TypeError |\Exception $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
@@ -291,7 +293,7 @@ class Event implements \JsonSerializable {
 	 * @throws \RangeException if $newEventStartDateTime is a date that does not exist
 	 * @throws \Exception on all other Exceptions
 	 */
-	public function setEventStartDateTime(\DateTime $newEventStartDateTime): void {
+	public function setEventStartDateTime( $newEventStartDateTime): void {
 		if(empty($newEventStartDateTime) === true) {
 			throw(new \InvalidArgumentException("Event must have a valid start date and time."));
 		}
@@ -309,7 +311,6 @@ class Event implements \JsonSerializable {
 	 */
 
 	/**
-	 * inserts Event into SQL
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL relations error occurs
@@ -322,7 +323,10 @@ class Event implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		//bind variables to their place in the query template
-		$parameters = ["eventId" => $this->eventId->getBytes(), "eventCategoryId" => $this->eventCategoryId->getBytes(), "eventProfileId" => $this->eventProfileId->getBytes(), "eventDetails" => $this->eventDetails, "eventEndDateTime" => $this->eventEndDateTime, "eventLat" => $this->eventLat, "eventLong" => $this->eventLong, "eventStartDateTime" => $this->eventStartDateTime];
+		$parameters = ["eventId" => $this->eventId->getBytes(), "eventCategoryId" => $this->eventCategoryId->getBytes(),
+			"eventProfileId" => $this->eventProfileId->getBytes(), "eventDetails" => $this->eventDetails,
+			"eventEndDateTime" => $this->eventEndDateTime->format("Y-m-d H:i:s.u"), "eventLat" => $this->eventLat, "eventLong" => $this->eventLong,
+			"eventStartDateTime" => $this->eventStartDateTime->format("Y-m-d H:i:s.u")];
 		$statement->execute($parameters);
 	}
 
@@ -358,7 +362,9 @@ class Event implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		//bind variable to their place in the query template
-		$parameters = ["eventId" => $this->eventId->getBytes(), "eventCategoryId" => $this->eventCategoryId->getBytes(), "eventProfileId" => $this->eventProfileId->getBytes(), "eventDetails" => $this->eventDetails, "eventEndDateTime" => $this->eventEndDateTime, "eventLat" => $this->eventLat, "eventLong" => $this->eventLong, "eventStartDateTime" => $this->eventStartDateTime];
+		$parameters = ["eventId" => $this->eventId->getBytes(), "eventCategoryId" => $this->eventCategoryId->getBytes(),
+			"eventProfileId" => $this->eventProfileId->getBytes(), "eventDetails" => $this->eventDetails, "eventEndDateTime" => $this->eventEndDateTime->format("Y-m-d H:i:s.u"),
+			"eventLat" => $this->eventLat, "eventLong" => $this->eventLong, "eventStartDateTime" => $this->eventStartDateTime->format("Y-m-d H:i:s.u")];
 		$statement->execute($parameters);
 	}
 
