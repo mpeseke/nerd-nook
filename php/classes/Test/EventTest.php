@@ -145,7 +145,7 @@ public final function setUp() : void {
 
 		//create a new Event and insert into mySQL
 		$eventId = generateUuidV4();
-		$event = new Event($eventId, $this->profile->getProfileId(), $this->category->getCategoryId(), $this->VALID_EVENTDETAILS,
+		$event = new Event($eventId, $this->category->getCategoryId(),  $this->profile->getProfileId(), $this->VALID_EVENTDETAILS,
 			$this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTSTARTDATETIME);
 		$event->insert($this->getPDO());
 
@@ -174,7 +174,7 @@ public final function setUp() : void {
 
 		//create a new Event and insert into mySQL
 		$eventId = generateUuidV4();
-		$event = new Event($eventId, $this->profile->getProfileId(), $this->category->getCategoryId(), $this->VALID_EVENTDETAILS,
+		$event = new Event($eventId, $this->category->getCategoryId(),  $this->profile->getProfileId(), $this->VALID_EVENTDETAILS,
 			$this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTSTARTDATETIME);
 		$event->insert($this->getPDO());
 
@@ -206,7 +206,7 @@ public final function setUp() : void {
 
 		//create the new Event and inject into mySQL
 		$eventId = generateUuidV4();
-		$event = new Event($eventId, $this->profile->getProfileId(), $this->category->getCategoryId(), $this->VALID_EVENTDETAILS,
+		$event = new Event($eventId, $this->category->getCategoryId(),  $this->profile->getProfileId(), $this->VALID_EVENTDETAILS,
 			$this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTSTARTDATETIME);
 		$event->insert($this->getPDO());
 
@@ -240,7 +240,7 @@ public final function setUp() : void {
 
 		// create a new Event and insert it into mySQL
 		$eventId = generateUuidV4();
-		$event = new Event($eventId, $this->profile->getProfileId(), $this->category->getCategoryId(), $this->VALID_EVENTDETAILS,
+		$event = new Event($eventId, $this->category->getCategoryId(), $this->profile->getProfileId(), $this->VALID_EVENTDETAILS,
 			$this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTSTARTDATETIME);
 		$event->insert($this->getPDO());
 
@@ -254,8 +254,8 @@ public final function setUp() : void {
 		$pdoEvent = $results[0];
 
 		$this->assertEquals($pdoEvent->getEventId(), $eventId);
-		$this->assertEquals($pdoEvent->getEventProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoEvent->getEventCategoryId(), $this->category->getCategoryId());
+		$this->assertEquals($pdoEvent->getEventProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoEvent->getEventDetails(), $this->VALID_EVENTDETAILS);
 		//format the date to seconds since the beginning of time to avoid round off error
 		$this->assertEquals($pdoEvent->getEventEndDateTime()->getTimestamp(), $this->VALID_EVENTENDDATETIME->getTimestamp());
@@ -283,7 +283,7 @@ public final function setUp() : void {
 
 		// create a new Event and inject into mySQL
 		$eventId = generateUuidV4();
-		$event = new Event($eventId, $this->profile->getProfileId(), $this->category->getCategoryId(), $this->VALID_EVENTDETAILS,
+		$event = new Event($eventId, $this->category->getCategoryId(), $this->profile->getProfileId(), $this->VALID_EVENTDETAILS,
 			$this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTSTARTDATETIME);
 		$event->insert($this->getPDO());
 
@@ -296,8 +296,8 @@ public final function setUp() : void {
 		$pdoEvent = $results[0];
 
 		$this->assertEquals($pdoEvent->getEventId(), $eventId);
-		$this->assertEquals($pdoEvent->getEventProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoEvent->getEventCategoryId(), $this->category->getCategoryId());
+		$this->assertEquals($pdoEvent->getEventProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoEvent->getEventDetails(), $this->VALID_EVENTDETAILS);
 		//format the date to seconds since the beginning of time to avoid round off error
 		$this->assertEquals($pdoEvent->getEventEndDateTime()->getTimestamp(), $this->VALID_EVENTENDDATETIME->getTimestamp());
@@ -325,7 +325,7 @@ public final function setUp() : void {
 		$numRows = $this->getConnection()->getRowCount("event");
 		// create a new Event and inject into mySQL
 		$eventId = generateUuidV4();
-		$event = new Event($eventId, $this->profile->getProfileId(), $this->category->getCategoryId(), $this->VALID_EVENTDETAILS,
+		$event = new Event($eventId, $this->category->getCategoryId(), $this->profile->getProfileId(), $this->VALID_EVENTDETAILS,
 			$this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTSTARTDATETIME);
 		$event->insert($this->getPDO());
 		//grab the event data from mySQL and enforce the fields match our expectations
@@ -337,8 +337,8 @@ public final function setUp() : void {
 		$pdoEvent = $results[0];
 
 		$this->assertEquals($pdoEvent->getEventId(), $eventId);
-		$this->assertEquals($pdoEvent->getEventProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoEvent->getEventCategoryId(), $this->category->getCategoryId());
+		$this->assertEquals($pdoEvent->getEventProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoEvent->getEventDetails(), $this->VALID_EVENTDETAILS);
 		//format the date to seconds since the beginning of time to avoid round off error
 		$this->assertEquals($pdoEvent->getEventEndDateTime()->getTimestamp(), $this->VALID_EVENTENDDATETIME->getTimestamp());
