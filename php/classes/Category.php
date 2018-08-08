@@ -155,7 +155,7 @@ class Category implements \JsonSerializable {
 		//create query template
 		$query = "INSERT INTO category(categoryId, categoryName, categoryType) VALUES (:categoryId, :categoryName, :categoryType)";
 		$statement = $pdo->prepare($query);
-		$parameters = ["categoryId" => $this->categoryId->getBytes(), "categoryName" => $this->categoryName->getBytes(), "categoryType" => $this->categoryType->getBytes()];
+		$parameters = ["categoryId" => $this->categoryId->getBytes(), "categoryName" => $this->categoryName, "categoryType" => $this->categoryType];
 		$statement->execute($parameters);
 	}
 

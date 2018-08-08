@@ -16,7 +16,7 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
  *
  * Includes both valid and invalid inputs for the test subject, therefore making it complete.
  *
- * @see \CalebMHeckendorn\NerdNook\Category
+ * @see \NerdCore\NerdNook\Category
  * @author Marlon Oliver Peseke <mpeseke@gmail.com>
  *
  * categoryId
