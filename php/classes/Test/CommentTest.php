@@ -33,6 +33,15 @@ class CommentTest extends NerdNookTest {
 	 **/
 
 	protected $profile = null;
+
+	/**
+	 * valid profile activation token for the profile object that will own the test.
+	 * @var $VALID_PROFILE_TOKEN
+	 */
+
+	protected $VALID_PROFILE_TOKEN;
+
+
 	/**
 	 * valid profile hash to create the profile object to own the test
 	 * @var $VALID_HASH
@@ -70,18 +79,22 @@ class CommentTest extends NerdNookTest {
 		parent::setUp();
 		$password = "abc123";
 
+		//format the sunrise date to use for testing
 		$this->VALID_SUNRISEDATE = new \DateTime();
 		$this->VALID_SUNRISEDATE->sub(new \DateInterval("P10D"));
 
 		//format the sunset date to use for testing
 		$this->VALID_SUNSETDATE = new\DateTime();
 		$this->VALID_SUNSETDATE->add(new \DateInterval("P10D"));
+
 		$this->VALID_PROFILE_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
 		// create and insert a Profile to own the test Comment
-		$this->profile = new Profile(generateUuidV4(), null, "@handle", "test@phpunit.de", $this->VALID_PROFILE_HASH);
+		$this->profile = new Profile(generateUuidV4(), $this->VALID_PROFILE_TOKEN,
+			"@handle", "test@phpunit.de", $this->VALID_PROFILE_HASH);
 		$this->profile->insert($this->getPDO());
 		// create and insert a Event to house the test Comment
-		$this->event = new Event(generateUuidV4(), generateUuidV4(), generateUuidV4(),"blame @mdav", $this->VALID_SUNSETDATE, 35.129905, 106.514417, $this->VALID_SUNRISEDATE);
+		$this->event = new Event(generateUuidV4(), generateUuidV4(), generateUuidV4(),"blame @mdav",
+			$this->VALID_SUNSETDATE, 35.129905, 106.514417, $this->VALID_SUNRISEDATE);
 		$this->event->insert($this->getPDO());
 		// calculate the date (just use the time the unit test was setup...)
 		$this->VALID_COMMENTDATE = new \DateTime();

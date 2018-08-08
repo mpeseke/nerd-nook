@@ -116,7 +116,8 @@ public final function setUp() : void {
 	$this->category->insert($this->getPDO());
 
 	// create and insert a Profile to own the test Event
-	$this->profile = new Profile(generateUuidV4(), $this->VALID_PROFILE_TOKEN, "@unitTest", "IloveTest@unit.com",
+	$this->profile = new Profile(generateUuidV4(), $this->VALID_PROFILE_TOKEN,
+		"@unitTest", "IloveTest@unit.com",
 		$this->VALID_PROFILE_HASH);
 	$this->profile->insert($this->getPDO());
 
