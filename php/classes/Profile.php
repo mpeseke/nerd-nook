@@ -415,8 +415,9 @@ class Profile implements \JsonSerializable {
 	/**
 	 * gets the Profile by activation token
 	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @param string $profileActivationToken activation token to search for
+	 *
+	 * @param string $profileActivationToken
+	 * @param \PDO object $pdo
 	 * @return Profile|null Profile or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not correct data type
@@ -424,13 +425,12 @@ class Profile implements \JsonSerializable {
 	public static function getProfileByProfileActivationToken(\PDO $pdo, string $profileActivationToken) : ?Profile {
 		// sanitize the token before searching
 		$profileActivationToken = trim($profileActivationToken);
-		$profileActivationToken = filter_var($profileActivationToken, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($profileActivationToken) === true) {
-			throw(new\PDOException("not a valid token"));
+		if(ctype_xdigit($profileActivationToken) === false) {
+			throw(new\InvalidArgumentException("profile activation token is empty or in the wrong format"));
 		}
 
 		// create a query template
-		$query = "SELECT profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash FROM profile WHERE profileId = :profileId";
+		$query = "SELECT profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash FROM profile WHERE profileActivationToken = :profileActivationToken";
 		$statement = $pdo->prepare($query);
 
 		// bind the profile activation token to the place holder in the template
