@@ -278,13 +278,15 @@ class Profile implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 **/
 	public function update(\PDO $pdo): void {
-		// create query template
-		$query = "UPDATE profile SET profileActivationToken = profileActivationToken, profileAtHandle = :profileAtHandle, profileEmail = :profileEmail, profileHash = :profileHash WHERE profileId = :profileId";
-		$statement = $pdo->prepare($query);
 
-		// bind the profile variables to the place holders in the template
-		$parameters = ["profileId" => $this->profileId->getBytes(), "profileActivationToken" => $this->profileActivationToken, "profileAtHandle" => $this->profileAtHandle, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash];
-		$statement->execute($parameters);
+
+				// create query template
+				$query = "UPDATE profile SET profileActivationToken = :profileActivationToken, profileAtHandle = :profileAtHandle, profileEmail = :profileEmail, profileHash = :profileHash WHERE profileId = :profileId";
+				$statement = $pdo->prepare($query);
+
+				// bind the profile variables to the place holders in the template
+				$parameters = ["profileId" => $this->profileId->getBytes(), "profileActivationToken" => $this->profileActivationToken, "profileAtHandle" => $this->profileAtHandle, "profileEmail" => $this->profileEmail, "profileHash" => $this->profileHash];
+				$statement->execute($parameters);
 	}
 
 	/**
