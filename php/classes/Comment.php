@@ -58,7 +58,7 @@ class comment implements \JsonSerializable {
 	 * @throwsTypeError
 	 */
 
-	public function __construct($newCommentId,$newCommentEventId,$newCommentProfileId, string $newCommentContent, string $newCommentDateTime) {
+	public function __construct($newCommentId,$newCommentEventId,$newCommentProfileId, string $newCommentContent, \DateTime $newCommentDateTime) {
 		try {
 			$this->setCommentId($newCommentId);
 			$this->setCommentEventId($newCommentEventId);
@@ -239,7 +239,9 @@ class comment implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		// bind the member variables to the place holders in the template
+
 		$formattedDate = $this->commentDateTime->format("Y-m-d H:i:s.u");
+
 		$parameters = ["commentId" => $this->commentId->getBytes(), "commentEventId" => $this->commentEventId->getBytes(), "commentProfileId" => $this->commentProfileId->getBytes(), "commentContent" => $this->commentContent, "commentDateTime" => $formattedDate];
 		$statement->execute($parameters);
 	}
@@ -270,10 +272,11 @@ class comment implements \JsonSerializable {
 	 */
 	public function update(\PDO $pdo): void {
 		//create query template
-		$query = "UPDATE comment SET commentEventId = :commentEventId, commentProfileId = :commentProfileId, commentContent = :commentContent, commentDateTime = :commentDateTime WHERE commentId = :commentId";
+		$query = "UPDATE comment SET commentId = :commentId, commentEventId = :commentEventId, commentProfileId = :commentProfileId, commentContent = :commentContent, commentDateTime = :commentDateTime WHERE commentId = :commentId";
 		$statement = $pdo->prepare($query);
 
 		$formattedDate = $this->commentDateTime->format("Y-m-d H:i:s.u");
+
 		$parameters = ["commentId" => $this->commentId->getBytes(), "commentEventId" => $this->commentEventId->getBytes(), "commentProfileId" => $this->commentProfileId->getBytes(), "commentContent" => $this->commentContent, "commentDateTime" => $formattedDate];
 		$statement->execute($parameters);
 	}
@@ -291,10 +294,10 @@ class comment implements \JsonSerializable {
 		//sanitize the commentId before searching
 		try {
 			$commentId = self::validateUuid($commentId);
-		} catch(\InvalidArgumentException | \RangeException | \Exception $exception) {
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception ) {
 			throw (new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		//create query teplate
+		//create query template
 		$query = "SELECT commentId,commentEventId, commentProfileId, commentContent, commentDateTime FROM comment WHERE commentId = :commentId";
 		$statement = $pdo->prepare($query);
 
@@ -312,7 +315,7 @@ class comment implements \JsonSerializable {
 			}
 		} catch(\Exception $exception) {
 			//if the row couldn't be converted, rethrow it
-			throw(new \PDOExecption($exception->getMessage(), 0, $exception));
+			throw(new \PDOException ($exception->getMessage(), 0, $exception));
 		}
 		return ($comment);
 	}
