@@ -71,7 +71,7 @@ class CommentTest extends NerdNookTest {
 		$password = "abc123";
 		$this->VALID_PROFILE_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
 		// create and insert a Profile to own the test Comment
-		$this->profile = new Profile(generateUuidV4(), null, "@handle", "https://media.giphy.com/media/3og0INyCmHlNylks9O/giphy.gif", "test@phpunit.de", $this->VALID_PROFILE_HASH, "+12125551212");
+		$this->profile = new Profile(generateUuidV4(), null, "@handle", "test@phpunit.de", $this->VALID_PROFILE_HASH);
 		$this->profile->insert($this->getPDO());
 		// calculate the date (just use the time the unit test was setup...)
 		$this->VALID_COMMENTDATE = new \DateTime();
@@ -179,7 +179,7 @@ class CommentTest extends NerdNookTest {
 		$results = Comment::getCommentByCommentEventId($this->getPDO(), $comment->getCommentEventId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("comment"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("ChelseaDavid\\NerdNook\\Comment", $results);
+		$this->assertContainsOnlyInstancesOf("NerdCore\\NerdNook\\Comment", $results);
 		// grab the result from the array and validate it
 		$pdoComment = $results[0];
 
