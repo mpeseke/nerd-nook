@@ -1,6 +1,7 @@
 <?php
 namespace NerdCore\NerdNook\Test;
 
+use MongoDB\BSON\Timestamp;
 use NerdCore\NerdNook\{CheckIn, Event, Profile};
 
 
@@ -23,16 +24,39 @@ class CheckInTest extends NerdNookTest{
 	 */
 	protected $event;
 	/**
-	 * @var null
+	 * profile that checks in to the event
+	 * @var Profile profile
 	 */
 	protected $profile;
+	/**
+	 * valid hash to use
+	 * @var null
+	 */
 	protected $VALID_HASH;
+	/**
+	 * @var Timestamp
+	 */
 	protected $VALID_DATETIME;
+	/**
+	 * @var int
+	 */
 	protected $VALID_REP = 10;
+	/**
+	 * @var int
+	 */
 	protected $VALID_REP2 = 20;
+	/**
+	 * @var null
+	 */
 	protected $VALID_ACTIVATION;
-	protected $VALID_AT_HANDLE;
+	/**
+	 * @var "@phpunit"
+	 */
+//	protected $VALID_AT_HANDLE;
 
+	/**
+	 * @throws \Exception
+	 */
 	public final function setUp(): void {
 		parent::setUp();
 		$password = "abc123";
@@ -41,9 +65,12 @@ class CheckInTest extends NerdNookTest{
 		$this->profile = new Profile(generateUuidV4(), null, "@phpunit", "bob@bobspace.com", $this->VALID_HASH);
 		$this->profile->insert($this->getPDO());
 		$this->VALID_DATETIME = new \DateTime();
-		$this->VALID_AT_HANDLE = new \AT_HANDLE();
-		$this->event=new Event(generateUuidV4(), null, null, "This is a meet-up to...", "6:00", "35.086111", "-106.649944", "2:00");
+		$this->event=new Event(generateUuidV4(), $this->profile->getProfileId(), generateUuidV4(), "This is a meet-up to...", new \DateTime(), "35.086111", "-106.649944", new \DateTime());
 	}
+
+	/**
+	 *
+	 */
 	public function testInsertValidCheckIn() : void {
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 
@@ -57,6 +84,9 @@ class CheckInTest extends NerdNookTest{
 		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP);
 	}
 
+	/**
+	 *
+	 */
 	public function testUpdateValidCheckIn() : void {
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 
@@ -73,6 +103,9 @@ class CheckInTest extends NerdNookTest{
 		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP2);
 	}
 
+	/**
+	 *
+	 */
 	public function testDeleteValidCheckIn() : void {
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 
@@ -87,6 +120,9 @@ class CheckInTest extends NerdNookTest{
 		$this->assertEquals($numRows, $this->getConnection()->getRowCount("checkIn"));
 	}
 
+	/**
+	 *
+	 */
 	public function getValidCheckInByEventId() : void {
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 
@@ -106,11 +142,17 @@ class CheckInTest extends NerdNookTest{
 		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP);
 	}
 
+	/**
+	 *
+	 */
 	public function getInvalidCheckInByEventId(): void {
 		$checkIn = CheckIn::getCheckInByCheckInEventId($this->getPDO(), generateUuidV4());
 		$this->assertCount(0, $checkIn);
 	}
 
+	/**
+	 *
+	 */
 	public function getValidCheckInByProfileId() : void {
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 
@@ -130,6 +172,9 @@ class CheckInTest extends NerdNookTest{
 		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP);
 	}
 
+	/**
+	 *
+	 */
 	public function getInvalidCheckInByProfileId(): void {
 		$checkIn = CheckIn::getCheckInByCheckInProfileId($this->getPDO(), generateUuidV4());
 		$this->assertCount(0, $checkIn);

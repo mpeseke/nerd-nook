@@ -11,6 +11,8 @@ use Ramsey\Uuid\Uuid;
  * @version 1.0
  */
 class CheckIn implements \JsonSerializable {
+	use ValidateDate;
+	use ValidateUuid;
 	/**
 	 * id for the check in event id; this is a foreign key
 	 * @var Uuid $checkInEventId
@@ -30,7 +32,7 @@ class CheckIn implements \JsonSerializable {
 	 */
 	private $checkInRep;
 
-	public function __construct($newCheckInEventId, $newCheckInProfileId, $newCheckInDateTime, $newCheckInRep) {
+	public function __construct($newCheckInEventId, $newCheckInProfileId, $newCheckInDateTime, int $newCheckInRep) {
 		try {
 			$this->setCheckInEventId($newCheckInEventId);
 			$this->setCheckInProfileId($newCheckInProfileId);
@@ -66,7 +68,7 @@ class CheckIn implements \JsonSerializable {
 		}
 
 		//convert and store the check in event id
-		$this->checkInEventId = $newCheckInEventId;
+		$this->checkInEventId = $uuid;
 	}
 	/**
 	 * accessor method for check in profile id
@@ -170,7 +172,7 @@ class CheckIn implements \JsonSerializable {
 		//create query template
 		$query = "INSERT INTO checkIn(checkInEventId, checkInProfileId, checkInDateTime, checkInRep) VALUES (:checkInEventId, :checkInProfileId, :checkInDateTime, :checkInRep)";
 		$statement = $pdo->prepare($query);
-		$parameters = ["checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInDateTime" => $this->checkInDateTime->getBytes(), "checkInRep" => $this->checkInRep->getBytes()];
+		$parameters = ["checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInDateTime" => $this->checkInDateTime->getTimestamp(), "checkInRep" => $this->checkInRep];
 		$statement->execute($parameters);
 	}
 	/**
