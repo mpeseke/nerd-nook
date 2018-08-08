@@ -389,7 +389,7 @@ class Profile implements \JsonSerializable {
 		}
 
 		// create query template
-		$query = "SELECT profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash FROM profile WHERE profileId = :profileId";
+		$query = "SELECT profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash FROM profile WHERE profileAtHandle = :profileAtHandle";
 		$statement = $pdo->prepare($query);
 
 		// bind the profile at handle to the place holder in the template
@@ -402,7 +402,7 @@ class Profile implements \JsonSerializable {
 		while (($row = $statement->fetch()) !== false) {
 			try {
 				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileAtHandle"], $row["profileEmail"], $row["profileHash"]);
-				$profile[$profiles->key()] = $profile;
+				$profiles[$profiles->key()] = $profile;
 				$profiles->next();
 			} catch(\Exception $exception) {
 				// if the row couldn't be converted, rethrow it

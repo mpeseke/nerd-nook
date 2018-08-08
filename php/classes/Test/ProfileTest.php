@@ -172,6 +172,9 @@ class ProfileTest extends NerdNookTest {
 		$this->assertNull($profile);
 	}
 
+	/**
+	 * test grabbing a Profile by at handle
+	 **/
 	public function testGetValidProfileByAtHandle() {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("profile");
@@ -183,6 +186,9 @@ class ProfileTest extends NerdNookTest {
 		// grab the data from mySQL
 		$results = Profile::getProfileByProfileAtHandle($this->getPDO(), $this->VALID_ATHANDLE);
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
+
+		// enforce no other objects are bleeding into profile
+		$this->assertContainsOnlyInstancesOf("NerdCore\\NerdNook\\Profile", $results);
 
 		//enforce the results meet expectations
 		$pdoProfile = $results[0];
