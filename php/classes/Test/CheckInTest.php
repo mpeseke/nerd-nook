@@ -34,7 +34,7 @@ class CheckInTest extends NerdNookTest{
 	 */
 	protected $VALID_HASH;
 	/**
-	 * @var Timestamp
+	 * @var \DateTime
 	 */
 	protected $VALID_DATETIME;
 	/**
@@ -52,7 +52,7 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * @var "@phpunit"
 	 */
-//	protected $VALID_AT_HANDLE;
+	protected $VALID_AT_HANDLE;
 
 	/**
 	 * @throws \Exception
@@ -77,7 +77,7 @@ class CheckInTest extends NerdNookTest{
 		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATETIME, $this->VALID_REP);
 		$checkIn->insert($this->getPDO());
 
-		$pdoCheckIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
+		$pdoCheckIn = CheckIn::getCheckInByEventIdAndProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoCheckIn->getCheckInEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoCheckIn->getCheckInProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getDateTime(), $this->VALID_DATETIME);
@@ -96,7 +96,7 @@ class CheckInTest extends NerdNookTest{
 		$checkIn->setCheckInRep($this->VALID_REP2);
 		$checkIn->update($this->getPDO());
 
-		$pdoCheckIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
+		$pdoCheckIn = CheckIn::getCheckInByEventIdAndProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoCheckIn->getCheckInEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoCheckIn->getCheckInProfileId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getDateTime(), $this->VALID_DATETIME);
