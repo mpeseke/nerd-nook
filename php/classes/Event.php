@@ -1,7 +1,7 @@
 <?php
 namespace NerdCore\NerdNook;
 require_once ("autoload.php");
-require_once(dirname(__DIR__,2) . "../vendor/autoload.php");
+require_once(dirname(__DIR__,2) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 
 use NerdCore\NerdNook\ValidateUuid;
@@ -21,7 +21,7 @@ class Event implements \JsonSerializable {
 
 	/**
 	 * Id for the event itself; this is the primary key
-	 * @var Uuid $imageId
+	 * @var Uuid $eventId
 	 */
 	private $eventId;
 
@@ -84,14 +84,14 @@ class Event implements \JsonSerializable {
 
 	public function __construct($newEventId, $newEventProfileId, $newEventCategoryId, string $newEventDetails, \DateTime $newEventEndDateTime, float $newEventLat, float $newEventLong, \DateTime $newEventStartDateTime) {
 		try {
-			$this->setEventId = $newEventId;
-			$this->setEventProfileId = $newEventProfileId;
-			$this->setEventCategoryId = $newEventCategoryId;
-			$this->setEventDetails = $newEventDetails;
-			$this->setEventEndDateTime = $newEventEndDateTime;
-			$this->setEventLat = $newEventLat;
-			$this->setEventLong = $newEventLong;
-			$this->setEventStartDateTime = $newEventStartDateTime;
+			$this->setEventId($newEventId);
+			$this->setEventCategoryId($newEventCategoryId);
+			$this->setEventProfileId($newEventProfileId);
+			$this->setEventDetails($newEventDetails);
+			$this->setEventEndDateTime($newEventEndDateTime);
+			$this->setEventLat($newEventLat);
+			$this->setEventLong($newEventLong);
+			$this->setEventStartDateTime($newEventStartDateTime);
 		} catch(\InvalidArgumentException| \RangeException| \TypeError| \Exception $exception) {
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));

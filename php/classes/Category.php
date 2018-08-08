@@ -3,9 +3,10 @@ namespace NerdCore\NerdNook;
 
 require_once("autoload.php");
 require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
-
-use http\Exception\InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
+
+use NerdCore\NerdNook\ValidateUuid;
+
 /**
  * Cross Section of the the Nerd Nook Category Class
  * This class illustrates the back end for the Category class and the data it can hold, and can be extended for more
@@ -49,17 +50,17 @@ class Category implements \JsonSerializable {
 	 * @throws \TypeError if the data types are invalid
 	 * @throws \Exception if some other exception occurs
 	 */
-
 	public function __construct($newCategoryId, string $newCategoryName, string $newCategoryType) {
 		try {
 			$this->setCategoryId($newCategoryId);
 			$this->setCategoryName($newCategoryName);
 			$this->setCategoryType($newCategoryType);
-		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+		} catch(\InvalidArgumentException| \RangeException| \TypeError| \Exception $exception) {
 			$exceptionType = get_class($exception);
-			throw (new $exceptionType($exception->getMessage(), 0, $exception));
+			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
 	}
+
 	/**
 	 * accessor method for categoryId
 	 * @return Uuid value of category id
@@ -130,13 +131,16 @@ class Category implements \JsonSerializable {
 	 **/
 
 	public function setCategoryType(string $newCategoryType): void {
-		try {
-			$uuid = self::validateUuid($newCategoryType);
-		} catch(\RangeException | \TypeError $exception) {
-			$exceptionType = get_class($exception);
-			throw (new $exceptionType($exception->getMessage(), 0, $exception));
+		// verify Category Type is secure
+		$newCategoryType = trim($newCategoryType);
+		$newCategoryType = filter_var($newCategoryType, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+		if(empty($newCategoryType) === true ){
+			throw(new \InvalidArgumentException("Category must have a Type."));
 		}
-		//convert and store the category type
+		if(strlen($newCategoryType) > 24) {
+			throw(new \RangeException("Category Type is too long"));
+		}
+		//convert and store the Category Type
 		$this->categoryType = $newCategoryType;
 	}
 

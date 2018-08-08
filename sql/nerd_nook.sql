@@ -61,6 +61,7 @@ CREATE TABLE checkIn (
 	checkInDateTime DATETIME,
 	checkInRep TINYINT UNSIGNED,
 
+
 	FOREIGN KEY (checkInEventId) REFERENCES event(eventId),
 	FOREIGN KEY (checkInProfileId) REFERENCES profile (profileId)
 );

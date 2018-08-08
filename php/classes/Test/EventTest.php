@@ -247,7 +247,7 @@ public final function setUp() : void {
 		$results = Event::getEventByEventProfileId($this->getPDO(), $event->getEventProfileId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("event"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("Mpeseke\\NerdNook\\Event", $results);
+		$this->assertContainsOnlyInstancesOf("NerdCore\\NerdNook\\Event", $results);
 
 		//grab the array results and validate
 		$pdoEvent = $results[0];

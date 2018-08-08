@@ -103,7 +103,7 @@ class CategoryTest extends NerdNookTest {
 		$results = Category::getCategoryByCategoryId($this->getPDO(), $category->getCategoryId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("category"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("CalebMHeckendorn\\NerdNook", $results);
+		$this->assertContainsOnlyInstancesOf("NerdCore\\NerdNook\\Category", $results);
 
 		// grab the results of the array and validate
 		$pdoCategory = $results[0];
