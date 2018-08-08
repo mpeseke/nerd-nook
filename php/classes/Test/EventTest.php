@@ -21,12 +21,6 @@ require_once(dirname(__DIR__, 2) . "/lib/uuid.php");
 
 class EventTest extends NerdNookTest {
 
-	/**
-	 * The Id for the event itself
-	 * @var $eventId
-	 */
-
-	protected $eventId = null;
 
 	/**
 	 * Category the Event falls under; this is for the foreign key relations
@@ -112,11 +106,11 @@ public final function setUp() : void {
 	$this->VALID_PROFILE_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
 
 	// create and insert a Category to own the test Event
-	$this->category = new Category(generateUuidV4(), "Dungeons and Dragons", "Table Top Games");
+	$this->category = new Category(generateUuidV4(), "Pathfinder", "Table Top Games");
 	$this->category->insert($this->getPDO());
 
 	// create and insert a Profile to own the test Event
-	$this->profile = new Profile(generateUuidV4(), null, "@handle", "test@iloveunittests.com",
+	$this->profile = new Profile(generateUuidV4(), "null", "@unitTest", "IloveTest@unit.com",
 		$this->VALID_PROFILE_HASH);
 	$this->profile->insert($this->getPDO());
 
@@ -148,7 +142,7 @@ public final function setUp() : void {
 
 		//create a new Event and insert into mySQL
 		$eventId = generateUuidV4();
-		$event = new Event($eventId, $this->category->getCategoryId(), $this->profile->getProfileId(),$this->VALID_EVENTDETAILS,
+		$event = new Event($eventId, $this->category->getCategoryId(), $this->profile->getProfileId,$this->VALID_EVENTDETAILS,
 			$this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTSTARTDATETIME);
 		$event->insert($this->getPDO());
 
