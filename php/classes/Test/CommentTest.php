@@ -81,7 +81,7 @@ class CommentTest extends NerdNookTest {
 		$this->profile = new Profile(generateUuidV4(), null, "@handle", "test@phpunit.de", $this->VALID_PROFILE_HASH);
 		$this->profile->insert($this->getPDO());
 		// create and insert a Event to house the test Comment
-		$this->event = new Event(generateUuidV4(), generateUuidV4(),generateUuidV4(),"blame @mdav", $this->VALID_SUNSETDATE, 35.129905, 106.514417, $this->VALID_SUNRISEDATE);
+		$this->event = new Event(generateUuidV4(), generateUuidV4(), generateUuidV4(),"blame @mdav", $this->VALID_SUNSETDATE, 35.129905, 106.514417, $this->VALID_SUNRISEDATE);
 		$this->event->insert($this->getPDO());
 		// calculate the date (just use the time the unit test was setup...)
 		$this->VALID_COMMENTDATE = new \DateTime();
