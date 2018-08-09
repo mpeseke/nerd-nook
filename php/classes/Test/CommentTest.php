@@ -32,14 +32,14 @@ class CommentTest extends NerdNookTest {
 	 * @var Profile profile
 	 **/
 
-	protected $profile = null;
 
+	protected $category = null;
 
 	/*
 	 * Category that this comment will be associated with;
 	 * @var Category category
 	 */
-	protected $category = null;
+	protected $profile = null;
 	/**
 	 * valid profile activation token for the profile object that will own the test.
 	 * @var $VALID_PROFILE_TOKEN
@@ -71,11 +71,11 @@ class CommentTest extends NerdNookTest {
 	/**
 	 * Valid timestamp to use as sunriseCommentDate
 	 */
-	protected $VALID_SUNRISEDATE = null;
+	protected $VALID_EVENTENDDATETIME = null;
 	/**
 	 * Valid timestamp to use as sunsetCommentDate
 	 */
-	protected $VALID_SUNSETDATE = null;
+	protected $VALID_EVENTSTARTDATETIME = null;
 
 	/**
 	 * create dependent objects before running each test
@@ -84,31 +84,31 @@ class CommentTest extends NerdNookTest {
 		// run the default setUp() method first
 		parent::setUp();
 		$password = "abc123";
-
-		//format the sunrise date to use for testing
-		$this->VALID_SUNRISEDATE = new \DateTime();
-		$this->VALID_SUNRISEDATE->sub(new \DateInterval("P10D"));
-
-		//format the sunset date to use for testing
-		$this->VALID_SUNSETDATE = new\DateTime();
-		$this->VALID_SUNSETDATE->add(new \DateInterval("P10D"));
-
 		$this->VALID_PROFILE_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
-		// create and insert a Profile to own the test Comment
-		$this->profile = new Profile(generateUuidV4(), $this->VALID_PROFILE_TOKEN,
-			"@handle", "test@phpunit.de", $this->VALID_PROFILE_HASH);
-		$this->profile->insert($this->getPDO());
-		// create and insert a Event to house the test Comment
-		$this->event = new Event(generateUuidV4(), $this->category->getCategoryId(),$this->profile->getProfileId(),"blame @mdav",
-			$this->VALID_SUNSETDATE, 35.129905, 106.514417, $this->VALID_SUNRISEDATE);
-		$this->event->insert($this->getPDO());
 		// create and insert a Category to house the comment
 		$this->category= new Category(generateUuidV4(),"Harry Potter", "Books");
 		$this->category->insert($this->getPDO());
+		// create and insert a Event to house the test Comment
+		$this->event = new Event(generateUuidV4(), $this->category->getCategoryId(),$this->profile->getProfileId(),"blame @mdav",
+			$this->VALID_EVENTENDDATETIME, $this->event->getEventLat(), $this->event->getEventLong(), $this->VALID_EVENTSTARTDATETIME);
+		$this->event->insert($this->getPDO());
+		// create and insert a Profile to own the test Comment
+		$this->profile = new Profile(generateUuidV4(), $this->VALID_PROFILE_TOKEN,
+			"@handle", "blamemdav@gmail.com", $this->VALID_PROFILE_HASH);
+		$this->profile->insert($this->getPDO());
+
 		// calculate the date (just use the time the unit test was setup...)
 		$this->VALID_COMMENTDATE = new \DateTime();
 		//format the sunrise date to use for testing
+		$this->VALID_EVENTENDDATETIME = new \DateTime();
+		$this->VALID_EVENTSTARTDATETIME = new \DateTime();
+		//format the sunrise date to use for testing
+		//$this->VALID_SUNRISEDATE = new \DateTime();
+		//$this->VALID_SUNRISEDATE->sub(new \DateInterval("P10D"));
 
+		//format the sunset date to use for testing
+		//$this->VALID_SUNSETDATE = new\DateTime();
+		//$this->VALID_SUNSETDATE->add(new \DateInterval("P10D"));
 	}
 
 	/**

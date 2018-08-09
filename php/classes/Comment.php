@@ -228,7 +228,7 @@ class comment implements \JsonSerializable {
 	 * inserts this comment into mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @throws \PDO exception when mySQL related errors occur
+	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo in not a PDO connection object
 	*/
 	public function insert(\PDO $pdo): void {
