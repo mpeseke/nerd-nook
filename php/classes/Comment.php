@@ -58,7 +58,7 @@ class comment implements \JsonSerializable {
 	 * @throwsTypeError
 	 */
 
-	public function __construct($newCommentId,$newCommentEventId,$newCommentProfileId, string $newCommentContent, \DateTime $newCommentDateTime) {
+	public function __construct($newCommentId,$newCommentEventId,$newCommentProfileId, string $newCommentContent, $newCommentDateTime = null) {
 		try {
 			$this->setCommentId($newCommentId);
 			$this->setCommentEventId($newCommentEventId);

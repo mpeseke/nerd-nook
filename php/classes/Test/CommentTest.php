@@ -144,11 +144,11 @@ class CommentTest extends NerdNookTest {
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("comment"));
 		$this->assertEquals($pdoComment->getCommentId(), $commentId);
 		$this->assertEquals($pdoComment->getCommentProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoComment->getCommentCategoryId(), $this->profile->getCategoryId());
+//		$this->assertEquals($pdoComment->getCommentCategoryId(), $this->profile->getCategoryId());
 		$this->assertEquals($pdoComment->getCommentEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoComment->getCommentContent(), $this->VALID_COMMENTCONTENT);
 		//format the date too seconds since the beginning of time to avoid round off error
-		$this->assertEquals($pdoComment->getCommentDate()->getTimestamp(), $this->VALID_COMMENTDATE->getTimestamp());
+		$this->assertEquals($pdoComment->getCommentDateTime()->getTimestamp(), $this->VALID_COMMENTDATE->getTimestamp());
 	}
 	/*
 * 		test inserting a Comment, editing it, an then updating it
@@ -176,7 +176,7 @@ class CommentTest extends NerdNookTest {
 		$this->assertEquals($pdoComment->getCommentEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoComment->getCommentContent(), $this->VALID_COMMENTCONTENT2);
 		//format the date to seconds since the beginning of time to avoid round off error
-		$this->assertEquals($pdoComment->getCommentDate()->getTimeStamp(), $this->VALID_COMMENTDATE->getTimestamp());
+		$this->assertEquals($pdoComment->getCommentDateTime()->getTimeStamp(), $this->VALID_COMMENTDATE->getTimestamp());
 	}
 
 	/*
@@ -220,7 +220,7 @@ class CommentTest extends NerdNookTest {
 		$numRows = $this->getConnection()->getRowCount("comment");
 		// create a new Comment and insert to into mySQL
 		$commentId = generateUuidV4();
-		$comment = new Comment($commentId, $this->event->geteventId(), $this->VALID_COMMENTCONTENT, $this->VALID_COMMENTDATE);
+		$comment = new Comment($commentId, $this->event->getEventId(),$this->profile->getProfileId(), $this->VALID_COMMENTCONTENT, $this->VALID_COMMENTDATE);
 		$comment->insert($this->getPDO());
 		// grab the data from mySQL and enforce the fields match our expectations
 		$results = Comment::getCommentByCommentEventId($this->getPDO(), $comment->getCommentEventId());
