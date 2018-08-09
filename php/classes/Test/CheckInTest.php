@@ -29,6 +29,11 @@ class CheckInTest extends NerdNookTest{
 	 */
 	protected $profile;
 	/**
+	 * Check in
+	 * @var CheckIn $checkIn
+	 **/
+	protected $checkIn;
+	/**
 	 * valid hash to use
 	 * @var null
 	 */
@@ -42,7 +47,7 @@ class CheckInTest extends NerdNookTest{
 	 */
 	protected $VALID_REP = 10;
 	/**
-	 * @var int
+	 * @var int checkInRep
 	 */
 	protected $VALID_REP2 = 20;
 	/**
@@ -61,16 +66,21 @@ class CheckInTest extends NerdNookTest{
 //		run the default setUp() method first
 		parent::setUp();
 
-//		create a salt and hash for the mocked profile
+		//create a salt and hash for the mocked profile
 		$password = "abc123";
 		$this->VALID_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
 		$this->VALID_ACTIVATION = bin2hex(random_bytes(16));
-//		create and insert the mocked profile
+
+		//create and insert the mocked profile
 		$this->profile = new Profile(generateUuidV4(), null, "@phpunit", "bob@bobspace.com", $this->VALID_HASH);
 		$this->profile->insert($this->getPDO());
-//		create and insert the mocked event
+
+		//create and insert the mocked event
 		$this->VALID_DATETIME = new \DateTime();
 		$this->event=new Event(generateUuidV4(), $this->profile->getProfileId(), generateUuidV4(), "This is a meet-up to...", new \DateTime(), "35.086111", "-106.649944", new \DateTime());
+
+		//create and insert mock rep
+		$this->checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(),  new \DateTime(),  10);
 	}
 
 	/**
@@ -81,16 +91,20 @@ class CheckInTest extends NerdNookTest{
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 
 		//create a new CheckIn and insert into mySQL
-		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATETIME, $this->VALID_REP);
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATETIME, $this->checkIn->getCheckInRep());
 		$checkIn->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$pdoCheckIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
+		$pdoCheckIn = CheckIn::getCheckInByEventIdAndProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
+		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("checkIn"));
 		$this->assertEquals($pdoCheckIn->getCheckInEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoCheckIn->getCheckInProfileId(), $this->profile->getProfileId());
+
 		//format the date to seconds since the beginning of time to avoid round off error
-		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimestamp(), $this->VALID_DATETIME);
-		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP);
+		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimestamp(), $this->VALID_DATETIME->getTimestamp());
+
+		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->checkIn->getCheckInRep());
+
 
 	}
 

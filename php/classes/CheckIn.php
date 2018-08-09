@@ -146,7 +146,7 @@ class CheckIn implements \JsonSerializable {
 	 * mutator method for check in rep
 	 *
 	 * @param int $newCheckInRep new value of check in rep
-	 * @throws \RangeException if $newCheckInRep is \mysqli_sql_exception
+	 * @throws \RangeException if $newCheckInRep is less than 0
 	 * @throws \TypeError if $newCheckInRep is not a int
 	 */
 	public function setCheckInRep($newCheckInRep): void {
@@ -158,19 +158,8 @@ class CheckIn implements \JsonSerializable {
 		$this->checkInRep = $newCheckInRep;
 	}
 
-
-	/*
-	 * checkInEventId
-	 * checkInProfileId
-	 * checkInDateTime
-	 * checkInRep
-	 */
-
-
-
-
 	/**
-	 * inserts this check in event id into mySQL
+	 * inserts this check in into mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL errors happen
@@ -180,11 +169,13 @@ class CheckIn implements \JsonSerializable {
 		//create query template
 		$query = "INSERT INTO checkIn (checkInEventId, checkInProfileId, checkInDateTime, checkInRep) VALUES (:checkInEventId, :checkInProfileId, :checkInDateTime, :checkInRep)";
 		$statement = $pdo->prepare($query);
-		$parameters = ["checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInEventId" => $this->checkInEventId,  "checkInDateTime" => $this->checkInDateTime, "checkInRep" => $this->checkInRep];
+
+		$formattedDate = $this->checkInDateTime->format("Y-m-d H:i:s.u");
+		$parameters = ["checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInEventId" => $this->checkInEventId->getBytes(),  "checkInDateTime" => $formattedDate, "checkInRep" => $this->checkInRep];
 		$statement->execute($parameters);
 	}
 	/**
-	 * delete the check in  from mySQL
+	 * delete the check in from mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException
@@ -220,7 +211,7 @@ class CheckIn implements \JsonSerializable {
 	 * @param string $checkInEventId event id to search for
 	 * @return CheckIn|null CheckIn found or null if not found
 	 */
-	public static function getCheckInByCheckInEventId(\PDO $pdo, string $checkInEventId):?CheckIn {
+	public static function getCheckInByEventId(\PDO $pdo, string $checkInEventId):?CheckIn {
 		//Sanitize the Check In Event Id before searching
 		try{
 			$checkInEventId =self::validateUuid($checkInEventId);
@@ -256,7 +247,7 @@ class CheckIn implements \JsonSerializable {
 	 * @return CheckIn|null CheckIn found or null if not found
 	 */
 
-	public static function getCheckInByCheckInProfileId(\PDO $pdo, string $checkInProfileId):?CheckIn {
+	public static function getCheckInByProfileId(\PDO $pdo, string $checkInProfileId):?CheckIn {
 		//sanitize the check in profile id before searching
 		try {
 			$checkInProfileId =self::validateUuid($checkInProfileId);
@@ -291,7 +282,7 @@ class CheckIn implements \JsonSerializable {
 	 * @param uuid $profileId profile id to search for
 	 * @return CheckIn|null CheckIn if found null if not found
 	 */
-	public static function getCheckInByCheckInEventIdAndCheckInProfileId(\PDO $pdo, uuid $profileId):?CheckIn{
+	public static function getCheckInByEventIdAndProfileId(\PDO $pdo, uuid $profileId):?CheckIn{
 		//sanitize the profile id before searching
 		try{
 			$profileId = self::validateUuid($profileId);
