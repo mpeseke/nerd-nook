@@ -2,7 +2,8 @@
 namespace NerdCore\NerdNook\Test;
 
 
-use NerdCore\NerdNook\{Category, Comment, Event, Profile};
+use NerdCore\NerdNook\Test\NerdNookTest;
+use NerdCore\NerdNook\{Event, Category, Profile, Comment};
 
 
 // grab the class under scrutiny
@@ -27,16 +28,16 @@ class CommentTest extends NerdNookTest {
 	protected $event = null;
 
 	/**
-	 * Category that this comment is posted to; this is for foreign key relations
-	 * @var Category $category
+	 * Profile that this comment is posted to; this is for foreign key relations
+	 * @var Profile profile
 	 **/
 
 
 	protected $category = null;
 
 	/*
-	 * Profile that this comment will be associated with;
-	 * @var Profile $profile
+	 * Category that this comment will be associated with;
+	 * @var Category category
 	 */
 	protected $profile = null;
 	/**
@@ -52,6 +53,8 @@ class CommentTest extends NerdNookTest {
 	 * @var $VALID_HASH
 	 */
 	protected $VALID_PROFILE_HASH;
+
+
 	/**
 	 * content of the Comment
 	 * @var string $VALID_COMMENTCONTENT
@@ -67,8 +70,21 @@ class CommentTest extends NerdNookTest {
 	 * @var \DateTime $VALID_COMMENTDATE
 	 **/
 	protected $VALID_COMMENTDATE = null;
+
+	/*
+	 * valid Event lat
+	 * @var $VALID_LAT
+	 */
+
+	protected $VALID_EVENTLAT;
+
+	/*
+	 * valid Event long
+	 * @var $VALID_LONG
+	 */
+	protected $VALID_EVENTLONG;
 	/**
-	 * Valid timestamp to use as sunriseCommentDate
+	 * Valid timestamp to use as eventEndDateTime
 	 */
 	protected $VALID_EVENTENDDATETIME = null;
 	/**
@@ -84,28 +100,24 @@ class CommentTest extends NerdNookTest {
 		parent::setUp();
 		$password = "abc123";
 		$this->VALID_PROFILE_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
-
-		// create and insert a Category to house the comment
-		$this->category= new Category(generateUuidV4(),"Harry Potter", "Books");
-		$this->category->insert($this->getPDO());
-
 		// create and insert a Profile to own the test Comment
 		$this->profile = new Profile(generateUuidV4(), $this->VALID_PROFILE_TOKEN,
 			"@handle", "blamemdav@gmail.com", $this->VALID_PROFILE_HASH);
 		$this->profile->insert($this->getPDO());
-
+		// create and insert a Category to house the comment
+		$this->category= new Category(generateUuidV4(),"Harry Potter", "Books");
+		$this->category->insert($this->getPDO());
 		// create and insert a Event to house the test Comment
-		$this->event = new Event(generateUuidV4(), $this->category->getCategoryId(), $this->profile->getProfileId(),"blame @mdav",
-			$this->VALID_EVENTENDDATETIME, "35.129905", "-106.514417", $this->VALID_EVENTSTARTDATETIME);
+		$this->event = new Event(generateUuidV4(), $this->category->getCategoryId(),$this->profile->getProfileId(), "Blame @mdav", $this->event->getEventEndDateTime(),35.129905,35.156537, $this->event->getEventStartDateTime());
 		$this->event->insert($this->getPDO());
+
+
 
 		// calculate the date (just use the time the unit test was setup...)
 		$this->VALID_COMMENTDATE = new \DateTime();
-
 		//format the sunrise date to use for testing
 		$this->VALID_EVENTENDDATETIME = new \DateTime();
 		$this->VALID_EVENTSTARTDATETIME = new \DateTime();
-
 		//format the sunrise date to use for testing
 		//$this->VALID_SUNRISEDATE = new \DateTime();
 		//$this->VALID_SUNRISEDATE->sub(new \DateInterval("P10D"));
@@ -129,8 +141,9 @@ class CommentTest extends NerdNookTest {
 		$pdoComment = Comment::getCommentByCommentId($this->getPDO(), $comment->getCommentId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("comment"));
 		$this->assertEquals($pdoComment->getCommentId(), $commentId);
-		$this->assertEquals($pdoComment->getCommentEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoComment->getCommentProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoComment->getCommentCategoryId(), $this->profile->getCategoryId());
+		$this->assertEquals($pdoComment->getCommentEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoComment->getCommentContent(), $this->VALID_COMMENTCONTENT);
 		//format the date too seconds since the beginning of time to avoid round off error
 		$this->assertEquals($pdoComment->getCommentDate()->getTimestamp(), $this->VALID_COMMENTDATE->getTimestamp());
@@ -157,8 +170,8 @@ class CommentTest extends NerdNookTest {
 		$pdoComment = Comment::getCommentByCommentId($this->getPDO(), $comment->getCommentId());
 		$this->assertEquals($pdoComment->getCommentId(), $commentId);
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("comment"));
-		$this->assertEquals($pdoComment->getCommentEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoComment->getCommentProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoComment->getCommentEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoComment->getCommentContent(), $this->VALID_COMMENTCONTENT2);
 		//format the date to seconds since the beginning of time to avoid round off error
 		$this->assertEquals($pdoComment->getCommentDate()->getTimeStamp(), $this->VALID_COMMENTDATE->getTimestamp());
@@ -203,7 +216,6 @@ class CommentTest extends NerdNookTest {
 	public function testGetValidCommentByCommentEventId() {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("comment");
-
 		// create a new Comment and insert to into mySQL
 		$commentId = generateUuidV4();
 		$comment = new Comment($commentId, $this->event->geteventId(), $this->VALID_COMMENTCONTENT, $this->VALID_COMMENTDATE);
