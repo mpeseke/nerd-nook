@@ -34,6 +34,12 @@ class CommentTest extends NerdNookTest {
 
 	protected $profile = null;
 
+
+	/*
+	 * Category that this comment will be associated with;
+	 * @var Category category
+	 */
+	protected $category = null;
 	/**
 	 * valid profile activation token for the profile object that will own the test.
 	 * @var $VALID_PROFILE_TOKEN
@@ -93,9 +99,12 @@ class CommentTest extends NerdNookTest {
 			"@handle", "test@phpunit.de", $this->VALID_PROFILE_HASH);
 		$this->profile->insert($this->getPDO());
 		// create and insert a Event to house the test Comment
-		$this->event = new Event(generateUuidV4(), generateUuidV4(), generateUuidV4(),"blame @mdav",
+		$this->event = new Event(generateUuidV4(), $this->category->getCategoryId(),$this->profile->getProfileId(),"blame @mdav",
 			$this->VALID_SUNSETDATE, 35.129905, 106.514417, $this->VALID_SUNRISEDATE);
 		$this->event->insert($this->getPDO());
+		// create and insert a Category to house the comment
+		$this->category= new Category(generateUuidV4(),"Harry Potter", "Books");
+		$this->category->insert($this->getPDO());
 		// calculate the date (just use the time the unit test was setup...)
 		$this->VALID_COMMENTDATE = new \DateTime();
 		//format the sunrise date to use for testing
