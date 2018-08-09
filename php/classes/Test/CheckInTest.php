@@ -19,7 +19,7 @@ require_once (dirname(__DIR__, 2) . "/lib/uuid.php");
 class CheckInTest extends NerdNookTest{
 
 	/**
-	 * Event the person checks in to; this is for the foreign key relations3
+	 * Event the person checks in to; this is for the foreign key relations
 	 * @var Event event
 	 */
 	protected $event;
@@ -55,37 +55,47 @@ class CheckInTest extends NerdNookTest{
 	protected $VALID_AT_HANDLE;
 
 	/**
-	 * @throws \Exception
+	 * create dependent objects before running each test
 	 */
 	public final function setUp(): void {
+//		run the default setUp() method first
 		parent::setUp();
+
+//		create a salt and hash for the mocked profile
 		$password = "abc123";
 		$this->VALID_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
 		$this->VALID_ACTIVATION = bin2hex(random_bytes(16));
+//		create and insert the mocked profile
 		$this->profile = new Profile(generateUuidV4(), null, "@phpunit", "bob@bobspace.com", $this->VALID_HASH);
 		$this->profile->insert($this->getPDO());
+//		create and insert the mocked event
 		$this->VALID_DATETIME = new \DateTime();
 		$this->event=new Event(generateUuidV4(), $this->profile->getProfileId(), generateUuidV4(), "This is a meet-up to...", new \DateTime(), "35.086111", "-106.649944", new \DateTime());
 	}
 
 	/**
-	 *test inserting valid check in
+	 * test inserting valid CheckIn and verify that the actual mySQL data matches
 	 */
 	public function testInsertValidCheckIn() : void {
+		//count the number of rows and save for later
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 
+		//create a new CheckIn and insert into mySQL
 		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATETIME, $this->VALID_REP);
 		$checkIn->insert($this->getPDO());
 
-		$pdoCheckIn = CheckIn::getCheckInByEventIdAndProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
+		//grab the data from mySQL and enforce the fields match our expectations
+		$pdoCheckIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoCheckIn->getCheckInEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoCheckIn->getCheckInProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getDateTime(), $this->VALID_DATETIME);
+		//format the date to seconds since the beginning of time to avoid round off error
+		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimestamp(), $this->VALID_DATETIME);
 		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP);
+
 	}
 
 	/**
-	 *
+	 * test updating valid check in
 	 */
 	public function testUpdateValidCheckIn() : void {
 		$numRows = $this->getConnection()->getRowCount("checkIn");
@@ -96,10 +106,10 @@ class CheckInTest extends NerdNookTest{
 		$checkIn->setCheckInRep($this->VALID_REP2);
 		$checkIn->update($this->getPDO());
 
-		$pdoCheckIn = CheckIn::getCheckInByEventIdAndProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
+		$pdoCheckIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
 		$this->assertEquals($pdoCheckIn->getCheckInEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoCheckIn->getCheckInProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getDateTime(), $this->VALID_DATETIME);
+		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimestamp(), $this->VALID_DATETIME);
 		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP2);
 	}
 
@@ -138,7 +148,7 @@ class CheckInTest extends NerdNookTest{
 
 		$this->assertEquals($pdoCheckIn->getCheckInEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoCheckIn->getCheckInProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getDateTime(), $this->VALID_DATETIME);
+		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimestamp(), $this->VALID_DATETIME);
 		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP);
 	}
 
@@ -168,7 +178,7 @@ class CheckInTest extends NerdNookTest{
 
 		$this->assertEquals($pdoCheckIn->getCheckInEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoCheckIn->getCheckInProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getDateTime(), $this->VALID_DATETIME);
+		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimestamp(), $this->VALID_DATETIME);
 		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP);
 	}
 

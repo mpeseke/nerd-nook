@@ -32,7 +32,7 @@ class CheckIn implements \JsonSerializable {
 	 */
 	private $checkInRep;
 
-	public function __construct($newCheckInEventId, $newCheckInProfileId, $newCheckInDateTime, int $newCheckInRep) {
+	public function __construct($newCheckInEventId, $newCheckInProfileId, \DateTime $newCheckInDateTime, int $newCheckInRep) {
 		try {
 			$this->setCheckInEventId($newCheckInEventId);
 			$this->setCheckInProfileId($newCheckInProfileId);
@@ -110,12 +110,18 @@ class CheckIn implements \JsonSerializable {
 	 * mutator method for check in date time
 	 *
 	 * @param \DateTime $newCheckInDateTime new value of check in date time
-	 * @throws \InvalidArgumentException if $newCheckInDateTime is not a valid argument
+	 * @throws \InvalidArgumentException if $newCheckInDateTime is not a valid object or string
 	 * @throws \RangeException if $newCheckInDateTime is \mysqli_sql_exception
 	 * @throws \Exception on all other exceptions
 	 *
 	 */
-	public function setCheckInDateTime($newCheckInDateTime): void {
+	public function setCheckInDateTime($newCheckInDateTime = null): void {
+		//if the date is null, use current date and time
+		if($newCheckInDateTime === null){
+			$this->checkInDateTime = new \DateTime();
+			return;
+		}
+		//store the check in date using the ValidateDateTime trait
 		try {
 			$newCheckInDateTime = self::validateDateTime($newCheckInDateTime);
 		} catch(\InvalidArgumentException |\RangeException | \Exception $exception){
@@ -172,9 +178,9 @@ class CheckIn implements \JsonSerializable {
 	 */
 	public function insert (\PDO $pdo): void {
 		//create query template
-		$query = "INSERT INTO checkIn(checkInEventId, checkInProfileId, checkInDateTime, checkInRep) VALUES (:checkInEventId, :checkInProfileId, :checkInDateTime, :checkInRep)";
+		$query = "INSERT INTO checkIn (checkInEventId, checkInProfileId, checkInDateTime, checkInRep) VALUES (:checkInEventId, :checkInProfileId, :checkInDateTime, :checkInRep)";
 		$statement = $pdo->prepare($query);
-		$parameters = ["checkInEventId" => $this->checkInEventId, "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInDateTime" => $this->checkInDateTime, "checkInRep" => $this->checkInRep];
+		$parameters = ["checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInEventId" => $this->checkInEventId,  "checkInDateTime" => $this->checkInDateTime, "checkInRep" => $this->checkInRep];
 		$statement->execute($parameters);
 	}
 	/**
@@ -285,7 +291,7 @@ class CheckIn implements \JsonSerializable {
 	 * @param uuid $profileId profile id to search for
 	 * @return CheckIn|null CheckIn if found null if not found
 	 */
-	public static function getCheckInByEventIdAndProfileId(\PDO $pdo, uuid $profileId):?Profile{
+	public static function getCheckInByCheckInEventIdAndCheckInProfileId(\PDO $pdo, uuid $profileId):?CheckIn{
 		//sanitize the profile id before searching
 		try{
 			$profileId = self::validateUuid($profileId);
