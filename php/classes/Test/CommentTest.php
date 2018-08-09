@@ -3,7 +3,7 @@ namespace NerdCore\NerdNook\Test;
 
 
 use NerdCore\NerdNook\Test\NerdNookTest;
-use NerdCore\NerdNook\{Comment, Event, Profile};
+use NerdCore\NerdNook\{Category, Comment, Event, Profile};
 
 
 // grab the class under scrutiny
@@ -85,13 +85,16 @@ class CommentTest extends NerdNookTest {
 		parent::setUp();
 		$password = "abc123";
 		$this->VALID_PROFILE_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
+
 		// create and insert a Category to house the comment
 		$this->category= new Category(generateUuidV4(),"Harry Potter", "Books");
 		$this->category->insert($this->getPDO());
+
 		// create and insert a Event to house the test Comment
 		$this->event = new Event(generateUuidV4(), $this->category->getCategoryId(),$this->profile->getProfileId(),"blame @mdav",
 			$this->VALID_EVENTENDDATETIME, $this->event->getEventLat(), $this->event->getEventLong(), $this->VALID_EVENTSTARTDATETIME);
 		$this->event->insert($this->getPDO());
+
 		// create and insert a Profile to own the test Comment
 		$this->profile = new Profile(generateUuidV4(), $this->VALID_PROFILE_TOKEN,
 			"@handle", "blamemdav@gmail.com", $this->VALID_PROFILE_HASH);
@@ -102,6 +105,7 @@ class CommentTest extends NerdNookTest {
 		//format the sunrise date to use for testing
 		$this->VALID_EVENTENDDATETIME = new \DateTime();
 		$this->VALID_EVENTSTARTDATETIME = new \DateTime();
+
 		//format the sunrise date to use for testing
 		//$this->VALID_SUNRISEDATE = new \DateTime();
 		//$this->VALID_SUNRISEDATE->sub(new \DateInterval("P10D"));
