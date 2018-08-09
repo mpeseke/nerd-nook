@@ -31,15 +31,17 @@ class CommentTest extends NerdNookTest {
 	 * Profile that this comment is posted to; this is for foreign key relations
 	 * @var Profile profile
 	 **/
+	protected $profile = null;
 
+	/*
+		 * Category that this comment will be associated with;
+		 * @var Category category
+		 */
 
 	protected $category = null;
 
-	/*
-	 * Category that this comment will be associated with;
-	 * @var Category category
-	 */
-	protected $profile = null;
+
+
 	/**
 	 * valid profile activation token for the profile object that will own the test.
 	 * @var $VALID_PROFILE_TOKEN
@@ -234,7 +236,7 @@ class CommentTest extends NerdNookTest {
 		$this->assertEquals($pdoComment->getCommentEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoComment->getCommentContent(), $this->VALID_COMMENTCONTENT);
 		//format the date too seconds since the beginning of time to avoid round off error
-		$this->assertEquals($pdoComment->getCommentDate()->getTimestamp(), $this->VALID_COMMENTDATE->getTimestamp());
+		$this->assertEquals($pdoComment->getCommentDateTime()->getTimestamp(), $this->VALID_COMMENTDATE->getTimestamp());
 	}
 	/**
 	 * test grabbing a Comment that does not exist
