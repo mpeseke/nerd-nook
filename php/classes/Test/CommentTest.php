@@ -2,7 +2,6 @@
 namespace NerdCore\NerdNook\Test;
 
 
-use NerdCore\NerdNook\Test\NerdNookTest;
 use NerdCore\NerdNook\{Category, Comment, Event, Profile};
 
 
@@ -28,16 +27,16 @@ class CommentTest extends NerdNookTest {
 	protected $event = null;
 
 	/**
-	 * Profile that this comment is posted to; this is for foreign key relations
-	 * @var Profile profile
+	 * Category that this comment is posted to; this is for foreign key relations
+	 * @var Category $category
 	 **/
 
 
 	protected $category = null;
 
 	/*
-	 * Category that this comment will be associated with;
-	 * @var Category category
+	 * Profile that this comment will be associated with;
+	 * @var Profile $profile
 	 */
 	protected $profile = null;
 	/**
@@ -90,18 +89,19 @@ class CommentTest extends NerdNookTest {
 		$this->category= new Category(generateUuidV4(),"Harry Potter", "Books");
 		$this->category->insert($this->getPDO());
 
-		// create and insert a Event to house the test Comment
-		$this->event = new Event(generateUuidV4(), $this->category->getCategoryId(),$this->profile->getProfileId(),"blame @mdav",
-			$this->VALID_EVENTENDDATETIME, $this->event->getEventLat(), $this->event->getEventLong(), $this->VALID_EVENTSTARTDATETIME);
-		$this->event->insert($this->getPDO());
-
 		// create and insert a Profile to own the test Comment
 		$this->profile = new Profile(generateUuidV4(), $this->VALID_PROFILE_TOKEN,
 			"@handle", "blamemdav@gmail.com", $this->VALID_PROFILE_HASH);
 		$this->profile->insert($this->getPDO());
 
+		// create and insert a Event to house the test Comment
+		$this->event = new Event(generateUuidV4(), $this->category->getCategoryId(), $this->profile->getProfileId(),"blame @mdav",
+			$this->VALID_EVENTENDDATETIME, "35.129905", "-106.514417", $this->VALID_EVENTSTARTDATETIME);
+		$this->event->insert($this->getPDO());
+
 		// calculate the date (just use the time the unit test was setup...)
 		$this->VALID_COMMENTDATE = new \DateTime();
+
 		//format the sunrise date to use for testing
 		$this->VALID_EVENTENDDATETIME = new \DateTime();
 		$this->VALID_EVENTSTARTDATETIME = new \DateTime();
@@ -203,6 +203,7 @@ class CommentTest extends NerdNookTest {
 	public function testGetValidCommentByCommentEventId() {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("comment");
+
 		// create a new Comment and insert to into mySQL
 		$commentId = generateUuidV4();
 		$comment = new Comment($commentId, $this->event->geteventId(), $this->VALID_COMMENTCONTENT, $this->VALID_COMMENTDATE);
