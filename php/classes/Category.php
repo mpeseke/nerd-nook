@@ -230,7 +230,7 @@ class Category implements \JsonSerializable {
 
 	function jsonSerialize() : array{
 		$fields = get_object_vars($this);
-		$fields["categoryId"] = $this->categoryId->toString();
+		$fields["categoryId"] = $this->categoryId;
 		return($fields);
 	}
 }
