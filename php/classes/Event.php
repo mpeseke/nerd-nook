@@ -316,7 +316,8 @@ class Event implements \JsonSerializable {
 
 	public function insert(\PDO $pdo): void {
 		//create a query template for the insert method
-		$query = "INSERT INTO event(eventId, eventCategoryId, eventProfileId, eventDetails, eventEndDateTime, eventLat, eventLong, eventStartDateTime) VALUES (:eventId, :eventCategoryId, :eventProfileId, :eventDetails, :eventEndDateTime, :eventLat, :eventLong, :eventStartDateTime)";
+		$query = "INSERT INTO event(eventId, eventCategoryId, eventProfileId, eventDetails, eventEndDateTime, eventLat, eventLong, eventStartDateTime) 
+								VALUES (:eventId, :eventCategoryId, :eventProfileId, :eventDetails, :eventEndDateTime, :eventLat, :eventLong, :eventStartDateTime)";
 		$statement = $pdo->prepare($query);
 
 		//bind variables to their place in the query template
@@ -499,8 +500,8 @@ class Event implements \JsonSerializable {
 						FROM event WHERE eventStartDateTime > now()";
 		$statement = $pdo->prepare($query);
 		//bind the variables to their place holders
-
 		$statement->execute();
+
 		//builds an array of Events
 		$events = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);

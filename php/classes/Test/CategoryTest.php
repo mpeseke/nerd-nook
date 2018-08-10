@@ -36,25 +36,25 @@ class CategoryTest extends NerdNookTest {
 	 *name of the Category
 	 *@var string $VALID_CATEGORYNAME
 	 */
-	protected $VALID_CATEGORYNAME;
+	protected $VALID_CATEGORYNAME = "Dungeons and Dragons";
 
 	/**
 	 *name of the Category
 	 *@var string $VALID_CATEGORYNAME2
 	 */
-	protected $VALID_CATEGORYNAME2;
+	protected $VALID_CATEGORYNAME2 = "Pokémon Go!";
 
 	/**
 	 *type of Category
 	 *@var string $VALID_CATEGORYTYPE
 	 */
-	protected $VALID_CATEGORYTYPE;
+	protected $VALID_CATEGORYTYPE = "Table Top Games";
 
 	/**
 	 *type of Category
 	 *@var string $VALID_CATEGORYTYPE2
 	 */
-	protected $VALID_CATEGORYTYPE2;
+	protected $VALID_CATEGORYTYPE2 = "Books";
 
 
 	/**
@@ -100,9 +100,10 @@ class CategoryTest extends NerdNookTest {
 		$category->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$results = Category::getCategoryByCategoryId($this->getPDO(), $category->getCategoryId());
+		$results = Category::getCategoryByCategoryId($this->getPDO(), generateUuidV4());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("category"));
-		$this->assertCount(1, $results);
+		$this->assertCount(0, $results);
+
 		$this->assertContainsOnlyInstancesOf("NerdCore\\NerdNook\\Category", $results);
 
 		// grab the results of the array and validate
@@ -136,7 +137,7 @@ class CategoryTest extends NerdNookTest {
 		$results = Category::getAllCategories($this->getPDO());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("category"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("CalebMHeckendorn\\NerdNook", $results);
+		$this->assertContainsOnlyInstancesOf("NerdCore\\NerdNook\\Category", $results);
 
 		//grab the result from the array and validate the information
 		$pdoCategory = $results[0];

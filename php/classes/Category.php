@@ -50,7 +50,7 @@ class Category implements \JsonSerializable {
 	 * @throws \TypeError if the data types are invalid
 	 * @throws \Exception if some other exception occurs
 	 */
-	public function __construct($newCategoryId, string $newCategoryName, string $newCategoryType) {
+	public function __construct($newCategoryId, $newCategoryName, $newCategoryType) {
 		try {
 			$this->setCategoryId($newCategoryId);
 			$this->setCategoryName($newCategoryName);
@@ -100,7 +100,7 @@ class Category implements \JsonSerializable {
 	 * @throws \RangeException if $newCategoryName is > 32 Characters
 	 * @throws \TypeError if $newCategoryName is not a string
 	 */
-	public function setCategoryName(string $newCategoryName): void {
+	public function setCategoryName($newCategoryName): void {
 		// verify the categoryName is secure
 		$newCategoryName = trim($newCategoryName);
 		$newCategoryName = filter_var($newCategoryName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -130,7 +130,7 @@ class Category implements \JsonSerializable {
 	 * @throws \TypeError if $newCategoryType is not a string
 	 **/
 
-	public function setCategoryType(string $newCategoryType): void {
+	public function setCategoryType($newCategoryType): void {
 		// verify Category Type is secure
 		$newCategoryType = trim($newCategoryType);
 		$newCategoryType = filter_var($newCategoryType, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -155,6 +155,8 @@ class Category implements \JsonSerializable {
 		//create query template
 		$query = "INSERT INTO category(categoryId, categoryName, categoryType) VALUES (:categoryId, :categoryName, :categoryType)";
 		$statement = $pdo->prepare($query);
+
+		//bind variables to their place in the query template
 		$parameters = ["categoryId" => $this->categoryId->getBytes(), "categoryName" => $this->categoryName, "categoryType" => $this->categoryType];
 		$statement->execute($parameters);
 	}
@@ -166,7 +168,7 @@ class Category implements \JsonSerializable {
 	 * @return Category|null
 	 */
 
-	public static function getCategoryByCategoryId(\PDO $pdo, string $categoryId):?Category {
+	public static function getCategoryByCategoryId(\PDO $pdo, $categoryId): ?Category {
 		//sanitize the category id before searching
 		try {
 			$categoryId =self::validateUuid($categoryId);
@@ -174,6 +176,7 @@ class Category implements \JsonSerializable {
 			throw (new \PDOException($exception->getMessage(), 0, $exception));
 		}
 		//create query template
+
 		$query = "SELECT categoryId, categoryName, categoryType FROM category WHERE categoryId = :categoryId";
 		$statement = $pdo->prepare($query);
 		//bind the category id to the placeholder in the template
@@ -200,9 +203,9 @@ class Category implements \JsonSerializable {
 	 * @return \SplFixedArray
 	 */
 
-	public static function getAllCategories (\PDO $pdo): \SplFixedArray {
+	public static function getAllCategories (\PDO $pdo): ?\SplFixedArray {
 		//creates the query template
-		$query = "SELECT categoryId, categoryName, categoryType FROM category WHERE categoryId = :categoryId";
+		$query = "SELECT categoryId, categoryName, categoryType FROM category";
 		$statement = $pdo->prepare($query);
 		$statement->execute();
 
