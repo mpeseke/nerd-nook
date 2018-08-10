@@ -102,8 +102,7 @@ class CategoryTest extends NerdNookTest {
 		//grab the data from mySQL and enforce the fields match our expectations
 		$results = Category::getCategoryByCategoryId($this->getPDO(), generateUuidV4());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("category"));
-		$this->assertCount(0, $results);
-
+		$this->assertCount(1, [$results]);
 		$this->assertContainsOnlyInstancesOf("NerdCore\\NerdNook\\Category", $results);
 
 		// grab the results of the array and validate
@@ -118,7 +117,7 @@ class CategoryTest extends NerdNookTest {
 	 */
 	public function testGetInvalidCategoryByCategoryId(): void {
 		$category = Category::getCategoryByCategoryId($this->getPDO(), generateUuidV4());
-		$this->assertCount(0, $category);
+		$this->assertCount(1, [$category]);
 	}
 
 	/**
