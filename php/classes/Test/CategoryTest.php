@@ -87,6 +87,15 @@ class CategoryTest extends NerdNookTest {
 		$this->assertEquals($pdoCategory->getCategoryType(), $this->VALID_CATEGORYTYPE);
 	}
 
+	/**
+	 * test grabbing an Category that does not exist
+	 */
+
+	public function testGetInvalidCategoryByCategoryId(): void {
+		$category = Category::getCategoryByCategoryId($this->getPDO(), generateUuidV4());
+		$this->assertNull($category);
+	}
+
 //	/**
 //	 * test inserting a Category and re-grabbing it from mySQL
 //	 */
@@ -115,15 +124,9 @@ class CategoryTest extends NerdNookTest {
 //		$this->assertEquals($pdoCategory->getCategoryName(), $this->VALID_CATEGORYNAME);
 //		$this->assertEquals($pdoCategory->getCategoryType(), $this->VALID_CATEGORYTYPE);
 //	}
-	/**
-	 * test grabbing an event that does not exist
-	 */
 
 
-	public function testGetInvalidCategoryByCategoryId(): void {
-		$category = Category::getCategoryByCategoryId($this->getPDO(), generateUuidV4());
-		$this->assertCount(1, [$category]);
-	}
+
 
 	/**
 	 * test grabbing all Categories
