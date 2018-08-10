@@ -171,7 +171,7 @@ class CheckIn implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		$formattedDate = $this->checkInDateTime->format("Y-m-d H:i:s.u");
-		$parameters = ["checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInEventId" => $this->checkInEventId->getBytes(),  "checkInDateTime" => $formattedDate, "checkInRep" => $this->checkInRep];
+		$parameters = [ "checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInDateTime" => $this->checkInDateTime, "checkInRep" => $this->checkInRep];
 		$statement->execute($parameters);
 	}
 	/**
@@ -200,7 +200,7 @@ class CheckIn implements \JsonSerializable {
 		$query = "UPDATE checkIn SET checkInEventId = :checkInEventId, checkInDateTime = :checkInDateTime, checkInRep = :checkInRep";
 		$statement = $pdo->prepare($query);
 		//bind the member variables to the place holders in the template
-		$parameters = ["checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInEventId" => $this->checkInEventId, "checkInDateTime" => $this->checkInDateTime, "checkInRep" => $this->checkInRep];
+		$parameters = [ "checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(),"checkInDateTime" => $this->checkInDateTime, "checkInRep" => $this->checkInRep];
 		$statement->execute($parameters);
 	}
 
@@ -279,13 +279,16 @@ class CheckIn implements \JsonSerializable {
 	 * gets the check in by event id and profile id
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @param uuid $profileId profile id to search for
+	 * @param uuid $checkInEventId event id to search for
+	 * @param uuid $checkInProfileId profile id to search for
 	 * @return CheckIn|null CheckIn if found null if not found
 	 */
-	public static function getCheckInByEventIdAndProfileId(\PDO $pdo, uuid $profileId):?CheckIn{
+	public static function getCheckInByEventIdAndProfileId(\PDO $pdo, $checkInEventId, $checkInProfileId):?CheckIn{
 		//sanitize the profile id before searching
 		try{
-			$profileId = self::validateUuid($profileId);
+			$eventId = self::validateUuid($checkInEventId);
+			$profileId = self::validateUuid($checkInProfileId);
+
 		}catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
 			throw (new \PDOException($exception->getMessage(), 0, $exception));
 		}

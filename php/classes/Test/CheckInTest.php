@@ -72,7 +72,7 @@ class CheckInTest extends NerdNookTest{
 		$this->VALID_ACTIVATION = bin2hex(random_bytes(16));
 
 		//create and insert the mocked profile
-		$this->profile = new Profile(generateUuidV4(), null, "@phpunit", "bob@bobspace.com", $this->VALID_HASH);
+		$this->profile = new Profile(generateUuidV4(), $this->VALID_ACTIVATION, "@phpunit", "bob@bobspace.com", $this->VALID_HASH);
 		$this->profile->insert($this->getPDO());
 
 		//create and insert the mocked event
@@ -104,8 +104,6 @@ class CheckInTest extends NerdNookTest{
 		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimestamp(), $this->VALID_DATETIME->getTimestamp());
 
 		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->checkIn->getCheckInRep());
-
-
 	}
 
 	/**
