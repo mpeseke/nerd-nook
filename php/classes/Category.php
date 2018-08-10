@@ -5,8 +5,6 @@ require_once("autoload.php");
 require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
 
-use NerdCore\NerdNook\ValidateUuid;
-
 /**
  * Cross Section of the the Nerd Nook Category Class
  * This class illustrates the back end for the Category class and the data it can hold, and can be extended for more
@@ -203,7 +201,7 @@ class Category implements \JsonSerializable {
 	 * @return \SplFixedArray
 	 */
 
-	public static function getAllCategories (\PDO $pdo): ?\SplFixedArray {
+	public static function getAllCategories (\PDO $pdo): \SplFixedArray {
 		//creates the query template
 		$query = "SELECT categoryId, categoryName, categoryType FROM category";
 		$statement = $pdo->prepare($query);
