@@ -181,19 +181,19 @@ class Category implements \JsonSerializable {
 		$parameters = ["categoryId" => $categoryId->getBytes()];
 		$statement->execute($parameters);
 		//grab the Category from mySQL
-		try {
-			$category = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
-				$category = new Category($row["categoryId"], $row["categoryName"], $row["categoryType"]);
+				try {
+					$category = null;
+					$statement->setFetchMode(\PDO::FETCH_ASSOC);
+					$row = $statement->fetch();
+					if($row !== false) {
+						$category = new Category($row["categoryId"], $row["categoryName"], $row["categoryType"]);
+					}
+				} catch(\Exception $exception) {
+					//if the row couldn't be converted, rethrow it
+					throw(new \PDOException($exception->getMessage(),0, $exception));
+				}
+				return ($category);
 			}
-		} catch(\Exception $exception) {
-			//if the row couldn't be converted, rethrow it
-			throw(new \PDOException($exception->getMessage(),0, $exception));
-		}
-		return ($category);
-	}
 
 	/**
 	 * get All the Categories. All the things.
