@@ -89,32 +89,33 @@ class CategoryTest extends NerdNookTest {
 
 //	/**
 //	 * test inserting a Category and re-grabbing it from mySQL
-//	 */
-//	public function testGetValidCategoryByCategoryId() {
-//		//count the number of Rows and save for later
-//		$numRows = $this->getConnection()->getRowCount("category");
-//
-//		//create a new Category and insert into mySQL
-//		$categoryId = generateUuidV4();
-//		$category = new Category($categoryId, $this->VALID_CATEGORYNAME, $this->VALID_CATEGORYTYPE);
-//		$category->insert($this->getPDO());
-//
-//		//grab the data from mySQL and enforce the fields match our expectations
-//		$results = Category::getCategoryByCategoryId($this->getPDO(), $category->getCategoryId());
-//		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("category"));
-//		$this->assertCount(1, $results);
-//
-//		//enforce no other objects are bleeding into the test
-//		$this->assertContainsOnlyInstancesOf("NerdCore\\NerdNook\\Category", $results);
-//
-//		// grab the results of the array and validate
-//		$pdoCategory = $results[0];
-//
-//		$this->assertEquals($pdoCategory->getCategoryId(), $categoryId);
-//		$this->assertEquals($pdoCategory->getCategoryName(), $this->VALID_CATEGORYNAME);
-//		$this->assertEquals($pdoCategory->getCategoryType(), $this->VALID_CATEGORYTYPE);
-//	}
-	/**
+//	**/
+
+	public function testGetValidCategoryByCategoryId() {
+		//count the number of Rows and save for later
+		$numRows = $this->getConnection()->getRowCount("category");
+
+		//create a new Category and insert into mySQL
+		$categoryId = generateUuidV4();
+		$category = new Category($categoryId, $this->VALID_CATEGORYNAME, $this->VALID_CATEGORYTYPE);
+		$category->insert($this->getPDO());
+
+		//grab the data from mySQL and enforce the fields match our expectations
+	$results = Category::getCategoryByCategoryId($this->getPDO(), $category->getCategoryId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("category"));
+		$this->assertCount(1, $results);
+
+		//enforce no other objects are bleeding into the test
+		$this->assertContainsOnlyInstancesOf("NerdCore\\NerdNook\\Category", $results);
+
+		// grab the results of the array and validate
+		$pdoCategory = $results[0];
+
+		$this->assertEquals($pdoCategory->getCategoryId(), $categoryId);
+		$this->assertEquals($pdoCategory->getCategoryName(), $this->VALID_CATEGORYNAME);
+		$this->assertEquals($pdoCategory->getCategoryType(), $this->VALID_CATEGORYTYPE);
+	}
+	/*
 	 * test grabbing an event that does not exist
 	 */
 	public function testGetInvalidCategoryByCategoryId(): void {
