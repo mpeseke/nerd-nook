@@ -3,7 +3,7 @@
 namespace NerdCore\NerdNook\Test;
 
 //grab the class we want to look at
-use NerdCore\NerdNook\Category;
+use NerdCore\NerdNook\{Category};
 use Ramsey\Uuid\Uuid;
 
 require_once(dirname(__DIR__) . "/autoload.php");
@@ -100,7 +100,7 @@ class CategoryTest extends NerdNookTest {
 		$category->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$results = Category::getCategoryByCategoryId($this->getPDO(), generateUuidV4());
+		$results = Category::getCategoryByCategoryId($this->getPDO(), $category->getCategoryId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("category"));
 		$this->assertCount(1, [$results]);
 		$this->assertContainsOnlyInstancesOf("NerdCore\\NerdNook\\Category", $results);
@@ -109,8 +109,8 @@ class CategoryTest extends NerdNookTest {
 		$pdoCategory = $results[0];
 
 		$this->assertEquals($pdoCategory->getCategoryId(), $categoryId);
-		$this->assertEquals($pdoCategory->getCategoryName(), $this->VALID_CATEGORYNAME2);
-		$this->assertEquals($pdoCategory->getCategoryType(), $this->VALID_CATEGORYTYPE2);
+		$this->assertEquals($pdoCategory->getCategoryName(), $this->VALID_CATEGORYNAME);
+		$this->assertEquals($pdoCategory->getCategoryType(), $this->VALID_CATEGORYTYPE);
 	}
 	/**
 	 * test grabbing an event that does not exist
