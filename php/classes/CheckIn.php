@@ -167,11 +167,11 @@ class CheckIn implements \JsonSerializable {
 	 */
 	public function insert (\PDO $pdo): void {
 		//create query template
-		$query = "INSERT INTO checkIn (checkInEventId, checkInProfileId, checkInDateTime, checkInRep) VALUES (:checkInEventId, :checkInProfileId, :checkInDateTime, :checkInRep)";
+		$query = "INSERT  checkIn (checkInEventId, checkInProfileId, checkInDateTime, checkInRep) VALUES (:checkInEventId, :checkInProfileId, :checkInDateTime, :checkInRep)";
 		$statement = $pdo->prepare($query);
 
 		$formattedDate= $this->checkInDateTime->format("Y-m-d H:i:s.u");
-		$parameters = [ "checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInDateTime" => $this->checkInDateTime = $formattedDate, "checkInRep" => $this->checkInRep];
+		$parameters = [ "checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInDateTime" =>$formattedDate, "checkInRep" => $this->checkInRep];
 		$statement->execute($parameters);
 	}
 	/**

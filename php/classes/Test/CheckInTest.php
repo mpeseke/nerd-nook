@@ -2,7 +2,9 @@
 namespace NerdCore\NerdNook\Test;
 
 use Ramsey\Uuid\Uuid;
-use NerdCore\NerdNook\{CheckIn, Event, Profile};
+use NerdCore\NerdNook\{
+	Category, CheckIn, Event, Profile
+};
 
 
 //this Grabs the class we want to look at
@@ -28,6 +30,10 @@ class CheckInTest extends NerdNookTest{
 	 * @var Profile profile
 	 */
 	protected $profile;
+	/**
+	 * @var null
+	 */
+	protected $category;
 	/**
 	 * Check in
 	 * @var CheckIn $checkIn
@@ -71,13 +77,16 @@ class CheckInTest extends NerdNookTest{
 		$this->VALID_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
 		$this->VALID_ACTIVATION = bin2hex(random_bytes(16));
 
+		//create and insert the mock category
+		$this->category=new Category(generateUuidV4(), "Catan", "Board Games");
+
 		//create and insert the mocked profile
 		$this->profile = new Profile(generateUuidV4(), $this->VALID_ACTIVATION, "@phpunit", "bob@bobspace.com", $this->VALID_HASH);
 		$this->profile->insert($this->getPDO());
 
 		//create and insert the mocked event
 		$this->VALID_DATETIME = new \DateTime();
-		$this->event=new Event(generateUuidV4(), $this->profile->getProfileId(), generateUuidV4(), "This is a meet-up to...", new \DateTime(), "35.086111", "-106.649944", new \DateTime());
+		$this->event=new Event(generateUuidV4(), $this->category->getCategoryId, $this->profile->getProfileId(), "This is a meet-up to...", new \DateTime(), "35.086111", "-106.649944", new \DateTime());
 
 		//create and insert mock rep
 		$this->checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(),  new \DateTime(),  10);
