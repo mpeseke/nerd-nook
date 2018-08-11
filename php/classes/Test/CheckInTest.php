@@ -86,7 +86,7 @@ class CheckInTest extends NerdNookTest{
 
 		//create and insert the mocked event
 		$this->VALID_DATETIME = new \DateTime();
-		$this->event=new Event(generateUuidV4(), $this->category->getCategoryId, $this->profile->getProfileId(), "This is a meet-up to...", new \DateTime(), "35.086111", "-106.649944", new \DateTime());
+		$this->event=new Event(generateUuidV4(), $this->category->getCategoryId(), $this->profile->getProfileId(), "This is a meet-up to...", new \DateTime(), "35.086111", "-106.649944", new \DateTime());
 
 		//create and insert mock rep
 		$this->checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(),  new \DateTime(),  10);

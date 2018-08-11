@@ -32,7 +32,7 @@ class CheckIn implements \JsonSerializable {
 	 */
 	private $checkInRep;
 
-	public function __construct($newCheckInEventId, $newCheckInProfileId, \DateTime $newCheckInDateTime, int $newCheckInRep) {
+	public function __construct($newCheckInProfileId, $newCheckInCategoryId, $newCheckInEventId, \DateTime $newCheckInDateTime, int $newCheckInRep) {
 		try {
 			$this->setCheckInEventId($newCheckInEventId);
 			$this->setCheckInProfileId($newCheckInProfileId);
@@ -171,7 +171,7 @@ class CheckIn implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		$formattedDate= $this->checkInDateTime->format("Y-m-d H:i:s.u");
-		$parameters = [ "checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInDateTime" =>$formattedDate, "checkInRep" => $this->checkInRep];
+		$parameters = [ $this->checkInProfileId->getBytes(),  "checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInDateTime" =>$formattedDate, "checkInRep" => $this->checkInRep];
 		$statement->execute($parameters);
 	}
 	/**
