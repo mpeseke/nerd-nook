@@ -170,7 +170,7 @@ class CheckIn implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 
 		$formattedDate= $this->checkInDateTime->format("Y-m-d H:i:s.u");
-		$parameters = [ $this->checkInProfileId->getBytes(), "checkInEventId" => $this->checkInEventId->getBytes(), "checkInDateTime" =>$formattedDate, "checkInRep" => $this->checkInRep];
+		$parameters = [ "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInEventId" => $this->checkInEventId->getBytes(), "checkInDateTime" =>$formattedDate, "checkInRep" => $this->checkInRep];
 		$statement->execute($parameters);
 	}
 	/**
