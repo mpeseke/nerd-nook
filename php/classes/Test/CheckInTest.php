@@ -77,12 +77,12 @@ class CheckInTest extends NerdNookTest{
 		$this->VALID_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
 		$this->VALID_ACTIVATION = bin2hex(random_bytes(16));
 
-		//create and insert the mock category
-		$this->category=new Category(generateUuidV4(), "Catan", "Board Games");
-
 		//create and insert the mocked profile
 		$this->profile = new Profile(generateUuidV4(), $this->VALID_ACTIVATION, "@phpunit", "bob@bobspace.com", $this->VALID_HASH);
 		$this->profile->insert($this->getPDO());
+
+		//create and insert the mock category
+		$this->category=new Category(generateUuidV4(), "Catan", "Board Games");
 
 		//create and insert the mocked event
 		$this->VALID_DATETIME = new \DateTime();
