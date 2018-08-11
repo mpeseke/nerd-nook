@@ -13,17 +13,21 @@ use Ramsey\Uuid\Uuid;
 class CheckIn implements \JsonSerializable {
 	use ValidateDate;
 	use ValidateUuid;
+	/** id for the check in profile id; this is a foreign key
+* @var Uuid $checkInProfileId
+*/
+	private $checkInProfileId;
+	/**
+	 * id for the check in category id
+	 * @var Uuid $checkInCategoryId
+	 */
+	private $checkInCategoryId;
 	/**
 	 * id for the check in event id; this is a foreign key
 	 * @var Uuid $checkInEventId
 	 */
 	private $checkInEventId;
-	/**
-	 * id for the check in profile id; this is a foreign key
-	 * @var Uuid $checkInProfileId
-	 */
-	private $checkInProfileId;
-	/**
+		/**
 	 * @var \DateTime $checkInDateTime;
 	 */
 	private $checkInDateTime;
@@ -34,8 +38,10 @@ class CheckIn implements \JsonSerializable {
 
 	public function __construct($newCheckInProfileId, $newCheckInCategoryId, $newCheckInEventId, \DateTime $newCheckInDateTime, int $newCheckInRep) {
 		try {
-			$this->setCheckInEventId($newCheckInEventId);
 			$this->setCheckInProfileId($newCheckInProfileId);
+			$this->setCheckInCategoryId($newCheckInCategoryId);
+			$this->setCheckInEventId($newCheckInEventId);
+
 			$this->setCheckInDateTime($newCheckInDateTime);
 			$this->setCheckInRep($newCheckInRep);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
@@ -167,11 +173,11 @@ class CheckIn implements \JsonSerializable {
 	 */
 	public function insert (\PDO $pdo): void {
 		//create query template
-		$query = "INSERT  checkIn (checkInEventId, checkInProfileId, checkInDateTime, checkInRep) VALUES (:checkInEventId, :checkInProfileId, :checkInDateTime, :checkInRep)";
+		$query = "INSERT INTO checkIn (checkInEventId, checkInProfileId, checkInDateTime, checkInRep) VALUES (:checkInEventId, :checkInProfileId, :checkInDateTime, :checkInRep)";
 		$statement = $pdo->prepare($query);
 
 		$formattedDate= $this->checkInDateTime->format("Y-m-d H:i:s.u");
-		$parameters = [ $this->checkInProfileId->getBytes(),  "checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInDateTime" =>$formattedDate, "checkInRep" => $this->checkInRep];
+		$parameters = [ $this->checkInProfileId->getBytes(), "checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInDateTime" =>$formattedDate, "checkInRep" => $this->checkInRep];
 		$statement->execute($parameters);
 	}
 	/**
