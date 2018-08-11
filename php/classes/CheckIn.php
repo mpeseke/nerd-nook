@@ -18,11 +18,6 @@ class CheckIn implements \JsonSerializable {
 */
 	private $checkInProfileId;
 	/**
-	 * id for the check in category id
-	 * @var Uuid $checkInCategoryId
-	 */
-	private $checkInCategoryId;
-	/**
 	 * id for the check in event id; this is a foreign key
 	 * @var Uuid $checkInEventId
 	 */
@@ -36,12 +31,10 @@ class CheckIn implements \JsonSerializable {
 	 */
 	private $checkInRep;
 
-	public function __construct($newCheckInProfileId, $newCheckInCategoryId, $newCheckInEventId, \DateTime $newCheckInDateTime, int $newCheckInRep) {
+	public function __construct($newCheckInProfileId, $newCheckInEventId, \DateTime $newCheckInDateTime, int $newCheckInRep) {
 		try {
 			$this->setCheckInProfileId($newCheckInProfileId);
-			$this->setCheckInCategoryId($newCheckInCategoryId);
 			$this->setCheckInEventId($newCheckInEventId);
-
 			$this->setCheckInDateTime($newCheckInDateTime);
 			$this->setCheckInRep($newCheckInRep);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
