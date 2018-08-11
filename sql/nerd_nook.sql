@@ -62,6 +62,10 @@ CREATE TABLE checkIn (
 	checkInRep TINYINT UNSIGNED,
 
 
+	-- creating Indices --
+	INDEX(checkInEventId),
+	INDEX(checkInProfileId),
+
 	FOREIGN KEY (checkInEventId) REFERENCES event(eventId),
 	FOREIGN KEY (checkInProfileId) REFERENCES profile (profileId)
 );
