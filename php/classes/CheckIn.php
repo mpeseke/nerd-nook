@@ -1,11 +1,11 @@
 <?php
 
 namespace NerdCore\NerdNook;
-
 require_once ("autoload.php");
-require_once (dirname(__DIR__, 2) . "/vendor/autoload.php");
 
+require_once (dirname(__DIR__, 2) . "/vendor/autoload.php");
 use Ramsey\Uuid\Uuid;
+
 /**
  * @author Caleb Heckendorn <checkendorn@cnm.edu>
  * @version 1.0
@@ -31,6 +31,17 @@ class CheckIn implements \JsonSerializable {
 	 */
 	private $checkInRep;
 
+	/**
+	 * CheckIn constructor.
+	 * @param string|Uuid $newCheckInProfileId id of the parent Profile
+	 * @param string|Uuid $newCheckInEventId id of the parent Event
+	 * @param \DateTime|null $newCheckInDateTime date the person checked in or null if current time
+	 * @param int $newCheckInRep integer to keep track of a profiles reputation
+	 * @throws \InvalidArgumentException if data types aren't valid
+	 * @throws \RangeException if data types are out of bounds
+	 * @throws \TypeError if data violates type hints
+	 * @throws \Exception if some other exception is thrown
+	 */
 	public function __construct($newCheckInProfileId, $newCheckInEventId, \DateTime $newCheckInDateTime, int $newCheckInRep) {
 		try {
 			$this->setCheckInProfileId($newCheckInProfileId);
@@ -164,14 +175,13 @@ class CheckIn implements \JsonSerializable {
 	 * @throws \PDOException when mySQL errors happen
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 */
-	public function insert (\PDO $pdo): void {
+	public function insert (\PDO $pdo) : void {
 		//create query template
-		$query = "INSERT INTO checkIn (checkInEventId, checkInProfileId,  checkInDateTime, checkInRep) VALUES ( :checkInEventId, :checkInProfileId, :checkInDateTime, :checkInRep)";
+		$query = "INSERT INTO checkIn (checkInEventId, checkInProfileId,  checkInDateTime, checkInRep)VALUES(:checkInEventId, :checkInProfileId, :checkInDateTime, :checkInRep)";
 		$statement = $pdo->prepare($query);
 
 		$formattedDate= $this->checkInDateTime->format("Y-m-d H:i:s.u");
-
-		$parameters = ["checkInEventId" => $this->checkInEventId->getBytes(),  "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInDateTime" =>$formattedDate, "checkInRep" => $this->checkInRep];
+		$parameters = ["checkInEventId" => $this->checkInEventId->getBytes(),  "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInDateTime" => $formattedDate, "checkInRep" => $this->checkInRep];
 		$statement->execute($parameters);
 	}
 	/**

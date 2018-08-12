@@ -17,7 +17,7 @@ CREATE TABLE profile (
 	UNIQUE (profileEmail),
 	-- officiates primary key for profile
 	PRIMARY KEY(profileId)
-);
+) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- creates the category table --
 CREATE TABLE category (
@@ -25,7 +25,7 @@ CREATE TABLE category (
 	categoryName VARCHAR(32) NOT NULL,
 	categoryType VARCHAR(24) NOT NULL,
 	PRIMARY KEY (categoryId)
-);
+) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- creates the event table --
 CREATE TABLE event (
@@ -52,7 +52,7 @@ CREATE TABLE event (
 
 	-- this creates the primary key --
 	PRIMARY KEY(eventId)
-);
+) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- creates the checkIn table --
 CREATE TABLE checkIn (
@@ -68,7 +68,7 @@ CREATE TABLE checkIn (
 
 	FOREIGN KEY (checkInEventId) REFERENCES event(eventId),
 	FOREIGN KEY (checkInProfileId) REFERENCES profile (profileId)
-);
+) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- creates the comment table --
 CREATE TABLE comment (
@@ -87,7 +87,7 @@ CREATE TABLE comment (
 	FOREIGN KEY(commentProfileId) REFERENCES profile(profileId),
 	--  and finally create the primary key --
 	PRIMARY KEY (commentId)
-);
+) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 
 --
