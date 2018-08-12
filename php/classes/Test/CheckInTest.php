@@ -86,10 +86,8 @@ class CheckInTest extends NerdNookTest{
 
 		//create and insert the mocked event
 		$this->VALID_DATETIME = new \DateTime();
-		$this->event=new Event(generateUuidV4(), $this->category->getCategoryId(), $this->profile->getProfileId(), "This is a meet-up to...", new \DateTime(), "35.086111", "-106.649944", new \DateTime());
-
-		//create and insert mock rep
-		$this->checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(),  new \DateTime(),  10);
+		$this->event=new Event(generateUuidV4(), $this->category->getCategoryId(), $this->profile->getProfileId(), "This is a meet-up to...", new \DateTime(), 35.086111, -106.649944,  new \DateTime());
+		;
 	}
 
 	/**
@@ -100,7 +98,7 @@ class CheckInTest extends NerdNookTest{
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 
 		//create a new CheckIn and insert into mySQL
-		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATETIME, $this->checkIn->getCheckInRep());
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATETIME, $this->VALID_REP);
 		$checkIn->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
@@ -112,7 +110,7 @@ class CheckInTest extends NerdNookTest{
 		//format the date to seconds since the beginning of time to avoid round off error
 		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimestamp(), $this->VALID_DATETIME->getTimestamp());
 
-		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->checkIn->getCheckInRep());
+		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP);
 	}
 
 	/**

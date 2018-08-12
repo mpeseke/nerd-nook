@@ -58,7 +58,7 @@ CREATE TABLE event (
 CREATE TABLE checkIn (
 	checkInEventId BINARY(16) NOT NULL,
 	checkInProfileId BINARY(16) NOT NULL,
-	checkInDateTime DATETIME,
+	checkInDateTime DATETIME(6),
 	checkInRep TINYINT UNSIGNED,
 
 
@@ -79,7 +79,7 @@ CREATE TABLE comment (
 	commentProfileId BINARY (16) NOT NULL,
 	commentContent VARCHAR(500) NOT NULL,
 	commentDateTime DATETIME(6) NOT NULL,
-	--  this creates an index before making a foreign key --
+	--   this creates an index before making a foreign key  --
 	INDEX(commentEventId),
 	INDEX(commentProfileId),
 	--  this creates the foreign key --
@@ -90,4 +90,12 @@ CREATE TABLE comment (
 );
 
 
-
+--
+-- INSERT INTO profile(profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash) VALUES ("1234567890123456", "12345678901234567890123456789012", "@test", "test@test.com", "89"));
+-- INSERT INTO category(categoryId, categoryName, categoryType) VALUES ("1234567890123456", "Anime", "Cool type");
+--
+-- INSERT INTO event(eventId, eventProfileId, eventCategoryId, eventDetails, eventEndDateTime, eventLat, eventLong, eventStartDateTime) VALUES ("1234567890123456",  (SELECT profileId From profile WHERE  profileAtHandle = "@test"),  (SELECT categoryId FROM category WHERE categoryName = "Anime"), "Come for the awesome lemonade!", CURRENT_TIME, 45.77865,  87.876323, CURRENT_TIME);
+--
+-- INSERT INTO checkIn(checkInEventId, checkInProfileId, checkInDateTime, checkInRep) VALUES ((SELECT eventId FROM event WHERE eventLat = "45.77865"), (SELECT profileId FROM profile WHERE profileAtHandle = "@test"), CURRENT_TIME , 4);
+--
+-- select * from profile, category, event, checkIn;

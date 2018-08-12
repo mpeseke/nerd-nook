@@ -48,7 +48,7 @@ class CheckIn implements \JsonSerializable {
 	 * @return Uuid value of check in event id
 	 */
 	public function getCheckInEventId(): Uuid {
-		return $this->checkInEventId;
+		return ($this->checkInEventId);
 	}
 
 	/**
@@ -74,8 +74,8 @@ class CheckIn implements \JsonSerializable {
 	 *
 	 * @return Uuid value of check in profile id
 	 */
-	public function getCheckInProfileId(): Uuid {
-		return $this->checkInProfileId;
+	public function getCheckInProfileId() : Uuid {
+		return ($this->checkInProfileId);
 	}
 
 	/**
@@ -123,7 +123,7 @@ class CheckIn implements \JsonSerializable {
 		//store the check in date using the ValidateDateTime trait
 		try {
 			$newCheckInDateTime = self::validateDateTime($newCheckInDateTime);
-		} catch(\InvalidArgumentException |\RangeException | \Exception $exception){
+		} catch(\InvalidArgumentException |\RangeException $exception){
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
@@ -138,7 +138,7 @@ class CheckIn implements \JsonSerializable {
 	 * @return int value of check in rep
 	 */
 	public function getCheckInRep(): int {
-		return $this->checkInRep;
+		return ($this->checkInRep);
 	}
 
 	/**
@@ -158,7 +158,7 @@ class CheckIn implements \JsonSerializable {
 	}
 
 	/**
-	 * inserts this check in into mySQL
+	 * inserts this CheckIn into mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL errors happen
@@ -166,26 +166,12 @@ class CheckIn implements \JsonSerializable {
 	 */
 	public function insert (\PDO $pdo): void {
 		//create query template
-		$query = "INSERT INTO checkIn (checkInProfileId, checkInEventId, checkInDateTime, checkInRep) VALUES (:checkInProfileId, :checkInEventId, :checkInDateTime, :checkInRep)";
+		$query = "INSERT INTO checkIn (checkInEventId, checkInProfileId,  checkInDateTime, checkInRep) VALUES ( :checkInEventId, :checkInProfileId, :checkInDateTime, :checkInRep)";
 		$statement = $pdo->prepare($query);
 
 		$formattedDate= $this->checkInDateTime->format("Y-m-d H:i:s.u");
-		$parameters = ["checkInEventId" => $this->checkInEventId->getBytes(),  "checkInProfileId" => $this->checkInProfileId->getBytes(),"checkInDateTime" =>$formattedDate, "checkInRep" => $this->checkInRep];
-		$statement->execute($parameters);
-	}
-	/**
-	 * delete the check in from mySQL
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @throws \PDOException
-	 * @throws \TypeError if $pdo is not a PDO connection object
-	 */
-	public function delete(\PDO $pdo): void {
-		//create query template
-		$query = "DELETE FROM checkIn WHERE checkInProfileId = :checkInProfileId";
-		$statement = $pdo->prepare($query);
-		//bind the member variables to the place holders in the template
-		$parameters = ["checkInProfileId" => $this->checkInProfileId->getBytes()];
+
+		$parameters = ["checkInEventId" => $this->checkInEventId->getBytes(),  "checkInProfileId" => $this->checkInProfileId->getBytes(), "checkInDateTime" =>$formattedDate, "checkInRep" => $this->checkInRep];
 		$statement->execute($parameters);
 	}
 	/**
@@ -282,20 +268,20 @@ class CheckIn implements \JsonSerializable {
 	 * @param uuid $checkInProfileId profile id to search for
 	 * @return CheckIn|null CheckIn if found null if not found
 	 */
-	public static function getCheckInByEventIdAndProfileId(\PDO $pdo, $checkInEventId, $checkInProfileId):?CheckIn{
+	public static function getCheckInByEventIdAndProfileId(\PDO $pdo, $checkInEventId, $checkInProfileId): ?CheckIn{
 		//sanitize the profile id before searching
 		try{
-			$eventId = self::validateUuid($checkInEventId);
-			$profileId = self::validateUuid($checkInProfileId);
+			$checkInEventId = self::validateUuid($checkInEventId);
+			$checkInProfileId = self::validateUuid($checkInProfileId);
 
 		}catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
 			throw (new \PDOException($exception->getMessage(), 0, $exception));
 		}
 		//create query template
-		$query = "SELECT checkInEventId, checkInProfileId, checkInDateTime, checkInRep FROM checkIn WHERE checkInRep = :checkInRep";
+		$query = "SELECT checkInEventId, checkInProfileId, checkInDateTime, checkInRep FROM checkIn WHERE checkInEventId = :checkInEventId AND checkInProfileId = :checkInProfileId";
 		$statement = $pdo->prepare($query);
 		//bind the profile id to the placeholder in the template
-		$parameters = ["profileId" => $profileId->getBytes()];
+		$parameters = ["checkInEventId" => $checkInEventId->getBytes(), "checkInProfileId" => $checkInProfileId->getBytes()];
 		$statement->execute($parameters);
 		//grab the CheckIn from mySQL
 		try {
