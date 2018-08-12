@@ -42,7 +42,7 @@ class CheckIn implements \JsonSerializable {
 	 * @throws \TypeError if data violates type hints
 	 * @throws \Exception if some other exception is thrown
 	 */
-	public function __construct($newCheckInProfileId, $newCheckInEventId, \DateTime $newCheckInDateTime, int $newCheckInRep) {
+	public function __construct($newCheckInProfileId, $newCheckInEventId,  $newCheckInDateTime,  $newCheckInRep = null) {
 		try {
 			$this->setCheckInProfileId($newCheckInProfileId);
 			$this->setCheckInEventId($newCheckInEventId);
@@ -54,25 +54,25 @@ class CheckIn implements \JsonSerializable {
 		}
 	}
 	/**
-	 * accessor method for check in event id
+	 * accessor method for event id
 	 *
-	 * @return Uuid value of check in event id
+	 * @return Uuid value of event id
 	 */
-	public function getCheckInEventId(): Uuid {
+	public function getCheckInEventId() : Uuid {
 		return ($this->checkInEventId);
 	}
 
 	/**
 	 * mutator method for check in event id
 	 *
-	 * @param Uuid|string $newCheckInEventId new value of check in event id
-	 * @throws \RangeException if $newCheckInEventId is n
-	 * @throws \TypeError if $newCheckInEventId is not a uuid.e
+	 * @param string $newCheckInEventId new value of event id
+	 * @throws \RangeException if $newEventId is not positive
+	 * @throws \TypeError if $newEventId is not an integer
 	 */
 	public function setCheckInEventId($newCheckInEventId) : void {
 		try {
 			$uuid = self::validateUuid($newCheckInEventId);
-		} catch(\RangeException | \TypeError $exception){
+		} catch(\InvalidArgumentException | \RangeException | \Exception| \TypeError $exception){
 			$exceptionType = get_class($exception);
 			throw(new $exceptionType($exception->getMessage(), 0, $exception));
 		}
@@ -81,22 +81,22 @@ class CheckIn implements \JsonSerializable {
 		$this->checkInEventId = $uuid;
 	}
 	/**
-	 * accessor method for check in profile id
+	 * accessor method for profile id
 	 *
-	 * @return Uuid value of check in profile id
-	 */
+	 * @return uuid value of profile id
+	 **/
 	public function getCheckInProfileId() : Uuid {
 		return ($this->checkInProfileId);
 	}
 
 	/**
-	 * mutator method for check in profile id
+	 * mutator method for profile id
 	 *
-	 * @param Uuid|string $newCheckInProfileId new value of check in profile id
-	 * @throws \RangeException if $newCheckInProfileId is \mysqli_sql_exception
-	 * @throws \TypeError if $newCheckInProfileId is not a uuid.e
+	 * @param string $newCheckInProfileId new value of profile id
+	 * @throws \RangeException if $newProfileId is not positive
+	 * @throws \TypeError if $newCheckInProfileId is not an integer
 	 */
-	public function setCheckInProfileId($newCheckInProfileId): void {
+	public function setCheckInProfileId($newCheckInProfileId) : void {
 		try {
 			$uuid = self::validateUuid($newCheckInProfileId);
 		} catch(\RangeException | \TypeError $exception){
@@ -105,27 +105,26 @@ class CheckIn implements \JsonSerializable {
 		}
 
 		//convert and store the check in profile id
-		$this->checkInProfileId = $newCheckInProfileId;
+		$this->checkInProfileId = $uuid;
 	}
 	/**
 	 * accessor method for check in date time
 	 *
 	 * @return \DateTime value of check in date time
 	 */
-	public function getCheckInDateTime(): \DateTime {
+	public function getCheckInDateTime() : \DateTime {
 		return ($this->checkInDateTime);
 	}
 
 	/**
 	 * mutator method for check in date time
 	 *
-	 * @param \DateTime $newCheckInDateTime new value of check in date time
+	 * @param \DateTime|string|null $newCheckInDateTime check in date time as a DateTime object or a string
 	 * @throws \InvalidArgumentException if $newCheckInDateTime is not a valid object or string
-	 * @throws \RangeException if $newCheckInDateTime is \mysqli_sql_exception
+	 * @throws \RangeException if $newCheckInDateTime is a date that does not exist
 	 * @throws \Exception on all other exceptions
-	 *
 	 */
-	public function setCheckInDateTime($newCheckInDateTime = null): void {
+	public function setCheckInDateTime($newCheckInDateTime): void {
 		//if the date is null, use current date and time
 		if($newCheckInDateTime === null){
 			$this->checkInDateTime = new \DateTime();
@@ -172,8 +171,7 @@ class CheckIn implements \JsonSerializable {
 	 * inserts this CheckIn into mySQL
 	 *
 	 * @param \PDO $pdo PDO connection object
-	 * @throws \PDOException when mySQL errors happen
-	 * @throws \TypeError if $pdo is not a PDO connection object
+	 * @throws \PDOException when mySQL related errors happen
 	 */
 	public function insert (\PDO $pdo) : void {
 		//create query template
@@ -316,6 +314,8 @@ class CheckIn implements \JsonSerializable {
 
 		$fields["checkInEventId"] = $this->checkInEventId->toString();
 		$fields["checkInProfileId"] = $this->checkInProfileId->toString();
+	return($fields);
 	}
+
 }
 
