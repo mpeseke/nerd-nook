@@ -91,10 +91,10 @@ class CheckInTest extends NerdNookTest{
 		$this->profile = new Profile(generateUuidV4(), $this->VALID_PROFILE_TOKEN, "@phpunit", "bob@bobspace.com", $this->VALID_PROFILE_HASH);
 		$this->profile->insert($this->getPDO());
 		//create and insert the mock category
-		$this->category=new Category(generateUuidV4(), "Catan", "Board Games");
+		$this->category = new Category(generateUuidV4(), "Catan", "Board Games");
 		$this->category->insert($this->getPDO());
 		//create and insert the mocked event
-		$this->event=new Event(generateUuidV4(), $this->category->getCategoryId(), $this->profile->getProfileId(), "This is a meet-up to...", $this->VALID_EVENTENDDATETIME, 35.086111, 106.649944,  $this->VALID_EVENTSTARTDATETIME);
+		$this->event = new Event(generateUuidV4(), $this->category->getCategoryId(), $this->profile->getProfileId(), "This is a meet-up to...", $this->VALID_EVENTENDDATETIME, 35.086111, 106.649944,  $this->VALID_EVENTSTARTDATETIME);
 		$this->event->insert($this->getPDO());
 	}
 	/**
@@ -156,7 +156,7 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 *test inserting a CheckIn and re-grabbing it from mySQL
 	 */
-	public function testValidCheckInByEventIdAndProfileId(){
+	public function testValidCheckInByCheckInEventIdAndCheckInProfileId(){
 		//count the number of rows and save for later
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 //		create a new CheckIn and insert into mySQL
@@ -173,7 +173,7 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * test grabbing a CheckIn that does not exist
 	 **/
-	public function testInvalidCheckInByEventIdAndProfileId() {
+	public function testInvalidCheckInByCheckInEventIdAndCheckInProfileId() {
 		// grab a Event id and profile id that exceeds the maximum allowable Event id and Profile id
 		$checkIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($this->getPDO(), generateUuidV4(), generateUuidV4());
 		$this->assertNull($checkIn);

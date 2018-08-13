@@ -200,6 +200,8 @@ class CheckIn implements \JsonSerializable {
 	}
 
 	/**
+	 * deletes the CheckIn from mySQL
+	 *
 	 * @param \PDO $pdo
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
