@@ -198,6 +198,11 @@ class CheckIn implements \JsonSerializable {
 		$statement->execute($parameters);
 	}
 
+	/**
+	 * @param \PDO $pdo
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError if $pdo is not a PDO connection object
+	 */
 	public function delete(\PDO $pdo) : void{
 		//create query template
 		$query = "DELETE FROM checkIn WHERE checkInProfileId = :checkInProfileId";
