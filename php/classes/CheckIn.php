@@ -43,10 +43,10 @@ class CheckIn implements \JsonSerializable {
 	 * @throws \TypeError if data violates type hints
 	 * @throws \Exception if some other exception is thrown
 	 */
-	public function __construct($newCheckInProfileId, $newCheckInEventId,  $newCheckInDateTime,  $newCheckInRep = null) {
+	public function __construct($newCheckInEventId, $newCheckInProfileId, $newCheckInDateTime, $newCheckInRep) {
 		try {
-			$this->setCheckInProfileId($newCheckInProfileId);
 			$this->setCheckInEventId($newCheckInEventId);
+			$this->setCheckInProfileId($newCheckInProfileId);
 			$this->setCheckInDateTime($newCheckInDateTime);
 			$this->setCheckInRep($newCheckInRep);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
@@ -194,7 +194,7 @@ class CheckIn implements \JsonSerializable {
 		$query = "UPDATE checkIn SET checkInEventId = :checkInEventId, checkInDateTime = :checkInDateTime, checkInRep = :checkInRep";
 		$statement = $pdo->prepare($query);
 		//bind the member variables to the place holders in the template
-		$parameters = [ "checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(),"checkInDateTime" => $this->checkInDateTime, "checkInRep" => $this->checkInRep];
+		$parameters = [ "checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(),"checkInDateTime" => $this->checkInDateTime->getTimestamp(), "checkInRep" => $this->checkInRep];
 		$statement->execute($parameters);
 	}
 

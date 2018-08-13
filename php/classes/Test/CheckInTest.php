@@ -49,11 +49,11 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * @var int checkInRep
 	 */
-	protected $VALID_REP;
+	protected $VALID_REP = 1;
 	/**
 	 * @var int checkInRep
 	 */
-	protected $VALID_REP2;
+	protected $VALID_REP2 = 2;
 	/**
 	 * @var string $VALID_ACTIVATION
 	 */
@@ -72,7 +72,7 @@ class CheckInTest extends NerdNookTest{
 
 		//create a salt and hash for the mocked profile
 		$password = "abc123";
-		$this->VALID_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
+		$this->VALID_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 3884]);
 		$this->VALID_ACTIVATION = bin2hex(random_bytes(16));
 
 		//create and insert the mocked profile
@@ -85,7 +85,6 @@ class CheckInTest extends NerdNookTest{
 		//create and insert the mocked event
 		$this->event=new Event(generateUuidV4(), $this->category->getCategoryId(), $this->profile->getProfileId(), "This is a meet-up to...", new \DateTime(), 35.086111, -106.649944,  new \DateTime());
 		$this->event->insert($this->getPDO());
-
 		$this->VALID_DATETIME = new \DateTime();
 	}
 
@@ -98,6 +97,7 @@ class CheckInTest extends NerdNookTest{
 
 		//create a new CheckIn and insert into mySQL
 		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATETIME, $this->VALID_REP);
+		var_dump($checkIn->getCheckInEventId()->toString());
 		$checkIn->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
@@ -118,7 +118,7 @@ class CheckInTest extends NerdNookTest{
 	public function testUpdateValidCheckIn() : void {
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 
-		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATETIME, $this->VALID_REP);
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATETIME->getTimestamp(), $this->VALID_REP);
 		$checkIn->insert($this->getPDO());
 
 		$checkIn->setCheckInRep($this->VALID_REP2);
