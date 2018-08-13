@@ -132,7 +132,7 @@ class CheckInTest extends NerdNookTest{
 		//format the date to seconds since the beginning of time to avoid round off error
 		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimestamp(), $this->VALID_DATE->getTimestamp());
 
-		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP->getCheckInRep());
+		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP);
 	}
 
 	/**
