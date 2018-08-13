@@ -29,17 +29,17 @@ class CheckInTest extends NerdNookTest{
 	 */
 	protected $profile;
 	/**
-	 * @var null
+	 * @var Category category
 	 */
 	protected $category;
 	/**
 	 * Check in
-	 * @var CheckIn $checkIn
+	 * @var CheckIn checkIn
 	 **/
 	protected $checkIn;
 	/**
 	 * valid hash to use
-	 * @var null
+	 * @var $VALID_HASH
 	 */
 	protected $VALID_HASH;
 	/**
