@@ -51,7 +51,7 @@ class CheckInTest extends NerdNookTest{
 	 */
 	protected $VALID_REP = 1;
 	/**
-	 * @var int checkInRep
+	 * @var int checkInRep2
 	 */
 	protected $VALID_REP2 = 2;
 	/**
@@ -118,7 +118,7 @@ class CheckInTest extends NerdNookTest{
 	public function testUpdateValidCheckIn() : void {
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 
-		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATETIME->getTimestamp(), $this->VALID_REP);
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATETIME->getTimestamp(), $this->VALID_REP2);
 		$checkIn->insert($this->getPDO());
 
 		$checkIn->setCheckInRep($this->VALID_REP2);
