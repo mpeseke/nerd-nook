@@ -1,14 +1,12 @@
 <?php
 namespace NerdCore\NerdNook\Test;
 
-use Ramsey\Uuid\Uuid;
-use NerdCore\NerdNook\{
-	Category, CheckIn, Event, Profile
-};
+
+use NerdCore\NerdNook\{Category, CheckIn, Event, Profile};
 
 
 //this Grabs the class we want to look at
-require_once (dirname(__DIR__)) . "/autoload.php";
+require_once (dirname(__DIR__) . "/autoload.php");
 
 //grabs the Uuid generator
 require_once (dirname(__DIR__, 2) . "/lib/uuid.php");
@@ -49,15 +47,15 @@ class CheckInTest extends NerdNookTest{
 	 */
 	protected $VALID_DATETIME;
 	/**
-	 * @var int
+	 * @var int checkInRep
 	 */
-	protected $VALID_REP = 10;
+	protected $VALID_REP;
 	/**
 	 * @var int checkInRep
 	 */
-	protected $VALID_REP2 = 20;
+	protected $VALID_REP2;
 	/**
-	 * @var null
+	 * @var string $VALID_ACTIVATION
 	 */
 	protected $VALID_ACTIVATION;
 	/**
@@ -68,7 +66,7 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * create dependent objects before running each test
 	 */
-	public final function setUp(): void {
+	public final function setUp() : void {
 //		run the default setUp() method first
 		parent::setUp();
 
@@ -83,11 +81,12 @@ class CheckInTest extends NerdNookTest{
 
 		//create and insert the mock category
 		$this->category=new Category(generateUuidV4(), "Catan", "Board Games");
-
+		$this->category->insert($this->getPDO());
 		//create and insert the mocked event
-		$this->VALID_DATETIME = new \DateTime();
 		$this->event=new Event(generateUuidV4(), $this->category->getCategoryId(), $this->profile->getProfileId(), "This is a meet-up to...", new \DateTime(), 35.086111, -106.649944,  new \DateTime());
-		;
+		$this->event->insert($this->getPDO());
+
+		$this->VALID_DATETIME = new \DateTime();
 	}
 
 	/**
@@ -102,7 +101,7 @@ class CheckInTest extends NerdNookTest{
 		$checkIn->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$pdoCheckIn = CheckIn::getCheckInByEventIdAndProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
+		$pdoCheckIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
 		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("checkIn"));
 		$this->assertEquals($pdoCheckIn->getCheckInEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoCheckIn->getCheckInProfileId(), $this->profile->getProfileId());
