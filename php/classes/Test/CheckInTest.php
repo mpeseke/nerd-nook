@@ -120,8 +120,7 @@ class CheckInTest extends NerdNookTest{
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 
 		//create a new CheckIn and insert into mySQL
-		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE->getTimestamp(), $this->VALID_REP);
-		var_dump($checkIn->getCheckInEventId()->toString());
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE, $this->VALID_REP);
 		$checkIn->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
@@ -133,7 +132,7 @@ class CheckInTest extends NerdNookTest{
 		//format the date to seconds since the beginning of time to avoid round off error
 		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimestamp(), $this->VALID_DATE->getTimestamp());
 
-		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP);
+		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP->getCheckInRep());
 	}
 
 	/**
@@ -142,7 +141,7 @@ class CheckInTest extends NerdNookTest{
 	public function testUpdateValidCheckIn() : void {
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 
-		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE->getTimestamp(), $this->VALID_REP);
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(),null, $this->VALID_REP);
 		$checkIn->insert($this->getPDO());
 
 		$checkIn->setCheckInRep($this->VALID_REP2);
@@ -198,7 +197,7 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 *
 	 */
-	public function getInvalidCheckInByEventId(): void {
+	public function getInvalidCheckInByEventId() : void {
 		$checkIn = CheckIn::getCheckInByCheckInEventId($this->getPDO(), generateUuidV4());
 		$this->assertCount(0, $checkIn);
 	}

@@ -37,13 +37,13 @@ class CheckIn implements \JsonSerializable {
 	 * @param string|Uuid $newCheckInEventId id of the parent Event
 	 * @param string|Uuid $newCheckInProfileId id of the parent Profile
 	 * @param \DateTime|null $newCheckInDateTime date the person checked in or null if current time
-	 * @param int $newCheckInRep integer to keep track of a profiles reputation
+	 * @param integer $newCheckInRep integer to keep track of a profiles reputation
 	 * @throws \InvalidArgumentException if data types aren't valid
 	 * @throws \RangeException if data types are out of bounds
 	 * @throws \TypeError if data violates type hints
 	 * @throws \Exception if some other exception is thrown
 	 */
-	public function __construct($newCheckInEventId, $newCheckInProfileId,  $newCheckInDateTime = null, int $newCheckInRep) {
+	public function __construct($newCheckInEventId, $newCheckInProfileId,  $newCheckInDateTime = null, $newCheckInRep) {
 		try {
 			$this->setCheckInEventId($newCheckInEventId);
 			$this->setCheckInProfileId($newCheckInProfileId);
@@ -189,7 +189,7 @@ class CheckIn implements \JsonSerializable {
 	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL errors happen
 	 */
-	public function update(\PDO $pdo): void {
+	public function update(\PDO $pdo) : void {
 		//create query template
 		$query = "UPDATE checkIn SET checkInEventId = :checkInEventId, checkInProfileId = :checkInProfileId, checkInDateTime = :checkInDateTime, checkInRep = :checkInRep WHERE checkInProfileId = :checkInProfileId";
 		$statement = $pdo->prepare($query);
@@ -211,6 +211,47 @@ class CheckIn implements \JsonSerializable {
 
 		$parameters = ["checkInProfileId" => $this->checkInProfileId->getBytes()];
 		$statement->execute($parameters);
+	}
+	/**
+	 * gets the check in by event id and profile id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $checkInEventId event id to search for
+	 * @param string $checkInProfileId profile id to search for
+	 * @return CheckIn|null CheckIn found or null if not found
+	 */
+	public static function getCheckInByCheckInEventIdAndCheckInProfileId(\PDO $pdo, string $checkInEventId, string $checkInProfileId): ?CheckIn{
+		//sanitize the profile id before searching
+		try{
+			$checkInEventId = self::validateUuid($checkInEventId);
+		}catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+
+		try{
+			$checkInProfileId = self::validateUuid($checkInProfileId);
+		}catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
+			throw (new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		//create query template
+		$query = "SELECT checkInEventId, checkInProfileId, checkInDateTime, checkInRep FROM checkIn WHERE checkInEventId = :checkInEventId AND checkInProfileId = :checkInProfileId";
+		$statement = $pdo->prepare($query);
+		//bind the profile id to the placeholder in the template
+		$parameters = ["checkInEventId" => $checkInEventId->getBytes(), "checkInProfileId" => $checkInProfileId->getBytes()];
+		$statement->execute($parameters);
+		//grab the CheckIn from mySQL
+		try {
+			$checkIn  = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$checkIn = new CheckIn($row["checkInEventId"], $row["checkInProfileId"], $row["checkInDateTime"], $row["checkInRep"]);
+			}
+		} catch(\Exception $exception) {
+//			if the row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return($checkIn);
 	}
 
 	/**
@@ -284,47 +325,6 @@ class CheckIn implements \JsonSerializable {
 		return ($checkIn);
 	}
 
-	/**
-	 * gets the check in by event id and profile id
-	 *
-	 * @param \PDO $pdo PDO connection object
-	 * @param string $checkInEventId event id to search for
-	 * @param string $checkInProfileId profile id to search for
-	 * @return CheckIn|null CheckIn found or null if not found
-	 */
-	public static function getCheckInByCheckInEventIdAndCheckInProfileId(\PDO $pdo, string $checkInEventId, string $checkInProfileId): ?CheckIn{
-		//sanitize the profile id before searching
-		try{
-			$checkInEventId = self::validateUuid($checkInEventId);
-		}catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
-		}
-
-		try{
-			$checkInProfileId = self::validateUuid($checkInProfileId);
-		}catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception){
-			throw (new \PDOException($exception->getMessage(), 0, $exception));
-		}
-		//create query template
-		$query = "SELECT checkInEventId, checkInProfileId, checkInDateTime, checkInRep FROM checkIn WHERE checkInEventId = :checkInEventId AND checkInProfileId = :checkInProfileId";
-		$statement = $pdo->prepare($query);
-		//bind the profile id to the placeholder in the template
-		$parameters = ["checkInEventId" => $checkInEventId->getBytes(), "checkInProfileId" => $checkInProfileId->getBytes()];
-		$statement->execute($parameters);
-		//grab the CheckIn from mySQL
-		try {
-			$checkIn  = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
-				$checkIn = new CheckIn($row["checkInEventId"], $row["checkInProfileId"], $row["checkInDateTime"], $row["checkInRep"]);
-			}
-		} catch(\Exception $exception) {
-//			if the row couldn't be converted, rethrow it
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
-		}
-		return($checkIn);
-	}
 	/**
 	 * formats the variables for serialization
 	 * @return array
