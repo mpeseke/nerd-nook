@@ -34,16 +34,16 @@ class CheckIn implements \JsonSerializable {
 
 	/**
 	 * CheckIn constructor.
-	 * @param string|Uuid $newCheckInProfileId id of the parent Profile
 	 * @param string|Uuid $newCheckInEventId id of the parent Event
-	 * @param \DateTime $newCheckInDateTime date the person checked in or null if current time
+	 * @param string|Uuid $newCheckInProfileId id of the parent Profile
+	 * @param \DateTime|null $newCheckInDateTime date the person checked in or null if current time
 	 * @param int $newCheckInRep integer to keep track of a profiles reputation
 	 * @throws \InvalidArgumentException if data types aren't valid
 	 * @throws \RangeException if data types are out of bounds
 	 * @throws \TypeError if data violates type hints
 	 * @throws \Exception if some other exception is thrown
 	 */
-	public function __construct($newCheckInEventId, $newCheckInProfileId,  $newCheckInDateTime = null, $newCheckInRep) {
+	public function __construct($newCheckInEventId, $newCheckInProfileId,  $newCheckInDateTime = null, int $newCheckInRep) {
 		try {
 			$this->setCheckInEventId($newCheckInEventId);
 			$this->setCheckInProfileId($newCheckInProfileId);
@@ -191,10 +191,11 @@ class CheckIn implements \JsonSerializable {
 	 */
 	public function update(\PDO $pdo): void {
 		//create query template
-		$query = "UPDATE checkIn SET checkInEventId = :checkInEventId, checkInDateTime = :checkInDateTime, checkInRep = :checkInRep WHERE checkInProfileId = :checkInProfileId";
+		$query = "UPDATE checkIn SET checkInEventId = :checkInEventId, checkInProfileId = :checkInProfileId, checkInDateTime = :checkInDateTime, checkInRep = :checkInRep WHERE checkInProfileId = :checkInProfileId";
 		$statement = $pdo->prepare($query);
 		//bind the member variables to the place holders in the template
-		$parameters = [ "checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(),"checkInDateTime" => $this->checkInDateTime->getTimestamp(), "checkInRep" => $this->checkInRep];
+		$formattedDate= $this->checkInDateTime->format("Y-m-d H:i:s.u");
+		$parameters = [ "checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(),"checkInDateTime" => $formattedDate, "checkInRep" => $this->checkInRep];
 		$statement->execute($parameters);
 	}
 

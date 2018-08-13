@@ -45,7 +45,7 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * @var \DateTime
 	 */
-	protected $VALID_DATE = null;
+	protected $VALID_DATE;
 
 	/*
  * valid Event lat
@@ -62,11 +62,11 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * Valid timestamp to use as eventEndDateTime
 	 */
-	protected $VALID_EVENTENDDATETIME = null;
+	protected $VALID_EVENTENDDATETIME;
 	/**
 	 * Valid timestamp to use as sunsetCommentDate
 	 */
-	protected $VALID_EVENTSTARTDATETIME = null;
+	protected $VALID_EVENTSTARTDATETIME;
 	/**
 	 * @var int checkInRep
 	 */
@@ -120,7 +120,7 @@ class CheckInTest extends NerdNookTest{
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 
 		//create a new CheckIn and insert into mySQL
-		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE, $this->VALID_REP);
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE->getTimestamp(), $this->VALID_REP);
 		var_dump($checkIn->getCheckInEventId()->toString());
 		$checkIn->insert($this->getPDO());
 
@@ -142,16 +142,17 @@ class CheckInTest extends NerdNookTest{
 	public function testUpdateValidCheckIn() : void {
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 
-		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE, $this->VALID_REP2);
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE->getTimestamp(), $this->VALID_REP);
 		$checkIn->insert($this->getPDO());
 
 		$checkIn->setCheckInRep($this->VALID_REP2);
 		$checkIn->update($this->getPDO());
 
 		$pdoCheckIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
+		$this->assertEquals($numRows +1, $this->getConnection()->getRowCount("checkIn"));
 		$this->assertEquals($pdoCheckIn->getCheckInEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoCheckIn->getCheckInProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimestamp(), $this->VALID_DATE);
+		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimestamp(), $this->VALID_DATE->getTimestamp());
 		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP2);
 	}
 
