@@ -98,4 +98,8 @@ CREATE TABLE comment (
 --
 -- INSERT INTO checkIn(checkInEventId, checkInProfileId, checkInDateTime, checkInRep) VALUES ((SELECT eventId FROM event WHERE eventLat = "45.77865"), (SELECT profileId FROM profile WHERE profileAtHandle = "@test"), CURRENT_TIME , 4);
 --
--- select * from profile, category, event, checkIn;
+-- INSERT INTO comment(commentId, commentEventId, commentProfileId, commentContent, commentDate) VALUES ("2345678901234561", (SELECT eventId from event WHERE eventLat = "45.77865"). (SELECT profileId FROM profile WHERE profileAtHandle = "@test"), "Will the there be diet lemonade available?", CURRENT_TIME);
+
+
+
+-- select * from profile, category, event, checkIn, comment;
