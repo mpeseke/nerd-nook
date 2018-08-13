@@ -36,14 +36,14 @@ class CheckIn implements \JsonSerializable {
 	 * CheckIn constructor.
 	 * @param string|Uuid $newCheckInProfileId id of the parent Profile
 	 * @param string|Uuid $newCheckInEventId id of the parent Event
-	 * @param \DateTime|null $newCheckInDateTime date the person checked in or null if current time
+	 * @param \DateTime $newCheckInDateTime date the person checked in or null if current time
 	 * @param int $newCheckInRep integer to keep track of a profiles reputation
 	 * @throws \InvalidArgumentException if data types aren't valid
 	 * @throws \RangeException if data types are out of bounds
 	 * @throws \TypeError if data violates type hints
 	 * @throws \Exception if some other exception is thrown
 	 */
-	public function __construct($newCheckInEventId, $newCheckInProfileId,  $newCheckInDateTime, $newCheckInRep) {
+	public function __construct($newCheckInEventId, $newCheckInProfileId,  $newCheckInDateTime = null, $newCheckInRep) {
 		try {
 			$this->setCheckInEventId($newCheckInEventId);
 			$this->setCheckInProfileId($newCheckInProfileId);
