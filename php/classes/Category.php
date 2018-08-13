@@ -3,6 +3,8 @@ namespace NerdCore\NerdNook;
 
 require_once("autoload.php");
 require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
+
+use http\Exception\InvalidArgumentException;
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -163,6 +165,10 @@ class Category implements \JsonSerializable {
 	 * get Category by Category Id
 	 * @param \PDO $pdo
 	 * @param string $categoryId
+	 * @throws \Exception when encountering an exception to params
+	 * @throws \TypeError when the input is not the correct type
+	 * @throws \RangeException when the input parameters are off
+	 * @throws \InvalidArgumentException when argument input is not valid
 	 * @return Category|null
 	 */
 
@@ -198,6 +204,7 @@ class Category implements \JsonSerializable {
 	/**
 	 * get All the Categories. All the things.
 	 * @param \PDO $pdo
+	 * @throws \Exception on exceptions
 	 * @return \SplFixedArray
 	 */
 
