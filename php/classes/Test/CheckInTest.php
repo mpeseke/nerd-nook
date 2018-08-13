@@ -159,7 +159,7 @@ class CheckInTest extends NerdNookTest{
 	public function testValidCheckInByCheckInEventIdAndCheckInProfileId(){
 		//count the number of rows and save for later
 		$numRows = $this->getConnection()->getRowCount("checkIn");
-//		create a new CheckIn and insert into mySQL
+		//create a new CheckIn and insert into mySQL
 		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE);
 		$checkIn->insert($this->getPDO());
 		//grab the data from mySQL and enforce the fields match our expectations

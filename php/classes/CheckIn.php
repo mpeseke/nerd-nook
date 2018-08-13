@@ -257,11 +257,13 @@ class CheckIn implements \JsonSerializable {
 	}
 
 	/**
-	 * gets the check in by event id
+	 * gets the CheckIn by event id
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param string $checkInEventId event id to search for
 	 * @return CheckIn|null CheckIn found or null if not found
+	 * @throws \PDOException when mySQL related errors happen
+	 * @throws \TypeError when variables are not the correct data type
 	 */
 	public static function getCheckInByCheckInEventId(\PDO $pdo, string $checkInEventId):?CheckIn {
 		//Sanitize the Check In Event Id before searching
@@ -276,19 +278,20 @@ class CheckIn implements \JsonSerializable {
 		//bind the check in event id to the placeholder in the template
 		$parameters = ["checkInEventId" => $checkInEventId->getBytes()];
 		$statement->execute($parameters);
-		//grab the CheckIn from mySQL
-		try{
-			$checkIn = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false){
+		//build an array of checkIns
+		$checkIns = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch()) !== false) {
+			try {
 				$checkIn = new CheckIn($row["checkInEventId"], $row["checkInProfileId"], $row["checkInDateTime"], $row["checkInRep"]);
+				$checkIns[$checkIns->key()] = $checkIn;
+				$checkIns->next();
+			} catch(\Exception $exception) {
+				//if the row can't be converted rethrow it
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		} catch(\Exception $exception){
-			//if the row can't be converted rethrow it
-			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return($checkIn);
+		return($checkIns);
 	}
 
 	/**
