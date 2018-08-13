@@ -43,7 +43,7 @@ class CheckIn implements \JsonSerializable {
 	 * @throws \TypeError if data violates type hints
 	 * @throws \Exception if some other exception is thrown
 	 */
-	public function __construct($newCheckInEventId, $newCheckInProfileId, $newCheckInDateTime, $newCheckInRep) {
+	public function __construct($newCheckInEventId, $newCheckInProfileId, \DateTime $newCheckInDateTime, int $newCheckInRep) {
 		try {
 			$this->setCheckInEventId($newCheckInEventId);
 			$this->setCheckInProfileId($newCheckInProfileId);

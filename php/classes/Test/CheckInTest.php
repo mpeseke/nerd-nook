@@ -39,7 +39,7 @@ class CheckInTest extends NerdNookTest{
 	protected $checkIn;
 	/**
 	 * valid hash to use
-	 * @var $VALID_HASH
+	 * @var string $VALID_PROFILE_HASH
 	 */
 	protected $VALID_PROFILE_HASH;
 	/**
