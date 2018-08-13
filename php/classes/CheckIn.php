@@ -43,7 +43,7 @@ class CheckIn implements \JsonSerializable {
 	 * @throws \TypeError if data violates type hints
 	 * @throws \Exception if some other exception is thrown
 	 */
-	public function __construct($newCheckInEventId, $newCheckInProfileId, \DateTime $newCheckInDateTime, int $newCheckInRep) {
+	public function __construct($newCheckInEventId, $newCheckInProfileId,  $newCheckInDateTime, $newCheckInRep) {
 		try {
 			$this->setCheckInEventId($newCheckInEventId);
 			$this->setCheckInProfileId($newCheckInProfileId);
@@ -195,6 +195,15 @@ class CheckIn implements \JsonSerializable {
 		$statement = $pdo->prepare($query);
 		//bind the member variables to the place holders in the template
 		$parameters = [ "checkInEventId" => $this->checkInEventId->getBytes(), "checkInProfileId" => $this->checkInProfileId->getBytes(),"checkInDateTime" => $this->checkInDateTime->getTimestamp(), "checkInRep" => $this->checkInRep];
+		$statement->execute($parameters);
+	}
+
+	public function delete(\PDO $pdo) : void{
+		//create query template
+		$query = "DELETE FROM checkIn WHERE checkInProfileId = :checkInProfileId";
+		$statement = $pdo->prepare($query);
+
+		$parameters = ["checkInProfileId" => $this->checkInProfileId->getBytes()];
 		$statement->execute($parameters);
 	}
 
