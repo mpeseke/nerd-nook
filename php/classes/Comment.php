@@ -358,7 +358,43 @@ class comment implements \JsonSerializable {
 		return($comments);
 	}
 
+	/*
+	 * gets the Comment by event Id
+	 *
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $commentProfileId profile id to search by
+	 * @return \SplFixedArray SplFixedArray of comments found
+	 * @throws \PDOException when mySQL related errors occur
+	 * @throws \TypeError when variables are not the correct data type
+	 */
+	public static function getCommentByCommentProfileId(\PDO $pdo, string $commentProfileId) : \SplFixedArray {
+		try {
+			$commentProfileId = self::validateUuid($commentProfileId);
+		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
+			throw (new \PDOException($exception->getMessage(), 0, $exception));
+		}
 
+		//create query template
+		$query = "SELECT commentId, commentEventId,commentProfileId,commentContent,commentDateTime FROM comment WHERE commentProfileId = :commentProfileId";
+		$statement = $pdo->prepare($query);
+		//bind the comment event id to the place holder in the template
+		$parameters = ["commentProfileId" => $commentProfileId->getBytes()];
+		$statement ->execute($parameters);
+		//build an array of comments
+		$comments = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row =$statement->fetch()) !== false) {
+			try {
+				$comment = new Comment($row["commentId"], $row["commentEventId"], $row["commentProfileId"],$row["commentContent"], $row["commentDateTime"]);
+				$comments[$comments->key()] = $comment;
+				$comments->next();
+			} catch(\Exception $exception) {
+				//if the row couldn't be converted, rethrow it
+				throw(new \PDOException($exception->getMessage(), 0 , $exception));
+			}
+		}
+		return($comments);
+	}
 	/**
 	 * formats the state variables for JSON serialization
 	 *
