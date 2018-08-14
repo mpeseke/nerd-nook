@@ -249,7 +249,12 @@ class CheckIn implements \JsonSerializable {
 		$statement->execute($parameters);
 		//grab the CheckIn from mySQL
 		try {
-			https://www.thecodedeveloper.com/mysql-sum-function/
+			$checkIn = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$checkIn = new CheckIn($row["checkInEventId"], $row["checkInProfileId"], $row["checkInDateTime"]);
+			}
 		} catch(\Exception $exception) {
 //			if the row couldn't be converted, rethrow it
 			throw(new \PDOException($exception->getMessage(), 0, $exception));
@@ -357,11 +362,12 @@ class CheckIn implements \JsonSerializable {
 		$statement->execute($parameters);
 
 		// grab the Profile rep
-			try {
-				$profileid = null;
-				$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		try {
+			$profileId = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 
-			catch(\Exception $exception) {
+		catch
+			(\Exception $exception) {
 				// if the row cannot be converted, throw again
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
