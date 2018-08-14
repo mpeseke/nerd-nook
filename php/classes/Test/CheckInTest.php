@@ -82,7 +82,7 @@ class CheckInTest extends NerdNookTest{
 		//create a salt and hash for the mocked profile
 		$password = "abc123";
 		$this->VALID_PROFILE_HASH = password_hash($password, PASSWORD_ARGON2I, ["time_cost" => 384]);
-		$this->VALID_ACTIVATION = bin2hex(random_bytes(16));
+		$this->VALID_PROFILE_TOKEN = bin2hex(random_bytes(16));
 		$this->VALID_DATE = new \DateTime();
 		//format the sunrise date to use for testing
 		$this->VALID_EVENTENDDATETIME = new \DateTime();
@@ -123,7 +123,7 @@ class CheckInTest extends NerdNookTest{
 		//count the number of rows and save for later
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 		//create a new CheckIn and update from mySQL
-		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(),null, $this->VALID_REP);
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE, $this->VALID_REP);
 		$checkIn->insert($this->getPDO());
 		//grab the data from mySQL and enforce the fields match our expectations
 		$checkIn->setCheckInRep($this->VALID_REP2);
@@ -215,11 +215,11 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * test grabbing a CheckIn by profile id
 	 */
-	public function testGetValidCheckInByProfileId() : \SplFixedArray {
+	public function testGetValidCheckInByCheckInProfileId() : void {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 		//create a new CheckIn and insert into mySQL
-		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE, $this->VALID_REP);
+		$checkIn = new CheckIn($this->event->getEventId(),$this->profile->getProfileId(),$this->VALID_DATE, $this->VALID_REP);
 		$checkIn->insert($this->getPDO());
 		//grab the data from mySQL and enforce the fields match our expectations
 		$results = CheckIn::getCheckInByProfileId($this->getPDO(), $this->profileId->getProfileId());
