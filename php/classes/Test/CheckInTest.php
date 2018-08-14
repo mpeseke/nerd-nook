@@ -263,9 +263,9 @@ class CheckInTest extends NerdNookTest{
 		$checkIn->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$profileRep = CheckIn::getProfileRepByCheckInProfileId($this->getPDO(), $checkIn->getCheckInProfileId());
+		$profileRep = CheckIn::getProfileRepByProfileId($this->getPDO(), $checkIn->getCheckInProfileId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profileRep"));
-		$this->assertEquals($profileRep->getProfileRepByCheckInProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($profileRep->getProfileRepByProfileId(), $this->profile->getProfileId());
 
 		//format the date for reading in mySQL
 		$this->assertEquals($profileRep->getCheckInDateTime()->getTimeStamp(), $this->VALID_DATE->getTimestamp());
@@ -280,9 +280,9 @@ class CheckInTest extends NerdNookTest{
 		$checkIn->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$profileRep = CheckIn::getProfileRepByCheckInProfileId($this->getPDO(), $checkIn->getCheckInProfileId());
+		$profileRep = CheckIn::getProfileRepByProfileId($this->getPDO(), $checkIn->getCheckInProfileId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profileRep"));
-		$this->assertEquals($profileRep->getProfileRepByCheckInProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($profileRep->getProfileRepByProfileId(), $this->profile->getProfileId());
 
 		//format the date for reading in mySQL
 		$this->assertEquals($profileRep->getCheckInDateTime()->getTimeStamp(), $this->VALID_DATE->getTimestamp());
@@ -296,9 +296,9 @@ class CheckInTest extends NerdNookTest{
 		$checkIn->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectations
-		$profileRep = CheckIn::getProfileRepByCheckInProfileId($this->getPDO(), $checkIn->getCheckInProfileId());
+		$profileRep = CheckIn::getProfileRepByProfileId($this->getPDO(), $checkIn->getCheckInProfileId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profileRep"));
-		$this->assertEquals($profileRep->getProfileRepByCheckInProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($profileRep->getProfileRepByProfileId(), $this->profile->getProfileId());
 
 		//format the date for reading in mySQL
 		$this->assertEquals($profileRep->getCheckInDateTime()->getTimeStamp(), $this->VALID_DATE->getTimestamp());
@@ -306,7 +306,7 @@ class CheckInTest extends NerdNookTest{
 
 	public function testGetInvalidProfileRepByCheckInProfileId(): void {
 		//grab a profileId that exceeds max allowable and profileId
-		$profileRep = CheckIn::getProfileRepByCheckInProfileId($this->getPDO(), generateUuidV4());
+		$profileRep = CheckIn::getProfileRepByProfileId($this->getPDO(), generateUuidV4());
 		$this->assertNull($profileRep);
 	}
 }
