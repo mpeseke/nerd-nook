@@ -241,6 +241,6 @@ class CheckInTest extends NerdNookTest{
 	public function testGetInvalidCheckInByProfileId(): void {
 		// grab a profile id that exceeds the maximum allowable Profile id
 		$checkIn = CheckIn::getCheckInByCheckInProfileId($this->getPDO(), generateUuidV4());
-		$this->assertCount(0, $checkIn);
+		$this->assertNull($checkIn);
 	}
 }
