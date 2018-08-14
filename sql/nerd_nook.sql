@@ -89,8 +89,11 @@ CREATE TABLE comment (
 	PRIMARY KEY (commentId)
 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
+SELECT AUTO_INCREMENT
+FROM information_schema.TABLES
+WHERE TABLE_SCHEMA = "nerdnook"
+AND TABLE_NAME = "checkIn"
 
---
 -- INSERT INTO profile(profileId, profileActivationToken, profileAtHandle, profileEmail, profileHash) VALUES ("1234567890123456", "12345678901234567890123456789012", "@test", "test@test.com", "89"));
 -- INSERT INTO category(categoryId, categoryName, categoryType) VALUES ("1234567890123456", "Anime", "Cool type");
 --
