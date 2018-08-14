@@ -367,7 +367,7 @@ class CheckIn implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$profileRep = $row["profileRep"];
+				$profileRep = $row["profileRep"]?? (int)0;
 			}
 		}catch
 			(\Exception $exception) {
