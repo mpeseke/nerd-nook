@@ -265,7 +265,7 @@ class CheckIn implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors happen
 	 * @throws \TypeError when variables are not the correct data type
 	 */
-	public static function getCheckInByCheckInEventId(\PDO $pdo, string $checkInEventId):?CheckIn {
+	public static function getCheckInByCheckInEventId(\PDO $pdo, string $checkInEventId): \SplFixedArray {
 		//Sanitize the Check In Event Id before searching
 		try{
 			$checkInEventId =self::validateUuid($checkInEventId);
