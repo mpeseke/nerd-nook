@@ -249,4 +249,64 @@ class CheckInTest extends NerdNookTest{
 		$checkIn = CheckIn::getCheckInByCheckInProfileId($this->getPDO(), generateUuidV4());
 		$this->assertCount(0, $checkIn);
 	}
+
+	/*
+	 * test grabbing a valid profileRep by CheckIn Profile Id
+	 */
+
+	public function testGetValidProfileRepByCheckInProfileId(): void {
+		//count the number of rows and save for later
+		$numRows = $this->getConnection()->getRowCount("checkIn");
+
+		//create a new CheckIn and insert the data to mySQL
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE, 1);
+		$checkIn->insert($this->getPDO());
+
+		//grab the data from mySQL and enforce the fields match our expectations
+		$profileRep = CheckIn::getProfileRepByCheckInProfileId($this->getPDO(), $checkIn->getCheckInProfileId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profileRep"));
+		$this->assertEquals($profileRep->getProfileRepByCheckInProfileId(), $this->profile->getProfileId());
+
+		//format the date for reading in mySQL
+		$this->assertEquals($profileRep->getCheckInDateTime()->getTimeStamp(), $this->VALID_DATE->getTimestamp());
+	}
+
+	public function testGetValidProfileRepByCheckInProfileId2(): void {
+		//count the number of rows and save for later
+		$numRows = $this->getConnection()->getRowCount("checkIn");
+
+		//create a new CheckIn and insert the data to mySQL
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE, 2);
+		$checkIn->insert($this->getPDO());
+
+		//grab the data from mySQL and enforce the fields match our expectations
+		$profileRep = CheckIn::getProfileRepByCheckInProfileId($this->getPDO(), $checkIn->getCheckInProfileId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profileRep"));
+		$this->assertEquals($profileRep->getProfileRepByCheckInProfileId(), $this->profile->getProfileId());
+
+		//format the date for reading in mySQL
+		$this->assertEquals($profileRep->getCheckInDateTime()->getTimeStamp(), $this->VALID_DATE->getTimestamp());
+	}
+	public function testGetValidProfileRepByCheckInProfileId3(): void {
+		//count the number of rows and save for later
+		$numRows = $this->getConnection()->getRowCount("checkIn");
+
+		//create a new CheckIn and insert the data to mySQL
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE, 2);
+		$checkIn->insert($this->getPDO());
+
+		//grab the data from mySQL and enforce the fields match our expectations
+		$profileRep = CheckIn::getProfileRepByCheckInProfileId($this->getPDO(), $checkIn->getCheckInProfileId());
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profileRep"));
+		$this->assertEquals($profileRep->getProfileRepByCheckInProfileId(), $this->profile->getProfileId());
+
+		//format the date for reading in mySQL
+		$this->assertEquals($profileRep->getCheckInDateTime()->getTimeStamp(), $this->VALID_DATE->getTimestamp());
+	}
+
+	public function testGetInvalidProfileRepByCheckInProfileId(): void {
+		//grab a profileId that exceeds max allowable and profileId
+		$profileRep = CheckIn::getProfileRepByCheckInProfileId($this->getPDO(), generateUuidV4());
+		$this->assertNull($profileRep);
+	}
 }
