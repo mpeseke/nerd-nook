@@ -182,7 +182,7 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * test grabbing a CheckIn by event id
 	 */
-	public function testGetValidCheckInByEventId() : void {
+	public function testGetValidCheckInByCheckInEventId() : void {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 		//create a new CheckIn and insert into mySQL
@@ -191,8 +191,8 @@ class CheckInTest extends NerdNookTest{
 		//grab the data from mySQL and enforce the fields match our expectations
 		$results = CheckIn::getCheckInByCheckInEventId($this->getPDO(), $this->event->getEventId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("checkIn"));
+		$this->assertContainsOnlyInstancesOf("NerdCore\NerdNook\CheckIn", $results);
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("NerdCore\\NerdNook\\CheckIn", $results);
 		//grab the result from the array and validate it
 		$pdoCheckIn = $results[0];
 		$this->assertEquals($pdoCheckIn->getCheckInEventId(), $this->event->getEventId());
@@ -205,7 +205,7 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * test grabbing a CheckIn by an event id that doesn't exist
 	 */
-	public function testGetInvalidCheckInByEventId() : void {
+	public function testGetInvalidCheckInByCheckInEventId() : void {
 		// grab a Event id that exceeds the maximum allowable Event id
 
 		$checkIn = CheckIn::getCheckInByCheckInEventId($this->getPDO(), generateUuidV4());
@@ -215,7 +215,7 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * test grabbing a CheckIn by profile id
 	 */
-	public function testGetValidCheckInByProfileId() : \SplFixedArray {
+	public function testGetValidCheckInByCheckInProfileId() : \SplFixedArray {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 		//create a new CheckIn and insert into mySQL
@@ -225,7 +225,7 @@ class CheckInTest extends NerdNookTest{
 		$results = CheckIn::getCheckInByCheckInProfileId($this->getPDO(), $this->profile->getProfileId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("checkIn"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("NerdCore\\NerdNook\\CheckIn", $results);
+		$this->assertContainsOnlyInstancesOf("NerdCore\NerdNook\CheckIn", $results);
 		//grab the result from the array and validate it
 		$pdoCheckIn = $results[0];
 		$this->assertEquals($pdoCheckIn->getCheckInEventId(), $this->event->getEventId());

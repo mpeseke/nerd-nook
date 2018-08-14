@@ -279,19 +279,19 @@ class CheckIn implements \JsonSerializable {
 		$parameters = ["checkInEventId" => $checkInEventId->getBytes()];
 		$statement->execute($parameters);
 		//build an array of checkIns
-		$checkIns = new \SplFixedArray($statement->rowCount());
+		$checkInTwo = new \SplFixedArray($statement->rowCount());
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
 				$checkIn = new CheckIn($row["checkInEventId"], $row["checkInProfileId"], $row["checkInDateTime"], $row["checkInRep"]);
-				$checkIns[$checkIns->key()] = $checkIn;
-				$checkIns->next();
+				$checkInTwo[$checkInTwo->key()] = $checkIn;
+				$checkInTwo->next();
 			} catch(\Exception $exception) {
 				//if the row can't be converted rethrow it
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
 		}
-		return($checkIns);
+		return($checkInTwo);
 	}
 
 	/**
