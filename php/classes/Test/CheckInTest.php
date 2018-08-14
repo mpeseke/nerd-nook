@@ -222,7 +222,7 @@ class CheckInTest extends NerdNookTest{
 		$checkIn = new CheckIn($this->event->getEventId(),$this->profile->getProfileId(),$this->VALID_DATE, $this->VALID_REP);
 		$checkIn->insert($this->getPDO());
 		//grab the data from mySQL and enforce the fields match our expectations
-		$results = CheckIn::getCheckInByProfileId($this->getPDO(), $this->profileId->getProfileId());
+		$results = CheckIn::getCheckInByCheckInProfileId($this->getPDO(), $this->profile->getProfileId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("checkIn"));
 		$this->assertCount(1, $results);
 		$this->assertContainsOnlyInstancesOf("NerdCore\NerdNook\CheckIn", $results);
