@@ -156,11 +156,11 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 *test inserting a CheckIn and re-grabbing it from mySQL
 	 */
-	public function testValidCheckInByCheckInEventIdAndCheckInProfileId(){
+	public function testGetValidCheckInByCheckInEventIdAndCheckInProfileId(){
 		//count the number of rows and save for later
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 		//create a new CheckIn and insert into mySQL
-		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE);
+		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE, $this->VALID_REP);
 		$checkIn->insert($this->getPDO());
 		//grab the data from mySQL and enforce the fields match our expectations
 		$pdoCheckIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($this->getPDO(), $this->event->getEventId(), $this->profile->getProfileId());
@@ -173,7 +173,7 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * test grabbing a CheckIn that does not exist
 	 **/
-	public function testInvalidCheckInByCheckInEventIdAndCheckInProfileId() {
+	public function testGetInvalidCheckInByCheckInEventIdAndCheckInProfileId() {
 		// grab a Event id and profile id that exceeds the maximum allowable Event id and Profile id
 		$checkIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($this->getPDO(), generateUuidV4(), generateUuidV4());
 		$this->assertNull($checkIn);
@@ -182,7 +182,7 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * test grabbing a CheckIn by event id
 	 */
-	public function testValidCheckInByEventId() : void {
+	public function testGetValidCheckInByEventId() : void {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 		//create a new CheckIn and insert into mySQL
@@ -205,7 +205,7 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * test grabbing a CheckIn by an event id that doesn't exist
 	 */
-	public function testInvalidCheckInByEventId() : void {
+	public function testGetInvalidCheckInByEventId() : void {
 		// grab a Event id that exceeds the maximum allowable Event id
 
 		$checkIn = CheckIn::getCheckInByCheckInEventId($this->getPDO(), generateUuidV4());
@@ -215,7 +215,7 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * test grabbing a CheckIn by profile id
 	 */
-	public function testValidCheckInByProfileId() : \SplFixedArray {
+	public function testGetValidCheckInByProfileId() : \SplFixedArray {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 		//create a new CheckIn and insert into mySQL
@@ -238,7 +238,7 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * test grabbing a CheckIn by a profile id that doesn't exist
 	 */
-	public function testInvalidCheckInByProfileId(): void {
+	public function testGetInvalidCheckInByProfileId(): void {
 		// grab a profile id that exceeds the maximum allowable Profile id
 		$checkIn = CheckIn::getCheckInByCheckInProfileId($this->getPDO(), generateUuidV4());
 		$this->assertCount(0, $checkIn);
