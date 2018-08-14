@@ -302,7 +302,7 @@ class CheckIn implements \JsonSerializable {
 	 * @return CheckIn|null CheckIn found or null if not found
 	 */
 
-	public static function getCheckInByCheckInProfileId(\PDO $pdo, string $checkInProfileId):?CheckIn {
+	public static function getCheckInByCheckInProfileId(\PDO $pdo, string $checkInProfileId): \SplFixedArray {
 		//sanitize the check in profile id before searching
 		try {
 			$checkInProfileId =self::validateUuid($checkInProfileId);
@@ -315,19 +315,20 @@ class CheckIn implements \JsonSerializable {
 		//bind the check in profile id to the placeholder in the template
 		$parameters = ["checkInProfileId" => $checkInProfileId->getBytes()];
 		$statement->execute($parameters);
-		//grab the CheckIn from mySQL
-		try {
-			$checkIn  = null;
-			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-			$row = $statement->fetch();
-			if($row !== false) {
+		//build an array of Check-Ins
+		$checkIns = new \SplFixedArray($statement->rowCount());
+		$statement->setFetchMode(\PDO::FETCH_ASSOC);
+		while(($row = $statement->fetch())!== false) {
+			try {
 				$checkIn = new CheckIn($row["checkInEventId"], $row["checkInProfileId"], $row["checkInDateTime"], $row["checkInRep"]);
+				$checkIns[$checkIns->key()] = $checkIn;
+				$checkIns->next();
+			} catch(\Exception $exception) {
+				//if the row cannot be converted, throw again
+				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		} catch(\Exception $exception) {
-			//if the row couldn't be converted, rethrow it
-			throw(new \PDOException($exception->getMessage(),0, $exception));
 		}
-		return ($checkIn);
+		return($checkIns);
 	}
 
 	/**
