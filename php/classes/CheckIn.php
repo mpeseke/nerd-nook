@@ -38,6 +38,7 @@ class CheckIn implements \JsonSerializable {
 	 * @param string|Uuid $newCheckInProfileId id of the parent Profile
 	 * @param \DateTime|null $newCheckInDateTime date the person checked in or null if current time
 	 * @param integer $newCheckInRep integer to keep track of a profiles reputation
+	 *
 	 * @throws \InvalidArgumentException if data types aren't valid
 	 * @throws \RangeException if data types are out of bounds
 	 * @throws \TypeError if data violates type hints
