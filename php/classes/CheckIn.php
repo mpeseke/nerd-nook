@@ -347,14 +347,14 @@ class CheckIn implements \JsonSerializable {
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not correct data type
 	 */
-	public function getProfileRepByProfileId(\PDO $pdo, string $profileId): void {
+	public function getProfileRepByProfileId(\PDO $pdo, string $profileId): int {
 		try {
 			$checkInProfileId = self::validateUuid($profileId);
 		} catch(\InvalidArgumentException | \RangeException | \Exception | \TypeError $exception) {
 			throw (new\PDOException($exception->getMessage(), 0, $exception));
 		}
 		// create the query template
-		$query = "SELECT SUM(checkInRep) FROM checkIn WHERE checkInProfileId = :checkInProfileId";
+		$query = "SELECT SUM(checkInRep) AS profileRep FROM checkIn WHERE checkInProfileId = :checkInProfileId";
 		$statement = $pdo->prepare($query);
 
 		//bind the check in profile id to the placeholders in the template
@@ -365,13 +365,15 @@ class CheckIn implements \JsonSerializable {
 		try {
 			$profileId = null;
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
-
-		catch
+			$row = $statement->fetch();
+			if($row !== false) {
+				$profileRep = $row["profileRep"];
+			}
+		}catch
 			(\Exception $exception) {
 				// if the row cannot be converted, throw again
 				throw(new \PDOException($exception->getMessage(), 0, $exception));
 			}
-		}
 	return($profileRep);
 	}
 
