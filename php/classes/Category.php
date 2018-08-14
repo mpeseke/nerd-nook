@@ -45,7 +45,6 @@ class Category implements \JsonSerializable {
 	 * @param string|Uuid $newCategoryId new category id
 	 * @param string $newCategoryName name of the new category
 	 * @param string $newCategoryType type of the new category
-	 *
 	 * @throws \InvalidArgumentException if data type is not valid
 	 * @throws \RangeException if data is out of bounds
 	 * @throws \TypeError if the data types are invalid
@@ -164,13 +163,13 @@ class Category implements \JsonSerializable {
 
 	/**
 	 * get Category by Category Id
-	 * @param \PDO $pdo
-	 * @param string $categoryId
+	 * @param \PDO $pdo PDO connection object
+	 * @param string $categoryId new category id
 	 * @throws \Exception when encountering an exception to params
 	 * @throws \TypeError when the input is not the correct type
 	 * @throws \RangeException when the input parameters are off
 	 * @throws \InvalidArgumentException when argument input is not valid
-	 * @return Category|null
+	 * @return Category|null new Category or null if not found
 	 */
 
 	public static function getCategoryByCategoryId(\PDO $pdo, $categoryId): ?Category {
@@ -204,9 +203,9 @@ class Category implements \JsonSerializable {
 
 	/**
 	 * get All the Categories. All the things.
-	 * @param \PDO $pdo
+	 * @param \PDO $pdo PDO connection object
 	 * @throws \Exception on exceptions
-	 * @return \SplFixedArray
+	 * @return \SplFixedArray SplFixedArray of categories found
 	 */
 
 	public static function getAllCategories (\PDO $pdo): \SplFixedArray {

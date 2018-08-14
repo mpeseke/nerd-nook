@@ -203,7 +203,7 @@ class CheckIn implements \JsonSerializable {
 	/**
 	 * deletes the CheckIn from mySQL
 	 *
-	 * @param \PDO $pdo
+	 * @param \PDO $pdo PDO connection object
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError if $pdo is not a PDO connection object
 	 */
@@ -334,7 +334,7 @@ class CheckIn implements \JsonSerializable {
 
 	/**
 	 * formats the variables for serialization
-	 * @return array
+	 * @return array of fields
 	 */
 	function jsonSerialize() : array{
 		$fields = get_object_vars($this);
