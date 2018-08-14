@@ -198,7 +198,7 @@ class CheckInTest extends NerdNookTest{
 		$this->assertEquals($pdoCheckIn->getCheckInEventId(), $this->event->getEventId());
 		$this->assertEquals($pdoCheckIn->getCheckInProfileId(), $this->profile->getProfileId());
 		//format the date to seconds since the beginning of time to avoid round off error
-		$this->assertEquals($pdoCheckIn->getCheckInDateTime()->getTimestamp(), $this->VALID_DATE->getTimestamp());
+		$this->assertEquals($pdoCheckIn->getCheckInDateTime(), $this->VALID_DATE);
 		$this->assertEquals($pdoCheckIn->getCheckInRep(), $this->VALID_REP);
 	}
 
@@ -215,14 +215,14 @@ class CheckInTest extends NerdNookTest{
 	/**
 	 * test grabbing a CheckIn by profile id
 	 */
-	public function testGetValidCheckInByCheckInProfileId() : \SplFixedArray {
+	public function testGetValidCheckInByProfileId() : \SplFixedArray {
 		//count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("checkIn");
 		//create a new CheckIn and insert into mySQL
 		$checkIn = new CheckIn($this->event->getEventId(), $this->profile->getProfileId(), $this->VALID_DATE, $this->VALID_REP);
 		$checkIn->insert($this->getPDO());
 		//grab the data from mySQL and enforce the fields match our expectations
-		$results = CheckIn::getCheckInByCheckInProfileId($this->getPDO(), $this->profile->getProfileId());
+		$results = CheckIn::getCheckInByProfileId($this->getPDO(), $this->profileId->getProfileId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("checkIn"));
 		$this->assertCount(1, $results);
 		$this->assertContainsOnlyInstancesOf("NerdCore\NerdNook\CheckIn", $results);
