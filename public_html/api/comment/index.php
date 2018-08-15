@@ -68,7 +68,7 @@ try {
 		} else if(empty($commentProfileId) === false) {
 			$reply->data = Comment::getCommentByCommentProfileId($pdo, $commentProfileId)->toArray();
 		}
-	} else if($method === "PUT" || $method === "POST")  {
+	} else if($method === "PUT" || $method === "POST") {
 		// enforce that the user has an XSRF token
 		verifyXsrf();
 
@@ -139,7 +139,7 @@ try {
 			//update reply
 			$reply->message = "Comment created OK";
 		}
-	} else if ($method === "Delete") {
+	} else if($method === "Delete") {
 
 		// enforce that the end user has a XSRF token.
 		verifyXsrf();
@@ -162,5 +162,18 @@ try {
 	} else {
 		throw(new InvalidArgumentException("Invalid HTTP method request", 418));
 	}
+	// update the $reply ->status $reply->message
+} catch(\Exception | \TypeError $exception) {
+	$reply->status = $exception->getCode();
+	$reply->message = $exception->getMessage();
+	}
+
+	header("Content-type: application/json");
+if($reply->data === null) {
+	unset($reply->data);
 }
+
+//encode and return reply to front end caller
+echo json_encode($reply);
+
 
