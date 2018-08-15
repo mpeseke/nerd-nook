@@ -137,6 +137,26 @@ try {
 
 			//creation reply
 			$event->message = "Event was successfully created.";
+			} else if ($method === "DELETE") {
+
+			//enforce that the end user is allowed in... has an XSRF token
+			verifyXsrf();
+
+			//retrieve the Event to be deleted
+			$event = Event::getEventByEventId($pdo, $eventId);
+			if($event === null) {
+				throw(new RuntimeException("Event does not exist", 404));
+			}
+
+			//enforce the user is signed in and only trying to edit their own Event
+			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId() !== $event->getEventProfileId()) {
+				throw(new \InvalidArgumentException("Get your own event to delete, sucka.", 403));
+			}
+
+			//delete Event
+			$event->delete($pdo);
+			//update reply
+			$reply->message = "Event deleted OK";
 			}
 		}
 	}
