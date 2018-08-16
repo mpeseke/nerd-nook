@@ -82,5 +82,19 @@ try{
 		];
 
 		//create and set the JWT Token
+		setJwtAndAuthHeader("auth",$authObject);
+
+
+		$reply->message = "Sign in successful.";
+	} else {
+			throw(new \InvalidArgumentException("Invalid HTTP Method Request.", 418));
 	}
+
+	// if an exception is thrown, update
+} catch(Exception | TypeError $exception) {
+	$reply->status = $exception->getCode();
+	$reply->message = $exception->getMessage();
 }
+
+header("Content-type: application/json");
+echo json_encode($reply);
