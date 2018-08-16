@@ -48,17 +48,16 @@ try {
 		//set XSRF Cookie
 		setXsrfCookie();
 
-		//get a specific tweet or all tweets and update reply
+		//get a specific event based on arguments provided or all events within a date range
 		if(empty($eventId) === false) {
 			$reply->data = Event::getEventByEventId($pdo, $eventId);
-			}
-		} else if (empty($eventCategoryId) === false) {
-			//if the user is logged in grab all the events by that user based on who is logged in, basically, get the users events if the are logged in.
+		} else if(empty($eventCategoryId) === false) {
 			$reply->data = Event::getEventByEventCategoryId($pdo, $eventCategoryId)->toArray();
 		} else if (empty($eventProfileId) === false) {
 			$reply->data = Event::getEventByEventProfileId($pdo, $eventProfileId)->toArray();
-		} else if (empty($eventContent) === false) {
-			$reply->data = Event::getEventByDateRange($pdo, $eventDateTime)->toArray();
+		} else {
+			$reply->data = Event::getEventByDateRange($pdo)->toArray();
+		}
 	}
 	//PUT and POST methods
 	else if($method === "PUT" || $method === "POST") {
