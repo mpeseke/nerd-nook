@@ -47,3 +47,9 @@ function setJwtAndAuthHeader(string $value, stdClass $content): void {
 	// add the JWT to the header
 	header("X-JWT-TOKEN: $token");
 	}
+
+	/**
+	 * verifies the X-JWT-TOKEN sent by Angular matches the JWT-TOKEN saved in this session.
+	 * this function uses two custom methods to insure that the JWT-TOKENs match
+	 * This function returns nothing, but will throw an exception when something doesn't match
+	 **/
