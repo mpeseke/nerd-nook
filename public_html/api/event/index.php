@@ -159,4 +159,13 @@ try {
 			$reply->message = "Event deleted OK";
 			}
 		}
-	}
+		//update the $reply->status $reply->message
+	} catch (\Exception | \TypeError $exception) {
+	$reply->status = $exception->getCode();
+	$reply->message = $exception->getMessage();
+}
+//encode and return reply to front end caller
+header("Content-type:application/json");
+echo json_encode($reply);
+
+//finally -JSON encodes the $reply object and sends it back to the front end
