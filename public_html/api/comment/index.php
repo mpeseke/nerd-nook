@@ -2,18 +2,15 @@
 
 require_once dirname(__DIR__, 3) . "/vendor/autoload.php";
 require_once dirname(__DIR__, 3) . "/php/classes/autoload.php";
-require_once ("/etc/apache2/capstone-mysql/encrypted-config.php");
 require_once dirname(__DIR__,3) . "/php/lib/xsrf.php";
 require_once dirname(__DIR__,3) . "/php/lib/uuid.php";
-require_once dirname(__DIR__, 3) . "/php.lib.jwt.php";
+require_once ("/etc/apache2/capstone-mysql/encrypted-config.php");
 
 
 use NerdCore\NerdNook\ {
+
 	Comment,
 
-	// we only use the profile class for testing purposes
-
-	Profile
 };
 
 
@@ -38,8 +35,6 @@ $reply->data = null;
 try {
 	// grab the mySQL connection
 	$pdo = connectToEncryptedMYSQL("/etc/apache2/capstone-mysql/nerdnook.ini");
-	// mock a logged in user by forcing the session. This is only for testing purposes and should not be in the live code
-
 
 	//determine which HTTP method was used
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
@@ -49,7 +44,7 @@ try {
 	$commentEventId = filter_input(INPUT_GET, "commentEventId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$commentProfileId = filter_input(INPUT_GET, "commentProfileId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$commentContent = filter_input(INPUT_GET, "commentContent", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-
+	$commentDateTime = filter_input(INPUT_GET, "commentDateTime", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	// make sure the id is valid for methods that require it
 	if(($method === "DELETE" || $method === "PUT") && (empty($id) === true)) {
 		throw (new InvalidArgumentException("id cannot be empty", 405));
@@ -119,8 +114,11 @@ try {
 			}
 
 			//update all attributes
-			$comment->setCommentDateTime($requestObject->commentDateTime);
+			$comment->setCommentId($requestObject->commentId);
+			$comment->setCommentEventId($requestObject->commentEventId);
+			$comment->setCommentProfileId($requestObject->commentProfileId);
 			$comment->setCommentContent($requestObject->commentContent);
+			$comment->setCommentDateTime($requestObject->commentDateTime);
 			$comment->update($pdo);
 
 			//update reply
