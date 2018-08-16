@@ -19,30 +19,31 @@ use Lcobucci\JWT\{
 function setJwtAndAuthHeader(string $value, stdClass $content): void {
 
 	//enforce that the session is active
-		if(session_status() !== PHP_SESSION_ACTIVE) {
-				throw(new \RuntimeException("session not active"));
-		}
+	if(session_status() !== PHP_SESSION_ACTIVE) {
+		throw(new \RuntimeException("session not active"));
+	}
 
-		//create the signer object
-			$signer = new Sha512();
+	//create the signer object
+	$signer = new Sha512();
 
-		//create a UUID to sign the JWT and then store it in the session
-			$signature = generateUuidV4();
+	//create a UUID to sign the JWT and then store it in the session
+	$signature = generateUuidV4();
 
-			//store the signature in string format
-			$_SESSION["signature"] = $signature->toString();
+	//store the signature in string format
+	$_SESSION["signature"] = $signature->toString();
 
-			$token = (new Builder())
-				->set($value, $content)
-				->setIssuer("https://bootcamp-coders.cnm.edu")
-				->setAudience("https://bootcamp-coders.cnm.edu")
-				->setId(session_id())
-				->setIssuedAt(time())
-				->setExpiration(time() + 3600)
-				->sign($signer, $signature->toString())
-				->getToken();
+	$token = (new Builder())
+		->set($value, $content)
+		->setIssuer("https://bootcamp-coders.cnm.edu")
+		->setAudience("https://bootcamp-coders.cnm.edu")
+		->setId(session_id())
+		->setIssuedAt(time())
+		->setExpiration(time() + 3600)
+		->sign($signer, $signature->toString())
+		->getToken();
 
-				$_SESSION["JWT-TOKEN"] = (string)$token;
+	$_SESSION["JWT-TOKEN"] = (string)$token;
 
-				// add the JWT to the header
-}
+	// add the JWT to the header
+	header("X-JWT-TOKEN: $token");
+	}
