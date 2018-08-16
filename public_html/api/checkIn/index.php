@@ -85,7 +85,7 @@ try {
 		}
 
 		if(empty($requestObject->checkInRep) === true) {
-			$requestObject->checkInRep = int("20");
+			$requestObject->checkInRep = is_integer(20);
 		}
 
 		if($method === "POST") {
