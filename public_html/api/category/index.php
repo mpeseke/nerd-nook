@@ -31,5 +31,78 @@ $reply->data = null;
 
 try {
 	//grab the mySQL connection
-	$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/nerdnook")
+	$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/nerdnook");
+
+	//determine which HTTP method was used
+	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
+
+	//sanitize input
+	$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	$categoryName = filter_input(INPUT_GET, "categoryName", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	$categoryType = filter_input(INPUT_GET, "categoryType", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+
+
+	//make sure that the id is valid for methods that require it
+	if($method === "GET"){
+		//set XSRF cookie
+		setXsrfCookie();
+
+		//gets a post by content
+		if(empty($id) === false){
+			$category = Category::getCategoryByCategoryId($pdo, $id);
+			if($category !== null){
+				$reply->data = $profile;
+			} else if(empty($categoryName) === false){
+				$category = Category::getCategoryByCategoryId($pdo, $categoryName);
+				if($category !== null){
+					$reply->data = $category;
+				}
+			}else if(empty($categoryType) === false){
+				$category = Category::getCategoryByCategoryId($pdo, $categoryType);
+				if($category !== null){
+					$reply->data = $category;
+				}
+			}
+		}else if($method === "PUT"){
+			//enforce that the XSRF token is present in the header
+			verifyXsrf();
+
+			
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

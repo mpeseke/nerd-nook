@@ -10,7 +10,7 @@ require_once ("/etc/apache2/capstone-mysql/encrypted-config.php");
 
 use NerdCore\NerdNook\ {
 
-	Comment,
+	Comment
 
 };
 
