@@ -53,5 +53,17 @@ try{
 		}
 
 		//grab the profile from the database by email provided
+		$profile = Profile::getProfileByProfileEmail($pdo, $profileEmail);
+		if(empty($profile) === true) {
+				throw(new \InvalidArgumentException("Invalid email", 401));
+		}
+		$profile->setProfileActivationToken(null);
+		$profile->update($pdo);
+
+		//if the profile activation is not null throw an error
+		if($profile->getProfileActivationToken() !== null) {
+				throw(new \InvalidArgumentException("you are not allowed to sign in unless you have activated your account", 401));
+		}
+
 	}
 }
