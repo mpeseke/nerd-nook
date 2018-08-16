@@ -65,5 +65,6 @@ function setJwtAndAuthHeader(string $value, stdClass $content): void {
 	}
 
 	/**
-	 *
+	 *this method enforces that the session contains all necessary information and that the JWT in the session matches
+	 * JWT sent by Angular
 	 **/
