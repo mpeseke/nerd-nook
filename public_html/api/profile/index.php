@@ -30,7 +30,7 @@ try {
 			$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/nerdnook.ini");
 
 			//prepare which HTTP method was used
-			$method = array_change_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
+			$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
 			//sanitize input
 			$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -69,12 +69,14 @@ try {
 						//enforce that the XSRF token is present in the header
 						verifyXsrf();
 
-						//enforce the end user is signed in and only trying to edit their own profile
+						//enforce the end user has a JWT token
+						//validateJwtHeader();
+
+						//enforce the user is signed in and only trying to edit their own profile
 						if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $id) {
-									$throw(new \InvalidArgumentException("You are not allowed to access this profile", 403));
+									throw(new \InvalidArgumentException("You are not allowed to access this profile", 403));
 						}
 
-						//enforce the end user has a JWT token
 						validateJwtHeader();
 
 						//decode the response from the front end

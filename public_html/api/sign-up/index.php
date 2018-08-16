@@ -54,7 +54,7 @@ try {
 
 					//verify that the confirm password is present
 					if(empty($requestObject->profilePasswordConfirm) === true) {
-								throw(new \InvalidArgumentException("Must input valid passowrd", 405));
+								throw(new \InvalidArgumentException("Must input valid password", 405));
 					}
 
 					//make sure the password and confirm password match
@@ -66,13 +66,13 @@ try {
 					$profileActivationToken = bin2hex(random_bytes(16));
 
 					//create the profile object and prepare the insert into the database
-					$profile = new Profile(generateUuidV4(), $profileActivationToken, $requestObject->profileAtHandle, "null", $requestObject->profileEmail, $hash);
+					$profile = new Profile(generateUuidV4(), $profileActivationToken, $requestObject->profileAtHandle, $requestObject->profileEmail, $hash);
 
 					//insert the profile into the database
 					$profile->insert($pdo);
 
 					//compose the email message to send with the activation token
-					$messageSubject = "One step closer to Sticky Head -- Account Activation";
+					$messageSubject = "One step closer -- Account Activation";
 
 					//building the activation link that can travel to another server and still work.  This is the link that will be clicked to confirm the account.
 					//make sure URL is /public_html/api/activation/$activation
