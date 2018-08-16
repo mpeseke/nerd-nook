@@ -5,7 +5,7 @@ require_once dirname(__DIR__, 3) . "/php/classes/autoload.php";
 require_once dirname(__DIR__, 3) . "/php/lib/xsrf.php";
 require_once dirname(__DIR__, 3) . "/php/lib/jwt.php";
 require_once dirname(__DIR__, 3) . "/php/lib/uuid.php";
-require_once dirname("/etc/apache2/nerd-nook-mysql/encrypted-config.php");
+require_once dirname("/etc/apache2/capstone-mysql/encrypted-config.php");
 
 use NerdCore\NerdNook\{
 	CheckIn
@@ -29,7 +29,7 @@ $reply->data = null;
 
 try {
 	//grab the mySQL connection
-	$pdo = connectToEncryptedMySQL("/etc/apache2/nerd-nook-mysql/nerdnook.ini");
+	$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/nerdnook.ini");
 
 	//determine what HTTP method was used
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
