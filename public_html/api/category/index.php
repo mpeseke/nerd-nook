@@ -63,11 +63,13 @@ try {
 					$reply->data = $category;
 				}
 			}
-		}else if($method === "PUT"){
+		}else if($method === "PUT") {
 			//enforce that the XSRF token is present in the header
 			verifyXsrf();
+			$requestContent = file_get_contents("php://input");
+			$requestObject = json_decode($requestContent);
 
-			
+			//retrieve the category
 		}
 	}
 }
