@@ -53,3 +53,17 @@ function setJwtAndAuthHeader(string $value, stdClass $content): void {
 	 * this function uses two custom methods to insure that the JWT-TOKENs match
 	 * This function returns nothing, but will throw an exception when something doesn't match
 	 **/
+	function validateVerifyJwt() {
+
+		//retrieve the jwt from the header
+		$headerJwt = validateJwtHeader();
+
+
+		// enforce that the JWT is Valid and verified.
+		verifiedAndValidatedSignature($headerJwt);
+
+	}
+
+	/**
+	 *
+	 **/
