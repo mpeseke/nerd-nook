@@ -2,7 +2,8 @@
   "require": {
     "phpunit/dbunit": "@stable",
     "phpunit/phpunit": "@stable",
-    "ramsey/uuid": "@stable"
+    "ramsey/uuid": "@stable",
+    "swiftmailer/swiftmailer": "@stable"
   },
 
   "scripts": {
