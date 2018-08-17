@@ -43,6 +43,8 @@ try {
 		//set XSRF COOOOOKIE! ME WANT COOOKIE!
 		setXsrfCookie();
 
+		$profile = Profile::getProfileByProfileActivationToken($pdo, $activation);
+
 		//verify the profile is not null, that it exists...
 		if($profile !== null){
 
