@@ -69,42 +69,21 @@ try {
 			$requestContent = file_get_contents("php://input");
 			$requestObject = json_decode($requestContent);
 
-			//retrieve the category
+			//make sure the category content is available (Required field)
+			if(empty($requestObject->categoryContent) === true){
+				throw(new \InvalidArgumentException ("No content for Category.", 405));
+			}
+			if(empty($requestObject->categoryId) === true) {
+				throw(new \InvalidArgumentException("No Category ID.", 405));
+			}
+			}
 		}
-	}
+	}catch(\Exception | \TypeError $exception){
+		$reply->status = $exception->getCode();
+		$reply->message = $exception->getMessage();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//encode and return reply to front end caller
+header("Content-type: application/json");
+echo json_encode($reply);
 
