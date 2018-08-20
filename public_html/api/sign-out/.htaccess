@@ -1,6 +1,6 @@
-<IfModule mod_reqrite.c >
+<IfModule mod_rewrite.c>
 RewriteEngine on
-RewriteEngine %{REQUEST_FILENAME} !-f
-RewriteEngine %{REQUEST_FILENAME} !-d
-RewriteEngine ^/?([\da-f]{8}-[\da-f]{4}-[\da-f]{4}-[\da-f]{4}-[\da-f]{12})?$ ?id=$1&%{QUERY_STRING}
+RewriteCond %{REQUEST_ACCESS} !-f
+RewriteCond %{REQUEST_ACCESS} !-d
+RewriteRule ^/?(\d+)?$ ?id=$1&%{QUERY_STRING}
 </IfModule>
