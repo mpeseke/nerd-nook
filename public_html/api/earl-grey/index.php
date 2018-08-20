@@ -1,6 +1,7 @@
 <?php
 require_once dirname(__DIR__,3 ) .  "/php/lib/xsrf.php";
 require_once dirname(__DIR__,3 ) .  "/php/lib/jwt.php";
+require_once dirname(__DIR__,3 ) . "/php/lib/uuid.php";
 
 use NerdCore\NerdNook;
 
