@@ -20,7 +20,7 @@ function setJwtAndAuthHeader(string $value, stdClass $content): void {
 
 	//enforce that the session is active
 	if(session_status() !== PHP_SESSION_ACTIVE) {
-		throw(new \RuntimeException("session not active"));
+		throw(new RuntimeException("session not active"));
 	}
 
 	//create the signer object
@@ -31,6 +31,7 @@ function setJwtAndAuthHeader(string $value, stdClass $content): void {
 
 	//store the signature in string format
 	$_SESSION["signature"] = $signature->toString();
+
 
 	$token = (new Builder())
 		->set($value, $content)
@@ -67,6 +68,8 @@ function setJwtAndAuthHeader(string $value, stdClass $content): void {
 	/**
 	 *this method enforces that the session contains all necessary information and that the JWT in the session matches
 	 * JWT sent by Angular
+	 *
+	 * @return \Lcobucci\JWT\Token the JWT token supplied by angular in the header
 	 **/
 
 	function validateJwtHeader () : \Lcobucci\JWT\Token {
@@ -91,7 +94,7 @@ function setJwtAndAuthHeader(string $value, stdClass $content): void {
 		if($_SESSION["JWT-TOKEN"] !== (string)$headerJwt) {
 			$_COOKIE = [];
 			$_SESSION = [];
-			throw (new \http\Exception\InvalidArgumentException("please log in again", 400));
+			throw (new InvalidArgumentException("please log in again", 400));
 		}
 
 		return $headerJwt;

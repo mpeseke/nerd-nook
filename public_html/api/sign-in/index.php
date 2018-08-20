@@ -23,7 +23,7 @@ try{
 			session_start();
 	}
 	// grab mySQL statement
-	$pdo = connectToEncryptedMYSQL("/etc/apache2/capstone-mysql/nerdnook.ini");
+	$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/nerdnook.ini");
 
 	// determine which HTTP method is being used
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
