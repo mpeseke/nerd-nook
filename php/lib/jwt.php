@@ -4,7 +4,7 @@ require_once dirname(__DIR__, 2) . "/vendor/autoload.php";
 require_once  dirname(__DIR__) . "/lib/uuid.php";
 
 use Lcobucci\JWT\{
-		Builder, Singer\Hmac\Sha512, Parser, ValidationData
+		Builder, Signer\Hmac\Sha512, Parser, ValidationData
 };
 
 /**
