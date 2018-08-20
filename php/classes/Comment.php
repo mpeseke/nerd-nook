@@ -24,7 +24,7 @@ class comment implements \JsonSerializable {
 	private $commentId;
 	/*
 	 * id of the event the comment will be posted to; this is a foreign key
-	 * @var Uuid $commentProfileId
+	 * @var Uuid $commentEventId
 	 *
 	 */
 	private $commentEventId;

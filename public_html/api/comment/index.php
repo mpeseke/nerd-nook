@@ -41,7 +41,7 @@ try {
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
 	//sanitize the input
-	$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	$id = filter_input(INPUT_GET, "commentId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$commentEventId = filter_input(INPUT_GET, "commentEventId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$commentProfileId = filter_input(INPUT_GET, "commentProfileId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$commentContent = filter_input(INPUT_GET, "commentContent", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -132,7 +132,7 @@ try {
 			}
 
 			//create new comment and insert into the database
-			$comment = new Comment(generateUuidV4(), $_SESSION["event"]->getEventId(), $_SESSION["profile"]->getProfileId(), $requestObject->commentContent, null);
+			$comment = new Comment(generateUuidV4(), $requestObject->commentEventId, $requestObject->commentProfileId, $requestObject->commentContent, null);
 			$comment->insert($pdo);
 
 			//update reply
