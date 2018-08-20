@@ -3,7 +3,8 @@
     "phpunit/dbunit": "@stable",
     "phpunit/phpunit": "@stable",
     "ramsey/uuid": "@stable",
-    "swiftmailer/swiftmailer": "@stable"
+    "swiftmailer/swiftmailer": "@stable",
+    "lcobucci/jwt": "^3.2"
   },
 
   "scripts": {
