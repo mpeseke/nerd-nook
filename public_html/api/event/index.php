@@ -34,7 +34,7 @@ try {
 
 	//sanitize inputs
 	$eventId = filter_input(INPUT_GET, "eventId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-	$eventCategoryId = filter_input(INPUT_GET,"eventId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	$eventCategoryId = filter_input(INPUT_GET,"eventCategoryId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$eventProfileId = filter_input(INPUT_GET, "eventProfileId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$eventDateTime = filter_input(INPUT_GET,"eventDateTime", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
@@ -130,9 +130,9 @@ try {
 			}
 
 			//create new event and insert into the database
-			$event = new Event(generateUuidV4(), $requestObject->eventCategoryId(),
-			$requestObject->eventProfileId(), $requestObject->eventDetails(), $requestObject->eventEndDateTime(),
-			$requestObject->float->eventLat(), $requestObject->float->eventLong(), $requestObject->eventStartDateTime());
+			$event = new Event(generateUuidV4(), $requestObject->eventCategoryId,
+			$requestObject->eventProfileId, $requestObject->eventDetails, $requestObject->eventEndDateTime,
+			$requestObject->eventLat, $requestObject->eventLong, $requestObject->eventStartDateTime);
 			$event->insert($pdo);
 
 			//creation reply
