@@ -130,8 +130,8 @@ try {
 			}
 
 			//create new event and insert into the database
-			$event = new Event(generateUuidV4(), $_SESSION["category"]->getEventCategoryId,
-			$_SESSION["profile"]->getEventProfileId, $requestObject->eventDetails, $requestObject->eventEndDateTime,
+			$event = new Event(generateUuidV4(), $requestObject->getEventCategoryId,
+			$requestObject->getEventProfileId, $requestObject->eventDetails, $requestObject->eventEndDateTime,
 			$requestObject->float->eventLat, $requestObject->float->eventLong, $requestObject->eventStartDateTime);
 			$event->insert($pdo);
 
