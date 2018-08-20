@@ -464,6 +464,7 @@ class Profile implements \JsonSerializable {
 		$fields["profileId"] = $this->profileId;
 		$fields["profileEmail"]=$this->profileEmail;
 		unset($fields["profileHash"]);
+		unset($fields["profileActivationToken"]);
 
 		return($fields);
 	}
