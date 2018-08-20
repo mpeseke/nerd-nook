@@ -6,7 +6,7 @@ require_once dirname(__DIR__, 3) . "/php/lib/uuid.php";
 require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
 
 use NerdCore\NerdNook\ {
-	Event
+	 Event
 };
 
 /**
@@ -130,8 +130,9 @@ try {
 			}
 
 			//create new event and insert into the database
-			$event = new Event(generateUuidV4(), $_SESSION["category"]->getEventCategoryId, $_SESSION["profile"]->getEventProfileId, $requestObject->eventDetails, $requestObject->eventEndDateTime,
-			$requestObject->eventLat, $requestObject->eventLong, $requestObject->eventStartDateTime);
+			$event = new Event(generateUuidV4(), $_SESSION["category"]->getEventCategoryId,
+			$_SESSION["profile"]->getEventProfileId, $requestObject->eventDetails, $requestObject->eventEndDateTime,
+			$requestObject->float->eventLat, $requestObject->float->eventLong, $requestObject->eventStartDateTime);
 			$event->insert($pdo);
 
 			//creation reply
