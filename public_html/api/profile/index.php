@@ -30,7 +30,7 @@ try {
 			//grab the mySQL connection
 			$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/nerdnook.ini");
 
-			//prepare which HTTP method was used
+			//determine which HTTP method was used
 			$method = $_SERVER["HTTP_X_HTTP_METHOD"] ?? $_SERVER["REQUEST_METHOD"];
 
 			//sanitize input
