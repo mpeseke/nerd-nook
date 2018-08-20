@@ -40,7 +40,7 @@ try {
 
 	//make sure the id is valid for methods that require it
 	if(($method === "DELETE" || $method === "PUT") && (empty($eventId) === true)) {
-		throw(new InvalidArgumentException("Id cannot be empty of negative", 402));
+		throw(new InvalidArgumentException("Id cannot be empty or negative", 402));
 	}
 
 	//handle the GET request - if ID is present, that event is returned, otherwise, all events are returned
@@ -130,9 +130,9 @@ try {
 			}
 
 			//create new event and insert into the database
-			$event = new Event(generateUuidV4(), $requestObject->getEventCategoryId,
-			$requestObject->getEventProfileId, $requestObject->eventDetails, $requestObject->eventEndDateTime,
-			$requestObject->float->eventLat, $requestObject->float->eventLong, $requestObject->eventStartDateTime);
+			$event = new Event(generateUuidV4(), $requestObject->eventCategoryId(),
+			$requestObject->eventProfileId(), $requestObject->eventDetails(), $requestObject->eventEndDateTime(),
+			$requestObject->float->eventLat(), $requestObject->float->eventLong(), $requestObject->eventStartDateTime());
 			$event->insert($pdo);
 
 			//creation reply
