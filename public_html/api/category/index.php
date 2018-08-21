@@ -47,8 +47,6 @@ try {
 		//gets a category using it's Id
 		if(empty($categoryId) === false) {
 			$reply->data = Category::getCategoryByCategoryId($pdo, $categoryId);
-		} else if(empty($categoryName) === false) {
-			$reply->data = Category::getCategoryName($pdo, $categoryName)->toArray();
 		} else  {
 			$reply->data = Category::getAllCategories($pdo)->toArray();
 			}
