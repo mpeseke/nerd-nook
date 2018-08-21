@@ -56,12 +56,15 @@ try {
 			//enforce that the XSRF token is present in the header
 			verifyXsrf();
 
+			//retrieves the JSON package that the front end sent, and store it in the $requestContent variable
 			$requestContent = file_get_contents("php://input");
+
+			//decode the JSON package and stores the result in $requestObject
 			$requestObject = json_decode($requestContent);
 
 			//make sure the category content is available (Required field)
 			if(empty($requestObject->categoryId) === true){
-				throw(new \InvalidArgumentException ("No content for Category.", 405));
+				throw(new \InvalidArgumentException ("Category does not exist.", 405));
 			}
 			if(empty($requestObject->categoryId) === true) {
 				throw(new \InvalidArgumentException("No Category ID.", 405));

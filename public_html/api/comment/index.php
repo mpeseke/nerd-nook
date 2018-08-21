@@ -138,7 +138,7 @@ try {
 			//update reply
 			$reply->message = "Comment created OK";
 		}
-	} else if($method === "Delete") {
+	} else if($method === "DELETE") {
 
 		// enforce that the end user has a XSRF token.
 		verifyXsrf();
