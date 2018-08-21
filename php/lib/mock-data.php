@@ -10,17 +10,17 @@ require_once("uuid.php");
 require_once("uuid.php");
 $pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/nerdnook.ini");
 
-$categoryId = generateUuidV4();
-$category = new Category($categoryId, $category->getCategoryId(),"Mariokart Wii", "Video Games");
+
+$category = new Category(generateUuidV4(), "Mario Kart", "Video Games");
 $category->insert($pdo);
 echo "first category";
 
-$categoryId2 = generateUuidV4();
-$category2 = new Category($categoryId2, $category2->getCategoryId(),"Chess", "Board Games");
+
+$category2 = new Category(generateUuidV4(), "Dungeons and Dragons", "Table Games");
 $category->insert($pdo);
 echo "second category";
 
-$categoryId3 = generateUuidV4();
-$category3 = new Category($categoryId3, $category3->getCategoryId(),"Harry Potter", "Books");
+
+$category3 = new Category(generateUuidV4(), "Harry Potter", "Books");
 $category->insert($pdo);
 echo "third category";
