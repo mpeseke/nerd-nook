@@ -1,13 +1,10 @@
 <?php
-
-
 require_once(dirname(__DIR__, 3) . "/vendor/autoload.php");
 require_once(dirname(__DIR__, 3) . "/php/classes/autoload.php");
 require_once(dirname(__DIR__, 3) . "/php/lib/jwt.php");
 require_once(dirname(__DIR__, 3) . "/php/lib/xsrf.php");
 require_once(dirname(__DIR__, 3) . "/php/lib/uuid.php");
 require_once("/etc/apache2/capstone-mysql/encrypted-config.php");
-
 
 use NerdCore\NerdNook\ {
 	Category
@@ -37,7 +34,7 @@ try {
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
 	//sanitize input
-	$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	$categoryId = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$categoryName = filter_input(INPUT_GET, "categoryName", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$categoryType = filter_input(INPUT_GET, "categoryType", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
@@ -47,35 +44,27 @@ try {
 		//set XSRF cookie
 		setXsrfCookie();
 
-		//gets a post by content
-		if(empty($id) === false){
-			$category = Category::getCategoryByCategoryId($pdo, $id);
-			if($category !== null){
-				$reply->data = $profile;
-			} else if(empty($categoryName) === false){
-				$category = Category::getCategoryByCategoryId($pdo, $categoryName);
-				if($category !== null){
-					$reply->data = $category;
-				}
-			}else if(empty($categoryType) === false){
-				$category = Category::getCategoryByCategoryId($pdo, $categoryType);
-				if($category !== null){
-					$reply->data = $category;
-				}
+		//gets a category using it's Id
+		if(empty($categoryId) === false) {
+			$reply->data = Category::getCategoryByCategoryId($pdo, $categoryId);
+		} else {
+			$reply->data = Category::getAllCategories($pdo)->toArray();
 			}
-		}else if($method === "PUT") {
+		}
+		//PUT method
+		else if($method === "PUT") {
 			//enforce that the XSRF token is present in the header
 			verifyXsrf();
+
 			$requestContent = file_get_contents("php://input");
 			$requestObject = json_decode($requestContent);
 
 			//make sure the category content is available (Required field)
-			if(empty($requestObject->categoryContent) === true){
+			if(empty($requestObject->categoryId) === true){
 				throw(new \InvalidArgumentException ("No content for Category.", 405));
 			}
 			if(empty($requestObject->categoryId) === true) {
 				throw(new \InvalidArgumentException("No Category ID.", 405));
-			}
 			}
 		}
 	}catch(\Exception | \TypeError $exception){
