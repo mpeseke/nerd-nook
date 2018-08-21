@@ -73,7 +73,7 @@ try {
 
 		//make sure event Category is available
 		if(empty($requestObject->eventCategoryId) === true) {
-		throw(new \InvalidArgumentException("Event not found in this Category", 405));
+		throw(new \InvalidArgumentException("Not a valid event Category Id ", 405));
 		}
 
 		//make sure the event Profile Id exists
