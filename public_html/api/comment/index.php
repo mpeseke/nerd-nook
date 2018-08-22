@@ -8,7 +8,10 @@ require_once dirname(__DIR__, 3) . "/php/lib/jwt.php";
 require_once ("/etc/apache2/capstone-mysql/encrypted-config.php");
 
 
-use NerdCore\NerdNook\ {Comment};
+use NerdCore\NerdNook\ {
+
+	Comment
+};
 
 
 
@@ -41,7 +44,7 @@ try {
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
 	//sanitize the input
-	$id = filter_input(INPUT_GET, "commentId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$commentEventId = filter_input(INPUT_GET, "commentEventId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$commentProfileId = filter_input(INPUT_GET, "commentProfileId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$commentContent = filter_input(INPUT_GET, "commentContent", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -157,7 +160,7 @@ try {
 		}
 
 		//enforce the user is signed in and only trying to edit their own comment
-		if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId() !== $comment->getCommentProfileId()) {
+		if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $comment->getCommentProfileId()->toString()) {
 			throw(new \InvalidArgumentException("You are not allowed to delete this comment", 403));
 		}
 

@@ -94,7 +94,7 @@ try {
 
 		validateJwtHeader();
 
-		$checkIn = new CheckIn($_SESSION["profile"]->getProfileId(), $requestObject->checkInEventId);
+		$checkIn = new CheckIn($requestObject->checkInEventId,$_SESSION["profile"]->getProfileId(),$requestObject->checkInDateTime, $requestObject->checkInRep);
 		$checkIn->insert($pdo);
 		$reply->message = "Check In Successful!";
 		//if any other HTTP request is sent throw an exception
