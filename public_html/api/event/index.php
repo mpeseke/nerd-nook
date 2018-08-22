@@ -34,9 +34,9 @@ try {
 
 	//sanitize inputs
 	$eventId = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-	$eventCategoryId = filter_input(INPUT_GET,"eventCategoryId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	$eventCategoryId = filter_input(INPUT_GET, "eventCategoryId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$eventProfileId = filter_input(INPUT_GET, "eventProfileId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-	$eventDateTime = filter_input(INPUT_GET,"eventDateTime", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	$eventDateTime = filter_input(INPUT_GET, "eventDateTime", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 
 	//make sure the id is valid for methods that require it
 	if(($method === "DELETE" || $method === "PUT") && (empty($eventId) === true)) {
@@ -53,13 +53,12 @@ try {
 			$reply->data = Event::getEventByEventId($pdo, $eventId);
 		} else if(empty($eventCategoryId) === false) {
 			$reply->data = Event::getEventByEventCategoryId($pdo, $eventCategoryId)->toArray();
-		} else if (empty($eventProfileId) === false) {
+		} else if(empty($eventProfileId) === false) {
 			$reply->data = Event::getEventByEventProfileId($pdo, $eventProfileId)->toArray();
 		} else {
 			$reply->data = Event::getEventByDateRange($pdo)->toArray();
 		}
-	}
-	//PUT and POST methods
+	} //PUT and POST methods
 	else if($method === "PUT" || $method === "POST") {
 
 		//enforce the user has an XSRF token, to make sure they are allowed to be making updates, yo.
@@ -139,36 +138,14 @@ try {
 			//creation reply
 			$reply->message = "Event was successfully created.";
 		}
-
-	} else if ($method === "DELETE") {
-
-			//enforce that the end user is allowed in... has an XSRF token
-			verifyXsrf();
-
-			//retrieve the Event to be deleted
-			$event = Event::getEventByEventId($pdo, $eventId);
-			if($event === null) {
-				throw(new RuntimeException("Event does not exist", 404));
-			}
-
-			var_dump($_SESSION["profile"]);
-
-			//enforce the user is signed in and only trying to edit their own Event
-			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $event->getEventProfileId()->toString()) {
-				throw(new \InvalidArgumentException("Get your own event to delete, sucka.", 403));
-			}
-
-
-			//delete Event
-			$event->delete($pdo);
-			//update reply
-			$reply->message = "Event deleted OK";
-			}
-		//update the $reply->status $reply->message
-	} catch (\Exception | \TypeError $exception) {
+	} else {
+			throw (new \InvalidArgumentException("Invalid HTTP method request.", 418));
+		}
+} catch(\Exception | \TypeError $exception) {
 	$reply->status = $exception->getCode();
 	$reply->message = $exception->getMessage();
 }
+
 //encode and return reply to front end caller
 header("Content-type:application/json");
 echo json_encode($reply);
