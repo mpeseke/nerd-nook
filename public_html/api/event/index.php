@@ -73,12 +73,12 @@ try {
 
 		//make sure event Category is available
 		if(empty($requestObject->eventCategoryId) === true) {
-		throw(new \InvalidArgumentException("Not a valid event Category Id ", 405));
+			throw(new \InvalidArgumentException("Not a valid event Category Id ", 405));
 		}
 
 		//make sure the event Profile Id exists
 		if(empty($requestObject->eventProfileId) === true) {
-		throw(new \InvalidArgumentException("Not a valid profile Id", 405));
+			throw(new \InvalidArgumentException("Not a valid profile Id", 405));
 		}
 
 		//make sure the event Date is accurate
@@ -103,12 +103,12 @@ try {
 
 			//retrieve the event to update
 			$event = Event::getEventByEventId($pdo, $eventId);
-			if($event === null){
+			if($event === null) {
 				throw(new RuntimeException("Event does not exist.", 404));
 			}
 
 			//enforce the user is signed in and only trying to edit their own event
-			if(empty($_SESSION["profile"]) === true|| $_SESSION["profile"]->getProfileId()->toString() !== $event->getEventProfileId()->toString()) {
+			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $event->getEventProfileId()->toString()) {
 				throw(new \InvalidArgumentException("You are not allowed to edit this event. Make your own and edit that! Oh, and have a nice day.", 403));
 			}
 			//update all attributes
@@ -131,16 +131,16 @@ try {
 
 			//create new event and insert into the database
 			$event = new Event(generateUuidV4(), $requestObject->eventCategoryId,
-			$requestObject->eventProfileId, $requestObject->eventDetails, $requestObject->eventEndDateTime,
-			$requestObject->eventLat, $requestObject->eventLong, $requestObject->eventStartDateTime);
+				$requestObject->eventProfileId, $requestObject->eventDetails, $requestObject->eventEndDateTime,
+				$requestObject->eventLat, $requestObject->eventLong, $requestObject->eventStartDateTime);
 
 			$event->insert($pdo);
 
 			//creation reply
 			$reply->message = "Event was successfully created.";
+		}
 
-
-			} else if ($method === "DELETE") {
+	} else if ($method === "DELETE") {
 
 			//enforce that the end user is allowed in... has an XSRF token
 			verifyXsrf();
@@ -151,17 +151,19 @@ try {
 				throw(new RuntimeException("Event does not exist", 404));
 			}
 
+			var_dump($_SESSION["profile"]);
+
 			//enforce the user is signed in and only trying to edit their own Event
-			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId->toString() !== $event->getEventProfileId()->toString()) {
+			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $event->getEventProfileId()->toString()) {
 				throw(new \InvalidArgumentException("Get your own event to delete, sucka.", 403));
 			}
+
 
 			//delete Event
 			$event->delete($pdo);
 			//update reply
 			$reply->message = "Event deleted OK";
 			}
-		}
 		//update the $reply->status $reply->message
 	} catch (\Exception | \TypeError $exception) {
 	$reply->status = $exception->getCode();
