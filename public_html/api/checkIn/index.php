@@ -16,7 +16,7 @@ use NerdCore\NerdNook\{
 /**
  * api for the checkIn class
  *
- * @author Caleb Heckendorn <programmingpianist@gmail.com>
+ * @author Caleb Heckendorn
  **/
 
 //verify the session start if not active
@@ -34,11 +34,11 @@ try {
 	$pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/nerdnook.ini");
 
 	//determine what HTTP method was used
-	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
+	$method = $_SERVER["HTTP_X_HTTP_METHOD"] ?? $_SERVER["REQUEST_METHOD"];
 
 	//sanitize parameters
-	$checkInEventId = filter_input(INPUT_GET, "checkInEventId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-	$checkInProfileId = filter_input(INPUT_GET, "checkInProfileId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	$checkInEventId = $id = filter_input(INPUT_GET, "checkInEventId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	$checkInProfileId = $id = filter_input(INPUT_GET, "checkInProfileId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 //make sure the id is valid for methods that require it
 	if($method === "GET") {
 		//Set XRSF cookie
@@ -53,22 +53,15 @@ try {
 			}
 			//if none of the search parameters are met throw an exception
 		} else if(empty($checkInEventId) === false) {
-			$checkIn = CheckIn::getCheckInByCheckInEventId($pdo, $checkInEventId)->toArray();
-			if($checkIn !== null) {
-				$reply->data = $checkIn;
-			}
+			$reply->data = CheckIn::getCheckInByCheckInEventId($pdo, $checkInEventId)->toArray();
 			//get all the checkIns associated the the eventId
-		} else if(empty($checkInEventId) === false) {
-			$checkIn = CheckIn::getCheckInByCheckInProfileId($pdo, $checkInProfileId)->toArray();
-
-			if($checkIn !== null) {
-				$reply->data = $checkIn;
-			}
+		} else if(empty($checkInProfileId) === false) {
+			$reply->data = CheckIn::getCheckInByCheckInProfileId($pdo, $checkInProfileId)->toArray();
 		} else {
 			throw new \InvalidArgumentException("Incorrect search parameters ", 404);
 		}
 
-	} else if($method === "POST" || $method === "PUT") {
+	} else if($method === "POST") {
 
 		//decode the response from the front end
 		$requestContent = file_get_contents("php://input");
@@ -90,30 +83,33 @@ try {
 			$requestObject->checkInRep = is_integer(20);
 		}
 
-		if($method === "POST") {
+		//enforce that the end user has a XSRF token
+		verifyXsrf();
 
-			//enforce that the end user has a XSRF token
-			verifyXsrf();
+
+		//enforce that the user is signed in
+		if(empty($_SESSION["profile"]) === true) {
+			throw(new \InvalidArgumentException("You must be logged in to Check In", 403));
 		}
 
-			//enforce that the user is signed in
-			if(empty($_SESSION["profile"]) === true) {
-				throw(new \InvalidArgumentException("You must be logged in to Check In", 403));
+		validateJwtHeader();
 
-
-				$checkIn = new CheckIn($_SESSION["profile"]->getProfileId(), $requestObject->checkInEventId);
-				$checkIn->insert($pdo);
-				$reply->message = "Check In Successful!";
-			}
-			//if anyt other HTTP request is sent throw an exception
-		} else {
-			throw new \InvalidArgumentException("Invalid HTTP Request", 400);
-		}
-		//catch any exception that is thrown and update the status and message
-	} catch(\Exception | \TypeError $exception) {
-		$reply->status = $exception->getCode();
-		$reply->message = $exception->getMessage();
+		$checkIn = new CheckIn($_SESSION["profile"]->getProfileId(), $requestObject->checkInEventId);
+		$checkIn->insert($pdo);
+		$reply->message = "Check In Successful!";
+		//if any other HTTP request is sent throw an exception
+	} else {
+	throw new \InvalidArgumentException("Invalid HTTP request", 400);
 	}
+	//catch any exception that is thrown and
+} catch(\Exception | \TypeError $exception){
+	$reply->status = $exception->getCode();
+	$reply->message = $exception->getMessage();
+}
 
-//encode and return reply to front end caller
+header("Content-type: application/json");
+if($reply->data === null){
+	unset($reply->data);
+}
+//encode and return reply to the front end caller
 echo json_encode($reply);
