@@ -8,11 +8,11 @@ require_once dirname(__DIR__, 3) . "/php/lib/jwt.php";
 require_once ("/etc/apache2/capstone-mysql/encrypted-config.php");
 
 
-use NerdCore\NerdNook\ {
+use NerdCore\NerdNook\ {Comment};
 
-	Comment
 
-};
+
+
 
 
 /*
@@ -45,7 +45,7 @@ try {
 	$commentEventId = filter_input(INPUT_GET, "commentEventId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$commentProfileId = filter_input(INPUT_GET, "commentProfileId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$commentContent = filter_input(INPUT_GET, "commentContent", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-	$commentDateTime = filter_input(INPUT_GET, "commentDateTime", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	//$commentDateTime = filter_input(INPUT_GET, "commentDateTime", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	// make sure the id is valid for methods that require it
 	if(($method === "DELETE" || $method === "PUT") && (empty($id) === true)) {
 		throw (new InvalidArgumentException("id cannot be empty", 405));
@@ -61,18 +61,22 @@ try {
 			$reply->data = Comment::getCommentByCommentId($pdo, $id);
 		} else if(empty($commentEventId) === false) {
 			$reply->data = Comment::getCommentByCommentEventId($pdo, $commentEventId)->toArray();
-		} else if(empty($commentProfileId) === false) {
+		} else if (empty($commentProfileId) === false) {
 			$reply->data = Comment::getCommentByCommentProfileId($pdo, $commentProfileId)->toArray();
 		}
 	} else if($method === "PUT" || $method === "POST") {
 		// enforce that the user has an XSRF token
 		verifyXsrf();
 
+		//enforce the user is signed in
+		if(empty($_SESSION["profile"]) === true) {
+			throw(new \InvalidArgumentException("you must be logged in to post comments",401));
+		}
+
 		$requestContent = file_get_contents("php://input");
 		//retrieves the JSON package that the front end sent, and stores it in $requestContent. Here we are using file_get_contents("php://input") to get the request from the front end. file_get_contents() is a PHP function that reads a file into a string. The argument for the function,here, is "php://input". This is a read only stream that allows raw data to be read from the front end request which is, in this case, a JSON package.
 		$requestObject = json_decode($requestContent);
 		// This line then decodes the JSON package and stores that result in $requestObject
-
 		// make sure comment content is available (required field)
 		if(empty($requestObject->commentContent) === true) {
 			throw (new \InvalidArgumentException ("No Content for Comment", 405));
@@ -95,7 +99,7 @@ try {
 			throw(new \InvalidArgumentException("No Event ID", 405));
 		}
 
-		//make sure the profile ID is available
+//		//make sure the profile ID is available
 		if(empty($requestObject->commentProfileId) === true) {
 			throw (new \InvalidArgumentException("No Profile ID", 405));
 		}
@@ -108,6 +112,9 @@ try {
 			if($comment === null) {
 				throw(new RuntimeException("Comment does not exist", 404));
 			}
+
+			//enforce the end user has a jwt token
+			validateJwtHeader();
 
 			//enforce the user is signed in and only trying to update their own comment
 			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $comment->getCommentProfileId()->toString()) {
@@ -128,7 +135,7 @@ try {
 
 			//enforce the user is signed in
 			if(empty($_SESSION["profile"]) === true) {
-				throw(new \InvalidArgumentException("you must be logged in to post a comments", 403));
+				throw(new \InvalidArgumentException("you must be logged in to post a comment", 403));
 			}
 
 			//create new comment and insert into the database
@@ -154,10 +161,13 @@ try {
 			throw(new \InvalidArgumentException("You are not allowed to delete this comment", 403));
 		}
 
+		//enforce the end user has a JWT token
+		validateJwtHeader();
+
 		//delete comment
 		$comment->delete($pdo);
 		//update reply
-		$reply->message = "Tweet deleted OK";
+		$reply->message = "Comment deleted OK";
 	} else {
 		throw(new InvalidArgumentException("Invalid HTTP method request", 418));
 	}
