@@ -151,7 +151,7 @@ try {
 			}
 
 			//enforce the user is signed in and only trying to edit their own Event
-			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId() !== $event->getEventProfileId()) {
+			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId->toString() !== $event->getEventProfileId()->toString()) {
 				throw(new \InvalidArgumentException("Get your own event to delete, sucka.", 403));
 			}
 
