@@ -37,16 +37,16 @@ try {
 	$method = array_key_exists("HTTP_X_HTTP_METHOD", $_SERVER) ? $_SERVER["HTTP_X_HTTP_METHOD"] : $_SERVER["REQUEST_METHOD"];
 
 	//sanitize parameters
-	$checkInProfileId = filter_input(INPUT_GET, "checkInProfileId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 	$checkInEventId = filter_input(INPUT_GET, "checkInEventId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	$checkInProfileId = filter_input(INPUT_GET, "checkInProfileId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 //make sure the id is valid for methods that require it
 	if($method === "GET") {
 		//Set XRSF cookie
 		setXsrfCookie();
 
 		//gets a specific checkIn associated based on its composite key
-		if($checkInProfileId !== null && $checkInEventId !== null) {
-			$checkIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($pdo, $checkInProfileId, $checkInEventId);
+		if($checkInEventId !== null && $checkInProfileId !== null) {
+			$checkIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($pdo, $checkInEventId, $checkInProfileId);
 
 			if($checkIn !== null) {
 				$reply->data = $checkIn;
@@ -65,7 +65,7 @@ try {
 				$reply->data = $checkIn;
 			}
 		} else {
-			throw new InvalidArgumentException("Incorrect search parameters ", 404);
+			throw new \InvalidArgumentException("Incorrect search parameters ", 404);
 		}
 
 	} else if($method === "POST" || $method === "PUT") {
