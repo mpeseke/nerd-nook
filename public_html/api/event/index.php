@@ -133,10 +133,11 @@ try {
 			$event = new Event(generateUuidV4(), $requestObject->eventCategoryId,
 			$requestObject->eventProfileId, $requestObject->eventDetails, $requestObject->eventEndDateTime,
 			$requestObject->eventLat, $requestObject->eventLong, $requestObject->eventStartDateTime);
+
 			$event->insert($pdo);
 
 			//creation reply
-			$event->message = "Event was successfully created.";
+			$reply->message = "Event was successfully created.";
 
 
 			} else if ($method === "DELETE") {
