@@ -87,11 +87,6 @@ try {
 		verifyXsrf();
 
 
-		//enforce that the user is signed in
-		if(empty($_SESSION["profile"]) === true) {
-			throw(new \InvalidArgumentException("You must be logged in to Check In", 403));
-		}
-
 		validateJwtHeader();
 
 		$checkIn = new CheckIn($requestObject->checkInEventId,$_SESSION["profile"]->getProfileId(),$requestObject->checkInDateTime, $requestObject->checkInRep);
