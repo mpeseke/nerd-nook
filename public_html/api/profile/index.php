@@ -107,29 +107,29 @@ try {
 						// update reply
 						$reply->message = "Profile information updated";
 
-			} elseif($method === "DELETE") {
-
-						//enforce that the XSRF token is present in the header
-						verifyXsrf();
-
-						//enforce the end user has a JWT token
-						//validateJwtHeader();
-
-						$profile = Profile::getProfileByProfileId($pdo, $id);
-						if($profile === null) {
-								throw(new RuntimeException("Profile does not exist", 404));
-						}
-
-						//enforce the user is signed in and only trying to edit their own profile
-						if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $profile->getProfileId()->toString()) {
-								throw(new \InvalidArgumentException("You are not allowed to access this profile", 403));
-						}
-
-						validateJwtHeader();
-
-						//delete the post from the database
-						$profile->delete($pdo);
-						$reply->message = "Profile Deleted";
+//			} elseif($method === "DELETE") {
+//
+//						//enforce that the XSRF token is present in the header
+//						verifyXsrf();
+//
+//						//enforce the end user has a JWT token
+//						//validateJwtHeader();
+//
+//						$profile = Profile::getProfileByProfileId($pdo, $id);
+//						if($profile === null) {
+//								throw(new RuntimeException("Profile does not exist", 404));
+//						}
+//
+//						//enforce the user is signed in and only trying to edit their own profile
+//						if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $profile->getProfileId()->toString()) {
+//								throw(new \InvalidArgumentException("You are not allowed to access this profile", 403));
+//						}
+//
+//						validateJwtHeader();
+//
+//						//delete the post from the database
+//						$profile->delete($pdo);
+//						$reply->message = "Profile Deleted";
 			} else {
 						throw(new InvalidArgumentException("Invalid HTTP request", 400));
 			}
