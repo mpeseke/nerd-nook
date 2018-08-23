@@ -99,6 +99,10 @@ try {
 				throw(new RuntimeException("Event does not exist.", 404));
 			}
 
+
+			//enforce the end user has a jwt token
+			validateJwtHeader();
+
 			//enforce the user is signed in and only trying to edit their own event
 			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $event->getEventProfileId()->toString()) {
 				throw(new \InvalidArgumentException("You are not allowed to edit this event. Make your own and edit that! Oh, and have a nice day.", 403));
