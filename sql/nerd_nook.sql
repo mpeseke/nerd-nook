@@ -66,8 +66,12 @@ CREATE TABLE checkIn (
 	INDEX(checkInEventId),
 	INDEX(checkInProfileId),
 
+	-- creation of foreign keys--
 	FOREIGN KEY (checkInEventId) REFERENCES event(eventId),
-	FOREIGN KEY (checkInProfileId) REFERENCES profile (profileId)
+	FOREIGN KEY (checkInProfileId) REFERENCES profile (profileId),
+
+	-- creation of primary key --
+	PRIMARY KEY (checkInEventId, checkInProfileId)
 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 
 -- creates the comment table --
