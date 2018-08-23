@@ -81,15 +81,8 @@ try {
 //		}
 
 		//make sure the event Date is accurate
-		if(empty($requestObject->eventDateTime) === true) {
-			$requestObject->eventDateTime = null;
-		} else {
-			//if the date exists, Angular's milliseconds since the beginning of time MUST be converted, yo.
-			$eventDateTime = DateTime::createFromFormat("U.u", $requestObject->eventDateTime / 1000);
-			if($eventDateTime === false) {
-				throw(new RuntimeException("Invalid Event Date/Time", 400));
-			}
-			$requestObject->eventDateTime = $eventDateTime;
+		if(empty($requestObject->eventEndDateTime) === true && empty($requestObject->eventStartDateTime) === true)  {
+			throw (new \InvalidArgumentException("Invalid Event Date/Time."));
 		}
 
 //		//make sure eventId exists
