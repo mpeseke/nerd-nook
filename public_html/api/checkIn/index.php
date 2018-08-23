@@ -37,8 +37,8 @@ try {
 	$method = $_SERVER["HTTP_X_HTTP_METHOD"] ?? $_SERVER["REQUEST_METHOD"];
 
 	//sanitize parameters
-	$checkInEventId = $id = filter_input(INPUT_GET, "checkInEventId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-	$checkInProfileId = $id = filter_input(INPUT_GET, "checkInProfileId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	$id = filter_input(INPUT_GET, "id", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+	$checkInProfileId =  filter_input(INPUT_GET, "checkInProfileId", FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
 //make sure the id is valid for methods that require it
 	if($method === "GET") {
 		//Set XRSF cookie
@@ -96,11 +96,10 @@ try {
 			 //enforce the user has a XSRF token
 			verifyXsrf();
 
-			//enforce they have a JWT token
-			validateJwtHeader();
+
 
 			//grab the checkIn by it's composite key.
-			$checkIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($pdo, $requestObject->checkInEventId, $requestObject->checkInProfileId);
+			$checkIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($pdo, $id, $_SESSION["profile"]);
 			if($checkIn === null){
 				throw (new RuntimeException("Check in doesn't exist"));
 			}
@@ -110,7 +109,11 @@ try {
 				throw(new \InvalidArgumentException("You must be logged in to check in ", 403));
 			}
 
+			//enforce they have a JWT token
+			validateJwtHeader();
+
 			//perform the actual checkIn
+			$checkIn->setCheckInRep($requestObject->checkInRep);
 			$checkIn->update($pdo);
 
 			//update the message
