@@ -92,7 +92,7 @@ try {
 		$checkIn->insert($pdo);
 		$reply->message = "Thank you for RSVP'ing! We look forward to seeing you there!";
 		//if any other HTTP request is sent throw an exception
-		} else if($method === "PUT"){
+		} else if($method === "PUT") {
 			 //enforce the user has a XSRF token
 			verifyXsrf();
 
