@@ -97,6 +97,11 @@ try {
 			$requestObject->commentDateTime = $commentDateTime;
 		}
 
+		// make sure event ID is available
+		if(empty($requestObject->commentEventId) === true) {
+			throw(new \InvalidArgumentException("No Event ID", 405));
+		}
+
 		// perform the actual put or post
 		if($method === "PUT") {
 
