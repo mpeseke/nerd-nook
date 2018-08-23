@@ -137,7 +137,7 @@ try {
 			}
 
 			//create new comment and insert into the database
-			$comment = new Comment(generateUuidV4(), $requestObject->commentEventId, $requestObject->commentProfileId, $requestObject->commentContent, null);
+			$comment = new Comment(generateUuidV4(), $requestObject->commentEventId, $_SESSION["profile"]->getProfileId(),$requestObject->commentContent, null);
 			$comment->insert($pdo);
 
 			//update reply
