@@ -97,15 +97,15 @@ try {
 			$requestObject->commentDateTime = $commentDateTime;
 		}
 
-		// make sure event ID is available
-		if(empty($requestObject->commentEventId) === true) {
-			throw(new \InvalidArgumentException("No Event ID", 405));
-		}
-
-//		//make sure the profile ID is available
-		if(empty($requestObject->commentProfileId) === true) {
-			throw (new \InvalidArgumentException("No Profile ID", 405));
-		}
+//		// make sure event ID is available
+//		if(empty($requestObject->commentEventId) === true) {
+//			throw(new \InvalidArgumentException("No Event ID", 405));
+//		}
+//
+////		//make sure the profile ID is available
+//		if(empty($requestObject->commentProfileId) === true) {
+//			throw (new \InvalidArgumentException("No Profile ID", 405));
+//		}
 
 		// perform the actual put or post
 		if($method === "PUT") {
