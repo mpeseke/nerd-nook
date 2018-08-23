@@ -75,10 +75,10 @@ try {
 			throw(new \InvalidArgumentException("Not a valid event Category Id ", 405));
 		}
 
-		//make sure the event Profile Id exists
-		if(empty($requestObject->eventProfileId) === true) {
-			throw(new \InvalidArgumentException("Not a valid profile Id", 405));
-		}
+//		//make sure the event Profile Id exists
+//		if(empty($requestObject->eventProfileId) === true) {
+//			throw(new \InvalidArgumentException("Not a valid profile Id", 405));
+//		}
 
 		//make sure the event Date is accurate
 		if(empty($requestObject->eventDateTime) === true) {
@@ -92,10 +92,10 @@ try {
 			$requestObject->eventDateTime = $eventDateTime;
 		}
 
-		//make sure eventId exists
-		if(empty($requestObject->eventId) === true) {
-			throw(new \InvalidArgumentException("This Event does not exist.", 405));
-		}
+//		//make sure eventId exists
+//		if(empty($requestObject->eventId) === true) {
+//			throw(new \InvalidArgumentException("This Event does not exist.", 405));
+//		}
 
 		//perform the PUT or POST
 		if($method === "PUT") {
