@@ -123,7 +123,7 @@ try {
 
 			//create new event and insert into the database
 			$event = new Event(generateUuidV4(), $requestObject->eventCategoryId,
-				$requestObject->eventProfileId, $requestObject->eventDetails, $requestObject->eventEndDateTime,
+				$_SESSION["profile"]->getProfileId(), $requestObject->eventDetails, $requestObject->eventEndDateTime,
 				$requestObject->eventLat, $requestObject->eventLong, $requestObject->eventStartDateTime);
 
 			$event->insert($pdo);
