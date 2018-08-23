@@ -89,7 +89,7 @@ try {
 		if(empty($requestObject->commentDateTime) === true) {
 			$requestObject->commentDateTime = null;
 		} else {
-			// if the date exists, Angulars milliseconds since the beginning of time MUST be converted
+			// if the date exists, Angular milliseconds since the beginning of time MUST be converted
 			$commentDateTime = DateTime::createFromFormat("U.u", $requestObject->commentDateTime / 1000);
 			if($commentDateTime === false) {
 				throw (new RuntimeException("Invalid Comment Date", 400));

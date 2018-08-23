@@ -61,7 +61,7 @@ try {
 			throw new \InvalidArgumentException("Incorrect search parameters ", 404);
 		}
 
-	} else if($method === "POST") {
+	} else if($method === "POST" || $method === "PUT") {
 
 		//decode the response from the front end
 		$requestContent = file_get_contents("php://input");
@@ -76,6 +76,7 @@ try {
 			$requestObject->checkInRep = is_integer(20);
 		}
 
+		if($method === "POST"){
 		//enforce that the end user has a XSRF token
 		verifyXsrf();
 
@@ -90,6 +91,32 @@ try {
 		$checkIn = new CheckIn($requestObject->checkInEventId,$_SESSION["profile"]->getProfileId(),$requestObject->checkInDateTime, $requestObject->checkInRep);
 		$checkIn->insert($pdo);
 		$reply->message = "Check In Successful!";
+		//if any other HTTP request is sent throw an exception
+		} else if($method === "PUT"){
+			 //enforce the user has a XSRF token
+			verifyXsrf();
+
+			//enforce they have a JWT token
+			validateJwtHeader();
+
+			//grab the checkIn by it's composite key.
+			$checkIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($pdo, $requestObject->checkInEventId, $requestObject->checkInProfileId);
+			if($checkIn === null){
+				throw (new RuntimeException("Check in doesn't exist"));
+			}
+
+			//enforce that the user is singed in and only trying to edit their own checkIn
+			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId() !== $checkIn->getCheckInProfileId()) {
+				throw(new \InvalidArgumentException("You must be logged in to check in ", 403));
+			}
+
+			//perform the actual checkIn
+			$checkIn->update($pdo);
+
+			//update the message
+			$reply->message = "You Checked in! ";
+
+		}
 		//if any other HTTP request is sent throw an exception
 	} else {
 	throw new \InvalidArgumentException("Invalid HTTP request", 400);

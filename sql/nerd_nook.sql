@@ -60,8 +60,8 @@ CREATE TABLE checkIn (
 	checkInProfileId BINARY(16) NOT NULL,
 	checkInDateTime DATETIME(6),
 	checkInRep TINYINT UNSIGNED,
-
-
+	-- unique index to avoid duplicates
+	UNIQUE(checkInProfileId),
 	-- creating Indices --
 	INDEX(checkInEventId),
 	INDEX(checkInProfileId),
