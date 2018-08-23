@@ -67,13 +67,6 @@ try {
 		$requestContent = file_get_contents("php://input");
 		$requestObject = json_decode($requestContent);
 
-		if(empty($requestObject->checkInEventId) === true) {
-			throw (new \InvalidArgumentException("No Event linked to the CheckIn", 405));
-		}
-
-		if(empty($requestObject->checkInProfileId) === true) {
-			throw (new \InvalidArgumentException("No Profile linked to the CheckIn", 405));
-		}
 
 		if(empty($requestObject->checkInDateTime) === true) {
 			$requestObject->checkInDateTime = date("y-m-d H:i:s");
@@ -86,6 +79,11 @@ try {
 		//enforce that the end user has a XSRF token
 		verifyXsrf();
 
+
+		//enforce that the user is signed in
+		if(empty($_SESSION["profile"]) === true) {
+			throw(new \InvalidArgumentException("You must be logged in to Check In", 403));
+		}
 
 		validateJwtHeader();
 
