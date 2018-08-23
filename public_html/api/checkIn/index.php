@@ -90,7 +90,7 @@ try {
 
 		$checkIn = new CheckIn($requestObject->checkInEventId,$_SESSION["profile"]->getProfileId(),$requestObject->checkInDateTime, $requestObject->checkInRep);
 		$checkIn->insert($pdo);
-		$reply->message = "Check In Successful!";
+		$reply->message = "Thank you for RSVP'ing! We look forward to seeing you there!";
 		//if any other HTTP request is sent throw an exception
 		} else if($method === "PUT"){
 			 //enforce the user has a XSRF token
