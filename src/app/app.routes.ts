@@ -8,9 +8,9 @@ import {APP_BASE_HREF} from "@angular/common";
 
 //import all components
 import {SplashComponent} from "./components/splash.component";
-import {EventAttendaceComponent} from "./components/event.attendance.component";
-import {EditEvent} from "./components/edit.event.component";
-import {EditProfile} from "./components/edit.profile.component";
+import {CreateEventComponent} from "./components/create.event.component";
+import {EditEventComponent} from "./components/edit.event.component";
+import {EditProfileComponent} from "./components/edit.profile.component";
 import {EditCommentComponent} from "./components/edit.comment.component"
 import {HomeComponent} from "./components/home.component";
 import {LandingPageComponent} from "./components/landing.page.component";
@@ -20,22 +20,35 @@ import {EventComponent} from "./components/event.component";
 import {ProfileComponent} from "./components/profile.component";
 import {CommentComponent} from "./components/comment.component";
 import {CategoryComponent} from "./components/category.component";
-import {CheckInCategory} from "./components/";
-import {EditCheckInComponent} from "./components/";
-import {SignInComponent} from "./components/";
-import {SignUpComponent} from "./components/";
-import {SignOutComponent} from "./components/"
-import {FileSelectDirective} from "./components/"
-import {SearchUsersComponent} from "./components/"
+import {CheckInComponent} from "./components/check.in.component";
+import {EditCheckInComponent} from "./components/edit.check.in.component";
+import {SignInComponent} from "./components/sign.in.component";
+import {SignUpComponent} from "./components/sign.up.component";
+import {SignOutComponent} from "./components/sign.out.component";
+import {FileSelectDirective} from "ng-file-upload";
+import {SearchUsersComponent} from "./components/search.users.component";
 
 
-
+//import all services
+import {AuthService} from "./services/auth.service";
+import {AuthGaurdService} from "./services/auth.gaurd.service"
+import {CookieService} from "ng2-cookies";
+import{JwtHelperService} from"@auth0/angular-jwt";
+import {EventService} from "./services/event.service";
+import {ProfileService} from "./services/profile.service";
+import {CategoryService} from "./services/category.service";
+import {CommentService} from "./services/comment.service";
+import {CheckInService} from "./services/check.in.service";
+import {SignInService} from "./service/sign.in.service";
+import {SignUpService} from "./services/sign.up.service";
+import {SignOutService} from "./services/sign.out.service";
+import {SessionService} from "./services/session.services";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
 
 
 //an array of the components that will be passed off the the module
 export const allAppComponents = [
 	SplashComponent,
-	EventAttendanceComponent,
 	CreateEventComponent,
 	EditEventComponent,
 	EditProfileComponent,
@@ -58,12 +71,25 @@ export const allAppComponents = [
 ];
 
 export const routes: Routes = [
-	{path: "", component: SplashComponent}
+	{path: "", component: LandingPageComponent},
+	{path: "home", component: HomeComponent},
+	{path: "sign-out", component: SignOutComponent},
+	{path: "edit-event", component: EditEventComponent, canActivate:[AuthGaurd]},
+	{path: "search-users", component: SearchUsersComponent},
+	{path: "event/:eventId", component: EventComponent},
+	{path: "profile/:id", component: ProfileComponent},
+	{path: "comment/:commentId", component: CommentComponent},
 ];
 
-export const appRoutingProviders: any[] = [
+// an array of services that will be passed off to the module
+const services : any[] = [AuthService,CookieService,JwtHelperService,EventService,ProfileService,CommentService,CheckInService,CategoryService,SessionService,SignInService,SignUpService,SignOutService,AuthGaurdService];
+
+//an array of misc provider
+export const providers: any[] = [
 	{provide: APP_BASE_HREF, useValue: window["_base_href"]},
-	UserService
+	{provide: HTTP_INTERCEPTORS, useClass: DeepDiveInterceptor, multi: true},
 ];
+
+export const appRoutingProviders: any[] = [providers, services];
 
 export const routing = RouterModule.forRoot(routes);
