@@ -1,7 +1,7 @@
 
 import {Component, OnInit} from "@angular/core";
-import {User} from "../interfaces/user";
-import {UserService} from "../services/user.service";
+import {User} from "../shared/interfaces/user";
+import {UserService} from "../shared/services/user.service";
 
 @Component({
 	templateUrl: "./templates/splash.html"

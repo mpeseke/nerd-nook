@@ -3,7 +3,7 @@ import {RouterModule, Routes} from "@angular/router";
 
 //import all needed Interceptors
 import {SplashComponent} from "./components/splash.component";
-import {UserService} from "./services/user.service";
+import {UserService} from "./shared/services/user.service";
 import {APP_BASE_HREF} from "@angular/common";
 
 //import all components
@@ -30,19 +30,19 @@ import {SearchUsersComponent} from "./components/search.users.component";
 
 
 //import all services
-import {AuthService} from "./services/auth.service";
-import {AuthGaurdService} from "./services/auth.gaurd.service"
+import {AuthService} from "./shared/services/auth.service";
+import {AuthGaurdService} from "./shared/services/auth.gaurd.service"
 import {CookieService} from "ng2-cookies";
 import{JwtHelperService} from"@auth0/angular-jwt";
-import {EventService} from "./services/event.service";
-import {ProfileService} from "./services/profile.service";
-import {CategoryService} from "./services/category.service";
-import {CommentService} from "./services/comment.service";
-import {CheckInService} from "./services/check.in.service";
+import {EventService} from "./shared/services/event.service";
+import {ProfileService} from "./shared/services/profile.service";
+import {CategoryService} from "./shared/services/category.service";
+import {CommentService} from "./shared/services/comment.service";
+import {CheckInService} from "./shared/services/check.in.service";
 import {SignInService} from "./service/sign.in.service";
-import {SignUpService} from "./services/sign.up.service";
-import {SignOutService} from "./services/sign.out.service";
-import {SessionService} from "./services/session.services";
+import {SignUpService} from "./shared/services/sign.up.service";
+import {SignOutService} from "./shared/services/sign.out.service";
+import {SessionService} from "./shared/services/session.services";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 
 
