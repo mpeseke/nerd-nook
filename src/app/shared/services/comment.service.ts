@@ -6,7 +6,7 @@ import {Observable} from "rxjs/internal/Observable";
 import {HttpClient} from "@angular/common/http";
 import {Event} from "../interfaces/event";
 
-@injectable ()
+@Injectable ()
 export class CommentService {
 
 	constructor(protected http : HttpClient ) {}
