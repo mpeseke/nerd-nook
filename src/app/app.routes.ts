@@ -71,7 +71,7 @@ export const allAppComponents = [
 ];
 
 export const routes: Routes = [
-	{path: " ", component: LandingPageComponent},
+	{path: "", component: LandingPageComponent},
 	{path: "home", component: HomeComponent},
 	{path: "sign-out", component: SignOutComponent},
 	{path: "edit-event", component: EditEventComponent, canActivate:[AuthGaurd]},
