@@ -4,7 +4,6 @@ import{Status} from "../interfaces/status";
 import {Comment} from "../interfaces/comment"
 import {Observable} from "rxjs/internal/Observable";
 import {HttpClient} from "@angular/common/http";
-import {Event} from "../interfaces/event";
 
 @Injectable ()
 export class CommentService {
@@ -30,12 +29,12 @@ export class CommentService {
 
 	// call to the comment API anf get a comment based on its ID
 	createComment(comment : Comment) : Observable<Status> {
-		return(this.http.post<Status>(this.commentUrl, event));
+		return(this.http.post<Status>(this.commentUrl, comment));
 	}
 
 	// call to the comment API anf get a comment based on its ID
-	getComment(commentId : number) : Observable<Event> {
-		return(this.http.get<Event>(this.commentUrl + commentId));
+	getComment(commentId : number) : Observable<Comment> {
+		return(this.http.get<Comment>(this.commentUrl + commentId));
 	}
 
 	// call to the API and get an array of comments based off the event id
