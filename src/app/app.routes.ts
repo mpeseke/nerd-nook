@@ -3,7 +3,6 @@ import {RouterModule, Routes} from "@angular/router";
 import {AuthGuardService as AuthGuard} from "./shared/services/auth.guard.service";
 
 //import all needed Interceptors
-//import {UserService} from "./shared/services/user.service";
 import {APP_BASE_HREF} from "@angular/common";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {DeepDiveInterceptor} from "./shared/services/deep.dive.interceptor";
