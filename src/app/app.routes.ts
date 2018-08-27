@@ -31,7 +31,7 @@ import {SearchUsersComponent} from "./components/search.users.component";
 
 //import all services
 import {AuthService} from "./shared/services/auth.service";
-import {AuthGaurdService} from "./shared/services/auth.gaurd.service"
+import {AuthGuardService} from "./shared/services/auth.guard.service";
 import {CookieService} from "ng2-cookies";
 import{JwtHelperService} from"@auth0/angular-jwt";
 import {EventService} from "./shared/services/event.service";
@@ -39,11 +39,12 @@ import {ProfileService} from "./shared/services/profile.service";
 import {CategoryService} from "./shared/services/category.service";
 import {CommentService} from "./shared/services/comment.service";
 import {CheckInService} from "./shared/services/check.in.service";
-import {SignInService} from "./service/sign.in.service";
+import {SignInService} from "./shared/services/sign.in.service";
 import {SignUpService} from "./shared/services/sign.up.service";
 import {SignOutService} from "./shared/services/sign.out.service";
-import {SessionService} from "./shared/services/session.services";
+import {SessionService} from "./shared/services/session.service";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {DeepDiveInterceptor} from "./shared/services/deep.dive.interceptor";
 
 
 //an array of the components that will be passed off the the module
@@ -74,7 +75,7 @@ export const routes: Routes = [
 	{path: "", component: LandingPageComponent},
 	{path: "home", component: HomeComponent},
 	{path: "sign-out", component: SignOutComponent},
-	{path: "edit-event", component: EditEventComponent, canActivate:[AuthGaurd]},
+	{path: "edit-event", component: EditEventComponent, canActivate:[AuthService]},
 	{path: "search-users", component: SearchUsersComponent},
 	{path: "event/:eventId", component: EventComponent},
 	{path: "profile/:id", component: ProfileComponent},
@@ -82,7 +83,7 @@ export const routes: Routes = [
 ];
 
 // an array of services that will be passed off to the module
-const services : any[] = [AuthService,CookieService,JwtHelperService,EventService,ProfileService,CommentService,CheckInService,CategoryService,SessionService,SignInService,SignUpService,SignOutService,AuthGaurdService];
+const services : any[] = [AuthService,CookieService,JwtHelperService,EventService,ProfileService,CommentService,CheckInService,CategoryService,SessionService,SignInService,SignUpService,SignOutService,AuthGuardService];
 
 //an array of misc provider
 export const providers: any[] = [
