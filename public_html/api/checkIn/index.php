@@ -91,15 +91,13 @@ try {
 		$checkIn = new CheckIn($requestObject->checkInEventId,$_SESSION["profile"]->getProfileId(),$requestObject->checkInDateTime, $requestObject->checkInRep);
 		$checkIn->insert($pdo);
 		$reply->message = "Thank you for RSVP'ing! We look forward to seeing you there!";
-		//if any other HTTP request is sent throw an exception
+
 		} else if($method === "PUT") {
 			 //enforce the user has a XSRF token
 			verifyXsrf();
 
-
-
 			//grab the checkIn by it's composite key.
-			$checkIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($pdo, $id, $_SESSION["profile"]);
+			$checkIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($pdo, $requestObject->checkInEventId, $requestObject->checkInProfileId);
 			if($checkIn === null){
 				throw (new RuntimeException("Check in doesn't exist"));
 			}

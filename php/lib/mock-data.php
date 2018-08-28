@@ -1,5 +1,5 @@
 <?php
-use NerdCore\NerdNook\{Event, Profile};
+use NerdCore\NerdNook\{Category};
 
 
 //grab the class we want to take a look at
@@ -13,16 +13,16 @@ require_once("uuid.php");
 $pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/nerdnook.ini");
 
 
-//$category = new Category(generateUuidV4(), "Mario Kart", "Video Games");
-//$category->insert($pdo);
-//echo "first category";
+$category = new Category(generateUuidV4(), "Mario Kart", "Video Games");
+$category->insert($pdo);
+echo "first category";
 
-
+//
 //$category2 = new Category(generateUuidV4(), "Dungeons and Dragons", "Table Games");
 //$category2->insert($pdo);
 //echo "second category";
-
-
+//
+//
 //$category3 = new Category(generateUuidV4(), "Harry Potter", "Books");
 //$category3->insert($pdo);
 //echo "third category";
@@ -33,11 +33,11 @@ $pdo = connectToEncryptedMySQL("/etc/apache2/capstone-mysql/nerdnook.ini");
 //echo"first event";
 
 //$categoryId2 = generateUuidV4();
-$eventId = generateUuidV4();
-//$profile2 = generateUuidV4();
-$event = new Event($eventId, "4d383a61-e7b1-492e-9794-e2ef37022f08", $profile->getProfileId, "Check out those deets","2018-08-21 07:00:00.0",35.085859,-106.649434,"2018-08-21 09:00:00.0");
-$event->insert($pdo);
-echo"second event";
+//$eventId = generateUuidV4();
+////$profile2 = generateUuidV4();
+//$event = new Event($eventId, "4d383a61-e7b1-492e-9794-e2ef37022f08", $profile->getProfileId, "Check out those deets","2018-08-21 07:00:00.0",35.085859,-106.649434,"2018-08-21 09:00:00.0");
+//$event->insert($pdo);
+//echo"second event";
 
 /*
 $commentId = generateUuidV4();
