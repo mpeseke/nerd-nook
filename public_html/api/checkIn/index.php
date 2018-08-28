@@ -103,7 +103,7 @@ try {
 			}
 
 			//enforce that the user is singed in and only trying to edit their own checkIn
-			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId() !== $checkIn->getCheckInProfileId()) {
+			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $checkIn->getCheckInProfileId()->toString()) {
 				throw(new \InvalidArgumentException("You must be logged in to check in ", 403));
 			}
 
