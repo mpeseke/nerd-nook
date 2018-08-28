@@ -31,7 +31,7 @@ export class ProfileService {
 	}
 
 	//call to the profile API to grab an array of profiles based on user input
-	getProfileByProfileAtHandle(profileAtHandle: string) :Observable<Profile[]> {
+	getProfileByProfileAtHandle(profileAtHandle: string) : Observable<Profile[]> {
 		return(this.http.get<Profile[]>(this.profileUrl + "?profileAtHandle=" + profileAtHandle));
 	}
 

@@ -3,7 +3,7 @@ import {Injectable} from "@angular/core";
 import {Event} from "../interfaces/event";
 import {Status} from "../interfaces/status";
 import {Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 @Injectable()
 export class EventService {
@@ -35,19 +35,19 @@ export class EventService {
 
 	//call to the Event API to grab an array of events based on their Category Id
 
-	getEventbyCategoryId(eventCategoryId : number) : Observable<Event[]> {
-		return(this.http.get<Event[]>(this.eventUrl + eventCategoryId));
+	getEventbyCategoryId(eventCategoryId : string) : Observable<Event[]> {
+		return(this.http.get<Event[]>(this.eventUrl,{params: new HttpParams().set("eventCategoryId", eventCategoryId)}));
 	}
 
 	//call to event API and get an array of events based on their Profile Id
 
-	getEventbyProfileId(eventProfileId : number) : Observable<Event[]> {
-		return(this.http.get<Event[]>(this.eventUrl + eventProfileId));
+	getEventbyProfileId(eventProfileId : string) : Observable<Event[]> {
+		return(this.http.get<Event[]>(this.eventUrl, {params: new HttpParams().set("eventProfileId", eventProfileId)}));
 	}
 
 	//call to the API to get an array of events within a specific date range
 
-	getEventbyDates(eventEndDateTime, eventStartDateTime: number) : Observable<Event[]> {
-		return(this.http.get<Event[]>(this.eventUrl + eventEndDateTime + eventStartDateTime));
+	getEventbyDates() : Observable<Event[]> {
+		return(this.http.get<Event[]>(this.eventUrl));
 	}
 }
