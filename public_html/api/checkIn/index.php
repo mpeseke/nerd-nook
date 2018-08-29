@@ -14,13 +14,13 @@ use NerdCore\NerdNook\{
 };
 
 /**
- * api for the checkIn class
+ * api for the CheckIn class
  *
  * @author Caleb Heckendorn
  **/
 
 //verify the session start if not active
-if (session_status() !== PHP_SESSION_ACTIVE){
+if (session_status() !== PHP_SESSION_ACTIVE) {
 	session_start();
 }
 
@@ -67,7 +67,12 @@ try {
 		$requestContent = file_get_contents("php://input");
 		$requestObject = json_decode($requestContent);
 
-
+		if(empty($requestObject->checkInEventId) === true){
+			throw (new \InvalidArgumentException("No Event tied to this Check In", 405));
+		}
+		if(empty($requestObject->checkInProfileId) === true){
+			throw (new \InvalidArgumentException("No Profile tied to this Check In", 405));
+		}
 		if(empty($requestObject->checkInDateTime) === true) {
 			$requestObject->checkInDateTime = date("y-m-d H:i:s");
 		}
@@ -83,7 +88,7 @@ try {
 
 		//enforce that the user is signed in
 		if(empty($_SESSION["profile"]) === true) {
-			throw(new \InvalidArgumentException("You must be logged in to Check In", 403));
+			throw(new \InvalidArgumentException("You must be logged in to Check In to an Event", 403));
 		}
 
 		validateJwtHeader();
@@ -96,6 +101,9 @@ try {
 			 //enforce the user has a XSRF token
 			verifyXsrf();
 
+			//enforce that the user has a JWT token
+			validateJwtHeader();
+
 			//grab the checkIn by it's composite key.
 			$checkIn = CheckIn::getCheckInByCheckInEventIdAndCheckInProfileId($pdo, $requestObject->checkInEventId, $requestObject->checkInProfileId);
 			if($checkIn === null){
@@ -107,8 +115,7 @@ try {
 				throw(new \InvalidArgumentException("You must be logged in to check in ", 403));
 			}
 
-			//enforce they have a JWT token
-			validateJwtHeader();
+
 
 			//perform the actual checkIn
 			$checkIn->setCheckInRep($requestObject->checkInRep);
