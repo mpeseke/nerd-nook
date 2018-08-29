@@ -115,8 +115,6 @@ try {
 				throw(new \InvalidArgumentException("You must be logged in to check in ", 403));
 			}
 
-
-
 			//perform the actual checkIn
 			$checkIn->setCheckInRep($requestObject->checkInRep);
 			$checkIn->update($pdo);
