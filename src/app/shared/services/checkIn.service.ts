@@ -15,12 +15,6 @@ export class CheckInService {
 	private eventUrl = "api/event/";
 
 
-<<<<<<< Updated upstream
-	constructor(protected http : HttpClient) {}
-
-	//define the API end point
-	private checkInUrl = "api/checkIn/";
-
 	//call to the checkIn API to create a checkIn
 	createCheckIn(checkIn : CheckIn) : Observable<Status> {
 		return (this.http.post<Status>(this.checkInUrl + checkIn.checkInEventId + checkIn.checkInProfileId, checkIn));
@@ -30,6 +24,4 @@ export class CheckInService {
 	editCheckIn(checkIn : CheckIn) : Observable<Status> {
 		return(this.http.put<Status>(this.checkInUrl + checkIn.checkInEventId + checkIn.checkInProfileId, checkIn));
 	}
-=======
->>>>>>> Stashed changes
 }
