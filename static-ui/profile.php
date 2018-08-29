@@ -22,14 +22,21 @@
 		</head>
 	<body>
 				<!-- start of page, header/navbar -->
-				<nav class="nav nav-pills nav-fill sticky-top navbar-dark bg-dark">
-					<a class="nav-item nav-link" href="#">Home</a>
-					<a class="nav-item nav-link" href="#">Categories</a>
-					<a class="nav-item nav-link" href="#">Events</a>
-					<a class="nav-item nav-link" href="#">Sign Out</a>
-				</nav>
+				<header>
+						<nav class="nav nav-pills nav-fill sticky-top navbar-dark bg-dark">
+							<a class="nav-item nav-link" href="#">Home</a>
+							<a class="nav-item nav-link" href="#">Categories</a>
+							<a class="nav-item nav-link" href="#">Events</a>
+							<a class="nav-item nav-link" href="#">Sign Out</a>
+						</nav>
+				</header>
+
+				<div>
 
 
+
+
+				</div>
 
 
 
