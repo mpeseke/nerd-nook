@@ -31,14 +31,18 @@
 						</nav>
 				</header>
 
-				<div>
-
-
-
-
+				<div class="container-fluid text-center bg-dark text-white" id="profile">
+					<h1>First Name Last Name</h1>
+					<br>
+					<h2>@Handle</h2>
 				</div>
 
-
-
+				<footer>
+					<div class="container-fluid text-center text-white" id="footer">
+						<span>Rep:</span>
+						<span>Comments:</span>
+						<span>Events:</span>
+					</div>
+				</footer>
 	</body>
 </html>
