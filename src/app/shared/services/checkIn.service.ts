@@ -12,7 +12,7 @@ export class CheckInService {
 
 	//define the API endpoint
 
-	private eventUrl = "api/event/";
+	private checkInUrl = "api/checkIn/";
 
 
 	//call to the checkIn API to create a checkIn
