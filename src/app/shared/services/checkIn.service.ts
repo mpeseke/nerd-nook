@@ -6,8 +6,16 @@ import {Observable} from "rxjs/internal/Observable";
 import {HttpClient} from "@angular/common/http";
 
 @Injectable()
-export class CheckInService{
+export class CheckInService {
 
+	constructor(protected http : HttpClient) {}
+
+	//define the API endpoint
+
+	private eventUrl = "api/event/";
+
+
+<<<<<<< Updated upstream
 	constructor(protected http : HttpClient) {}
 
 	//define the API end point
@@ -22,4 +30,6 @@ export class CheckInService{
 	editCheckIn(checkIn : CheckIn) : Observable<Status> {
 		return(this.http.put<Status>(this.checkInUrl + checkIn.checkInEventId + checkIn.checkInProfileId, checkIn));
 	}
+=======
+>>>>>>> Stashed changes
 }
