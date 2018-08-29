@@ -3,9 +3,8 @@ import {Injectable} from "@angular/core";
 import{Status} from "../interfaces/status";
 import {Comment} from "../interfaces/comment"
 import {Observable} from "rxjs/internal/Observable";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Event} from "../interfaces/event";
-import {HttpParams} from "../../../../node_modules/@angular/common/http";
 
 @Injectable ()
 export class CommentService {

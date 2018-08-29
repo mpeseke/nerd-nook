@@ -8,5 +8,18 @@ import {HttpClient} from "@angular/common/http";
 @Injectable()
 export class CheckInService{
 
-	constructor(protected http : HttpClient)
+	constructor(protected http : HttpClient) {}
+
+	//define the API end point
+	private checkInUrl = "api/checkIn/";
+
+	//call to the checkIn API to create a checkIn
+	createCheckIn(checkIn : CheckIn) : Observable<Status> {
+		return (this.http.post<Status>(this.checkInUrl + checkIn.checkInEventId + checkIn.checkInProfileId, checkIn));
+	}
+
+	//call to the event
+	editCheckIn(checkIn : CheckIn) : Observable<Status> {
+		return(this.http.put<Status>(this.checkInUrl + checkIn.checkInEventId + checkIn.checkInProfileId, checkIn));
+	}
 }
