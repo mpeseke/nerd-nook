@@ -39,7 +39,7 @@ import {EventService} from "./shared/services/event.service";
 import {ProfileService} from "./shared/services/profile.service";
 import {CategoryService} from "./shared/services/category.service";
 import {CommentService} from "./shared/services/comment.service";
-import {CheckInService} from "./shared/services/check.in.service";
+import {CheckInService} from "./shared/services/checkIn.service";
 import {SignInService} from "./shared/services/sign.in.service";
 import {SignUpService} from "./shared/services/sign.up.service";
 import {SignOutService} from "./shared/services/sign.out.service";
