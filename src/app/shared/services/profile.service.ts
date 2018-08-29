@@ -32,11 +32,11 @@ export class ProfileService {
 
 	//call to the profile API to grab an array of profiles based on user input
 	getProfileByProfileAtHandle(profileAtHandle: string) : Observable<Profile[]> {
-		return(this.http.get<Profile[]>(this.profileUrl, {params: new HttpParams().set("?profileAtHandle=", profileAtHandle)}));
+		return(this.http.get<Profile[]>(this.profileUrl, {params: new HttpParams().set("profileAtHandle", profileAtHandle)}));
 	}
 
 	//call to the profile API to grab corresponding profile by its email
 	getProfileByProfileEmail(profileEmail: string) :Observable<Profile[]> {
-		return(this.http.get<Profile[]>(this.profileUrl, {params: new HttpParams().set( "?profileEmail=", profileEmail)}));
+		return(this.http.get<Profile[]>(this.profileUrl, {params: new HttpParams().set( "profileEmail", profileEmail)}));
 	}
 }
