@@ -23,12 +23,25 @@
 	<body>
 				<!-- start of page, header/navbar -->
 				<header>
-						<nav class="nav nav-pills nav-fill sticky-top navbar-dark bg-dark">
-							<a class="nav-item nav-link" href="#">Home</a>
-							<a class="nav-item nav-link" href="#">Categories</a>
-							<a class="nav-item nav-link" href="#">Events</a>
-							<a class="nav-item nav-link" href="#">Sign Out</a>
-						</nav>
+					<nav class="nav navbar-expand-md sticky-top navbar-dark bg-dark p-2">
+						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="nerdNav">
+							<span class="navbar-toggler-icon"><i class="fas fa-glasses"></i></span>
+						</button>
+						<ul class="navbar-nav">
+							<li class="nav-item active">
+								<a class="nav-link text-light" href="#"><i class="fas fa-home pr-2"></i>Home</a>
+							</li>
+							<li class="nav-item active">
+								<a class="nav-link text-light" href="#"><i class="fas fa-journal-whills fa-fw pr-2"></i>Categories</a>
+							</li>
+							<li class="nav-item active">
+								<a class="nav-link text-light" href="#"><i class="fas fa-calendar-check fa-fw pr-2"></i>Events</a>
+							</li>
+							<li class="nav-item active">
+								<a class="nav-link text-light" href="#"><i class="fas fa-sign-out-alt fa-fw pr-2"></i>Sign Out</a>
+							</li>
+						</ul>
+					</nav>
 				</header>
 
 				<div class="container-fluid text-center bg-dark text-white" id="profile">
