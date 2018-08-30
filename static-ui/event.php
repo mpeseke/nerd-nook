@@ -2,6 +2,7 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8">
+		<meta name="viewport" content="width = device-width, initial-scale = 1, shrink-to-fit = no"/>
 
 		<!-- Bootstrap -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -65,10 +66,11 @@
 			<div class="container">
 				<h1 class="display-4">Events</h1>
 				<p class="lead"><strong>Nerd Herd</strong>, <em>noun</em>,<br/>
-				A large group of nerd of either one or multiple kinds, who are mutually friends.</p>
+				A large group of nerds of either one or multiple kinds, who are mutually friends.</p>
 			</div>
-
 		</div>
+
+
 
 
 	</body>
