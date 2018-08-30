@@ -22,14 +22,6 @@
 					width: 100%;
 				}
 			}
-			/*.navbar-nav {*/
-				/*margin: 0 auto }*/
-			/*.nav-item {*/
-				/*display: flex;*/
-				/*justify-content: center;*/
-				/*margin-right: 5em;*/
-				/*margin-left: 5em;*/
-			/*}*/
 		</style>
 
 
