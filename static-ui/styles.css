@@ -2,7 +2,8 @@
 Profile Page Styles
  */
 body {
-	background-color: #353A3F;
+	/*background-color: #353A3F;*/
+	background-color: black;
 }
 
 .nav-item {
@@ -29,4 +30,21 @@ span:after{
 	content:" ";
 	display:inline-block;
 	width:32px;
+}
+/****************************************************************************
+Check In CSS
+*****************************************************************************/
+/*.checkInBackground{*/
+	/*background-color: black;*/
+/*}*/
+
+.checkInIcon{
+	color: #000;
+	font-size: 5rem;
+}
+
+.centered {
+	position: fixed;
+	top: 50%;
+	left: 50%;
 }

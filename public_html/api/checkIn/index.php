@@ -116,7 +116,7 @@ try {
 			}
 
 			//perform the actual checkIn
-			$checkIn->setCheckInRep($requestObject->checkInRep);
+			$checkIn->setCheckInRep(1);
 			$checkIn->update($pdo);
 
 			//update the message
