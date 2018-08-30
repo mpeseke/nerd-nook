@@ -21,14 +21,14 @@
 					width: 100%;
 				}
 			}
-			.navbar-nav {
-				margin: 0 auto }
-			.nav-item {
-				display: flex;
-				justify-content: center;
-				margin-right: 5em;
-				margin-left: 5em;
-			}
+			/*.navbar-nav {*/
+				/*margin: 0 auto }*/
+			/*.nav-item {*/
+				/*display: flex;*/
+				/*justify-content: center;*/
+				/*margin-right: 5em;*/
+				/*margin-left: 5em;*/
+			/*}*/
 		</style>
 
 
@@ -36,24 +36,28 @@
 	</head>
 	<body>
 		<header>
-			<nav class="nav navbar-expand-md sticky-top navbar-dark bg-dark p-2">
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="nerdNav">
-					<span class="navbar-toggler-icon"><i class="fas fa-glasses"></i></span>
+			<nav class="navbar navbar-expand-md navbar-dark bg-dark p-2">
+				<a class="navbar-brand" href="#">The Nerd Nook</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nerdNav">
+					<span><i class="fas fa-glasses"></i></span>
 				</button>
-				<ul class="navbar-nav">
-					<li class="nav-item active">
-						<a class="nav-link text-light" href="#"><i class="fas fa-home pr-2"></i>Home</a>
-					</li>
-					<li class="nav-item active">
-						<a class="nav-link text-light" href="#"><i class="fas fa-journal-whills fa-fw pr-2"></i>Categories</a>
-					</li>
-					<li class="nav-item active">
-						<a class="nav-link text-light" href="#"><i class="fas fa-calendar-check fa-fw pr-2"></i>Events</a>
-					</li>
-					<li class="nav-item active">
-						<a class="nav-link text-light" href="#"><i class="fas fa-sign-out-alt fa-fw pr-2"></i>Sign Out</a>
-					</li>
-				</ul>
+				<div class="collapse navbar-collapse" id="nerdNav">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item active">
+							<a class="nav-link text-light" href="#"><i class="fas fa-home pr-2"></i>Home</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link text-light" href="#"><i class="fas fa-journal-whills fa-fw pr-2"></i>Categories</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link text-light" href="#"><i class="fas fa-calendar-check fa-fw pr-2"></i>Events</a>
+						</li>
+						<li class="nav-item active">
+							<a class="nav-link text-light" href="#"><i class="fas fa-sign-out-alt fa-fw pr-2"></i>Sign Out</a>
+						</li>
+					</ul>
+				</div>
+
 			</nav>
 		</header>
 
