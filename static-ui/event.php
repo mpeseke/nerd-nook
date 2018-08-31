@@ -62,5 +62,22 @@
 			</div>
 		</div>
 
+		<main>
+			<div class="row">
+				<div class="col-md-6">
+					<h1 class="eventName">Pathfinder One-Shot</h1>
+					<p class="eventDetails">
+						We are getting together for a one-shot campaign through a the Dungeon of Lost Souls! Characters are pre-rolled and no
+						prior knowledge of d20 systems is needed. If you have been wanting to learn how to play table-top RPG's, this is the
+						event for you!
+					</p>
+				</div>
+
+				<div class="col-md-6">
+					<h4 class="display-4 eventStart">Event Start Time:</h4><p></p>
+				</div>
+			</div>
+		</main>
+
 	</body>
 </html>
