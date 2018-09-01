@@ -80,9 +80,13 @@
 					<hr/>
 					<button class="btn btn-primary"><i class="far fa-calendar-check fa-fw"></i>RSVP</button>
 					<button class="btn btn-success"><i class="fas fa-check-double fa-fw"></i>Check-In</button>
+					<button class="btn btn-info"><i class="far fa-comments fa-fw"></i>Comments</button>
+
 				</div>
 
 			</div>
+
+
 
 			<div class="footer text-center bg-dark text-white mt-5 pt-4 pb-3">
 				<h5>"Come to the Nerd Side; we have π..."</h5>
