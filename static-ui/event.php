@@ -63,8 +63,8 @@
 		</div>
 
 		<main>
-			<div class="row">
-				<div class="col-md-6">
+			<div class="row mx-0">
+				<div class="col-md-5 px-4">
 					<h1 class="eventName">Pathfinder One-Shot</h1>
 					<p class="eventDetails">
 						We are getting together for a one-shot campaign through a the Dungeon of Lost Souls! Characters are pre-rolled and no
@@ -73,9 +73,19 @@
 					</p>
 				</div>
 
-				<div class="col-md-6">
-					<h4 class="eventStart">Event Start Time:</h4><p></p>
+				<div class="col-md-7">
+					<h4 class="eventStart">Event Start Time:</h4><p>September 5, 2018 @ 5:00 p.m.</p>
+					<h4 class="eventEnd">Event End Time:</h4><p>September 5, 2018 @ 8:00 p.m.</p>
+					<h4 class="eventLocation">Event Location:</h4><p>Active Imagination, 11200 Montgomery Blvd NE, Albuquerque, NM 87111</p>
+					<hr/>
+					<button class="btn btn-primary"><i class="far fa-calendar-check fa-fw"></i>RSVP</button>
+					<button class="btn btn-success"><i class="fas fa-check-double fa-fw"></i>Check-In</button>
 				</div>
+
+			</div>
+
+			<div class="footer text-center bg-dark text-white mt-5 pt-4 pb-3">
+				<h5>"Come to the Nerd Side; we have π..."</h5>
 			</div>
 		</main>
 
