@@ -74,7 +74,7 @@
 				</div>
 
 				<div class="col-md-6">
-					<h4 class="display-4 eventStart">Event Start Time:</h4><p></p>
+					<h4 class="eventStart">Event Start Time:</h4><p></p>
 				</div>
 			</div>
 		</main>
