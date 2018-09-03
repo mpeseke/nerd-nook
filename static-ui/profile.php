@@ -19,31 +19,35 @@
 			<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-		</head>
-	<body>
-				<!-- start of page, header/navbar -->
-				<header>
-					<nav class="nav navbar-expand-md sticky-top navbar-dark bg-dark p-2">
-						<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="nerdNav">
-							<span class="navbar-toggler-icon"><i class="fas fa-glasses"></i></span>
-						</button>
-						<ul class="navbar-nav">
-							<li class="nav-item active">
-								<a class="nav-link text-light" href="#"><i class="fas fa-home pr-2"></i>Home</a>
-							</li>
-							<li class="nav-item active">
-								<a class="nav-link text-light" href="#"><i class="fas fa-journal-whills fa-fw pr-2"></i>Categories</a>
-							</li>
-							<li class="nav-item active">
-								<a class="nav-link text-light" href="#"><i class="fas fa-calendar-check fa-fw pr-2"></i>Events</a>
-							</li>
-							<li class="nav-item active">
-								<a class="nav-link text-light" href="#"><i class="fas fa-sign-out-alt fa-fw pr-2"></i>Sign Out</a>
-							</li>
-						</ul>
-					</nav>
-				</header>
 
+			<title>The Nerd Nook Events</title>
+		</head>
+	<!-- start of page, header/navbar -->
+	<header>
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark p-2">
+			<a class="navbar-brand" href="#">The Nerd Nook</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nerdNav">
+				<span><i class="fas fa-glasses"></i></span>
+			</button>
+			<div class="collapse navbar-collapse" id="nerdNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item active">
+						<a class="nav-link text-light" href="#"><i class="fas fa-home pr-2"></i>Home</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link text-light" href="#"><i class="fas fa-journal-whills fa-fw pr-2"></i>Categories</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link text-light" href="#"><i class="fas fa-calendar-check fa-fw pr-2"></i>Events</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link text-light" href="#"><i class="fas fa-sign-out-alt fa-fw pr-2"></i>Sign Out</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<body>
 				<div class="container-fluid text-center bg-dark text-white" id="profile">
 					<h1>First Name Last Name</h1>
 					<br>
