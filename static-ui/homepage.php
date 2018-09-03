@@ -54,14 +54,19 @@ body {
 				opacity: 0.8;
 			}
 
+
 			/* Add padding to containers */
 			.container {
 				padding: 16px;
+				position: absolute;
+				top: 25rem;
+				left: 55rem;
+				text-align: center;
 			}
 
 			/* Change styles for span and cancel button on extra small screens */
 			@media screen and (max-width: 300px) {
-				span.psw {
+				span {
 					display: block;
 					float: none;
 				}
@@ -74,6 +79,7 @@ body {
 
 		<div class="container">
 			<form action="#">
+				<h1>Login</h1>
 
 				<label for="email"><b>Email Address</b></label>
 				<input type="text" placeholder="Enter Email Address" name="email" required>
@@ -85,7 +91,6 @@ body {
 
 		</div>
 		</form>
-		</div>
 
 	</body>
 </html>
