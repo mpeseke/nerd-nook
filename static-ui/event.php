@@ -22,6 +22,12 @@
 					width: 100%;
 				}
 			}
+			footer {
+				position: absolute;
+				bottom: 0;
+
+
+			}
 		</style>
 
 
