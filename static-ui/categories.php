@@ -17,20 +17,24 @@
 		<!-- CSS Custom -->
 		<style>
 			.jumbotron {
-				background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("content/chess.jpg") no-repeat;
-				img {
-					width: 100%;
-				}
+				background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("content/imagine.jpg") no-repeat;
+			img {
+				width: 100%;
 			}
-
+			}
 			footer {
 				position: absolute;
 				bottom: 0;
 			}
+
+			/*.card-img-top {*/
+				/*max-width: 15em;*/
+				/*height: auto;*/
+			/*}*/
 		</style>
 
 
-		<title>The Nerd Nook Events</title>
+		<title>The Nerd Nook Categories</title>
 	</head>
 	<body>
 		<header>
@@ -61,37 +65,76 @@
 
 		<div class="jumbotron jumbotron-fluid text-light">
 			<div class="container">
-				<h1 class="display-4">Events</h1>
-				<p class="lead"><strong>Nerd Herd</strong>, <em>noun</em>,<br/>
-				A large group of nerds of either one or multiple kinds, who are mutually friends.</p>
+				<h1 class="display-4">Categories</h1>
+				<p class="lead">
+					"Come with me, and you'll see a world of pure imagination..."
+				</p>
 			</div>
 		</div>
-
 		<section>
-			<div class="row mx-0">
-				<div class="col-md-5 px-4">
-					<h1 class="eventName">Pathfinder One-Shot</h1>
-					<p class="eventDetails">
-						We are getting together for a one-shot campaign through a the Dungeon of Lost Souls! Characters are pre-rolled and no
-						prior knowledge of d20 systems is needed. If you have been wanting to learn how to play table-top RPG's, this is the
-						event for you!
-					</p>
+			<div class="row">
+
+				<div class="col-sm-6 col-md-4 col-lg-3">
+					<div class="card">
+						<img class="card-img-top" src="content/cosplay.jpg">
+						<div class="card-block">
+							<h4 class="card-title">Cosplay</h4>
+							<div class="card-text">Get together with friends to learn best practices, plan cons, and go all out!</div>
+						</div>
+					</div>
 				</div>
 
-				<div class="col-md-7">
-					<h4 class="eventStart">Event Start Time:</h4><p>September 5, 2018 @ 5:00 p.m.</p>
-					<h4 class="eventEnd">Event End Time:</h4><p>September 5, 2018 @ 8:00 p.m.</p>
-					<h4 class="eventLocation">Event Location:</h4><p>Active Imagination, 11200 Montgomery Blvd NE, Albuquerque, NM 87111</p>
-					<hr/>
-					<button class="btn btn-primary"><i class="far fa-calendar-check fa-fw"></i>RSVP</button>
-					<button class="btn btn-success"><i class="fas fa-check-double fa-fw"></i>Check-In</button>
-					<button class="btn btn-info"><i class="far fa-comments fa-fw"></i>Comments</button>
+				<div class="col-sm-6 col-md-4 col-lg-3">
+					<div class="card">
+						<img class="card-img-top" src="content/cosplay.jpg">
+						<div class="card-block">
+							<h4 class="card-title">Cosplay</h4>
+							<div class="card-text">Get together with friends to learn best practices, plan cons, and go all out!</div>
+						</div>
+					</div>
 				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3">
+					<div class="card">
+						<img class="card-img-top" src="content/cosplay.jpg">
+						<div class="card-block">
+							<h4 class="card-title">Cosplay</h4>
+							<div class="card-text">Get together with friends to learn best practices, plan cons, and go all out!</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3">
+					<div class="card">
+						<img class="card-img-top" src="content/cosplay.jpg">
+						<div class="card-block">
+							<h4 class="card-title">Cosplay</h4>
+							<div class="card-text">Get together with friends to learn best practices, plan cons, and go all out!</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-6 col-md-4 col-lg-3">
+					<div class="card">
+						<img class="card-img-top" src="content/cosplay.jpg">
+						<div class="card-block">
+							<h4 class="card-title">Cosplay</h4>
+							<div class="card-text">Get together with friends to learn best practices, plan cons, and go all out!</div>
+						</div>
+					</div>
+				</div>
+
+
 			</div>
+
+
 		</section>
+
+
 
 		<div class="footer container-fluid text-center bg-dark text-white mt-5 pt-4 pb-3">
 			<h5>"Come to the Nerd Side; we have π..."</h5>
 		</div>
+
 	</body>
 </html>
