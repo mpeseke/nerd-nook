@@ -20,12 +20,15 @@
 				background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("content/chess.jpg") no-repeat;
 				img {
 					width: 100%;
+					height: 100%;
 				}
 			}
 
+
 			footer {
-				position: absolute;
+				position: sticky;
 				bottom: 0;
+				clear: both;
 			}
 		</style>
 
@@ -35,23 +38,23 @@
 	<body>
 		<header>
 			<nav class="navbar navbar-expand-md navbar-dark bg-dark p-2">
-				<a class="navbar-brand" href="#">The Nerd Nook</a>
-				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nerdNav">
+				<a class="navbar-brand text-success text-monospace" href="#">The Nerd Nook</a>
+				<button class="navbar-toggler text-success" type="button" data-toggle="collapse" data-target="#nerdNav">
 					<span><i class="fas fa-glasses"></i></span>
 				</button>
 				<div class="collapse navbar-collapse" id="nerdNav">
-					<ul class="navbar-nav ml-auto">
+					<ul class="navbar-nav ml-auto text-success text-monospace">
 						<li class="nav-item active">
-							<a class="nav-link text-light" href="#"><i class="fas fa-home pr-2"></i>Home</a>
+							<a class="nav-link text-success" href="#"><i class="fas fa-home pr-2"></i>Home</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link text-light" href="#"><i class="fas fa-journal-whills fa-fw pr-2"></i>Categories</a>
+							<a class="nav-link text-success" href="#"><i class="fas fa-journal-whills fa-fw pr-2"></i>Categories</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link text-light" href="#"><i class="fas fa-calendar-check fa-fw pr-2"></i>Events</a>
+							<a class="nav-link text-success" href="#"><i class="fas fa-calendar-check fa-fw pr-2"></i>Events</a>
 						</li>
 						<li class="nav-item active">
-							<a class="nav-link text-light" href="#"><i class="fas fa-sign-out-alt fa-fw pr-2"></i>Sign Out</a>
+							<a class="nav-link text-success" href="#"><i class="fas fa-sign-out-alt fa-fw pr-2"></i>Sign Out</a>
 						</li>
 					</ul>
 				</div>
@@ -90,7 +93,7 @@
 			</div>
 		</section>
 
-		<div class="footer container-fluid text-center bg-dark text-white mt-5 pt-4 pb-3">
+		<div class="footer container-fluid text-center bg-dark text-success text-monospace mt-5 pt-4 pb-3">
 			<h5>"Come to the Nerd Side; we have π..."</h5>
 		</div>
 	</body>
