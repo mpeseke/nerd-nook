@@ -23,6 +23,7 @@
 			<title>The Nerd Nook Events</title>
 		</head>
 	<!-- start of page, header/navbar -->
+	<body>
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark p-2">
 			<a class="navbar-brand" href="#">The Nerd Nook</a>
@@ -47,7 +48,6 @@
 			</div>
 		</nav>
 	</header>
-	<body>
 				<div class="container-fluid text-center bg-dark text-white" id="profile">
 					<h1>First Name Last Name</h1>
 					<br>
