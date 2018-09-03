@@ -18,10 +18,10 @@
 		<style>
 			.jumbotron {
 				background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("content/chess.jpg") no-repeat;
-				img {
-					width: 100%;
-					height: 100%;
-				}
+			img {
+				width: 100%;
+				height: 100%;
+			}
 			}
 
 			.footer {
@@ -70,29 +70,35 @@
 			<div class="container">
 				<h1 class="display-4">Events</h1>
 				<p class="lead"><strong>Nerd Herd</strong>, <em>noun</em>,<br/>
-				A large group of nerds of either one or multiple kinds, who are mutually friends.</p>
+					A large group of nerds of either one or multiple kinds, who are mutually friends.</p>
 			</div>
 		</div>
 
 		<section>
-			<div class="row mx-0">
-				<div class="col-md-5 px-4">
-					<h1 class="eventName">Pathfinder One-Shot</h1>
-					<p class="eventDetails">
-						We are getting together for a one-shot campaign through a the Dungeon of Lost Souls! Characters are pre-rolled and no
-						prior knowledge of d20 systems is needed. If you have been wanting to learn how to play table-top RPG's, this is the
-						event for you!
-					</p>
+			<div class="card-deck">
+				<div class="card">
+					<img class="card-img-top" src=".../100px200/" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+						<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+					</div>
 				</div>
-
-				<div class="col-md-7">
-					<h4 class="eventStart">Event Start Time:</h4><p>September 5, 2018 @ 5:00 p.m.</p>
-					<h4 class="eventEnd">Event End Time:</h4><p>September 5, 2018 @ 8:00 p.m.</p>
-					<h4 class="eventLocation">Event Location:</h4><p>Active Imagination, 11200 Montgomery Blvd NE, Albuquerque, NM 87111</p>
-					<hr/>
-					<button class="btn btn-primary"><i class="far fa-calendar-check fa-fw"></i>RSVP</button>
-					<button class="btn btn-success"><i class="fas fa-check-double fa-fw"></i>Check-In</button>
-					<button class="btn btn-info"><i class="far fa-comments fa-fw"></i>Comments</button>
+				<div class="card">
+					<img class="card-img-top" src=".../100px200/" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+						<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+					</div>
+				</div>
+				<div class="card">
+					<img class="card-img-top" src=".../100px200/" alt="Card image cap">
+					<div class="card-body">
+						<h5 class="card-title">Card title</h5>
+						<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+						<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+					</div>
 				</div>
 			</div>
 		</section>
