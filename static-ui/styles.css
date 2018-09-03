@@ -1,33 +1,3 @@
-/**
-Profile Page Styles
- */
-body {
-	/*background-color: #353A3F;*/
-	background-color: black;
-}
-
-.nav-item {
-	color: white;
-	background-color: #353A3F;
-}
-
-#profile {
-	padding-top: 180px;
-	padding-bottom: 180px;
-}
-
-#footer {
-	background-color: rgba(83,164,81,0.8);
-	position: fixed;
-	bottom: 0;
-	clear: both;
-}
-
-span:after{
-	content:" ";
-	display:inline-block;
-	width:32px;
-}
 /****************************************************************************
 Check In CSS
 *****************************************************************************/
