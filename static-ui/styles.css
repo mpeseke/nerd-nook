@@ -17,13 +17,10 @@ body {
 }
 
 #footer {
-	background-color: rgba(53, 58, 63, 0.8);
+	background-color: rgba(83,164,81,0.8);
 	position: fixed;
-	left: 0;
 	bottom: 0;
-	width: 100%;
-	text-align: center;
-	padding: 5px;
+	clear: both;
 }
 
 span:after{

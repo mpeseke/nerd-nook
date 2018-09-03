@@ -20,42 +20,68 @@
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-			<title>The Nerd Nook Events</title>
+			<style>
+				.jumbotron {
+					background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("content/bowtie.jpg") no-repeat;
+				img {
+					width: 100%;
+					height: 100%;
+					}
+				}
+			</style>
+
+			<title>The Nerd Nook Profile</title>
 		</head>
 	<!-- start of page, header/navbar -->
 	<body>
 	<header>
-		<nav class="navbar navbar-expand-md navbar-dark bg-dark p-2">
-			<a class="navbar-brand" href="#">The Nerd Nook</a>
+		<nav class="navbar navbar-expand-md navbar-dark bg-dark p-2 text-success text-monospace">
+			<a class="navbar-brand text-success text-monospace" href="#">The Nerd Nook</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nerdNav">
 				<span><i class="fas fa-glasses"></i></span>
 			</button>
 			<div class="collapse navbar-collapse" id="nerdNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active">
-						<a class="nav-link text-light" href="#"><i class="fas fa-home pr-2"></i>Home</a>
+						<a class="nav-link text-success text-monospace" href="#"><i class="fas fa-home pr-2"></i>Home</a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link text-light" href="#"><i class="fas fa-journal-whills fa-fw pr-2"></i>Categories</a>
+						<a class="nav-link text-success text-monospace" href="#"><i class="fas fa-journal-whills fa-fw pr-2"></i>Categories</a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link text-light" href="#"><i class="fas fa-calendar-check fa-fw pr-2"></i>Events</a>
+						<a class="nav-link text-success text-monospace" href="#"><i class="fas fa-calendar-check fa-fw pr-2"></i>Events</a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link text-light" href="#"><i class="fas fa-sign-out-alt fa-fw pr-2"></i>Sign Out</a>
+						<a class="nav-link text-success text-monospace" href="#"><i class="fas fa-sign-out-alt fa-fw pr-2"></i>Sign Out</a>
 					</li>
 				</ul>
 			</div>
 		</nav>
 	</header>
-				<div class="container-fluid text-center bg-dark text-white" id="profile">
-					<h1>First Name Last Name</h1>
-					<br>
-					<h2>@Handle</h2>
+
+		<div class="jumbotron jumbotron-fluid text-light">
+			<div class="container">
+				<h1 class="display-4">Profile</h1>
+				<p class="lead"><strong>Nerdemic</strong>, <em>noun</em>,<br/>
+					 A widespread outbreak of,  overtaking by, Nerds</p>
+			</div>
+		</div>
+
+		<section>
+				<div class="row mx-0">
+					<div class="col-md-5 px-4">
+							<h1 class="profileName">First Name Last Name</h1>
+							<p class="profileDetails">
+							@Handle <br>
+							Join Date
+
+							</p>
+					</div>
 				</div>
+		</section>
 
 				<footer>
-					<div class="container-fluid text-center text-white" id="footer">
+					<div class="container-fluid text-center text-white text-monospace mt-5 pt-4 pb-3" id="footer">
 						<span>Rep:</span>
 						<span>Comments:</span>
 						<span>Events:</span>
