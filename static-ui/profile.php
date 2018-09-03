@@ -22,11 +22,10 @@
 
 			<style>
 				.jumbotron {
-					background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("content/bowtie.jpg") no-repeat;
-				img {
-					width: 100%;
-					height: 100%;
-					}
+					background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("content/bowtie.jpg") center center no-repeat;
+					width:100%;
+					height:100%;
+					background-size: cover;
 				}
 			</style>
 
