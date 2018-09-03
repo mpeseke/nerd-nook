@@ -24,7 +24,8 @@
 				border: 3px solid black;
 			}
 body {
-	background-image: url("content/welcome3.png");
+	background-image: url("content/matrix door2.jpg");
+	background-repeat: no-repeat;
 }
 
 
@@ -59,7 +60,7 @@ body {
 			.container {
 				padding: 16px;
 				position: absolute;
-				top: 25rem;
+				top: 15rem;
 				left: 55rem;
 				text-align: center;
 			}
@@ -91,6 +92,5 @@ body {
 
 		</div>
 		</form>
-
 	</body>
 </html>
