@@ -120,7 +120,7 @@ try {
 			$checkIn->update($pdo);
 
 			//update the message
-			$reply->message = "You Checked in! ";
+			$reply->message = "You Checked in!";
 
 		}
 		//if any other HTTP request is sent throw an exception
