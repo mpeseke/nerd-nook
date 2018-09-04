@@ -5,7 +5,7 @@ Homepage CSS
 #homepage {
 	border: 3px solid black;
 }
-body {
+.homepage-background {
 	background-image: url("../img/matrix-door2.jpg");
 	background-repeat: no-repeat;
 

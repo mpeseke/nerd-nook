@@ -18,75 +18,9 @@
 
 		<title>The Nerd Nook HomePage</title>
 
-		<style>
-			/* Bordered form */
-			 #homepage {
-				border: 3px solid black;
-			}
-			body {
-			background-image: url("content/matrix door2.jpg");
-			background-repeat: no-repeat;
-
-			}
-
-
-			/* Full-width inputs */
-			input[type=text], input[type=password] {
-				width: 75%;
-				padding: 12px 20px;
-				margin: 8px 0;
-				display: inline-block;
-				border: 1px solid #ccc;
-				box-sizing: border-box;
-			}
-
-			.password-label {
-				display: block;
-			}
-
-			.email-label {
-				display: block;
-			}
-
-
-			/* Set a style for all buttons */
-			 #login {
-				background-color: #008600;
-				color: white;
-				padding: 14px 20px;
-				margin: 8px 0;
-				border: none;
-				cursor: pointer;
-				width: 20rem;
-			}
-
-			/* Add a hover effect for buttons */
-			button:hover {
-				opacity: 0.8;
-			}
-
-
-			/* Add padding to containers */
-			.home-container {
-				padding: 15rem;
-				position: absolute;
-				top: 10rem;
-				left: 55rem;
-				text-align: center;
-			}
-
-			/* Change styles for span and cancel button on extra small screens */
-			@media screen and (max-width: 300px) {
-				span {
-					display: block;
-					float: none;
-				}
-			}
-		</style>
-
 	</head>
 
-	<body>
+	<body class="homepage-background">
 			<div class="home-container">
 				<form id="homepage" action="#" method="post">
 					<h1>Login</h1>
