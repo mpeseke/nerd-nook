@@ -20,12 +20,13 @@
 
 		<style>
 			/* Bordered form */
-			form {
+			 #homepage {
 				border: 3px solid black;
 			}
 			body {
-			background-image: url("app/img/matrix door2.jpg");
+			background-image: url("content/matrix door2.jpg");
 			background-repeat: no-repeat;
+
 			}
 
 
@@ -49,7 +50,7 @@
 
 
 			/* Set a style for all buttons */
-			button {
+			 #login {
 				background-color: #008600;
 				color: white;
 				padding: 14px 20px;
@@ -66,7 +67,7 @@
 
 
 			/* Add padding to containers */
-			.container {
+			.home-container {
 				padding: 15rem;
 				position: absolute;
 				top: 10rem;
@@ -86,20 +87,20 @@
 	</head>
 
 	<body>
+			<div class="home-container">
+				<form id="homepage" action="#" method="post">
+					<h1>Login</h1>
 
-		<div class="container" type="SignIn">
-			<form action="#">
-				<h1>Login</h1>
+					<label class="email-label" for="email"><b>Email Address</b></label>
+					<input type="text" placeholder="Enter Email Address" name="email" required>
 
-				<label class="email-label" for="email"><b>Email Address</b></label>
-				<input type="text" placeholder="Enter Email Address" name="email" required>
+					<label class="password-label" for="psw"><b>Password</b></label>
+					<input type="password" placeholder="Enter Password" name="psw" required>
 
-				<label class="password-label" for="psw"><b>Password</b></label>
-				<input type="password" placeholder="Enter Password" name="psw" required>
-
-				<button type="submit">Login</button>
-
+					<button id="login" class="submit"  type="submit">Login</button>
+				</form>
+			</div>
 		</div>
-		</form>
+
 	</body>
 </html>

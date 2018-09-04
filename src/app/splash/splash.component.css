@@ -1,16 +1,20 @@
+/****************************************************************************
+Homepage CSS
+****************************************************************************/
 /* Bordered form */
-form {
+#homepage {
 	border: 3px solid black;
 }
-.container {
+body {
 	background-image: url("../img/matrix-door2.jpg");
 	background-repeat: no-repeat;
+
 }
 
 
 /* Full-width inputs */
 input[type=text], input[type=password] {
-	width: 100%;
+	width: 75%;
 	padding: 12px 20px;
 	margin: 8px 0;
 	display: inline-block;
@@ -18,9 +22,18 @@ input[type=text], input[type=password] {
 	box-sizing: border-box;
 }
 
+.password-label {
+	display: block;
+}
+
+.email-label {
+	display: block;
+}
+
+
 /* Set a style for all buttons */
-button {
-	background-color: black;
+#login {
+	background-color: #008600;
 	color: white;
 	padding: 14px 20px;
 	margin: 8px 0;
@@ -36,10 +49,10 @@ button:hover {
 
 
 /* Add padding to containers */
-.container {
-	padding: 16px;
+.home-container {
+	padding: 15rem;
 	position: absolute;
-	top: 15rem;
+	top: 10rem;
 	left: 55rem;
 	text-align: center;
 }
@@ -51,3 +64,8 @@ button:hover {
 		float: none;
 	}
 }
+
+
+/****************************************************************************
+
+****************************************************************************/
