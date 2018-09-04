@@ -11,22 +11,7 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
 		<!-- Custom CSS -->
-		<style>
-			body {
-				background: black;
-				margin: 0;
-			}
-
-			.centered {
-				position: fixed;
-				top: 50%;
-				left: 50%;
-				/* bring your own prefixes */
-				transform: translate(-50%, -50%);
-			}
-
-
-		</style>
+		<link rel="stylesheet" href="styles.css">
 
 		<title>Welcome...</title>
 	</head>

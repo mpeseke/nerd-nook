@@ -15,23 +15,8 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 		<!-- CSS Custom -->
-		<style>
-			.jumbotron {
-				background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("content/chess.jpg") no-repeat;
-				img {
-					width: 100%;
-					height: 100%;
-				}
-			}
 
-			.footer {
-				position: fixed;
-				bottom: 0;
-				clear: both;
-				background-color: #53A451;
-				color: white;
-			}
-		</style>
+		<link rel="stylesheet" href="styles.css">
 
 
 		<title>The Nerd Nook Events</title>
@@ -39,23 +24,20 @@
 	<body>
 		<header>
 			<nav class="navbar navbar-expand-md navbar-dark bg-dark p-2">
-				<a class="navbar-brand text-success text-monospace" href="#">The Nerd Nook</a>
-				<button class="navbar-toggler text-success" type="button" data-toggle="collapse" data-target="#nerdNav">
+				<a class="navbar-brand text-success" href="#">The Nerd Nook</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nerdNav">
 					<span><i class="fas fa-glasses"></i></span>
 				</button>
 				<div class="collapse navbar-collapse" id="nerdNav">
-					<ul class="navbar-nav ml-auto text-success text-monospace">
+					<ul class="navbar-nav ml-auto">
 						<li class="nav-item active">
-							<a class="nav-link text-success" href="#"><i class="fas fa-home pr-2"></i>Home</a>
+							<a class="nav-link text-success" href="#"><i class="fas fa-user-secret fa-fw pr-2"></i></i>Profile</a>
 						</li>
 						<li class="nav-item active">
 							<a class="nav-link text-success" href="#"><i class="fas fa-journal-whills fa-fw pr-2"></i>Categories</a>
 						</li>
 						<li class="nav-item active">
 							<a class="nav-link text-success" href="#"><i class="fas fa-calendar-check fa-fw pr-2"></i>Events</a>
-						</li>
-						<li class="nav-item active">
-							<a class="nav-link text-success" href="#"><i class="fas fa-user-circle fa-fw pr-2"></i>Profile</a>
 						</li>
 						<li class="nav-item active">
 							<a class="nav-link text-success" href="#"><i class="fas fa-sign-out-alt fa-fw pr-2"></i>Sign Out</a>
@@ -66,7 +48,7 @@
 			</nav>
 		</header>
 
-		<div class="jumbotron jumbotron-fluid text-light">
+		<div class="jumbotron jumbotron-fluid text-light jumboEv">
 			<div class="container">
 				<h1 class="display-4">Events</h1>
 				<p class="lead"><strong>Nerdacon</strong>, <em>noun</em>,<br/>
@@ -97,7 +79,7 @@
 			</div>
 		</section>
 
-		<div class="footer container-fluid text-center text-monospace mt-5 pt-4 pb-3">
+		<div class="footerEv container-fluid text-center text-monospace mt-5 pt-4 pb-3">
 			<h5>"Come to the Nerd Side; we have π..."</h5>
 		</div>
 	</body>
