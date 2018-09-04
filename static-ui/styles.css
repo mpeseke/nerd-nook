@@ -22,32 +22,33 @@ Universal CSS
 /****************************************************************************
 Profile Page Styles
  ***************************************************************************/
-body {
-	/*background-color: #353A3F;*/
-	background-color: black;
+.jumbotron {
+	background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("content/bowtie.jpg") center center no-repeat;
+	width:100%;
+	height:100%;
+	background-size: cover;
 }
 
-.nav-item {
-	color: white;
-	background-color: #353A3F;
-}
-
-#profile {
-	padding-top: 180px;
-	padding-bottom: 180px;
-}
-
-#footer {
-	background-color: rgba(83,164,81,0.8);
+.footer {
+	background-color: #53A451;
 	position: fixed;
+	left: 0;
 	bottom: 0;
-	clear: both;
+	width: 100%;
+	color: white;
+	text-align: center;
+	padding: 5px;
+	margin-top: 10px;
 }
 
 span:after{
 	content:" ";
-	display:inline-block;
+	display: inline-block;
 	width:32px;
+}
+
+span {
+	font-size: x-large;
 }
 /****************************************************************************
 Check In CSS
