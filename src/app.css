@@ -96,9 +96,7 @@ Homepage CSS
 	border: 3px solid black;
 }
 .homepage-background {
-	background-image: url("/src/app/img/matrix-door2.jpg");
-	background-repeat: no-repeat;
-
+	background: url("/src/app/img/matrix-door2.jpg") no-repeat;
 }
 
 
