@@ -23,15 +23,15 @@
 			form {
 				border: 3px solid black;
 			}
-body {
-	background-image: url("content/matrix door2.jpg");
-	background-repeat: no-repeat;
-}
+			body {
+			background-image: url("content/matrix door2.jpg");
+			background-repeat: no-repeat;
+			}
 
 
 			/* Full-width inputs */
 			input[type=text], input[type=password] {
-				width: 100%;
+				width: 75%;
 				padding: 12px 20px;
 				margin: 8px 0;
 				display: inline-block;
@@ -39,9 +39,18 @@ body {
 				box-sizing: border-box;
 			}
 
+			.password-label {
+				display: block;
+			}
+
+			.email-label {
+				display: block;
+			}
+
+
 			/* Set a style for all buttons */
 			button {
-				background-color: black;
+				background-color: #008600;
 				color: white;
 				padding: 14px 20px;
 				margin: 8px 0;
@@ -58,9 +67,9 @@ body {
 
 			/* Add padding to containers */
 			.container {
-				padding: 16px;
+				padding: 15rem;
 				position: absolute;
-				top: 15rem;
+				top: 10rem;
 				left: 55rem;
 				text-align: center;
 			}
@@ -82,10 +91,10 @@ body {
 			<form action="#">
 				<h1>Login</h1>
 
-				<label for="email"><b>Email Address</b></label>
+				<label class="email-label" for="email"><b>Email Address</b></label>
 				<input type="text" placeholder="Enter Email Address" name="email" required>
 
-				<label for="psw"><b>Password</b></label>
+				<label class="password-label" for="psw"><b>Password</b></label>
 				<input type="password" placeholder="Enter Password" name="psw" required>
 
 				<button type="submit">Login</button>
