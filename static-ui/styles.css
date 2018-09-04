@@ -1,6 +1,57 @@
 /****************************************************************************
+Universal CSS
+****************************************************************************/
+
+ .jumbotronBG {
+	 background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("content/imagine.jpg") no-repeat;
+ }
+
+.jumbotronImg {
+	width: 100%;
+	height: 100%;
+}
+
+.footer {
+	position: sticky;
+	bottom: 0;
+	clear: both;
+	background-color: #53A451;
+	color: white;
+}
+
+/****************************************************************************
+Profile Page Styles
+ ***************************************************************************/
+body {
+	/*background-color: #353A3F;*/
+	background-color: black;
+}
+
+.nav-item {
+	color: white;
+	background-color: #353A3F;
+}
+
+#profile {
+	padding-top: 180px;
+	padding-bottom: 180px;
+}
+
+#footer {
+	background-color: rgba(83,164,81,0.8);
+	position: fixed;
+	bottom: 0;
+	clear: both;
+}
+
+span:after{
+	content:" ";
+	display:inline-block;
+	width:32px;
+}
+/****************************************************************************
 Check In CSS
-*****************************************************************************/
+****************************************************************************/
 /*.checkInBackground{*/
 	/*background-color: black;*/
 /*}*/
@@ -16,3 +67,10 @@ Check In CSS
 	left: 50%;
 }
 
+/****************************************************************************
+Category CSS
+****************************************************************************/
+
+.jumbotronBG {
+	background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("content/imagine.jpg") no-repeat;
+}

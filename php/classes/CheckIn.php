@@ -242,7 +242,7 @@ class CheckIn implements \JsonSerializable {
 			throw (new \PDOException($exception->getMessage(), 0, $exception));
 		}
 		//create query template
-		$query = "SELECT checkInEventId, checkInProfileId, checkInDateTime, checkInRep FROM checkIn WHERE checkInEventId = :checkInEventId AND checkInProfileId = :checkInProfileId";
+		$query = "SELECT checkInEventId, checkInProfileId, checkInDateTime, checkInRep FROM checkIn WHERE checkInEventId = :checkInEventId AND checkInProfileId = :checkInProfileId AND checkInRep = 1";
 		$statement = $pdo->prepare($query);
 		//bind the profile id to the placeholder in the template
 		$parameters = ["checkInEventId" => $checkInEventId->getBytes(), "checkInProfileId" => $checkInProfileId->getBytes()];
