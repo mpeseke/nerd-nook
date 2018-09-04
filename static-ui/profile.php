@@ -49,6 +49,7 @@
 			<title>Nerd Nook Profile</title>
 		</head>
 	<body>
+		<!-- Navbar -->
 		<header>
 			<nav class="navbar navbar-expand-md navbar-dark bg-dark p-2">
 				<a class="navbar-brand text-success text-monospace" href="#">The Nerd Nook</a>
@@ -71,10 +72,10 @@
 						</li>
 					</ul>
 				</div>
-
 			</nav>
 		</header>
 
+		<!-- Jumbotron containing Profile background image -->
 		<div class="jumbotron jumbotron-fluid text-light">
 			<div class="container">
 				<h1 class="display-4">Profile</h1>
@@ -83,6 +84,7 @@
 			</div>
 		</div>
 
+		<!-- Profile Information -->
 		<section>
 				<div class="row mx-0">
 					<div class="col-md-5 px-4">
@@ -99,6 +101,7 @@
 				</div>
 		</section>
 
+		<!-- Footer containing Profile Stats -->
 		<div class="footer container-fluid text-center text-monospace mt-5 pt-4 pb-3">
 			<span>Rep:</span>
 			<span>Comments:</span>
