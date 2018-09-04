@@ -49,9 +49,9 @@
 
 		<div class="jumbotron jumbotronBG jumbotronImg jumbotron-fluid text-light">
 			<div class="container">
-				<h1 class="display-4">Categories</h1>
-				<p class="lead"><strong>Category</strong>, <em>noun</em>,<br/>
-					A class or division of people or things regarded as having particular shared characteristics.</p>
+				<h1 class="display-4"><strong>Categories</strong></h1>
+				<p class="lead"><strong>Nerd Herd</strong>, <em>noun</em>,<br/>
+					A large group of nerds of either one or multiple kinds, who are mutually friends.</p>
 			</div>
 		</div>
 
@@ -86,7 +86,7 @@
 			</div>
 
 			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
-				<img class="card-img-top" src="content/movies-tv.jpg" alt="movies">
+				<img class="card-img-top" src="content/tv.jpg" alt="movies">
 				<div class="card-body">
 					<h5 class="card-title">Movies and TV</h5>
 					<p class="card-text">Every movie buff needs someone to argue with, find your nemesis here!</p>

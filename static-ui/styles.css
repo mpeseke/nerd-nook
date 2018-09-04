@@ -2,7 +2,7 @@
 Universal CSS
 ****************************************************************************/
 
- .jumbotronBG {
+ .jumbotronCOOKIECUTTER {
 	 background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("content/imagine.jpg") no-repeat;
  }
 
@@ -57,9 +57,9 @@ span {
 /****************************************************************************
 Check In CSS
 ****************************************************************************/
-/*.checkInBackground{*/
-	/*background-color: black;*/
-/*}*/
+body{
+	background-color: #c7c7c7;
+}
 
 .checkInIcon{
 	color: #000;
@@ -78,4 +78,10 @@ Category CSS
 
 .jumbotronBG {
 	background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("content/imagine.jpg") center center no-repeat;
+}
+
+.card-img-top {
+	padding-top: 1rem;
+	width: auto;
+	height: 275px;
 }
