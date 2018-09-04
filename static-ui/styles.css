@@ -29,6 +29,10 @@ Profile Page Styles
 	background-size: cover;
 }
 
+#profileInfo {
+	padding-bottom: 50px;
+}
+
 .footer {
 	background-color: #53A451;
 	position: fixed;

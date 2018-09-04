@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+
+		<title>Nerd Nook Profile</title>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width = device-width, initial-scale = 1, shrink-to-fit = no"/>
 
@@ -17,7 +19,6 @@
 			<!-- CSS Custom -->
 			<link rel="stylesheet" href="styles.css"
 
-			<title>Nerd Nook Profile</title>
 		</head>
 	<body>
 		<!-- Navbar -->
@@ -61,13 +62,17 @@
 					<div class="col-md-5 px-4">
 							<h2 class="profileFirstName">First Name</h2>
 							<h2 class="profileLastName">Last Name</h2>
+							<h2 class="profileEmail">Email</h2>
+							<button class="btn btn-primary"><i class="far fa-calendar-check fa-fw"></i>Edit Info</button>
 							<hr/>
 					</div>
 
-					<div class="col-md-7">
-						<h2 class="profileAtHandle">@handle</h2>
-						<h2 class="joinDate">Join Date</h2>
-						<hr/>
+					<div class="col-md-7" id="profileInfo">
+							<h2 class="profileAtHandle">@handle</h2>
+							<h2 class="profileJoinDate">Join Date</h2>
+							<h2 class="profileBirthday">Birthday</h2>
+							<button class="btn btn-success"><i class="fas fa-check-double fa-fw"></i>Save</button>
+							<hr/>
 					</div>
 				</div>
 		</section>
