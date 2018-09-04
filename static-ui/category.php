@@ -87,7 +87,7 @@
 		</div>
 
 		<div class="row mx-0 text-center">
-			<div class="card text-success bg-dark offset-2 col-lg-4 col-md-6 col-sm-12">
+			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-12">
 				<img class="card-img-top" src="content/movies-tv.jpg" alt="movies">
 				<div class="card-body">
 					<h5 class="card-title">Movies and TV</h5>
