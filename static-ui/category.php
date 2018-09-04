@@ -57,8 +57,8 @@
 
 		<!-- Card Categories -->
 
-		<div class="row mx-0 text-center">
-			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-12">
+		<div class="row mx-0 justify-content-center">
+			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
 				<img class="card-img-top" src="content/controllers.jpg" alt="video games">
 				<div class="card-body">
 					<h5 class="card-title">Video Games</h5>
@@ -67,7 +67,7 @@
 				</div>
 			</div>
 
-			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-12">
+			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
 				<img class="card-img-top" src="content/cosplay.jpg" alt="cosplay">
 				<div class="card-body">
 					<h5 class="card-title">Cosplay</h5>
@@ -76,7 +76,7 @@
 				</div>
 			</div>
 
-			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-12">
+			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
 				<img class="card-img-top" src="content/dungeons.jpg" alt="table games">
 				<div class="card-body">
 					<h5 class="card-title">Table Games</h5>
@@ -84,10 +84,8 @@
 					<a href="#" class="btn btn-success">Roll for Initiative!</a>
 				</div>
 			</div>
-		</div>
 
-		<div class="row mx-0 text-center">
-			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-12">
+			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
 				<img class="card-img-top" src="content/movies-tv.jpg" alt="movies">
 				<div class="card-body">
 					<h5 class="card-title">Movies and TV</h5>
@@ -96,7 +94,7 @@
 				</div>
 			</div>
 
-			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-12">
+			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
 				<img class="card-img-top" src="content/books.jpg" alt="books">
 				<div class="card-body">
 					<h5 class="card-title">Books</h5>
@@ -105,6 +103,10 @@
 				</div>
 			</div>
 		</div>
+
+<!--		<div class="row mx-0 text-center">-->
+<!--			-->
+<!--		</div>-->
 
 <!--			<div class="card-deck">-->
 <!--				<div class="card-fluid col-lg-3 col-md-6 col-sm-12 bg-light my-2 mx-2 ml-auto">-->
