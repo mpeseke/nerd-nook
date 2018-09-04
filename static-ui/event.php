@@ -69,13 +69,13 @@
 		<div class="jumbotron jumbotron-fluid text-light">
 			<div class="container">
 				<h1 class="display-4">Events</h1>
-				<p class="lead"><strong>Nerd Herd</strong>, <em>noun</em>,<br/>
-				A large group of nerds of either one or multiple kinds, who are mutually friends.</p>
+				<p class="lead"><strong>Nerdacon</strong>, <em>noun</em>,<br/>
+					A place where nerds gather to do nerd things. ie: Dungeons & Dragons, PUBG, Star Trek, Pokémon, etc.</p>
 			</div>
 		</div>
 
 		<section>
-			<div class="row mx-0">
+			<div class="row mx-0 mb-6">
 				<div class="col-md-5 px-4">
 					<h1 class="eventName">Pathfinder One-Shot</h1>
 					<p class="eventDetails">
