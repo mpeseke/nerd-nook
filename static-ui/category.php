@@ -50,16 +50,15 @@
 		<div class="jumbotron jumbotronBG jumbotronImg jumbotron-fluid text-light">
 			<div class="container">
 				<h1 class="display-4">Categories</h1>
-				<p class="lead">Come with me, and you'll see... a world of pure imagination...</p>
-<!--				<p class="lead"><strong>Category</strong>, <em>noun</em>,<br/>-->
-<!--					A class or division of people or things regarded as having particular shared characteristics.</p>-->
+				<p class="lead"><strong>Category</strong>, <em>noun</em>,<br/>
+					A class or division of people or things regarded as having particular shared characteristics.</p>
 			</div>
 		</div>
 
 		<!-- Card Categories -->
 
 		<div class="row mx-0 text-center">
-			<div class="card text-success bg-dark col-lg-3 col-md-6 col-sm-12 m-2">
+			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-12">
 				<img class="card-img-top" src="content/controllers.jpg" alt="video games">
 				<div class="card-body">
 					<h5 class="card-title">Video Games</h5>
@@ -68,7 +67,7 @@
 				</div>
 			</div>
 
-			<div class="card text-success bg-dark col-lg-3 col-md-6 col-sm-12 m-2">
+			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-12">
 				<img class="card-img-top" src="content/cosplay.jpg" alt="cosplay">
 				<div class="card-body">
 					<h5 class="card-title">Cosplay</h5>
@@ -77,7 +76,7 @@
 				</div>
 			</div>
 
-			<div class="card text-success bg-dark col-lg-3 col-md-6 col-sm-12 m-2">
+			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-12">
 				<img class="card-img-top" src="content/dungeons.jpg" alt="table games">
 				<div class="card-body">
 					<h5 class="card-title">Table Games</h5>
@@ -88,7 +87,7 @@
 		</div>
 
 		<div class="row mx-0 text-center">
-			<div class="card text-success bg-dark offset-2 col-lg-3 col-md-6 col-sm-12 m-2">
+			<div class="card text-success bg-dark offset-2 col-lg-4 col-md-6 col-sm-12">
 				<img class="card-img-top" src="content/movies-tv.jpg" alt="movies">
 				<div class="card-body">
 					<h5 class="card-title">Movies and TV</h5>
@@ -97,7 +96,7 @@
 				</div>
 			</div>
 
-			<div class="card text-success bg-dark col-lg-3 col-md-6 col-sm-12 m-2">
+			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-12">
 				<img class="card-img-top" src="content/books.jpg" alt="books">
 				<div class="card-body">
 					<h5 class="card-title">Books</h5>
