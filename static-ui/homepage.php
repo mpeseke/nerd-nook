@@ -24,7 +24,7 @@
 				border: 3px solid black;
 			}
 			body {
-			background-image: url("content/matrix door2.jpg");
+			background-image: url("app/img/matrix door2.jpg");
 			background-repeat: no-repeat;
 			}
 
@@ -87,7 +87,7 @@
 
 	<body>
 
-		<div class="container">
+		<div class="container" type="SignIn">
 			<form action="#">
 				<h1>Login</h1>
 
