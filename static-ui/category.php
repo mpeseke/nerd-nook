@@ -12,6 +12,8 @@
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 		<!--Custom CSS-->
 		<link rel="stylesheet" href="styles.css">
+
+		<title>The Nerd Nook Categories</title>
 	</head>
 	<body>
 		<header>
@@ -45,30 +47,83 @@
 		<div class="jumbotron jumbotronBG jumbotronImg jumbotron-fluid text-light">
 			<div class="container">
 				<h1 class="display-4">Categories</h1>
-				<p class="lead"><strong>Category</strong>, <em>noun</em>,<br/>
-					A class or division of people or things regarded as having particular shared characteristics.</p>
+				<p class="lead">Come with me, and you'll see... a world of pure imagination...</p>
+<!--				<p class="lead"><strong>Category</strong>, <em>noun</em>,<br/>-->
+<!--					A class or division of people or things regarded as having particular shared characteristics.</p>-->
 			</div>
 		</div>
-		<div class="card-deck p-4">
-			<div class="card">
-				<img class="card-img-top" src="content/monopoly.jpg" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Table Games</h5>
-				</div>
-			</div>
-			<div class="card">
-				<img class="card-img-top" src="content/" alt="Card image cap">
+
+		<!-- Card Categories -->
+
+		<div class="row mx-0 text-center">
+			<div class="card text-success bg-dark col-lg-3 col-md-6 col-sm-12 m-2">
+				<img class="card-img-top" src="content/controllers.jpg" alt="video games">
 				<div class="card-body">
 					<h5 class="card-title">Video Games</h5>
+					<p class="card-text">Meetup with friends for LAN parties, split screen, or to trade your favorites pocket monsters!</p>
+					<a href="#" class="btn btn-success">Link Up!</a>
 				</div>
 			</div>
-			<div class="card">
-				<img class="card-img-top" src="content/cosplay.jpg" alt="Card image cap">
+
+			<div class="card text-success bg-dark col-lg-3 col-md-6 col-sm-12 m-2">
+				<img class="card-img-top" src="content/cosplay.jpg" alt="cosplay">
 				<div class="card-body">
 					<h5 class="card-title">Cosplay</h5>
+					<p class="card-text">Join with your cohort of ruffians to sew, craft, and build the best costumes you can.</p>
+					<a href="#" class="btn btn-success">Suit Up!</a>
+				</div>
+			</div>
+
+			<div class="card text-success bg-dark col-lg-3 col-md-6 col-sm-12 m-2">
+				<img class="card-img-top" src="content/dungeons.jpg" alt="table games">
+				<div class="card-body">
+					<h5 class="card-title">Table Games</h5>
+					<p class="card-text">Roll some dice, raid the dungeon, save the princess, crush your enemies!</p>
+					<a href="#" class="btn btn-success">Roll for Initiative!</a>
 				</div>
 			</div>
 		</div>
+
+		<div class="row mx-0 text-center">
+			<div class="card text-success bg-dark offset-2 col-lg-3 col-md-6 col-sm-12 m-2">
+				<img class="card-img-top" src="content/movies-tv.jpg" alt="movies">
+				<div class="card-body">
+					<h5 class="card-title">Movies and TV</h5>
+					<p class="card-text">Every movie buff needs someone to argue with, find your nemesis here!</p>
+					<a href="#" class="btn btn-success">On screen!</a>
+				</div>
+			</div>
+
+			<div class="card text-success bg-dark col-lg-3 col-md-6 col-sm-12 m-2">
+				<img class="card-img-top" src="content/books.jpg" alt="books">
+				<div class="card-body">
+					<h5 class="card-title">Books</h5>
+					<p class="card-text">Find fellow book worms to discuss plot holes, inconsistencies, and talk about the next part of your favorite series.</p>
+					<a href="#" class="btn btn-success">Find a quiet place.</a>
+				</div>
+			</div>
+		</div>
+
+<!--			<div class="card-deck">-->
+<!--				<div class="card-fluid col-lg-3 col-md-6 col-sm-12 bg-light my-2 mx-2 ml-auto">-->
+<!--					<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+<!--					<div class="card-body">-->
+<!--						<h5 class="card-title">Table Games</h5>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				<div class="card-fluid col-lg-3 col-md-6 col-sm-12 bg-light my-2 mx-2">-->
+<!--					<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+<!--					<div class="card-body">-->
+<!--						<h5 class="card-title">Video Games</h5>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				<div class="card-fluid col-lg-3 col-md-6 col-sm-12 bg-light my-2 mx-2 mr-auto">-->
+<!--					<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+<!--					<div class="card-body">-->
+<!--						<h5 class="card-title">Cosplay</h5>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
 <!--			<div class="card-deck">-->
 <!--				<div class="card-fluid col-lg-6 col-md-6 col-sm-12 bg-light my-2 mx-2 ml-auto">-->
 <!--					<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->

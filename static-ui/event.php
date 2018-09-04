@@ -25,7 +25,7 @@
 			}
 
 			.footer {
-				position: sticky;
+				position: fixed;
 				bottom: 0;
 				clear: both;
 				background-color: #53A451;
