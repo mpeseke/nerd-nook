@@ -49,40 +49,39 @@
 					A class or division of people or things regarded as having particular shared characteristics.</p>
 			</div>
 		</div>
-
-			<div class="card-deck">
-				<div class="card-fluid col-lg-3 col-md-6 col-sm-12 bg-light my-2 mx-2 ml-auto">
-					<img class="card-img-top" src=".../100px200/" alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">Table Games</h5>
-					</div>
-				</div>
-				<div class="card-fluid col-lg-3 col-md-6 col-sm-12 bg-light my-2 mx-2">
-					<img class="card-img-top" src=".../100px200/" alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">Video Games</h5>
-					</div>
-				</div>
-				<div class="card-fluid col-lg-3 col-md-6 col-sm-12 bg-light my-2 mx-2 mr-auto">
-					<img class="card-img-top" src=".../100px200/" alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">Cosplay</h5>
-					</div>
+		<div class="card-deck p-4">
+			<div class="card">
+				<img class="card-img-top" src="content/monopoly.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">Table Games</h5>
 				</div>
 			</div>
-			<div class="card-deck">
-				<div class="card-fluid col-lg-6 col-md-6 col-sm-12 bg-light my-2 mx-2 ml-auto">
-					<img class="card-img-top" src=".../100px200/" alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">Books</h5>
-					</div>
-				</div>
-				<div class="card-fluid col-lg-6 col-md-6 col-sm-12 bg-light my-2 mx-2 mr-auto">
-					<img class="card-img-top" src=".../100px200/" alt="Card image cap">
-					<div class="card-body">
-						<h5 class="card-title">Movies & TV</h5>
-					</div>
+			<div class="card">
+				<img class="card-img-top" src="content/" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">Video Games</h5>
 				</div>
 			</div>
+			<div class="card">
+				<img class="card-img-top" src="content/cosplay.jpg" alt="Card image cap">
+				<div class="card-body">
+					<h5 class="card-title">Cosplay</h5>
+				</div>
+			</div>
+		</div>
+<!--			<div class="card-deck">-->
+<!--				<div class="card-fluid col-lg-6 col-md-6 col-sm-12 bg-light my-2 mx-2 ml-auto">-->
+<!--					<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+<!--					<div class="card-body">-->
+<!--						<h5 class="card-title">Books</h5>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--				<div class="card-fluid col-lg-6 col-md-6 col-sm-12 bg-light my-2 mx-2 mr-auto">-->
+<!--					<img class="card-img-top" src=".../100px200/" alt="Card image cap">-->
+<!--					<div class="card-body">-->
+<!--						<h5 class="card-title">Movies & TV</h5>-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
 	</body>
 </html>
