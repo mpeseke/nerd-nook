@@ -95,7 +95,7 @@ form {
 	border: 3px solid black;
 }
 body {
-	background-image: url("app/img/matrix door2.jpg");
+	background-image: url("/content/matrix door2.jpg");
 	background-repeat: no-repeat;
 }
 
