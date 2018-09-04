@@ -15,36 +15,7 @@
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
 			<!-- CSS Custom -->
-			<style>
-				.jumbotron {
-					background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("content/bowtie.jpg") center center no-repeat;
-					width:100%;
-					height:100%;
-					background-size: cover;
-				}
-
-				.footer {
-					background-color: #53A451;
-					position: fixed;
-					left: 0;
-					bottom: 0;
-					width: 100%;
-					color: white;
-					text-align: center;
-					padding: 5px;
-					margin-top: 10px;
-				}
-
-				span:after{
-					content:" ";
-					display: inline-block;
-					width:32px;
-				}
-
-				span {
-					font-size: x-large;
-				}
-			</style>
+			<link rel="stylesheet" href="styles.css"
 
 			<title>Nerd Nook Profile</title>
 		</head>
