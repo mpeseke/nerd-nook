@@ -213,7 +213,7 @@
 			}
 		</style>
 	</head>
-	<body>
+	<body class="homebody">
 
 		<div class="form">
 

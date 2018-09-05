@@ -1,16 +1,86 @@
 
 <link rel="stylesheet" href="splash.component.css" type="text/css">
 
-	<div class="home-container">
-		<form action="#" method="post">
-			<h1>Login</h1>
+<div class="form">
 
-			<label class="email-label" for="email"><b>Email Address</b></label>
-			<input type="text" placeholder="Enter Email Address" name="email" required>
+	<ul class="tab-group">
+		<li class="tab active"><a href="#signup">Sign Up</a></li>
+		<li class="tab"><a href="#login">Log In</a></li>
+	</ul>
 
-			<label class="password-label" for="psw"><b>Password</b></label>
-			<input type="password" placeholder="Enter Password" name="psw" required>
+	<div class="tab-content">
+		<div id="signup">
+			<h1>Sign Up for Free</h1>
 
-			<button id="login" class="submit"  type="submit">Login</button>
-		</form>
-	</div>
+			<form action="/" method="post">
+
+				<div class="top-row">
+					<div class="field-wrap">
+						<label>
+							Name<span class="req">*</span>
+						</label>
+						<input type="text" required autocomplete="off">
+					</div>
+
+					<div class="field-wrap">
+						<label>
+							UserName<span class="req">*</span>
+						</label>
+						<input type="text" required autocomplete="off"/>
+					</div>
+				</div>
+
+				<div class="field-wrap">
+					<label>
+						Email Address<span class="req">*</span>
+					</label>
+					<input type="email" required autocomplete="off"/>
+				</div>
+
+				<div class="field-wrap">
+					<label>
+						Set Password<span class="req">*</span>
+					</label>
+					<input type="password" required autocomplete="off"/>
+				</div>
+
+				<div class="field-wrap">
+					<label>
+						Confirm Password<span class="req">*</span>
+					</label>
+					<input type="password" required autocomplete="off"/>
+				</div>
+
+				<button type="submit" class="button button-block"/>Get Started</button>
+
+			</form>
+
+		</div>
+
+		<div id="login">
+			<h1>Welcome Back!</h1>
+
+			<form action="/" method="post">
+
+				<div class="field-wrap">
+					<label>
+						Email Address<span class="req">*</span>
+					</label>
+					<input type="email" required autocomplete="off"/>
+				</div>
+
+				<div class="field-wrap">
+					<label>
+						Password<span class="req">*</span>
+					</label>
+					<input type="password" required autocomplete="off"/>
+				</div>
+				<button type="submit" class="button button-block"/>Log In</button>
+
+			</form>
+
+		</div>
+
+	</div><!-- tab-content -->
+
+</div> <!-- /form -->
