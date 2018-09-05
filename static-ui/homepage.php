@@ -19,51 +19,7 @@
 
 
 		<title>The Nerd Nook HomePage</title>
-		<script>
-			$('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
-				var $this = $(this),
-					label = $this.prev('label');
-
-				if (e.type === 'keyup') {
-					if ($this.val() === '') {
-						label.removeClass('active highlight');
-					} else {
-						label.addClass('active highlight');
-					}
-				} else if (e.type === 'blur') {
-					if( $this.val() === '' ) {
-						label.removeClass('active highlight');
-					} else {
-						label.removeClass('highlight');
-					}
-				} else if (e.type === 'focus') {
-
-					if( $this.val() === '' ) {
-						label.removeClass('highlight');
-					}
-					else if( $this.val() !== '' ) {
-						label.addClass('highlight');
-					}
-				}
-
-			});
-
-			$('.tab a').on('click', function (e) {
-
-				e.preventDefault();
-
-				$(this).parent().addClass('active');
-				$(this).parent().siblings().removeClass('active');
-
-				target = $(this).attr('href');
-
-				$('.tab-content > div').not(target).hide();
-
-				$(target).fadeIn(600);
-
-			});
-		</script>
 		<style>
 			:root {
 				--body-bg: #c1bdba;
@@ -89,7 +45,7 @@
 			}
 
 			body {
-				background: var(--body-bg);
+				background-image: url("../src/app/img/matrix-door2.jpg");
 				font-family: 'Titillium Web', sans-serif;
 			}
 
@@ -109,6 +65,9 @@
 				margin: 40px auto;
 				border-radius: var(--br);
 				box-shadow: 0 4px 10px 4px var(--form-bg);
+				top: 20rem;
+				left: 55rem;
+				float: right;
 			}
 
 			.tab-group {
@@ -256,21 +215,6 @@
 	</head>
 	<body>
 
-<!--	<body class="homepage-background">-->
-<!--			<div class="home-container">-->
-<!--				<form id="homepage" action="#" method="post">-->
-<!--					<h1>Login</h1>-->
-<!---->
-<!--					<label class="email-label" for="email"><b>Email Address</b></label>-->
-<!--					<input type="text" placeholder="Enter Email Address" name="email" required>-->
-<!---->
-<!--					<label class="password-label" for="psw"><b>Password</b></label>-->
-<!--					<input type="password" placeholder="Enter Password" name="psw" required>-->
-<!---->
-<!--					<button id="login" class="submit"  type="submit">Login</button>-->
-<!--				</form>-->
-<!--			</div>-->
-
 		<div class="form">
 
 			<ul class="tab-group">
@@ -345,7 +289,7 @@
 							</label>
 							<input type="password" required autocomplete="off"/>
 						</div>
-						<button class="button-button-block"/>Log In</button>
+						<button type="submit" class="button button-block"/>Log In</button>
 
 					</form>
 
@@ -355,5 +299,56 @@
 
 		</div> <!-- /form -->
 
+
+		<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
+		<script>
+
+			$('.form').find('input, textarea').on('keyup blur focus', function (e) {
+
+				var $this = $(this),
+					label = $this.prev('label');
+
+				if (e.type === 'keyup') {
+					if ($this.val() === '') {
+						label.removeClass('active highlight');
+					} else {
+						label.addClass('active highlight');
+					}
+				} else if (e.type === 'blur') {
+					if( $this.val() === '' ) {
+						label.removeClass('active highlight');
+					} else {
+						label.removeClass('highlight');
+					}
+				} else if (e.type === 'focus') {
+
+					if( $this.val() === '' ) {
+						label.removeClass('highlight');
+					}
+					else if( $this.val() !== '' ) {
+						label.addClass('highlight');
+					}
+				}
+
+			});
+
+			$('.tab a').click(function() {
+					$('#login').animate({height:"toggle", opacity:"toggle"}, "slow");
+					$('#signup').animate({height:"toggle", opacity:"toggle"}, "slow");
+				e.preventDefault();
+
+				$(this).parent().addClass('active');
+				$(this).parent().siblings().removeClass('active');
+
+				$target = $(this).attr('href');
+
+				$('.tab-content > div').not(target).hide();
+
+				$(target).fadeIn(600);
+
+			});
+
+
+		</script>
 	</body>
 </html>
