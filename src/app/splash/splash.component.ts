@@ -29,10 +29,10 @@ export class SplashComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.signUpForm = this.formBuilder.group({
-			atHandle: ["", [Validators.maxLength(32), Validators.required]],
-			email: ["", [Validators.maxLength(128), Validators.required, Validators.email]],
-			password: ["", [Validators.minLength(8), Validators.maxLength(48), Validators.required]],
-			passwordConfirm: ["", [Validators.minLength(8), Validators.maxLength(48), Validators.required]]
+			profileAtHandle: ["", [Validators.maxLength(32), Validators.required]],
+			profileEmail: ["", [Validators.maxLength(128), Validators.required, Validators.email]],
+			profilePassword: ["", [Validators.minLength(8), Validators.maxLength(48), Validators.required]],
+			profilePasswordConfirm: ["", [Validators.minLength(8), Validators.maxLength(48), Validators.required]]
 		});
 
 		this.status = {status: null, message: null, type: null}
