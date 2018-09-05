@@ -1,5 +1,9 @@
 
-	<div class="form">
+<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	<span aria-hidden="true">&times;</span>
+</button>
+
+<div class="form">
 
 		<ul class="tab-group">
 			<li class="tab active"><a href="#signup">Sign Up</a></li>
@@ -97,7 +101,10 @@
 
 				</form>
 
-
+			<div *ngIf="status !== null" class="alert alert-dismissible" [class]="status.type" role="alert">
+				<button type="button" class="close" aria-label="Close" (click)="status = null;"><span aria-hidden="true">$times;</span></button>
+				{{ status.message }}
+			</div>
 
 		 </div><!-- tab-content -->
 
