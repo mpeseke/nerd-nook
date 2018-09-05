@@ -1,5 +1,3 @@
-<!--actual form-->
-<form class="form-horizontal" [formGroup]="signUpForm" (ngSubmit)="createSignUp();" novalidate;
 
 	<div class="form">
 
@@ -14,6 +12,8 @@
 
 				<form action="/" method="post">
 
+					<!--actual form-->
+					<form class="form-horizontal" [formGroup]="signUpForm" (ngSubmit)="createSignUp();" novalidate;
 
 						<div class="form-group">
 							<label>
@@ -23,12 +23,15 @@
 						</div>
 
 						<div class="form-group">
-							<label>
-								UserName<span class="req">*</span>
+							<label for="atHandle" class="control-label">
+								@Handle<span class="req">*</span>
 							</label>
-							<input type="text" required autocomplete="off" placeholder="Username">
+							<input type="text" id="atHandle" formControlName="atHandle" class="form-control" required autocomplete="off" placeholder="Username">
 						</div>
-
+						<div class="alert alert-danger" *ngIf="signUpForm.controls.atHandle?.invalid && signUpForm.controls.atHandle?.touched">
+							<p *ngIf="signUpForm.controls.atHandle?.errors.maxLength">@Handle is too long</p>
+							<p *ngIf="signUpForm.controls.atHandle?.errors.required">@Handle required</p>
+						</div>
 
 					<div class="form-group">
 						<label>
