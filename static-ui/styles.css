@@ -34,7 +34,7 @@ Profile Page Styles
 }
 
 .footer {
-	background-color: #53A451;
+	background-color: #53a451;
 	position: fixed;
 	left: 0;
 	bottom: 0;
@@ -57,20 +57,14 @@ span {
 /****************************************************************************
 Check In CSS
 ****************************************************************************/
-body{
-	background-color: #c7c7c7;
-}
 
-.checkInIcon{
-	color: #000;
-	font-size: 5rem;
-}
 
 .centered {
 	position: fixed;
 	top: 50%;
 	left: 50%;
 }
+
 
 /****************************************************************************
 Category CSS
@@ -180,3 +174,6 @@ event page css
 	color: white;
 }
 
+body{
+	background-color: #c7c7c7;
+}
