@@ -34,17 +34,22 @@
 						</div>
 
 					<div class="form-group">
-						<label>
+						<label for="email" class="control-label">
 							Email Address<span class="req">*</span>
 						</label>
-						<input type="text" required autocomplete="off" placeholder="Email Address">
+						<input type="email" id="email" class="form-control input-sm" formControlName="email" required autocomplete="off" placeholder="Email Address">
+					</div>
+
+					<div class="alert alert-danger" *ngIf="signUpForm.controls.email?.invalid && signUpForm.controls.email?.touched">
+						<p *ngIf="signUpForm.controls.email?.errors.maxLength">Email is too long</p>
+						<p *ngIf="signUpForm.controls.email?.errors.required">Email required</p>
 					</div>
 
 					<div class="form-group">
 						<label>
 							Set Password<span class="req">*</span>
 						</label>
-						<input type="password"  required autocomplete="off" placeholder="Set Password">
+						<input type="password" id="password" class required autocomplete="off" placeholder="Set Password">
 					</div>
 
 					<div class="form-group">
