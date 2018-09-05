@@ -56,7 +56,7 @@
 						<label for="profilePasswordConfirm" class="control-label">
 							Confirm Password<span class="req">*</span>
 						</label>
-						<input type="password" name="profilePasswordConfirm" id="profilePasswordConfirm" required autocomplete="off" placeholder="Confirm Password">
+						<input type="password" name="profilePasswordConfirm" id="profilePasswordConfirm" class="form-control input-sm" required autocomplete="off" placeholder="Confirm Password">
 					</div>
 
 					<div class="alert alert-danger" *ngIf="signUpForm.controls.profilePasswordConfirm?.invalid && signUpForm.controls.profilePasswordConfirm?.touched">
