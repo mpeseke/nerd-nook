@@ -41,27 +41,27 @@
 					</div>
 
 					<div class="form-group">
-						<label for="password" class="control-label">
+						<label for="profilePassword" class="control-label">
 							Set Password<span class="req">*</span>
 						</label>
-						<input type="password" id="password" class="form-control input-sm" formControlName="password" required autocomplete="off" placeholder="Set Password">
+						<input type="password" id="profilePassword" class="form-control input-sm" formControlName="profilePassword" required autocomplete="off" placeholder="Set Password">
 					</div>
 
 					<div class="alert alert-danger" *ngIf="signUpForm.controls.password?.invalid && signUpForm.controls.password?.touched">
-						<p *ngIf="signUpForm.controls.password?.errors.maxLength">Password is too long</p>
-						<p *ngIf="signUpForm.controls.password?.errors.required">You must enter a password to sign up</p>
+						<p *ngIf="signUpForm.controls.profilePassword?.errors.maxLength">Password is too long</p>
+						<p *ngIf="signUpForm.controls.profilePassword?.errors.required">You must enter a password to sign up</p>
 					</div>
 
 					<div class="form-group">
-						<label>
+						<label for="profilePasswordConfirm" class="control-label">
 							Confirm Password<span class="req">*</span>
 						</label>
-						<input type="password" required autocomplete="off" placeholder="Confirm Password">
+						<input type="password" id="profilePasswordConfirm" required autocomplete="off" placeholder="Confirm Password">
 					</div>
 
-					<div class="alert alert-danger" *ngIf="signUpForm.controls.password?.invalid && signUpForm.controls.password?.touched">
-						<p *ngIf="signUpForm.controls.password?.errors.maxLength">Password is too long</p>
-						<p *ngIf="signUpForm.controls.password?.errors.required">Please confirm your password</p>
+					<div class="alert alert-danger" *ngIf="signUpForm.controls.profilePasswordConfirm?.invalid && signUpForm.controls.profilePasswordConfirm?.touched">
+						<p *ngIf="signUpForm.controls.profilePasswordConfirm?.errors.maxLength">Password is too long</p>
+						<p *ngIf="signUpForm.controls.profilePasswordConfirm?.errors.required">Please confirm your password</p>
 					</div>
 
 					<button type="submit" class="button button-block">Get Started</button>
