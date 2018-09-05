@@ -23,7 +23,7 @@
 							</label>
 							<input type="text" id="profileAtHandle" formControlName="profileAtHandle" class="form-control" required autocomplete="off" placeholder="@Handle">
 						</div>
-						<div class="alert alert-danger" *ngIf="signUpForm.controls.atHandle?.invalid && signUpForm.controls.atHandle?.touched">
+						<div class="alert alert-danger" *ngIf="signUpForm.controls.profileAtHandle?.invalid && signUpForm.controls.profileAtHandle?.touched">
 							<p *ngIf="signUpForm.controls.profileAtHandle?.errors.maxLength">@Handle is too long</p>
 							<p *ngIf="signUpForm.controls.profileAtHandle?.errors.required">@Handle required</p>
 						</div>
