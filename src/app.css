@@ -184,15 +184,8 @@ h1 {
 }
 
 label {
-	position: absolute;
-	-webkit-transform: translateY(6px);
-	transform: translateY(6px);
-	left: 13px;
 	color: var(--white);
-	transition: all 0.25s ease;
-	-webkit-backface-visibility: hidden;
-	pointer-events: none;
-	font-size: 22px;
+	/*font-size: 22px;*/
 }
 label .req {
 	margin: 2px;
