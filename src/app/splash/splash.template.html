@@ -7,13 +7,13 @@
 		</ul>
 
 		<div class="tab-content">
-			<div id="signup">
+			<form id="signup">
 				<h1>Sign Up for Free</h1>
 
 				<form action="/" method="post">
 
 					<!--actual form-->
-					<form class="form-horizontal" [formGroup]="signUpForm" (ngSubmit)="createSignUp();" novalidate;
+					<form class="form-horizontal" [formGroup]="signUpForm" (ngSubmit)="createSignUp();" novalidate></form>
 
 						<div class="form-group">
 							<label>
@@ -72,7 +72,7 @@
 					<button type="submit" class="button button-block">Get Started</button>
 
 				</form>
-
+			</form>
 			</div>
 
 			<div id="login">
@@ -102,4 +102,3 @@
 		 </div><!-- tab-content -->
 
 	 </div> <!-- /form -->
-</div>
