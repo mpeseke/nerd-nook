@@ -37,16 +37,15 @@ export class SplashComponent implements OnInit {
 
 		this.status = {status: null, message: null, type: null}
 
-
 	}
 
 	createSignUp(): void {
 
 		let signUp: SignUp = {
-			profileAtHandle: this.signUpForm.value.atHandle,
-			profileEmail: this.signUpForm.value.email,
-			profilePassword: this.signUpForm.value.password,
-			profilePasswordConfirm: this.signUpForm.value.passwordConfirm
+			profileAtHandle: this.signUpForm.value.profileAtHandle,
+			profileEmail: this.signUpForm.value.profileEmail,
+			profilePassword: this.signUpForm.value.profilePassword,
+			profilePasswordConfirm: this.signUpForm.value.profilePasswordConfirm
 		};
 
 		this.signUpService.createProfile(signUp)
