@@ -18,14 +18,14 @@
 					<form class="form-horizontal" [formGroup]="signUpForm" (ngSubmit)="createSignUp();" novalidate>
 
 						<div class="form-group">
-							<label for="atHandle" class="control-label">
+							<label for="profileAtHandle" class="control-label">
 								@Handle<span class="req">*</span>
 							</label>
-							<input type="text" id="atHandle" formControlName="atHandle" class="form-control" required autocomplete="off" placeholder="Username">
+							<input type="text" id="profileAtHandle" formControlName="profileAtHandle" class="form-control" required autocomplete="off" placeholder="@Handle">
 						</div>
 						<div class="alert alert-danger" *ngIf="signUpForm.controls.atHandle?.invalid && signUpForm.controls.atHandle?.touched">
-							<p *ngIf="signUpForm.controls.atHandle?.errors.maxLength">@Handle is too long</p>
-							<p *ngIf="signUpForm.controls.atHandle?.errors.required">@Handle required</p>
+							<p *ngIf="signUpForm.controls.profileAtHandle?.errors.maxLength">@Handle is too long</p>
+							<p *ngIf="signUpForm.controls.profileAtHandle?.errors.required">@Handle required</p>
 						</div>
 
 					<div class="form-group">
