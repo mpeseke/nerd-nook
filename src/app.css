@@ -4,7 +4,7 @@
 Universal CSS
 ****************************************************************************/
 
-.jumbotronCOOKIECUTTER {
+.jumbotronCookieCutter {
 	background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("app/img/imagine.jpg") no-repeat;
 }
 
@@ -78,7 +78,7 @@ body{
 Category CSS
 ****************************************************************************/
 
-.jumbotronBG {
+.jumbotronBg {
 	background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("app/img/imagine.jpg") center center no-repeat;
 }
 

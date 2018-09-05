@@ -5,7 +5,7 @@ import {AuthGuardService as AuthGuard} from "./shared/services/auth.guard.servic
 //import all needed Interceptors
 import {APP_BASE_HREF} from "@angular/common";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
-import {DeepDiveInterceptor} from "./shared/services/deep.dive.interceptor";
+import {DeepDiveInterceptor} from "./shared/interceptors/deep.dive.interceptor";
 
 
 

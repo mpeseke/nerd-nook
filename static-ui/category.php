@@ -47,7 +47,7 @@
 			</nav>
 		</header>
 
-		<div class="jumbotron jumbotronBG jumbotronImg jumbotron-fluid text-light">
+		<div class="jumbotron jumbotronBg jumbotronImg jumbotron-fluid text-light">
 			<div class="container">
 				<h1 class="display-4"><strong>Categories</strong></h1>
 				<p class="lead"><strong>Nerd Herd</strong>, <em>noun</em>,<br/>
