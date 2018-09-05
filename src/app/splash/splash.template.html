@@ -1,85 +1,86 @@
 
 
-<div class="form">
+	<div class="form">
 
-	<ul class="tab-group">
-		<li class="tab active"><a href="#signup">Sign Up</a></li>
-		<li class="tab"><a href="#login">Log In</a></li>
-	</ul>
+		<ul class="tab-group">
+			<li class="tab active"><a href="#signup">Sign Up</a></li>
+			<li class="tab"><a href="#login">Log In</a></li>
+		</ul>
 
-	<div class="tab-content">
-		<div id="signup">
-			<h1>Sign Up for Free</h1>
+		<div class="tab-content">
+			<div id="signup">
+				<h1>Sign Up for Free</h1>
 
-			<form action="/" method="post">
+				<form action="/" method="post">
+
+
+						<div class="form-group">
+							<label>
+								Name<span class="req">*</span>
+							</label>
+							<input type="text" required autocomplete="off" placeholder="Name">
+						</div>
+
+						<div class="form-group">
+							<label>
+								UserName<span class="req">*</span>
+							</label>
+							<input type="text" required autocomplete="off" placeholder="Username">
+						</div>
 
 
 					<div class="form-group">
-						<!--<label>-->
-							<!--Name<span class="req">*</span>-->
-						<!--</label>-->
-						<input type="text" required autocomplete="off" placeholder="Name">
+						<label>
+							Email Address<span class="req">*</span>
+						</label>
+						<input type="text" required autocomplete="off" placeholder="Email Address">
 					</div>
 
 					<div class="form-group">
-						<!--<label>-->
-							<!--UserName<span class="req">*</span>-->
-						<!--</label>-->
-						<input type="text" required autocomplete="off" placeholder="Username">
+						<label>
+							Set Password<span class="req">*</span>
+						</label>
+						<input type="text" required autocomplete="off" placeholder="Set Password">
 					</div>
 
+					<div class="form-group">
+						<label>
+							Confirm Password<span class="req">*</span>
+						</label>
+						<input type="text" required autocomplete="off" placeholder="Confirm Password">
+					</div>
 
-				<div class="form-group">
-					<!--<label>-->
-						<!--Email Address<span class="req">*</span>-->
-					<!--</label>-->
-					<input type="text" required autocomplete="off" placeholder="Email Address">
-				</div>
+					<button type="submit" class="button button-block">Get Started</button>
 
-				<div class="form-group">
-					<!--<label>-->
-						<!--Set Password<span class="req">*</span>-->
-					<!--</label>-->
-					<input type="text" required autocomplete="off" placeholder="Set Password">
-				</div>
+				</form>
 
-				<div class="form-group">
-					<!--<label>-->
-						<!--Confirm Password<span class="req">*</span>-->
-					<!--</label>-->
-					<input type="text" required autocomplete="off" placeholder="Confirm Password">
-				</div>
+			</div>
 
-				<button type="submit" class="button button-block">Get Started</button>
+			<div id="login">
+				<h1>Welcome Back!</h1>
 
-			</form>
+				<form action="/" method="post">
 
-		</div>
+					<div class="form-group">
+						<label>
+							Email Address<span class="req">*</span>
+						</label>
+						<input type="text" required autocomplete="off" placeholder="Email Address">
+					</div>
 
-		<div id="login">
-			<h1>Welcome Back!</h1>
+					<div class="form-group">
+						<label>
+							Password<span class="req">*</span>
+						</label>
+						<input type="text" required autocomplete="off" placeholder="Password">
+					</div>
+					<button type="submit" class="button button-block">Log In</button>
 
-			<form action="/" method="post">
-
-				<div class="form-group">
-					<!--<label>-->
-						<!--Email Address<span class="req">*</span>-->
-					<!--</label>-->
-					<input type="text" required autocomplete="off" placeholder="Email Address">
-				</div>
-
-				<div class="form-group">
-					<!--<label>-->
-						<!--Password<span class="req">*</span>-->
-					<!--</label>-->
-					<input type="text" required autocomplete="off" placeholder="Password">
-				</div>
-				<button type="submit" class="button button-block">Log In</button>
-
-			</form>
+				</form>
 
 
 
-	</div><!-- tab-content -->
+		 </div><!-- tab-content -->
 
-</div> <!-- /form -->
+	 </div> <!-- /form -->
+</div>
