@@ -29,15 +29,15 @@
 						</div>
 
 					<div class="form-group">
-						<label for="email" class="control-label">
+						<label for="profileEmail" class="control-label">
 							Email Address<span class="req">*</span>
 						</label>
-						<input type="email" id="email" class="form-control input-sm" formControlName="email" required autocomplete="off" placeholder="Email Address">
+						<input type="email" id="profileEmail" class="form-control input-sm" formControlName="profileEmail" required autocomplete="off" placeholder="Email Address">
 					</div>
 
-					<div class="alert alert-danger" *ngIf="signUpForm.controls.email?.invalid && signUpForm.controls.email?.touched">
-						<p *ngIf="signUpForm.controls.email?.errors.maxLength">Email is too long</p>
-						<p *ngIf="signUpForm.controls.email?.errors.required">Email required</p>
+					<div class="alert alert-danger" *ngIf="signUpForm.controls.profileEmail?.invalid && signUpForm.controls.profileEmail?.touched">
+						<p *ngIf="signUpForm.controls.profileEmail?.errors.maxLength">Email is too long</p>
+						<p *ngIf="signUpForm.controls.profileEmail?.errors.required">Email required</p>
 					</div>
 
 					<div class="form-group">
