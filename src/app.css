@@ -198,6 +198,10 @@ label .req {
 	margin: 2px;
 }
 
+input::placeholder{
+	color: white;
+}
+
 label.active {
 	-webkit-transform: translateY(50px);
 	transform: translateY(50px);
