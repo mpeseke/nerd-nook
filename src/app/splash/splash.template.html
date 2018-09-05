@@ -32,7 +32,7 @@
 						<label for="profileEmail" class="control-label">
 							Email Address<span class="req">*</span>
 						</label>
-						<input type="email" id="profileEmail" class="form-control input-sm" formControlName="profileEmail" required autocomplete="off" placeholder="Email Address">
+						<input type="email" name="profileEmail" id="profileEmail" class="form-control input-sm" formControlName="profileEmail" required autocomplete="off" placeholder="Email Address">
 					</div>
 
 					<div class="alert alert-danger" *ngIf="signUpForm.controls.profileEmail?.invalid && signUpForm.controls.profileEmail?.touched">
@@ -44,7 +44,7 @@
 						<label for="profilePassword" class="control-label">
 							Set Password<span class="req">*</span>
 						</label>
-						<input type="password" id="profilePassword" class="form-control input-sm" formControlName="profilePassword" required autocomplete="off" placeholder="Set Password">
+						<input type="password" name="profilePassword" id="profilePassword" class="form-control input-sm" formControlName="profilePassword" required autocomplete="off" placeholder="Set Password">
 					</div>
 
 					<div class="alert alert-danger" *ngIf="signUpForm.controls.password?.invalid && signUpForm.controls.password?.touched">
@@ -56,7 +56,7 @@
 						<label for="profilePasswordConfirm" class="control-label">
 							Confirm Password<span class="req">*</span>
 						</label>
-						<input type="password" id="profilePasswordConfirm" required autocomplete="off" placeholder="Confirm Password">
+						<input type="password" name="profilePasswordConfirm" id="profilePasswordConfirm" required autocomplete="off" placeholder="Confirm Password">
 					</div>
 
 					<div class="alert alert-danger" *ngIf="signUpForm.controls.profilePasswordConfirm?.invalid && signUpForm.controls.profilePasswordConfirm?.touched">
