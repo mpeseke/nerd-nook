@@ -34,16 +34,16 @@
 			<div class="collapse navbar-collapse" id="nerdNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active">
-						<a class="nav-link text-success" href="#"><i class="fas fa-user-secret fa-fw pr-2"></i></i>Profile</a>
+						<a class="nav-link text-success" href="#"><i class="fas fa-user-secret fa-fw pr-2"></i>Profile</a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link text-success" href="#"><i class="fas fa-journal-whills fa-fw pr-2"></i>Categories</a>
+						<a class="nav-link text-success" href="#"><i class="fas fa-archive fa-fw pr-2"></i>Categories</a>
 					</li>
 					<li class="nav-item active">
 						<a class="nav-link text-success" href="#"><i class="fas fa-calendar-check fa-fw pr-2"></i>Events</a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link text-successf" href="#"><i class="fas fa-sign-out-alt fa-fw pr-2"></i>Sign Out</a>
+						<a class="nav-link text-success" href="#"><i class="fas fa-sign-out-alt fa-fw pr-2"></i>Sign Out</a>
 					</li>
 				</ul>
 			</div>
