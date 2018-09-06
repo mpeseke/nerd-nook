@@ -1,3 +1,3 @@
 export interface  SignIn {
-	ProfileEmail: string, profilePassword: string
+	profileEmail: string, profilePassword: string
 }
