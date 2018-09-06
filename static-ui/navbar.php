@@ -27,7 +27,7 @@
 
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark p-2">
-			<a class="navbar-brand" href="#">The Nerd Nook</a>
+			<a class="navbar-brand text-success" href="#">The Nerd Nook</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nerdNav">
 				<span><i class="fas fa-glasses"></i></span>
 			</button>
@@ -41,6 +41,9 @@
 					</li>
 					<li class="nav-item active">
 						<a class="nav-link text-success" href="#"><i class="fas fa-calendar-check fa-fw pr-2"></i>Events</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link text-success" href="#"><i class="fas fa-user-plus fa-fw pr-2"></i>Sign Up</a>
 					</li>
 					<li class="nav-item active">
 						<a class="nav-link text-success" href="#"><i class="fas fa-sign-out-alt fa-fw pr-2"></i>Sign Out</a>

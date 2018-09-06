@@ -20,7 +20,9 @@
 				  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 				  crossorigin="anonymous"></script>
 		<title></title>
+
 	</head>
+
 	<body>
 		<div class="row mx-0 justify-content-center text-center centered">
 			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-6 m-2">
