@@ -1,32 +1,33 @@
+<div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-labelledby="signin">
+	<div class="sign-in">
+		<div class="signin"></div>
+		<h1>Sign In</h1>
+		<h3>Welcome Back!</h3>
 
-<div class="sign-in">
-	<div class="signin"></div>
-	<h1>Sign In</h1>
-	<h3>Welcome Back!</h3>
-
-	<!--actual form-->
-	<form #signInForm="ngForm" class="form-horizontal" [formGroup]="signInForm" (ngSubmit)="signIn();" novalidate>
-
-
-		<div class="form-group">
-			<label for="signin-email" class="control-label">
-				Email Address<span class="req">*</span>
-			</label>
-			<input type="email" name="signin-email" id="signin-email" class="form-control input-sm" [required]=[(ngModel)]=signin.profileEmail #profileEmail="ngModel" required autocomplete="off" placeholder="Email Address">					</div>
+		<!--actual form-->
+		<form #signInForm="ngForm" class="form-horizontal" [formGroup]="signInForm" (ngSubmit)="signIn();" novalidate>
 
 
-		<div class="form-group">
-			<label for="signin-password" class="control-label">
-				Password<span class="req">*</span>
-			</label>
-			<input type="password" id="signin-password" name="signin-password" [required]=[(ngModel)]=signin.profilePassword class="form-control input-sm" #profilePassword="ngModel" formControlName="profilePassword" required autocomplete="off" placeholder="Enter Password">
+			<div class="form-group">
+				<label for="signin-email" class="control-label">
+					Email Address<span class="req">*</span>
+				</label>
+				<input type="email" name="signin-email" id="signin-email" class="form-control input-sm" [required]=[(ngModel)]=signin.profileEmail #profileEmail="ngModel" required autocomplete="off" placeholder="Email Address">					</div>
+
+
+			<div class="form-group">
+				<label for="signin-password" class="control-label">
+					Password<span class="req">*</span>
+				</label>
+				<input type="password" id="signin-password" name="signin-password" [required]=[(ngModel)]=signin.profilePassword class="form-control input-sm" #profilePassword="ngModel" formControlName="profilePassword" required autocomplete="off" placeholder="Enter Password">
+			</div>
+
+			<button type="submit" id="submit"[disabled]="signInForm.invalid" class="button button-block">Log In</button>
+		</form>
+		<div *ngIf="status !== null" class="alert alert-dismissible" [class]="status.type" role="alert">
+			<button type="button" class="close" aria-label="Close" (click)="status = null;"><span aria-hidden="true">&times;</span></button>
+			{{ status.message }}
 		</div>
 
-		<button type="submit" id="submit"[disabled]="signInForm.invalid" class="button button-block">Log In</button>
-	</form>
-	<div *ngIf="status !== null" class="alert alert-dismissible" [class]="status.type" role="alert">
-		<button type="button" class="close" aria-label="Close" (click)="status = null;"><span aria-hidden="true">&times;</span></button>
-		{{ status.message }}
 	</div>
-
 </div>
