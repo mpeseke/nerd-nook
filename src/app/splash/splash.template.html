@@ -5,12 +5,12 @@
 
 <div class="form">
 
-		<ul class="tab-group">
-			<li class="tab active"><a href="#signup">Sign Up</a></li>
-			<li class="tab"><a href="#login">Log In</a></li>
-		</ul>
+		<!--<ul class="tab-group">-->
+			<!--<li class="tab active"><a href="#signup">Sign Up</a></li>-->
+			<!--<li class="tab"><a href="#login">Log In</a></li>-->
+		<!--</ul>-->
 
-		<div class="tab-content">
+		<div class="sign-up">
 			<form id="signup">
 				<h1>Sign Up for Free</h1>
 
@@ -70,33 +70,43 @@
 
 			</form>
 
-			<div id="login">
+			<div class="sign-in">
+				<div class="signin"></div>
+				<h1>Sign In</h1>
+				<h3>Welcome Back!</h3>
 
-				<h1>Welcome Back!</h1>
+				<!--actual form-->
+				<form class="form-horizontal" [formGroup]="signInForm" (ngSubmit)="createSignIn();" novalidate>
 
-				<form action="/" method="post">
 
 					<div class="form-group">
-						<label>
+						<label for="profileEmail" class="control-label">
 							Email Address<span class="req">*</span>
 						</label>
-						<input type="text" required autocomplete="off" placeholder="Email Address">
+						<input type="email" name="profileEmail" id="profileEmail" class="form-control input-sm" formControlName="profileEmail" required autocomplete="off" placeholder="Email Address">					</div>
+
+					<div class="alert alert-danger" *ngIf="signInForm.controls.profilePassword?.invalid && signInForm.controls.profilePassword?.touched">
+						<p *ngIf="signInForm.controls.profilePassword?.errors.maxLength">Password is too long</p>
+						<p *ngIf="signInForm.controls.profilePassword?.errors.required">You must enter a password to sign up</p>
 					</div>
 
 					<div class="form-group">
-						<label>
+						<label for="profilePassword" class="control-label">
 							Password<span class="req">*</span>
 						</label>
-						<input type="text" required autocomplete="off" placeholder="Password">
+						<input name="profilePassword" type="password" id="profilePassword" class="form-control" formControlName="profilePassword" required autocomplete="off" placeholder="Enter Password">
 					</div>
+					<div class="alert alert-danger" *ngIf="signInForm.controls.password?.invalid && signInForm.controls.password?.touched">
+						<p *ngIf="signInForm.controls.profilePassword?.errors.maxLength">Password is too long</p>
+						<p *ngIf="signInForm.controls.profilePassword?.errors.required">You must enter a password to sign up</p>
+					</div>
+
 					<button type="submit" class="button button-block">Log In</button>
-
 				</form>
-
-					<div *ngIf="status !== null" class="alert alert-dismissible" [class]="status.type" role="alert">
-						<button type="button" class="close" aria-label="Close" (click)="status = null;"><span aria-hidden="true">&times;</span></button>
-						{{ status.message }}
-					</div>
+				<div *ngIf="status !== null" class="alert alert-dismissible" [class]="status.type" role="alert">
+					<button type="button" class="close" aria-label="Close" (click)="status = null;"><span aria-hidden="true">&times;</span></button>
+					{{ status.message }}
+				</div>
 
 			</div>
 
