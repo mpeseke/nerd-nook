@@ -17,7 +17,7 @@
 		<div class="row mx-0 justify-content-center">
 			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
 				<div class="card">
-					<img class="card-img-top rounded-circle" src="/src/app/landing-page/harold-profile.jpg" alt="Card image cap">
+					<img class="card-img-top rounded-circle" src="harold-profile.jpg" alt="Card image cap">
 					<div class="card-body">
 						<h4 class="card-title">Profile</h4>
 						<p class="card-text">Nerdalize your profile</p>
@@ -30,7 +30,7 @@
 		<div class="row mx-0 justify-content-center">
 			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
 				<div class="card">
-					<img class="card-img-top" src="/src/app/landing-page/category-landing-page.jpg" alt="Card image cap">
+					<img class="card-img-top" src="category-landing-page.jpg" alt="Card image cap">
 					<div class="card-body">
 						<h4 class="card-title">Categories</h4>
 						<a href="#" class="btn btn-dark">Select a Category</a>
@@ -42,7 +42,7 @@
 		<div class="row mx-0 justify-content-center">
 			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
 				<div class="card">
-					<img class="card-img-top" src="/src/app/landing-page/events-card.jpg" alt="Card image cap">
+					<img class="card-img-top" src="events-card.jpg" alt="Card image cap">
 					<div class="card-body">
 						<h4 class="card-title">Events</h4>
 						<a href="#" class="btn btn-dark">Create/View Events</a>
