@@ -27,26 +27,26 @@
 
 	<header>
 		<nav class="navbar navbar-expand-md navbar-dark bg-dark p-2">
-			<a class="navbar-brand text-success" href="#">The Nerd Nook</a>
+			<a class="navbar-brand text-success text-monospace" href="#">The Nerd Nook</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#nerdNav">
 				<span><i class="fas fa-glasses"></i></span>
 			</button>
 			<div class="collapse navbar-collapse" id="nerdNav">
 				<ul class="navbar-nav ml-auto">
 					<li class="nav-item active">
-						<a class="nav-link text-success" href="#"><i class="fas fa-user-secret fa-fw pr-2"></i>Profile</a>
+						<a class="nav-link text-success text-monospace" href="#"><i class="fas fa-user-secret fa-fw pr-2"></i>Profile</a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link text-success" href="#"><i class="fas fa-archive fa-fw pr-2"></i>Categories</a>
+						<a class="nav-link text-success text-monospace" href="#"><i class="fas fa-archive fa-fw pr-2"></i>Categories</a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link text-success" href="#"><i class="fas fa-calendar-check fa-fw pr-2"></i>Events</a>
+						<a class="nav-link text-success text-monospace" href="#"><i class="fas fa-calendar-check fa-fw pr-2"></i>Events</a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link text-success" href="#"><i class="fas fa-user-plus fa-fw pr-2"></i>Sign Up</a>
+						<a class="nav-link text-success text-monospace" href="#"><i class="fas fa-user-plus fa-fw pr-2"></i>Sign Up</a>
 					</li>
 					<li class="nav-item active">
-						<a class="nav-link text-success" href="#"><i class="fas fa-sign-out-alt fa-fw pr-2"></i>Sign Out</a>
+						<a class="nav-link text-success text-monospace" href="#"><i class="fas fa-sign-out-alt fa-fw pr-2"></i>Sign Out</a>
 					</li>
 				</ul>
 			</div>
