@@ -1,8 +1,8 @@
 import {Component, OnInit} from "@angular/core";
-import {Status} from "../interfaces/status";
-import {Profile} from "../interfaces/profile"
+import {Status} from "../shared/interfaces/status";
+import {Profile} from "../shared/interfaces/profile"
 import {JwtHelperService} from "@auth0/angular-jwt";
-import {ProfileService} from "../services/profile.service";
+import {ProfileService} from "../shared/services/profile.service";
 
 @Component({
 		template:`
