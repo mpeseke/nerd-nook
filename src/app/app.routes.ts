@@ -22,7 +22,6 @@ import {CommentService} from "./shared/services/comment.service";
 import {CheckInService} from "./shared/services/checkIn.service";
 import {SignInService} from "./shared/services/sign.in.service";
 import {SignUpService} from "./shared/services/sign.up.service";
-import {SignOutService} from "./shared/services/sign.out.service";
 import {SessionService} from "./shared/services/session.service";
 import {SplashComponent} from "./splash/splash.component";
 
@@ -38,7 +37,7 @@ export const routes: Routes = [
 ];
 
 // an array of services that will be passed off to the module
-const services : any[] = [AuthService,CookieService,JwtHelperService,EventService,ProfileService,CommentService,CheckInService,CategoryService,SessionService,SignInService,SignUpService,SignOutService,AuthGuardService];
+const services : any[] = [AuthService,CookieService,JwtHelperService,EventService,ProfileService,CommentService,CheckInService,CategoryService,SessionService,SignInService,SignUpService,AuthGuardService];
 
 //an array of misc provider
 export const providers: any[] = [
