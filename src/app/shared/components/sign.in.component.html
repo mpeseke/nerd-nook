@@ -5,32 +5,24 @@
 	<h3>Welcome Back!</h3>
 
 	<!--actual form-->
-	<form class="form-horizontal" [formGroup]="signInForm" (ngSubmit)="createSignIn();" novalidate>
+	<form #signInForm="ngForm" class="form-horizontal" [formGroup]="signInForm" (ngSubmit)="signIn();" novalidate>
 
 
 		<div class="form-group">
-			<label for="profileEmail" class="control-label">
+			<label for="signin-email" class="control-label">
 				Email Address<span class="req">*</span>
 			</label>
-			<input type="email" name="profileEmail" id="profileEmail" class="form-control input-sm" formControlName="profileEmail" required autocomplete="off" placeholder="Email Address">					</div>
+			<input type="email" name="signin-email" id="signin-email" class="form-control input-sm" [required]=[(ngModel)]=signin.profileEmail #profileEmail="ngModel" required autocomplete="off" placeholder="Email Address">					</div>
 
-		<div class="alert alert-danger" *ngIf="signInForm.controls.profilePassword?.invalid && signInForm.controls.profilePassword?.touched">
-			<p *ngIf="signInForm.controls.profilePassword?.errors.maxLength">Password is too long</p>
-			<p *ngIf="signInForm.controls.profilePassword?.errors.required">You must enter a password to sign up</p>
-		</div>
 
 		<div class="form-group">
-			<label for="profilePassword" class="control-label">
+			<label for="signin-password" class="control-label">
 				Password<span class="req">*</span>
 			</label>
-			<input name="profilePassword" type="password" id="profilePassword" class="form-control" formControlName="profilePassword" required autocomplete="off" placeholder="Enter Password">
-		</div>
-		<div class="alert alert-danger" *ngIf="signInForm.controls.password?.invalid && signInForm.controls.password?.touched">
-			<p *ngIf="signInForm.controls.profilePassword?.errors.maxLength">Password is too long</p>
-			<p *ngIf="signInForm.controls.profilePassword?.errors.required">You must enter a password to sign up</p>
+			<input type="password" id="signin-password" name="signin-password" [required]=[(ngModel)]=signin.profilePassword class="form-control input-sm" #profilePassword="ngModel" formControlName="profilePassword" required autocomplete="off" placeholder="Enter Password">
 		</div>
 
-		<button type="submit" class="button button-block">Log In</button>
+		<button type="submit" id="submit"[disabled]="signInForm.invalid" class="button button-block">Log In</button>
 	</form>
 	<div *ngIf="status !== null" class="alert alert-dismissible" [class]="status.type" role="alert">
 		<button type="button" class="close" aria-label="Close" (click)="status = null;"><span aria-hidden="true">&times;</span></button>
