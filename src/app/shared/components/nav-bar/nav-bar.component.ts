@@ -4,7 +4,7 @@ import {SignInService} from "../../services/sign.in.service";
 
 @Component({
 	selector:"nav-bar",
-	template: require ("./nav-bar.html")
+	template: require ("./nav-bar.component.html")
 })
 
 export class NavBarComponent {

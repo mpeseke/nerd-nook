@@ -9,7 +9,7 @@ declare var $: any;
 
 
 @Component ({
-	template: require("./sign.in.html"),
+	template: require("./sign.in.component.html"),
 	selector: "signin"
 })
 

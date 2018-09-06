@@ -19,7 +19,7 @@
 		<link rel="stylesheet" href="styles.css">
 
 
-		<title>The Nerd Nook Events</title>
+		<title>Event Page</title>
 	</head>
 	<body>
 		<header>
@@ -78,9 +78,5 @@
 				</div>
 			</div>
 		</section>
-
-		<div class="footerEv container-fluid text-center text-monospace mt-5 pt-4 pb-3">
-			<h5>"Come to the Nerd Side; we have π..."</h5>
-		</div>
 	</body>
 </html>

@@ -1,6 +1,5 @@
 // import needed @angularDependencies
 import {RouterModule, Routes} from "@angular/router";
-import {AuthGuardService as AuthGuard} from "./shared/services/auth.guard.service";
 
 //import all needed Interceptors
 import {APP_BASE_HREF} from "@angular/common";
@@ -24,14 +23,17 @@ import {SignInService} from "./shared/services/sign.in.service";
 import {SignUpService} from "./shared/services/sign.up.service";
 import {SessionService} from "./shared/services/session.service";
 import {SplashComponent} from "./splash/splash.component";
+import {EventComponent} from "./event/event.component";
 
 
 // an array of the components that will be passed off the the module
 export const allAppComponents = [
-	SplashComponent
+	SplashComponent,
+	EventComponent
 ];
 
 export const routes: Routes = [
+	{path: "event", component: EventComponent},
 	{path: "", component: SplashComponent},
 
 ];
