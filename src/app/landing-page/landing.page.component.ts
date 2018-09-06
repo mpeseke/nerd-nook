@@ -1,7 +1,7 @@
 import {Component} from "@angular/core";
 
 @Component ({
-	templateUrl: "./landing-page/landingpage.html"
+	template: require ("./landing-page/landingpage.html")
 })
 
 export class LandingPageComponent {}

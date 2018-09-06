@@ -25,18 +25,21 @@ import {SessionService} from "./shared/services/session.service";
 import {SplashComponent} from "./splash/splash.component";
 import {EventComponent} from "./event/event.component";
 import {ProfileComponent} from "./profile/profile.component";
+import {LandingPageComponent} from "./landing-page/landing.page.component";
 
 
 // an array of the components that will be passed off the the module
 export const allAppComponents = [
 	SplashComponent,
 	EventComponent,
+	LandingPageComponent,
 	ProfileComponent
 ];
 
 export const routes: Routes = [
 	{path: "profile", component: ProfileComponent},
 	{path: "event", component: EventComponent},
+	{path: "landing-page", component: LandingPageComponent},
 	{path: "", component: SplashComponent},
 
 ];
