@@ -24,7 +24,7 @@ Universal CSS
 /****************************************************************************
 Profile Page Styles
  ***************************************************************************/
-.jumbotronPro {
+.jumbotron {
 	background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("app/img/bowtie.jpg") center center no-repeat;
 	width:100%;
 	height:100%;
@@ -33,16 +33,6 @@ Profile Page Styles
 
 #profileInfo {
 	padding-bottom: 50px;
-}
-
-/****************************************************************************
-Event Page Styles
- ***************************************************************************/
-.jumbotron {
-	background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("app/img/chess.jpg") center center no-repeat;
-	width:100%;
-	height:100%;
-	background-size: cover;
 }
 
 /****************************************************************************
@@ -270,15 +260,13 @@ textarea {
 }
 
 .footer {
+	background-color: #53A451;
 	position: fixed;
 	left: 0;
 	bottom: 0;
-	clear: both;
-	background-color: #53A451;
-	color: white;
 	width: 100%;
+	color: white;
 	text-align: center;
 	padding: 5px;
-	margin-top: 25px;
-	z-index: 9999;
+	margin-top: 10px;
 }
