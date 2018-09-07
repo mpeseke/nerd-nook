@@ -42,7 +42,7 @@ export const routes: Routes = [
 	{path: "profile", component: ProfileComponent},
 	{path: "event", component: EventComponent},
 	{path: "landing-page", component: LandingPageComponent},
-	{path: "", component: SplashComponent},
+	{path: "splash", component: SplashComponent},
 
 ];
 
