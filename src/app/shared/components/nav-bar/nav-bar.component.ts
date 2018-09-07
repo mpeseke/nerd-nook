@@ -12,10 +12,7 @@ import {Router} from "@angular/router";
 export class NavBarComponent {
 	status: Status = null;
 
-	constructor(private signInService: SignInService, private router: Router) {}
+	constructor(private signInService: SignInService, private router: Router) {
+	}
 
-	signOut() : void {
-	localStorage.clear();
-this.signInService.signOut().subscribe(status=>this.status=status);
-window.location.replace("");
-}}
+}
