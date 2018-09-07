@@ -27,6 +27,7 @@ import {LandingPageComponent} from "./landing-page/landing.page.component";
 import {SignInComponent} from "./shared/components/sign.in.component";
 
 
+
 // an array of the components that will be passed off the the module
 export const allAppComponents = [
 	SplashComponent,
@@ -37,6 +38,7 @@ export const allAppComponents = [
 ];
 
 export const routes: Routes = [
+	{path: "signin", component: SignInComponent},
 	{path: "profile", component: ProfileComponent},
 	{path: "event", component: EventComponent},
 	{path: "landing-page", component: LandingPageComponent},
