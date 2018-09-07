@@ -48,7 +48,7 @@ export const routes: Routes = [
 	{path: "event-list", component: EventListComponent},
 	{path: "category", component: CategoryComponent},
 	{path: "landing-page", component: LandingPageComponent},
-	{path: "splash", component: SplashComponent},
+	{path: "", component: SplashComponent},
 
 ];
 
