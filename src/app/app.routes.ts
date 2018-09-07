@@ -25,12 +25,14 @@ import {EventComponent} from "./event/event.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {LandingPageComponent} from "./landing-page/landing.page.component";
 import {SignInComponent} from "./shared/components/sign.in.component";
+import {CategoryComponent} from "./category/category.component";
 
 
 
 // an array of the components that will be passed off the the module
 export const allAppComponents = [
 	SplashComponent,
+	CategoryComponent,
 	EventComponent,
 	LandingPageComponent,
 	ProfileComponent,
@@ -41,6 +43,7 @@ export const routes: Routes = [
 	{path: "signin", component: SignInComponent},
 	{path: "profile", component: ProfileComponent},
 	{path: "event", component: EventComponent},
+	{path: "category", component: CategoryComponent},
 	{path: "landing-page", component: LandingPageComponent},
 	{path: "splash", component: SplashComponent},
 
