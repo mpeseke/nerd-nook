@@ -79,7 +79,7 @@
 			</div>
 
 			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
-				<img class="card-img-top" src="../src/app/img/cosplay.jpg" alt="cosplay">
+				<img class="card-img-top" src="../src/app/category/cosplay.jpg" alt="cosplay">
 				<div class="card-body">
 					<h5 class="card-title">Cosplay</h5>
 					<p class="card-text">Join with your cohort of ruffians to sew, craft, and build the best costumes you

@@ -79,7 +79,7 @@ Category CSS
 ****************************************************************************/
 
 .jumbotronBg {
-	background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("app/img/imagine.jpg") center center no-repeat;
+	background: linear-gradient(rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.65) 100%), url("app/category/imagine.jpg") center center no-repeat;
 }
 
 .card-img-top {
