@@ -31,9 +31,11 @@ export class SignInComponent {
 		this.SignInService.postSignIn(this.signin).subscribe(status => {
 			this.status = status;
 
-			if(status.status === 200) {
-				this.router.navigate(["landing-page"]);
-				
+			console.log(status.status);
+
+			if(this.status.status === 200) {
+				this.router.navigate(["/landing-page"]);
+
 			} else {
 				alert("Email or Password is incorrect. Try again.")
 			}
