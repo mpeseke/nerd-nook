@@ -26,6 +26,7 @@ import {ProfileComponent} from "./profile/profile.component";
 import {LandingPageComponent} from "./landing-page/landing.page.component";
 import {SignInComponent} from "./shared/components/sign.in.component";
 import {CategoryComponent} from "./category/category.component";
+import {EventListComponent} from "./event-list/event.list.component";
 
 
 
@@ -34,6 +35,7 @@ export const allAppComponents = [
 	SplashComponent,
 	CategoryComponent,
 	EventComponent,
+	EventListComponent,
 	LandingPageComponent,
 	ProfileComponent,
 	SignInComponent
@@ -43,6 +45,7 @@ export const routes: Routes = [
 	{path: "signin", component: SignInComponent},
 	{path: "profile", component: ProfileComponent},
 	{path: "event", component: EventComponent},
+	{path: "event-list", component: EventListComponent},
 	{path: "category", component: CategoryComponent},
 	{path: "landing-page", component: LandingPageComponent},
 	{path: "splash", component: SplashComponent},
