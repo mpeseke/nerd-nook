@@ -69,7 +69,7 @@
 
 		<div class="row mx-0 justify-content-center">
 			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
-				<img class="card-img-top" src="content/controllers.jpg" alt="video games">
+				<img class="card-img-top" src="../src/app/img/controllers.jpg" alt="video games">
 				<div class="card-body">
 					<h5 class="card-title">Video Games</h5>
 					<p class="card-text">Meetup with friends for LAN parties, split screen, or to trade your favorites pocket
@@ -79,7 +79,7 @@
 			</div>
 
 			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
-				<img class="card-img-top" src="content/cosplay.jpg" alt="cosplay">
+				<img class="card-img-top" src="../src/app/img/cosplay.jpg" alt="cosplay">
 				<div class="card-body">
 					<h5 class="card-title">Cosplay</h5>
 					<p class="card-text">Join with your cohort of ruffians to sew, craft, and build the best costumes you
@@ -89,7 +89,7 @@
 			</div>
 
 			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
-				<img class="card-img-top" src="content/dungeons.jpg" alt="table games">
+				<img class="card-img-top" src="../src/app/img/dungeons.jpg" alt="table games">
 				<div class="card-body">
 					<h5 class="card-title">Table Games</h5>
 					<p class="card-text">Roll some dice, raid the dungeon, save the princess, crush your enemies!</p>
@@ -98,7 +98,7 @@
 			</div>
 
 			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
-				<img class="card-img-top" src="content/tv.jpg" alt="movies">
+				<img class="card-img-top" src="../src/app/img/tv.jpg" alt="movies">
 				<div class="card-body">
 					<h5 class="card-title">Movies and TV</h5>
 					<p class="card-text">Every movie buff needs someone to argue with, find your nemesis here!</p>
@@ -107,7 +107,7 @@
 			</div>
 
 			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
-				<img class="card-img-top" src="content/books.jpg" alt="books">
+				<img class="card-img-top" src="../src/app/img/books.jpg" alt="books">
 				<div class="card-body">
 					<h5 class="card-title">Books</h5>
 					<p class="card-text">Find fellow book worms to discuss plot holes, inconsistencies, and talk about the
