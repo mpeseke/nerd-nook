@@ -34,28 +34,6 @@ Profile Page Styles
 #profileInfo {
 	padding-bottom: 50px;
 }
-
-.footer {
-	background-color: #53A451;
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	color: white;
-	text-align: center;
-	padding: 5px;
-	margin-top: 10px;
-}
-
-span:after{
-	content:" ";
-	display: inline-block;
-	width:32px;
-}
-
-span {
-	font-size: x-large;
-}
 /****************************************************************************
 Check In CSS
 ****************************************************************************/
@@ -278,4 +256,18 @@ textarea {
 .forgot {
 	margin-top: -20px;
 	text-align: right;
+}
+
+.footer {
+	position: fixed;
+	left: 0;
+	bottom: 0;
+	clear: both;
+	background-color: #53A451;
+	color: white;
+	width: 100%;
+	text-align: center;
+	padding: 5px;
+	margin-top: 25px;
+	z-index: 9999;
 }
