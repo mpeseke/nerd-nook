@@ -193,7 +193,7 @@
 				font-weight: var(--bold);
 				text-transform: uppercase;
 				letter-spacing: .1em;
-				background: var(--main);
+				background:#53A451;
 				color: var(--white);
 				transition: all 0.5s ease;
 				-webkit-appearance: none;

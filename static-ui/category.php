@@ -69,7 +69,7 @@
 
 		<div class="row mx-0 justify-content-center">
 			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
-				<img class="card-img-top" src="../src/app/img/controllers.jpg" alt="video games">
+				<img class="card-img-top" src="../src/app/category/controllers.jpg" alt="video games">
 				<div class="card-body">
 					<h5 class="card-title">Video Games</h5>
 					<p class="card-text">Meetup with friends for LAN parties, split screen, or to trade your favorites pocket
@@ -98,7 +98,7 @@
 			</div>
 
 			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
-				<img class="card-img-top" src="../src/app/img/tv.jpg" alt="movies">
+				<img class="card-img-top" src="../src/app/category/tv.jpg" alt="movies">
 				<div class="card-body">
 					<h5 class="card-title">Movies and TV</h5>
 					<p class="card-text">Every movie buff needs someone to argue with, find your nemesis here!</p>
@@ -107,7 +107,7 @@
 			</div>
 
 			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-10 m-2">
-				<img class="card-img-top" src="../src/app/img/books.jpg" alt="books">
+				<img class="card-img-top" src="../src/app/category/books.jpg" alt="books">
 				<div class="card-body">
 					<h5 class="card-title">Books</h5>
 					<p class="card-text">Find fellow book worms to discuss plot holes, inconsistencies, and talk about the
