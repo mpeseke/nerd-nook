@@ -27,6 +27,7 @@ import {LandingPageComponent} from "./landing-page/landing.page.component";
 import {SignInComponent} from "./shared/components/sign.in.component";
 import {CategoryComponent} from "./category/category.component";
 import {EventListComponent} from "./event-list/event.list.component";
+import {AddEventComponent} from "./add-event/add.event.component";
 
 
 
@@ -34,6 +35,7 @@ import {EventListComponent} from "./event-list/event.list.component";
 export const allAppComponents = [
 	SplashComponent,
 	CategoryComponent,
+	AddEventComponent,
 	EventComponent,
 	EventListComponent,
 	LandingPageComponent,
@@ -44,6 +46,7 @@ export const allAppComponents = [
 export const routes: Routes = [
 	{path: "signin", component: SignInComponent},
 	{path: "profile", component: ProfileComponent},
+	{path: "add-event", component: AddEventComponent},
 	{path: "event", component: EventComponent},
 	{path: "event-list", component: EventListComponent},
 	{path: "category", component: CategoryComponent},

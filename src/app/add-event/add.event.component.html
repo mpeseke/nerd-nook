@@ -1,0 +1,50 @@
+<div class="form">
+	<div class="create-event">
+		<form class="form-horizontal" [formGroup]="createEventForm" (ngSumbit)="createEvent();" novalidate>
+
+			<div class="form-group">
+				<label for="eventDetails" class="control-label">
+					Event Details
+				</label>
+				<textarea name="eventDetails" type="text" id="eventDetails" formControlName="eventDetails" class="form-control" autocomplete="off" required placeholder="Tell us the name and about your event!"></textarea>
+			</div>
+
+			<div class="alert alert-danger" *ngIf="eventDetails.controls.eventDetails?.invalid && createEvent.controls.eventDetails?.touched">
+				<p *ngIf="eventDetails.controls.eventDetails?.errors.maxLength">Too much detail...</p>
+				<p *ngIf="eventDetails.controls.eventDetails?.errors.required">Event Details are required</p>
+			</div>
+
+
+			<div class="form-group">
+				<label for="eventStartDateTime" class="control-label">
+					Event Start Date and Time
+				</label>
+				<input type="datetime-local" id="eventStartDateTime" formControlName="eventStartDateTime" class="form-control" required placeholder="When does your event start?">
+			</div>
+
+
+			<div class="form-group">
+				<label for="eventEndDateTime" class="control-label">
+					Event End Date and Time
+				</label>
+				<input type="datetime-local" id="eventEndDateTime" formControlName="eventEndDateTime" class="form-control" required placeholder="When does your event end?">
+			</div>
+
+
+			<div class="form-group">
+				<label for="eventLocation" class="control-label">
+					Event Location
+				</label>
+				<input name="eventLocation" type="text" id="eventLocation" formControlName="eventLocation" class="form-control" autocomplete="off" required placeholder="Where is your event being held?">
+			</div>
+
+			<div class="alert alert-danger" *ngIf="eventLocation.controls.eventLocation?.invalid && createEvent.controls.eventLocation?.touched">
+				<p *ngIf="eventLocation.controls.eventLocation?.errors.maxLength">Too many characters in event location</p>
+				<p *ngIf="eventLocation.controls.eventLocation?.errors.required">Event location is required</p>
+			</div>
+
+			<button type="submit" class="button button-block px-2">Create Your Event</button>
+
+		</form><!-- create event form -->
+	</div> <!-- creating an event -->
+</div> <!-- wrapping the form -->
