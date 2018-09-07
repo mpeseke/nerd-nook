@@ -5,10 +5,7 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 import {ProfileService} from "../shared/services/profile.service";
 
 @Component({
-	template: `
-		<h1>{{profile.profileAtHandle}}</h1>
-
-	`
+		template: require("./profile.component.html")
 })
 
 	export class ProfileComponent implements OnInit{
@@ -30,4 +27,5 @@ import {ProfileService} from "../shared/services/profile.service";
 			.subscribe(profile => this.profile = profile)
 
 	}
+
 }
