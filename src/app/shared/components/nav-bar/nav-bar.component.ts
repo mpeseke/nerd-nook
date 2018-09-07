@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
 import {Status} from "../../interfaces/status";
 import {SignInService} from "../../services/sign.in.service";
+import {Router} from "@angular/router";
+
 
 @Component({
 	selector:"nav-bar",
@@ -10,7 +12,8 @@ import {SignInService} from "../../services/sign.in.service";
 export class NavBarComponent {
 	status: Status = null;
 
-	constructor(private signInService: SignInService) {}
+	constructor(private signInService: SignInService, private router: Router) {}
+
 		signOut() : void{
 			this.signInService.signOut();
 		}

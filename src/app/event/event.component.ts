@@ -10,5 +10,4 @@ import {EventService} from "../shared/services/event.service";
 
 export class EventComponent  {
 
-
 }

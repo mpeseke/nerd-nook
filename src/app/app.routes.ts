@@ -7,8 +7,6 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {DeepDiveInterceptor} from "./shared/interceptors/deep.dive.interceptor";
 
 
-
-
 //import all services
 import {AuthService} from "./shared/services/auth.service";
 import {AuthGuardService} from "./shared/services/auth.guard.service";
@@ -26,6 +24,7 @@ import {SplashComponent} from "./splash/splash.component";
 import {EventComponent} from "./event/event.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {LandingPageComponent} from "./landing-page/landing.page.component";
+import {SignInComponent} from "./shared/components/sign.in.component";
 
 
 // an array of the components that will be passed off the the module
@@ -33,7 +32,8 @@ export const allAppComponents = [
 	SplashComponent,
 	EventComponent,
 	LandingPageComponent,
-	ProfileComponent
+	ProfileComponent,
+	SignInComponent
 ];
 
 export const routes: Routes = [

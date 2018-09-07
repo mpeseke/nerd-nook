@@ -30,7 +30,7 @@ export class SignInComponent {
 			this.status = status;
 
 			if(status.status === 200) {
-				this.router.navigate(["profile-page"]); //this will need to be changed to our landing page
+				this.router.navigate(["landing-page"]); //this will need to be changed to our landing page
 				this.signInForm.reset();
 				setTimeout(1000, function() {
 					$("signin-modal").modal('hide');
