@@ -12,11 +12,16 @@ Universal CSS
 }
 
 .footer {
-	position: sticky;
+	position: fixed;
+	left: 0;
 	bottom: 0;
 	clear: both;
 	background-color: #53A451;
 	color: white;
+	width: 100%;
+	text-align: center;
+	padding: 5px;
+	margin-top: 10px;
 }
 
 /****************************************************************************
@@ -33,27 +38,6 @@ Profile Page Styles
 	padding-bottom: 50px;
 }
 
-.footer {
-	background-color: #53a451;
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	color: white;
-	text-align: center;
-	padding: 5px;
-	margin-top: 10px;
-}
-
-span:after{
-	content:" ";
-	display: inline-block;
-	width:32px;
-}
-
-span {
-	font-size: x-large;
-}
 /****************************************************************************
 Check In CSS
 ****************************************************************************/
