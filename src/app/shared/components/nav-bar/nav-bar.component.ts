@@ -14,7 +14,8 @@ export class NavBarComponent {
 
 	constructor(private signInService: SignInService, private router: Router) {}
 
-		signOut() : void{
-			this.signInService.signOut();
-		}
-	}
+	signOut() : void {
+	localStorage.clear();
+this.signInService.signOut().subscribe(status=>this.status=status);
+window.location.replace("");
+}}
