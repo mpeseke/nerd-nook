@@ -32,13 +32,10 @@ export class SignInComponent {
 			this.status = status;
 
 			if(status.status === 200) {
-				this.router.navigate(["landing-page"]); //this will need to be changed to our landing page
-				this.signInForm.reset();
-				setTimeout(1000, function() {
-					$("signin-modal").modal('hide');
-				});
+				this.router.navigate(["landing-page"]);
+				
 			} else {
-				console.log("failed login")
+				alert("Email or Password is incorrect. Try again.")
 			}
 		});
 	}
