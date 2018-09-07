@@ -83,10 +83,13 @@ Homepage CSS
 
 html {
 	overflow-y: scroll;
+	background-image: url("../src/app/img/final-matrix-door.jpg");
+	background-color: #c7c7c7;
+	font-family: 'Titillium Web', sans-serif;
 }
 
-body {
-	/*background-image: url("../src/app/img/final-matrix-door.jpg");*/
+.splash.door{
+	background-image: url("../src/app/img/final-matrix-door.jpg");
 	background-color: #c7c7c7;
 	font-family: 'Titillium Web', sans-serif;
 }

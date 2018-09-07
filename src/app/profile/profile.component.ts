@@ -1,6 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {Status} from "../shared/interfaces/status";
-import {Profile} from "../shared/interfaces/profile"
+import {Profile} from "../shared/interfaces/profile";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {ProfileService} from "../shared/services/profile.service";
 
