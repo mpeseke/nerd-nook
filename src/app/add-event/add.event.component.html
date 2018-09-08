@@ -6,6 +6,20 @@
 			<hr/>
 
 			<div class="form-group">
+				<label for="eventCategoryId" class="control-label">
+					Choose your Category
+				</label>
+				<select class="form-control" name="eventCategoryId" formControlName="eventCategoryId" id="eventCategoryId" required>
+					<option selected>Choose...</option>
+					<option value="videoGames">Video Games</option>
+					<option value="tableGames">Table Games</option>
+					<option value="cosplay">Cosplay</option>
+					<option value="books">Books</option>
+					<option value="tvMovies">Movies and T.V.</option>
+				</select>
+			</div>
+
+			<div class="form-group">
 				<label for="eventDetails" class="control-label">
 					Event Details
 				</label>
