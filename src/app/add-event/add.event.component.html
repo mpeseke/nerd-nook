@@ -1,6 +1,9 @@
 <div class="form">
 	<div class="create-event">
-		<form class="form-horizontal" [formGroup]="createEventForm" (ngSumbit)="createEvent();" novalidate>
+		<form class="form-horizontal" [formGroup]="createEventForm" (submit)="createEvent();" novalidate>
+
+			<h4 class="text-success">Create a New Event</h4>
+			<hr/>
 
 			<div class="form-group">
 				<label for="eventDetails" class="control-label">

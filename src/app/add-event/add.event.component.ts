@@ -1,7 +1,43 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
+import {Event} from "../shared/interfaces/event";
+import {Status} from "../shared/interfaces/status";
+import {EventService} from "../shared/services/event.service";
+
 
 @Component ({
 	template: require("./add.event.component.html")
 })
 
-export class AddEventComponent {}
+export class AddEventComponent implements OnInit{
+
+	createEventForm: FormGroup;
+	events: Event[] = [];
+	status: Status = null;
+
+	constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router) {}
+
+
+	ngOnInit() : void {
+		this.createEventForm = this.formBuilder.group({
+			eventDetails: ["", [Validators.maxLength(512), Validators.required]],
+			eventStartDateTime: ["", [Validators.maxLength(6), Validators.required]],
+			eventEndDateTime: ["", [Validators.maxLength(6), Validators.required]],
+			eventLocation: ["", [Validators.maxLength(255), Validators.required]]
+		});
+	}
+
+	createEvent() {
+	let event: Event = {eventId: null, eventCategoryId: null, eventProfileId: null,
+		eventDetails: this.createEventForm.value.eventDetails, eventEndDateTime: this.createEventForm.value.eventEndDateTime,
+		eventLat: this.createEventForm.value.eventLocation, eventLong: this.createEventForm.value.eventLocation,
+		eventStartDateTime: this.createEventForm.value. eventStartDateTime};
+	this.eventService.createEvent(event).subscribe(status =>{
+		this.status = status;
+		if(status.status === 200) {
+			this.router.navigate(["/event-list"]);
+		}
+	});
+	}
+}
