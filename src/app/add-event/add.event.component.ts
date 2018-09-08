@@ -1,9 +1,10 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ViewChild} from "@angular/core";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {Event} from "../shared/interfaces/event";
 import {Status} from "../shared/interfaces/status";
 import {EventService} from "../shared/services/event.service";
+import {CategoryComponent} from "../category/category.component";
 
 
 @Component ({
@@ -14,6 +15,7 @@ export class AddEventComponent implements OnInit{
 
 	createEventForm: FormGroup;
 	events: Event[] = [];
+	@ViewChild(CategoryComponent) categoryComponent: CategoryComponent;
 	status: Status = null;
 
 	constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router) {}
