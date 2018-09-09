@@ -32,7 +32,7 @@ export class AddEventComponent implements OnInit{
 	}
 
 	createEvent() {
-	let event: Event = {eventId: null, eventCategoryId: null, eventProfileId: null,
+	let event: Event = {eventId: null, eventCategoryId: this.createEventForm.value.eventCategoryId , eventProfileId: null,
 		eventDetails: this.createEventForm.value.eventDetails, eventEndDateTime: this.createEventForm.value.eventEndDateTime,
 		eventLat: this.createEventForm.value.eventLocation, eventLong: this.createEventForm.value.eventLocation,
 		eventStartDateTime: this.createEventForm.value. eventStartDateTime};

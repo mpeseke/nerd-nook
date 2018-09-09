@@ -9,7 +9,7 @@
 				<label for="eventCategoryId" class="control-label">
 					Choose your Category
 				</label>
-				<select class="form-control" name="eventCategoryId" formControlName="eventCategoryId" id="eventCategoryId" required>
+				<select class="form-control" name="eventCategoryId" id="eventCategoryId" required>
 					<option selected>Choose...</option>
 					<option value="videoGames">Video Games</option>
 					<option value="tableGames">Table Games</option>
@@ -26,10 +26,10 @@
 				<textarea name="eventDetails" type="text" id="eventDetails" formControlName="eventDetails" class="form-control" autocomplete="off" required placeholder="Tell us the name and about your event!"></textarea>
 			</div>
 
-			<div class="alert alert-danger" *ngIf="eventDetails.controls.eventDetails?.invalid && createEvent.controls.eventDetails?.touched">
-				<p *ngIf="eventDetails.controls.eventDetails?.errors.maxLength">Too much detail...</p>
-				<p *ngIf="eventDetails.controls.eventDetails?.errors.required">Event Details are required</p>
-			</div>
+			<!--<div class="alert alert-danger" *ngIf="eventDetails.controls.eventDetails?.invalid && createEvent.controls.eventDetails?.touched">-->
+				<!--<p *ngIf="eventDetails.controls.eventDetails?.errors.maxLength">Too much detail...</p>-->
+				<!--<p *ngIf="eventDetails.controls.eventDetails?.errors.required">Event Details are required</p>-->
+			<!--</div>-->
 
 
 			<div class="form-group">
@@ -55,10 +55,10 @@
 				<input name="eventLocation" type="text" id="eventLocation" formControlName="eventLocation" class="form-control" autocomplete="off" required placeholder="Where is your event being held?">
 			</div>
 
-			<div class="alert alert-danger" *ngIf="eventLocation.controls.eventLocation?.invalid && createEvent.controls.eventLocation?.touched">
-				<p *ngIf="eventLocation.controls.eventLocation?.errors.maxLength">Too many characters in event location</p>
-				<p *ngIf="eventLocation.controls.eventLocation?.errors.required">Event location is required</p>
-			</div>
+			<!--<div class="alert alert-danger" *ngIf="eventLocation.controls.eventLocation?.invalid && createEvent.controls.eventLocation?.touched">-->
+				<!--<p *ngIf="eventLocation.controls.eventLocation?.errors.maxLength">Too many characters in event location</p>-->
+				<!--<p *ngIf="eventLocation.controls.eventLocation?.errors.required">Event location is required</p>-->
+			<!--</div>-->
 
 			<button type="submit" class="button button-block px-2">Create Your Event</button>
 
