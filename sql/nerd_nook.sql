@@ -1,9 +1,9 @@
 -- This will drop any currently existing tables --
-DROP TABLE IF EXISTS comment;
-DROP TABLE IF EXISTS checkIn;
-DROP TABLE IF EXISTS event;
+# DROP TABLE IF EXISTS comment;
+# DROP TABLE IF EXISTS checkIn;
+# DROP TABLE IF EXISTS event;
 DROP TABLE IF EXISTS category;
-DROP TABLE IF EXISTS profile;
+# DROP TABLE IF EXISTS profile;
 
 -- creates the profile table --
 CREATE TABLE profile (
@@ -26,6 +26,7 @@ CREATE TABLE category (
 	categoryType VARCHAR(24) NOT NULL,
 	PRIMARY KEY (categoryId)
 ) CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+
 
 -- creates the event table --
 CREATE TABLE event (
