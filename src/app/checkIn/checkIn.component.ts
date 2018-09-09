@@ -18,7 +18,7 @@ export class CheckInComponent implements OnInit {
 	checkIn: CheckIn;
 	event: Event;
 	profile: Profile;
-	eventId = this.route.snapshot.params["eventId"];
+	checkInEventId = this.route.snapshot.params["checkInEventId"];
 	status: Status;
 
 	constructor(protected checkInService: CheckInService, protected route: ActivatedRoute, private profileService: ProfileService, private jwtHelper: JwtHelperService) {
@@ -35,13 +35,13 @@ export class CheckInComponent implements OnInit {
 	}
 
 	rsvp() {
-		this.checkInService.createCheckIn(this.eventId).subscribe(status => {
+		this.checkInService.createCheckIn(this.checkInEventId).subscribe(status => {
 			this.status = status;
 		});
 	}
 
 	checkIntoEvent() {
-		this.checkInService.editCheckIn(this.eventId).subscribe(status => {
+		this.checkInService.editCheckIn(this.checkInEventId).subscribe(status => {
 			this.status = status;
 		});
 	}
