@@ -29,6 +29,7 @@ import {CategoryComponent} from "./category/category.component";
 import {EventListComponent} from "./event-list/event.list.component";
 import {AddEventComponent} from "./add-event/add.event.component";
 import {CheckInComponent} from "./checkIn/checkIn.component";
+import {EditProfileComponent} from "./edit-profile/edit.profile.component";
 
 // an array of the components that will be passed off the the module
 export const allAppComponents = [
@@ -40,12 +41,15 @@ export const allAppComponents = [
 	LandingPageComponent,
 	ProfileComponent,
 	SignInComponent,
-	CheckInComponent
+	CheckInComponent,
+	EditProfileComponent,
+	SignInComponent
 ];
 
 export const routes: Routes = [
 	{path: "signin", component: SignInComponent},
 	{path: "profile", component: ProfileComponent},
+	{path: "edit-profile", component: EditProfileComponent, canActivate: [AuthGuardService]},
 	{path: "add-event", component: AddEventComponent},
 	{path: "event", component: EventComponent},
 	{path: "event-list", component: EventListComponent},

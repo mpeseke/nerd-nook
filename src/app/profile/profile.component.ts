@@ -1,8 +1,9 @@
 import {Component, OnInit} from "@angular/core";
-import {Status} from "../shared/interfaces/status";
-import {Profile} from "../shared/interfaces/profile";
-import {JwtHelperService} from "@auth0/angular-jwt";
 import {ProfileService} from "../shared/services/profile.service";
+import {Profile} from "../shared/interfaces/profile";
+import {ActivatedRoute} from "@angular/router";
+import {JwtHelperService} from "@auth0/angular-jwt";
+
 
 @Component({
 		template: require("./profile.component.html")
@@ -10,13 +11,21 @@ import {ProfileService} from "../shared/services/profile.service";
 
 	export class ProfileComponent implements OnInit{
 
-	profile: Profile;
-	status: Status;
+	profile: Profile = new class implements Profile {
+		profileActivationToken: number = null;
+		profileAtHandle: string = null;
+		profileEmail: string = null;
+		profileHash: string = null;
+		profileId: string = null;
+	};
 
-	constructor(private profileService: ProfileService, private jwtHelper : JwtHelperService) {}
+	profileId : string = this.route.snapshot.params["id"];
+
+	constructor(private profileService: ProfileService, private route: ActivatedRoute, private jwtHelper : JwtHelperService) {}
 
 	ngOnInit(): void {
-		this.currentlySignedIn()
+		this.currentlySignedIn();
+		this.getProfile()
 	}
 
 	currentlySignedIn() : void {
@@ -25,6 +34,12 @@ import {ProfileService} from "../shared/services/profile.service";
 
 		this.profileService.getProfile(decodedJwt.auth.profileId)
 			.subscribe(profile => this.profile = profile)
+
+	}
+
+	getProfile() {
+		this.profileService.getProfile(this.profileId)
+			.subscribe(profile => this.profile = profile);
 
 	}
 

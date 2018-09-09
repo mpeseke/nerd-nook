@@ -13,6 +13,12 @@ Profile Page Styles
 	padding-bottom: 50px;
 }
 
+#editInfoButton {
+	justify-content: center;
+	text-align: center;
+	padding-bottom: 25px;
+}
+
 /****************************************************************************
 Check In CSS
 ****************************************************************************/
