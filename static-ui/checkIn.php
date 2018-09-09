@@ -24,9 +24,13 @@
 	</head>
 
 	<body>
+		<p>
+			<button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseRSVP" aria-expanded="false" aria-controls="collapseRSVP">RSVP</button>
+			<button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseCheckIn" aria-expanded="false" aria-controls="collapseCheckIn">Check In</button>
+		</p>
 		<div class="row mx-0 justify-content-center text-center centered">
-			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-6 m-2">
-				<div class="card-body">
+			<div class="text-success bg-dark col-lg-4 col-md-6 col-sm-6 m-2 collapse multi-collapse" id="collapseRSVP">
+				<div class="card card-body">
 					<p class="card-text fsz">Thank you for RSVP'ing</p>
 					<i class="fas fa-calendar-check ico"></i>
 					<p class="card-text fsz">We look forward to seeing you there! </p>
@@ -34,13 +38,33 @@
 			</div>
 		</div>
 		<div class="row mx-0 justify-content-center text-center centered">
-			<div class="card text-success bg-dark col-lg-4 col-md-6 col-sm-6 m-2">
-				<div class="card-body">
+			<div class="text-success bg-dark col-lg-4 col-md-6 col-sm-6 m-2 collapse multi-collapse" id="collapseCheckIn">
+				<div class="card card-body">
 					<p class="card-text fsz">Check In</p>
 					<i class="fas fa-check-circle ico"></i>
 					<p class="card-text fsz">Successful</p>
 				</div>
 			</div>
 		</div>
+<!--		<p>-->
+<!--			<a class="btn btn-success" data-toggle="collapse" href="#RSVP" role="button" aria-expanded="false" aria-controls="RSVP">RSVP</a>-->
+<!--			<button class="btn btn-success" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>-->
+<!--		</p>-->
+<!--		<div class="row">-->
+<!--			<div class="col">-->
+<!--				<div class="collapse multi-collapse" id="RSVP">-->
+<!--					<div class="card card-body">-->
+<!--						Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--			<div class="col">-->
+<!--				<div class="collapse multi-collapse" id="multiCollapseExample2">-->
+<!--					<div class="card card-body">-->
+<!--						Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.-->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
 	</body>
 </html>
