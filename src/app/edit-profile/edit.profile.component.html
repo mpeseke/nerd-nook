@@ -1,0 +1,29 @@
+<div class="form">
+	<div class="edit-profile">
+		<form class="form-horizontal" [formGroup]="editProfileForm" (submit)="editProfile();" novalidate>
+
+			<h4 class="text-success">Edit Profile Info</h4>
+			<hr/>
+
+			<div class="form-group">
+				<label for="profileAtHandle" class="control-label">
+					Choose the Info to Edit
+				</label>
+				<select class="form-control" name="profileId" id="profileAtHandle" required>
+					<option selected>Choose...</option>
+					<option value="atHandle">At Handle</option>
+				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="profileAtHandle" class="control-label">
+					Edit At Handle
+				</label>
+				<textarea name="profileAtHandle" type="text" formControlName="profileAtHandle" class="form-control" autocomplete="off" required placeholder="Type New At Handle"></textarea>
+			</div>
+
+			<button type="submit" class="button button-block px-2">Save Info</button>
+
+		</form> <!-- edit profile form -->
+	</div> <!-- Edit profile -->
+</div> <!-- wrapping the form -->
