@@ -20,29 +20,36 @@
 				  integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 				  crossorigin="anonymous"></script>
 		<title></title>
+		<style>
+			.checkInModal {
+				text-align: center;
+				background-color: #888888;
+				color: #53A451;
+			}
+		</style>
 
 	</head>
 
 	<body>
 		<p>
-			<button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseRSVP" aria-expanded="false" aria-controls="collapseRSVP">RSVP</button>
-			<button class="btn btn-success" type="button" data-toggle="collapse" data-target="#collapseCheckIn" aria-expanded="false" aria-controls="collapseCheckIn">Check In</button>
+			<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#RSVP" aria-hidden="true" (click)="rsvp();"><i class="fas fa-user-plus fa-fw"></i>RSVP</button>
+			<button class="btn btn-success" type="button" data-toggle="modal" data-target="#CheckIn" aria-hidden="true" (click)="checkIntoEvent();"><i class="far fa-check-circle fa-fw"></i>Check In</button>
+			<button class="btn btn-info"><i class="far fa-comments fa-fw"></i>Comments</button>
 		</p>
-		<div class="row mx-0 justify-content-center text-center centered">
-			<div class="text-success col-lg-4 col-md-6 col-sm-6 m-2 collapse multi-collapse" id="collapseRSVP">
-				<div class="card card-body bg-secondary">
-					<p class="card-text fsz">Thank you for RSVP'ing</p>
-					<i class="fas fa-calendar-check ico"></i>
-					<p class="card-text fsz">We look forward to seeing you there! </p>
-				</div>
-			</div>
-		</div>
-		<div class="row mx-0 justify-content-center text-center centered">
-			<div class="text-success col-lg-4 col-md-6 col-sm-6 m-2 collapse multi-collapse" id="collapseCheckIn">
-				<div class="card card-body bg-secondary">
-					<p class="card-text fsz">Check In</p>
-					<i class="fas fa-check-circle ico"></i>
-					<p class="card-text fsz">Successful</p>
+
+		<!-- Modal -->
+		<div class="modal fade" id="RSVP" tabindex="-1" role="dialog" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header checkInModal">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span class="checkInModalX" aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body checkInModal">Thank you for RSVP'ing, We look forward to seeing you there!</div>
+					<div class="modal-footer checkInModal">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+					</div>
 				</div>
 			</div>
 		</div>

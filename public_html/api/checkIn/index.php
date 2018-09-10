@@ -88,7 +88,7 @@ try {
 
 		//enforce that the user is signed in
 		if(empty($_SESSION["profile"]) === true) {
-			throw(new \InvalidArgumentException("You must be logged in to Check In to an Event", 403));
+			throw(new \InvalidArgumentException("You must be logged in to RSVP to an Event", 403));
 		}
 
 		validateJwtHeader();
@@ -112,7 +112,7 @@ try {
 
 			//enforce that the user is singed in and only trying to edit their own checkIn
 			if(empty($_SESSION["profile"]) === true || $_SESSION["profile"]->getProfileId()->toString() !== $checkIn->getCheckInProfileId()->toString()) {
-				throw(new \InvalidArgumentException("You must be logged in to check in ", 403));
+				throw(new \InvalidArgumentException("You must be logged in to Check In ", 403));
 			}
 
 			//perform the actual checkIn
@@ -120,7 +120,7 @@ try {
 			$checkIn->update($pdo);
 
 			//update the message
-			$reply->message = "You Checked in!";
+			$reply->message = "Check In Successful!";
 
 		}
 		//if any other HTTP request is sent throw an exception

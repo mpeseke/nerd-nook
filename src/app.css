@@ -22,7 +22,7 @@ Profile Page Styles
 /****************************************************************************
 Check In CSS
 ****************************************************************************/
-body{
+body {
 	background-color: #c7c7c7;
 }
 
@@ -30,15 +30,19 @@ body{
 	background-color: #888888;
 }
 
-.checkInIcon{
+.checkInIcon {
 	color: #000;
-	font-size: 5rem;
+	font-size: 15rem;
 }
 
-.centered {
-	position: fixed;
-	top: 50%;
-	left: 50%;
+.checkInModal {
+	text-align: center;
+	background-color: #4d4d4d;
+	color: #53A451;
+}
+
+.checkInModalX {
+	color: #ffffff;
 }
 
 /****************************************************************************

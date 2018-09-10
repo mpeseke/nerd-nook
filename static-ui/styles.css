@@ -50,6 +50,11 @@
 	/*left: 50%;*/
 /*}*/
 
+.checkInModal {
+	text-align: center;
+	background-color: #888888;
+	color: #53A451;
+}
 
 /*!*****************************************************************************/
 /*Category CSS*/
