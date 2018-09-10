@@ -22,6 +22,6 @@ export class CheckInService {
 
 	//call to the event
 	editCheckIn(checkIn : CheckIn) : Observable<Status> {
-		return(this.http.put<Status>(this.checkInUrl + checkIn.checkInEventId + checkIn.checkInProfileId, checkIn));
+		return(this.http.put<Status>(this.checkInUrl, checkIn));
 	}
 }
