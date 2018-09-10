@@ -18,7 +18,9 @@ export class AddEventComponent implements OnInit{
 	@ViewChild(CategoryComponent) categoryComponent: CategoryComponent;
 	status: Status = null;
 
-	constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router) {}
+	constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router) {
+		console.log("Event added successfully!")
+	}
 
 
 	ngOnInit() : void {
@@ -32,7 +34,7 @@ export class AddEventComponent implements OnInit{
 	}
 
 	createEvent() {
-	let event: Event = {eventId: null, eventCategoryId: this.createEventForm.value.eventCategoryId , eventProfileId: null,
+	let event: Event = {eventId: null, eventCategoryId: this.createEventForm.value.categoryId , eventProfileId: null,
 		eventDetails: this.createEventForm.value.eventDetails, eventEndDateTime: this.createEventForm.value.eventEndDateTime,
 		eventLat: this.createEventForm.value.eventLocation, eventLong: this.createEventForm.value.eventLocation,
 		eventStartDateTime: this.createEventForm.value. eventStartDateTime};
