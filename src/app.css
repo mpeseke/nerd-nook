@@ -168,6 +168,13 @@ h1 {
 	margin: 0 0 40px;
 }
 
+h3 {
+	text-align: center;
+	color: var(--white);
+	font-weight: var(--thin);
+	margin: 0 0 40px;
+}
+
 label {
 	color: var(--white);
 	/*font-size: 22px;*/
