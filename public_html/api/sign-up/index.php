@@ -88,14 +88,14 @@ try {
 					$message = <<< EOF
 <h2>Welcome to NerdNook.</h2>
 <p>In order to start checking in for events you must confirm your account</p>
-<p><a href="$confirmLink">$confirmLink</a></p>
+<p><a href="$confirmLink" routerLink="src/app/profile/profile.component.html">$confirmLink</a></p>
 EOF;
 					//create swift email
 					$swiftMessage = new Swift_Message();
 
 					//attach the sender to the message
 					//this takes the form of an associative array where the email is the key to a real name
-					$swiftMessage->setFrom(["rbecker8@cnm.edu" => "Ryan Becker"]);
+					$swiftMessage->setFrom(["ryguy6861@gmail.com" => "Ryan Becker"]);
 
 					/**
 					 * attach recipients to the message
