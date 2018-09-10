@@ -88,7 +88,7 @@ try {
 					$message = <<< EOF
 <h2>Welcome to NerdNook.</h2>
 <p>In order to start checking in for events you must confirm your account</p>
-<p><a href="$confirmLink">$confirmLink</a></p>
+<p><a href="$confirmLink" routerLink="../src/app/profile/profile.component.html">$confirmLink</a></p>
 EOF;
 					//create swift email
 					$swiftMessage = new Swift_Message();
