@@ -9,13 +9,9 @@
 <main class="my-5">
 	<div class="row mx-0 mb-6">
 
-		<div class="col-md-5 px-4">
-			<h1 class="eventName">Pathfinder One-Shot</h1>
-			<p class="eventDetails">
-				We are getting together for a one-shot campaign through a the Dungeon of Lost Souls! Characters are pre-rolled and no
-				prior knowledge of d20 systems is needed. If you have been wanting to learn how to play table-top RPG's, this is the
-				event for you!
-			</p>
+		<div class="col-md-5 px-4" *ngIf="event">
+			<!--<h1 class="eventName">DEETS!</h1>-->
+			<p class="eventDetails">{{event.eventDetails}}</p>
 		</div>
 
 		<div class="col-md-7">

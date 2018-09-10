@@ -25,23 +25,8 @@ export class EventComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		this.currentlySignedIn()
+		this.eventService.getEvent(this.eventId).subscribe(event => this.event = event);
 	}
 
-	currentlySignedIn(): void {
-		const decodedJwt = this.jwtHelper.decodeToken(localStorage.getItem('jwt-token'));
-		this.profileService.getProfile(decodedJwt.auth.profileId).subscribe(profile => this.profile = profile)
-	}
 
-	rsvp() {
-		this.checkInService.createCheckIn(this.eventId).subscribe(status => {
-			this.status = status;
-		});
-	}
-
-	checkIntoEvent() {
-		this.checkInService.editCheckIn(this.checkInEventId).subscribe(status => {
-			this.status = status;
-		});
-	}
 }
