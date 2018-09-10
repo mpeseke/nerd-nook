@@ -51,7 +51,7 @@ export const routes: Routes = [
 	{path: "profile", component: ProfileComponent},
 	{path: "edit-profile", component: EditProfileComponent, canActivate: [AuthGuardService]},
 	{path: "add-event", component: AddEventComponent},
-	{path: "event/:eventId", component: EventComponent},
+	{path: "event", component: EventComponent},
 	{path: "event-list", component: EventListComponent},
 	{path: "category", component: CategoryComponent},
 	{path: "landing-page", component: LandingPageComponent},
