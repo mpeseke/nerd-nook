@@ -1,51 +1,79 @@
-<p>
-	<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#RSVP" aria-hidden="true"
-			  (click)="rsvp();"><i class="fas fa-user-plus fa-fw"></i>RSVP
-	</button>
-	<button class="btn btn-success" type="button" data-toggle="modal" data-target="#CheckIn" aria-hidden="true"
-			  (click)="checkIntoEvent();"><i class="far fa-check-circle fa-fw"></i>Check In
-	</button>
-	<button class="btn btn-info"><i class="far fa-comments fa-fw"></i>Comments</button>
-</p>
-<!--RSVP Button-->
+<a data-toggle="modal" href="#RSVP" class="btn btn-primary">RSVP</a>
 
-
-<!-- RSVP Modal -->
-<div class="modal fade" id="RSVP" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
+<div id="RSVP" class="modal fade">
+	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
-			<div class="modal-header checkInModal">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="far fa-times-circle fa-fw"></i></button>
 			</div>
-			<div class="modal-body checkInModal">Thank you for RSVP'ing, We look forward to seeing you there!</div>
-			<div class="modal-footer checkInModal">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- Check In Modal -->
-<div class="modal fade" id="CheckIn" tabindex="-1" role="dialog" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-header"></div>
 			<div class="modal-body">Thank you for RSVP'ing, We look forward to seeing you there!</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-			</div>
 		</div>
 	</div>
 </div>
-<!--&lt;!&ndash;Check In Button&ndash;&gt;-->
-<!--<div class="row mx-0 justify-content-center text-center centered">-->
-<!--<div class="text-success col-12 collapse multi-collapse" id="collapseCheckIn">-->
-<!--<div class="card card-body bg-light">-->
-<!--<p class="card-text fsz">Check In</p>-->
-<!--<i class="fas fa-check-circle ico"></i>-->
-<!--<p class="card-text fsz">Successful</p>-->
+
+<a data-toggle="modal" href="#checkIn" class="btn btn-success">Check In</a>
+
+<div id="checkIn" class="modal fade">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="far fa-times-circle fa-fw"></i></button>
+			</div>
+			<div class="modal-body">Check In Successful!</div>
+		</div>
+	</div>
+</div>
+
+
+
+<!--<p>-->
+	<!--<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#RSVP" aria-hidden="true"-->
+			  <!--(click)="rsvp();"><i class="fas fa-user-plus fa-fw"></i>RSVP-->
+	<!--</button>-->
+	<!--<button class="btn btn-success" type="button" data-toggle="modal" data-target="#CheckIn" aria-hidden="true"-->
+			  <!--(click)="checkIntoEvent();"><i class="far fa-check-circle fa-fw"></i>Check In-->
+	<!--</button>-->
+	<!--<button class="btn btn-info"><i class="far fa-comments fa-fw"></i>Comments</button>-->
+<!--</p>-->
+<!--&lt;!&ndash;RSVP Button&ndash;&gt;-->
+
+
+<!--&lt;!&ndash; RSVP Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="RSVP" tabindex="-1" role="dialog" aria-hidden="true">-->
+	<!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+		<!--<div class="modal-content">-->
+			<!--<div class="modal-header checkInModal">-->
+				<!--<button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+					<!--<span aria-hidden="true">&times;</span>-->
+				<!--</button>-->
+			<!--</div>-->
+			<!--<div class="modal-body checkInModal">Thank you for RSVP'ing, We look forward to seeing you there!</div>-->
+			<!--<div class="modal-footer checkInModal">-->
+				<!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
 <!--</div>-->
+
+<!--&lt;!&ndash; Check In Modal &ndash;&gt;-->
+<!--<div class="modal fade" id="CheckIn" tabindex="-1" role="dialog" aria-hidden="true">-->
+	<!--<div class="modal-dialog modal-dialog-centered" role="document">-->
+		<!--<div class="modal-content">-->
+			<!--<div class="modal-header"></div>-->
+			<!--<div class="modal-body">Thank you for RSVP'ing, We look forward to seeing you there!</div>-->
+			<!--<div class="modal-footer">-->
+				<!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+			<!--</div>-->
+		<!--</div>-->
+	<!--</div>-->
 <!--</div>-->
-<!--</div>-->
+<!--&lt;!&ndash;&lt;!&ndash;Check In Button&ndash;&gt;&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="row mx-0 justify-content-center text-center centered">&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="text-success col-12 collapse multi-collapse" id="collapseCheckIn">&ndash;&gt;-->
+<!--&lt;!&ndash;<div class="card card-body bg-light">&ndash;&gt;-->
+<!--&lt;!&ndash;<p class="card-text fsz">Check In</p>&ndash;&gt;-->
+<!--&lt;!&ndash;<i class="fas fa-check-circle ico"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;<p class="card-text fsz">Successful</p>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
+<!--&lt;!&ndash;</div>&ndash;&gt;-->
