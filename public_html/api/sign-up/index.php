@@ -150,7 +150,7 @@ EOF;
 					}
 
 					//update reply
-					$reply->message = "Thank you for creating a profile with NerdNook";
+					$reply->message = "Thank you for creating a profile with NerdNook! Please check your email for an Activation Link.";
 		} else {
 
 					throw(new InvalidArgumentException("invalid http request"));
