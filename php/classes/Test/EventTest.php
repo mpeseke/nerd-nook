@@ -52,13 +52,13 @@ class EventTest extends NerdNookTest {
 	 * Event Content
 	 * @var string $VALID_EVENTDETAILS
 	 */
-	protected $VALID_EVENTDETAILS = "Event content is good.";
+	protected $VALID_EVENTDETAILS = "details";
 
 	/**
 	 * Updated Event Content
 	 * @var string $VALID_EVENTDETAILS2
 	 */
-	protected $VALID_EVENTDETAILS2 = "Event content is better.";
+	protected $VALID_EVENTDETAILS2 = "details";
 
 	/**
 	 * Event End Date
@@ -97,14 +97,14 @@ class EventTest extends NerdNookTest {
 	 * @var string $VALID_EVENTNAME
 	 */
 
-	protected $VALID_EVENTNAME = "Pathfinder";
+	protected $VALID_EVENTNAME = "string";
 
 	/**
 	 * Event Name
 	 * @var string $VALID_EVENTNAME2
 	 */
 
-	protected $VALID_EVENTNAME2 = "Pokemon";
+	protected $VALID_EVENTNAME2 = "string";
 
 
 	/**
@@ -164,8 +164,7 @@ public final function setUp() : void {
 
 		//create a new Event and insert into mySQL
 		$eventId = generateUuidV4();
-		$event = new Event($eventId, $this->category->getCategoryId(), $this->profile->getProfileId(),$this->VALID_EVENTDETAILS,
-			$this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTNAME, $this->VALID_EVENTSTARTDATETIME);
+		$event = new Event($eventId, $this->category->getCategoryId(), $this->profile->getProfileId(),$this->VALID_EVENTDETAILS, $this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTNAME, $this->VALID_EVENTSTARTDATETIME);
 		$event->insert($this->getPDO());
 
 		// retrieve data from mySQL and enforce the fields match our expectations
@@ -194,8 +193,7 @@ public final function setUp() : void {
 
 		//create a new Event and insert into mySQL
 		$eventId = generateUuidV4();
-		$event = new Event($eventId, $this->category->getCategoryId(), $this->profile->getProfileId(), $this->VALID_EVENTDETAILS,
-			$this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTNAME, $this->VALID_EVENTSTARTDATETIME);
+		$event = new Event($eventId, $this->category->getCategoryId(), $this->profile->getProfileId(), $this->VALID_EVENTDETAILS, $this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTNAME, $this->VALID_EVENTSTARTDATETIME);
 		$event->insert($this->getPDO());
 
 		//edit the Event and update in mySQL
@@ -305,8 +303,7 @@ public final function setUp() : void {
 
 		// create a new Event and insert it into mySQL
 		$eventId = generateUuidV4();
-		$event = new Event($eventId, $this->category->getCategoryId(), $this->profile->getProfileId(), $this->VALID_EVENTDETAILS,
-			$this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTNAME, $this->VALID_EVENTSTARTDATETIME);
+		$event = new Event($eventId, $this->category->getCategoryId(), $this->profile->getProfileId(), $this->VALID_EVENTDETAILS, $this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTNAME, $this->VALID_EVENTSTARTDATETIME);
 		$event->insert($this->getPDO());
 
 		//grab the data from mySQL and enforce the fields match our expectation
@@ -348,8 +345,7 @@ public final function setUp() : void {
 		$numRows = $this->getConnection()->getRowCount("event");
 		// create a new Event and inject into mySQL
 		$eventId = generateUuidV4();
-		$event = new Event($eventId, $this->category->getCategoryId(), $this->profile->getProfileId(), $this->VALID_EVENTDETAILS,
-			$this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTNAME, $this->VALID_EVENTSTARTDATETIME);
+		$event = new Event($eventId, $this->category->getCategoryId(), $this->profile->getProfileId(), $this->VALID_EVENTDETAILS, $this->VALID_EVENTENDDATETIME, $this->VALID_EVENTLAT, $this->VALID_EVENTLONG, $this->VALID_EVENTNAME, $this->VALID_EVENTSTARTDATETIME);
 		$event->insert($this->getPDO());
 		//grab the event data from mySQL and enforce the fields match our expectations
 		$results = Event::getEventByDateRange($this->getPDO());

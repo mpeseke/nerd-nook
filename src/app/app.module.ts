@@ -25,7 +25,7 @@ const JwtHelper = JwtModule.forRoot({
 
 
 @NgModule({
-	imports:      [BrowserModule, HttpClientModule, JwtHelper, routing, FormsModule, ReactiveFormsModule, NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyBXxCP6BYTsZfvNMSPafFno5po23pe5CCk'})],
+	imports:      [BrowserModule, HttpClientModule, JwtHelper, routing, FormsModule, ReactiveFormsModule, NguiMapModule.forRoot({apiUrl: 'https://maps.google.com/maps/api/js?key=AIzaSyCoNb2WQ7czV7rzbh90yRQ4TqhWkWcm4Uk'})],
 	declarations: [...moduleDeclarations, ...allAppComponents],
 	bootstrap:    [AppComponent],
 	providers:    [...appRoutingProviders]

@@ -186,7 +186,7 @@ class Event implements \JsonSerializable {
 	 * @return string value of the event Details
 	 */
 	public function getEventDetails(): string {
-		return ($this->eventCategoryId);
+		return ($this->eventDetails);
 	}
 
 	/**
@@ -288,9 +288,8 @@ class Event implements \JsonSerializable {
 	/** accessor method for the Event Name
 	 *@returns \string value of the event Name
 	 */
-
-	public function getEventName(): \string {
-		return ($this->getEventName);
+	public function getEventName(): string {
+		return ($this->eventName);
 	}
 
 	/**
@@ -306,8 +305,8 @@ class Event implements \JsonSerializable {
 		// verify Event Details are secure
 		$newEventName = trim($newEventName);
 		$newEventName = filter_var($newEventName, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
-		if(empty($newEventDetails) === true) {
-			throw(new \InvalidArgumentException("Event details are empty or includes insecure data."));
+		if(empty($newEventName) === true) {
+			throw(new \InvalidArgumentException("Event name are empty or includes insecure data."));
 		}
 		//verify content will fit into the database
 		if(strlen($newEventName) > 36) {
@@ -557,7 +556,7 @@ class Event implements \JsonSerializable {
 		$statement->setFetchMode(\PDO::FETCH_ASSOC);
 		while(($row = $statement->fetch()) !== false) {
 			try {
-				new Event($row["eventId"], $row["eventCategoryId"], $row["eventProfileId"], $row["eventDetails"], $row["eventEndDateTime"], $row["eventLat"], $row["eventLong"], $row["eventName"], $row["eventStartDateTime"]);
+				$event = new Event($row["eventId"], $row["eventCategoryId"], $row["eventProfileId"], $row["eventDetails"], $row["eventEndDateTime"], $row["eventLat"], $row["eventLong"], $row["eventName"], $row["eventStartDateTime"]);
 				$events[$events->key()] = $event;
 				$events->next();
 			} catch(\Exception $exception) {

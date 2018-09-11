@@ -7,6 +7,7 @@ export interface Event {
 	eventEndDateTime: number,
 	eventLat: number,
 	eventLong: number,
+	eventName: string,
 	eventStartDateTime: number,
 
 }

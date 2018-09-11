@@ -115,6 +115,7 @@ try {
 				throw(new \InvalidArgumentException("You are not allowed to edit this event. Make your own and edit that! Oh, and have a nice day.", 403));
 			}
 			//update all attributes
+			$event->setEventName($requestObject->eventName);
 			$event->setEventDetails($requestObject->eventDetails);
 			$event->setEventLat($requestObject->eventLat);
 			$event->setEventLong($requestObject->eventLong);
@@ -135,7 +136,7 @@ try {
 			//create new event and insert into the database
 			$event = new Event(generateUuidV4(), $requestObject->eventCategoryId,
 				$_SESSION["profile"]->getProfileId(), $requestObject->eventDetails, $formattedEndDate,
-				$requestObject->eventLat, $requestObject->eventLong, $formattedStartDate);
+				$requestObject->eventLat, $requestObject->eventLong, $requestObject->eventName, $formattedStartDate);
 
 			$event->insert($pdo);
 

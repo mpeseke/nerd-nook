@@ -14,7 +14,7 @@ export class EventListComponent implements OnInit {
 	events: Event[] = [];
 
 	event: Event = {eventId: null, eventCategoryId: null, eventProfileId: null, eventDetails: null,
-		eventEndDateTime: null, eventLat: null, eventLong: null, eventStartDateTime: null};
+		eventEndDateTime: null, eventLat: null, eventLong: null, eventName:null, eventStartDateTime: null};
 
 
 	constructor(protected eventService: EventService, protected  router: ActivatedRoute) {

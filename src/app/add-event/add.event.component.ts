@@ -8,7 +8,8 @@ import {CategoryComponent} from "../category/category.component";
 import {CategoryService} from "../shared/services/category.service";
 import {Category} from "../shared/interfaces/category";
 import { DatePipe } from "@angular/common";
-import {getTime} from 'date-fns';
+import { getTime } from 'date-fns';
+import { GeoCoder } from "@ngui/map";
 
 
 @Component ({
@@ -23,7 +24,7 @@ export class AddEventComponent implements OnInit{
 	status: Status = null;
 	categories: Category[] =[];
 
-	constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router, private categoryService: CategoryService) {
+	constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router, private categoryService: CategoryService, protected geoCoder: GeoCoder) {
 
 	}
 
@@ -31,10 +32,15 @@ export class AddEventComponent implements OnInit{
 	ngOnInit() : void {
 		this.createEventForm = this.formBuilder.group({
 			eventCategoryId: ["", [Validators.required]],
+			eventName: ["", [Validators.maxLength(36), Validators.required]],
 			eventDetails: ["", [Validators.maxLength(512), Validators.required]],
 			eventStartDateTime: ["", [Validators.maxLength(6), Validators.required]],
 			eventEndDateTime: ["", [Validators.maxLength(6), Validators.required]],
-			eventLocation: ["", [Validators.maxLength(255), Validators.required]]
+			eventStreet: ["", [Validators.maxLength(255), Validators.required]],
+			eventStreet2: ["", [Validators.maxLength(255)]],
+			eventCity: ["", [Validators.maxLength(255), Validators.required]],
+			eventState: ["", [Validators.maxLength(2), Validators.required]],
+			eventZip: ["", [Validators.maxLength(10), Validators.required]],
 		});
 		this.categoryService.getAllCategories().subscribe(categories=>this.categories=categories);
 	}
@@ -42,12 +48,17 @@ export class AddEventComponent implements OnInit{
 	createEvent() {
 		console.log(this.createEventForm.value);
 
+		//use the street address for decoding to obtain the lat and long; create the results object required by google
+		let results = {address: `${this.createEventForm.value.eventStreet} ${this.createEventForm.value.eventStreet2} ${this.createEventForm.value.eventCity} ${this.createEventForm.value.eventState} ${this.createEventForm.value.eventZip}`};
+		console.log(results);
+
+		// this.geoCoder.
+
 		let endDateTime = getTime(this.createEventForm.value.eventEndDateTime);
 		let startDateTime = getTime(this.createEventForm.value.eventStartDateTime);
-	let event: Event = {eventId: null, eventCategoryId: this.createEventForm.value.eventCategoryId, eventProfileId: null,
-		eventDetails: this.createEventForm.value.eventDetails, eventEndDateTime: endDateTime ,
-		eventLat: this.createEventForm.value.eventLocation, eventLong: this.createEventForm.value.eventLocation,
-		eventStartDateTime: startDateTime};
+		let event: Event = {eventId: null, eventCategoryId: this.createEventForm.value.eventCategoryId, eventProfileId: null,
+		eventName: this.createEventForm.value.eventName, eventDetails: this.createEventForm.value.eventDetails, eventEndDateTime: endDateTime,
+		eventStartDateTime: startDateTime, eventLat: 120.55,eventLong:  120.44};
 
 	console.log(event);
 	this.eventService.createEvent(event).subscribe(status =>{

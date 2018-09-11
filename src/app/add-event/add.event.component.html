@@ -10,9 +10,16 @@
 					Choose your Category
 				</label>
 
-				<select class="form-control" name="eventCategoryId" id="eventCategoryId" formControlName="eventCategoryId">
+				<select class="form-control" name="eventCategoryId" id="eventCategoryId">
 					<option *ngFor="let category of categories" [ngValue]="category.categoryId">{{category.categoryType}}</option>
 				</select>
+			</div>
+
+			<div class="form-group">
+				<label for="eventName" class="control-label">
+					Event Name
+				</label>
+				<input name="eventName" type="text" id="eventName" formControlName="eventName" class="form-control" autocomplete="off" required placeholder="What are you calling your event?">
 			</div>
 
 			<div class="form-group">
@@ -44,17 +51,41 @@
 			</div>
 
 
-			<div class="form-group">
-				<label for="eventLocation" class="control-label">
-					Event Location
+			<div class="form-group" >
+				<h3>Event Address:</h3>
+				<label for="eventStreet">
+					Street:
 				</label>
-				<input name="eventLocation" type="text" id="eventLocation" formControlName="eventLocation" class="form-control" autocomplete="off" required placeholder="Where is your event being held?">
+				<input type="text" formControlName="eventStreet" id="eventStreet">
+
+				<label for="eventStreet2">
+					Street 2:
+				</label>
+				<input type="text" formControlName="eventStreet2" id="eventStreet2">
+
+				<label for="eventCity">
+					City:
+				</label>
+				<input type="text" formControlName="eventCity" id="eventCity">
+
+				<label for="eventState">
+					State:
+				</label>
+				<input type="text" formControlName="eventState" id="eventState">
+
+				<label for="eventZip">
+					Zip Code:
+				</label>
+				<input type="text" formControlName="eventZip" id="eventZip">
+
 			</div>
 
 			<!--<div class="alert alert-danger" *ngIf="eventLocation.controls.eventLocation?.invalid && createEvent.controls.eventLocation?.touched">-->
 				<!--<p *ngIf="eventLocation.controls.eventLocation?.errors.maxLength">Too many characters in event location</p>-->
 				<!--<p *ngIf="eventLocation.controls.eventLocation?.errors.required">Event location is required</p>-->
 			<!--</div>-->
+
+			<ngui-map></ngui-map>
 
 			<button type="submit" class="button button-block px-2">Create Your Event</button>
 
