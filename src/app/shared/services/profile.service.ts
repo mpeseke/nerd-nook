@@ -43,6 +43,6 @@ export class ProfileService {
 
 	//call to the profile API to grab a corresponding profile by its id
 	getProfileByProfileId(profileId: string) : Observable<Profile> {
-		return(this.http.get<Profile>(this.profileUrl, {params: new HttpParams().set("profileId", profileId)}))
+		return(this.http.get<Profile>(this.profileUrl + profileId));
 	}
 }
