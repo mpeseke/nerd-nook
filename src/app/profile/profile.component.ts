@@ -31,10 +31,6 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 	currentlySignedIn() : void {
 
 		const decodedJwt = this.jwtHelper.decodeToken(localStorage.getItem('jwt-token'));
-
-		this.profileService.getProfileByProfileAtHandle(decodedJwt.auth.profileId)
-			.subscribe(profile => this.profile = profile)
-
 	}
 
 	getProfile() {
