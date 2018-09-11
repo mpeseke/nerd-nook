@@ -8,6 +8,10 @@ import {CheckInService} from "../shared/services/checkIn.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {ProfileService} from "../shared/services/profile.service";
 
+
+//Declare $ for use of jQuery
+declare let $: any;
+
 @Component({
 	template: require("./checkIn.component.html"),
 	selector: "checkIn"
@@ -34,15 +38,31 @@ export class CheckInComponent implements OnInit {
 		this.profileService.getProfile(decodedJwt.auth.profileId).subscribe(profile => this.profile = profile)
 	}
 
-	rsvp() {
-		this.checkInService.createCheckIn(this.checkInEventId).subscribe(status => {
-			this.status = status;
-		});
+	rsvp(): void {
+		this.checkInService.createCheckIn(this.checkIn)
+			.subscribe(status => {
+				this.status = status;
+
+				if(this.status.status === 200) {
+					alert(status.message);
+					setTimeout(function() {
+						$("#RSVP").modal('hide');
+					}, 2000);
+				}
+			});
 	}
 
-	checkIntoEvent() {
-		this.checkInService.editCheckIn(this.checkInEventId).subscribe(status => {
-			this.status = status;
+	checkIntoEvent(): void {
+		this.checkInService.editCheckIn(this.checkIn)
+			.subscribe(status => {
+				this.status = status;
+
+				if(this.status.status === 200) {
+					alert(status.message);
+					setTimeout(function() {
+						$("#checkIn").modal('hide');
+					}, 2000);
+				}
 		});
 	}
 }
