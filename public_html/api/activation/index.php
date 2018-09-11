@@ -79,5 +79,5 @@ if($reply->data === null) {
 		unset($reply->data);
 }
 
-header("Location: ../../profile/". $profile->getProfileId()); /* Redirect browser */
+header("Location: ../../profile/". $profile->getProfileAtHandle()); /* Redirect browser */
 exit();
