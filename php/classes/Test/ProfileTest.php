@@ -245,8 +245,9 @@ class ProfileTest extends NerdNookTest {
 		$profile->insert($this->getPDO());
 
 		// grab the data from mySQL and enforce the fields match our expectations
-		$pdoProfile = Profile::getProfileByProfileEmail($this->getPDO(), $profile->getProfileEmail());
+		$pdoProfile = Profile::getProfileByProfileEmail($this->getPDO(), $this->VALID_EMAIL);
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
+
 		$this->assertEquals($pdoProfile->getProfileId(), $profileId);
 		$this->assertEquals($pdoProfile->getProfileActivationToken(), $this->VALID_ACTIVATION);
 		$this->assertEquals($pdoProfile->getProfileAtHandle(), $this->VALID_ATHANDLE);
