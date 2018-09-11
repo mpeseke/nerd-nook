@@ -54,16 +54,22 @@ try {
 										$reply->data = $profile;
 								}
 						} else if(empty($profileAtHandle) === false) {
-								$profile = Profile::getProfileByProfileAtHandle($pdo, $profileAtHandle);
+								$profile = Profile::getProfilesByProfileAtHandle($pdo, $profileAtHandle);
 								if($profile !== null) {
-										$reply->data = $profile;
+										$reply->data = $profiles;
 								}
 						} else if(empty($profileEmail) === false) {
 								$profile = Profile::getProfileByProfileEmail($pdo, $profileEmail);
 								if($profile !== null) {
 										$reply->data = $profile;
 								}
+						} else if(empty($profileAtHandle) === false) {
+								$profile = Profile::getProfileByProfileAtHandle($pdo, $profileAtHandle);
+								if($profile !== null) {
+										$reply->data = $profile;
+								}
 						}
+
 
 			} elseif($method === "PUT") {
 

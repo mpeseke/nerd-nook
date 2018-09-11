@@ -457,14 +457,15 @@ class Profile implements \JsonSerializable {
 	 *
 	 * @param \PDO $pdo PDO connection object
 	 * @param string $profileAtHandle at handle to search for
-	 * @return \SplFixedArray of all profiles found
+	 * @return Profile|null Profile or null if not found
 	 * @throws \PDOException when mySQL related errors occur
 	 * @throws \TypeError when variables are not the correct data type
 	 **/
-	public static function getProfilebyProfileAtHandle(\PDO $pdo, string $profileAtHandle): \SplFixedArray {
+	public static function getProfileByProfileAtHandle(\PDO $pdo, string $profileAtHandle): ?Profile {
 		// sanitize the at handle before searching
 		$profileAtHandle = trim($profileAtHandle);
 		$profileAtHandle = filter_var($profileAtHandle, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
+
 		if(empty($profileAtHandle) === true) {
 			throw(new\PDOException("not a valid at handle"));
 		}
@@ -477,20 +478,19 @@ class Profile implements \JsonSerializable {
 		$parameters = ["profileAtHandle" => $profileAtHandle];
 		$statement->execute($parameters);
 
-		$profiles = new \SplFixedArray($statement->rowCount());
-		$statement->setFetchMode(\PDO::FETCH_ASSOC);
-
-		while (($row = $statement->fetch()) !== false) {
-			try {
-				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileAtHandle"], $row["profileEmail"], $row["profileHash"]);
-				$profiles[$profiles->key()] = $profile;
-				$profiles->next();
-			} catch(\Exception $exception) {
-				// if the row couldn't be converted, rethrow it
-				throw(new \PDOException($exception->getMessage(), 0, $exception));
+		// grab the Profile from mySQL
+		try {
+			$profile = null;
+			$statement->setFetchMode(\PDO::FETCH_ASSOC);
+			$row = $statement->fetch();
+			if($row !== false) {
+				$profile = new Profile($row["profileId"], $row["profileActivationToken"], $row["profileAtHandle"],  $row["profileEmail"], $row["profileHash"]);
 			}
+		} catch(\Exception $exception) {
+			// if row couldn't be converted, rethrow it
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
 		}
-		return($profiles);
+		return($profile);
 	}
 
 	/**

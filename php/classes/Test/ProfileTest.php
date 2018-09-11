@@ -174,9 +174,9 @@ class ProfileTest extends NerdNookTest {
 	}
 
 	/**
-	 * test grabbing a Profile by at handle
+	 * test grabbing Profiles by at handle
 	 **/
-	public function testGetValidProfileByAtHandle() {
+	public function testGetValidProfilesByAtHandle() {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("profile");
 
@@ -194,6 +194,29 @@ class ProfileTest extends NerdNookTest {
 		//enforce the results meet expectations
 		$pdoProfile = $results[0];
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
+		$this->assertEquals($pdoProfile->getProfileId(), $profileId);
+		$this->assertEquals($pdoProfile->getProfileActivationToken(), $this->VALID_ACTIVATION);
+		$this->assertEquals($pdoProfile->getProfileAtHandle(), $this->VALID_ATHANDLE);
+		$this->assertEquals($pdoProfile->getProfileEmail(), $this->VALID_EMAIL);
+		$this->assertEquals($pdoProfile->getProfileHash(), $this->VALID_HASH);
+	}
+
+
+	/**
+	 * test grabbing a Profile by at handle
+	 **/
+	public function testGetValidProfileByAtHandle() {
+		// count the number of rows and save it for later
+		$numRows = $this->getConnection()->getRowCount("profile");
+
+		$profileId = generateUuidV4();
+		$profile = new Profile($profileId, $this->VALID_ACTIVATION, $this->VALID_ATHANDLE, $this->VALID_EMAIL, $this->VALID_HASH);
+		$profile->insert($this->getPDO());
+
+		// grab the data from mySQL
+		$pdoProfile = Profile::getProfileByProfileAtHandle($this->getPDO(), $this->VALID_ATHANDLE);
+		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("profile"));
+
 		$this->assertEquals($pdoProfile->getProfileId(), $profileId);
 		$this->assertEquals($pdoProfile->getProfileActivationToken(), $this->VALID_ACTIVATION);
 		$this->assertEquals($pdoProfile->getProfileAtHandle(), $this->VALID_ATHANDLE);
