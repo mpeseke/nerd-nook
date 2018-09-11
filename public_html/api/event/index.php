@@ -83,10 +83,15 @@ try {
 		//make sure the event Date is accurate
 		if(empty($requestObject->eventEndDateTime) === true && empty($requestObject->eventStartDateTime) === true)  {
 			throw (new \InvalidArgumentException("Invalid Event Date/Time."));
-		} else if(empty($requestObject->eventEndDateTime) !== true && empty($requestObject->eventStartDateTime) === true)  {
+		}
 			$formattedEndDate = date( "Y-m-d H:i:s", $requestObject->eventEndDateTime/1000);
 			$formattedStartDate= date("Y-m-d H:i:s", $requestObject->eventStartDateTime/1000);
+
+			if($formattedEndDate === false||$formattedStartDate === false) {
+				throw( new \InvalidArgumentException("Dates are not correctly formatted", 405));
 			}
+
+
 		}
 
 //		//make sure eventId exists
@@ -131,8 +136,8 @@ try {
 
 			//create new event and insert into the database
 			$event = new Event(generateUuidV4(), $requestObject->eventCategoryId,
-				$_SESSION["profile"]->getProfileId(), $requestObject->eventDetails, $requestObject->eventEndDateTime,
-				$requestObject->eventLat, $requestObject->eventLong, $requestObject->eventStartDateTime);
+				$_SESSION["profile"]->getProfileId(), $requestObject->eventDetails, $formattedEndDate,
+				$requestObject->eventLat, $requestObject->eventLong, $formattedStartDate);
 
 			$event->insert($pdo);
 
