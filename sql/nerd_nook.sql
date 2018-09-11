@@ -39,6 +39,7 @@ CREATE TABLE event (
 	eventEndDateTime DATETIME(6),
 	eventLat DECIMAL (9,6),
 	eventLong DECIMAL (9,6),
+	eventName VARCHAR(36),
 	eventStartDateTime DATETIME(6),
 
 

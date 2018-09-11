@@ -4,10 +4,10 @@
 	<testsuites>
 		<testsuite name="Nerd Nook Unit Tests">
 			<file>EventTest.php</file>
-			<file>CommentTest.php</file>
-			<file>ProfileTest.php</file>
-			<file>CheckInTest.php</file>
-			<file>CategoryTest.php</file>
+			<!--<file>CommentTest.php</file>-->
+			<!--<file>ProfileTest.php</file>-->
+			<!--<file>CheckInTest.php</file>-->
+			<!--<file>CategoryTest.php</file>-->
 		</testsuite>
 	</testsuites>
 
