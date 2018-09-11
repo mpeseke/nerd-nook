@@ -145,7 +145,7 @@ class ProfileTest extends NerdNookTest {
 	/**
 	 * test inserting a Profile and regrabbing it from mySQL
 	 **/
-	public function testGetValidProfileByProfileId() : void {
+	public function testGetProfileByProfileId() : void {
 		// count the number of rows and save it for later
 		$numRows = $this->getConnection()->getRowCount("profile");
 

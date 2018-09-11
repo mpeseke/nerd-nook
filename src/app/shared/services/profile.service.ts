@@ -4,6 +4,7 @@ import {Profile} from "../interfaces/profile";
 import {Status} from "../interfaces/status";
 import {Observable} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
+import {P} from "@angular/core/src/render3";
 
 @Injectable()
 export class ProfileService {
@@ -30,7 +31,7 @@ export class ProfileService {
 		return(this.http.get<Profile>(this.profileUrl + id));
 	}
 
-	//call to the profile API to grab an array of profiles based on user input
+	//call to the profile API to grab a specific profile based on user input
 	getProfileByProfileAtHandle(profileAtHandle: string) : Observable<Profile> {
 		return(this.http.get<Profile>(this.profileUrl, {params: new HttpParams().set("profileAtHandle", profileAtHandle)}));
 	}
@@ -38,5 +39,10 @@ export class ProfileService {
 	//call to the profile API to grab corresponding profile by its email
 	getProfileByProfileEmail(profileEmail: string) :Observable<Profile[]> {
 		return(this.http.get<Profile[]>(this.profileUrl, {params: new HttpParams().set( "profileEmail", profileEmail)}));
+	}
+
+	//call to the profile API to grab a corresponding profile by its id
+	getProfileByProfileId(profileId: string) : Observable<Profile> {
+		return(this.http.get<Profile>(this.profileUrl, {params: new HttpParams().set("profileId", profileId)}))
 	}
 }
