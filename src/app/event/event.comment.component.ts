@@ -20,7 +20,7 @@ import {Status} from "../shared/interfaces/status";
 import {ActivatedRoute, Params} from "@angular/router";
 
 @Component({
-	template: require("./event.comment.template.html"),
+	template: require("./event.comment.component.html"),
 	selector: "comments"
 })
 
