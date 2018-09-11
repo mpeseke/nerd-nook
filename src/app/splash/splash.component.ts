@@ -14,8 +14,7 @@ declare let $: any;
 //set the template url and the selector for the ng powered html tag
 
 @Component({
-	template: require
-	("./splash.template.html"),
+	template: require("./splash.template.html"),
 	selector: "sign-up"
 })
 
