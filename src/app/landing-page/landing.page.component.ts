@@ -40,8 +40,8 @@ export class LandingPageComponent implements OnInit {
 	}
 
 
-	profilePageRedirect(profile: Profile): void {
-		this.router.navigate(["/profile/", profile.profileId]);
+	profilePageRedirect(): void {
+		this.router.navigate(["/profile/", this.authAtHandle]);
 	}
 }
 // 	getProfile() {
