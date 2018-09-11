@@ -7,8 +7,8 @@ import {EventService} from "../shared/services/event.service";
 import {CategoryComponent} from "../category/category.component";
 import {CategoryService} from "../shared/services/category.service";
 import {Category} from "../shared/interfaces/category";
+import { DatePipe } from "@angular/common";
 import {getTime} from 'date-fns';
-import event = google.maps.event;
 
 
 @Component ({

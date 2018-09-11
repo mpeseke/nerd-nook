@@ -81,18 +81,16 @@ try {
 //		}
 
 		//make sure the event Date is accurate
-		if(empty($requestObject->eventEndDateTime) === true && empty($requestObject->eventStartDateTime) === true)  {
+		if(empty($requestObject->eventEndDateTime) === true && empty($requestObject->eventStartDateTime) === true) {
 			throw (new \InvalidArgumentException("Invalid Event Date/Time."));
 		}
-			$formattedEndDate = date( "Y-m-d H:i:s", $requestObject->eventEndDateTime/1000);
-			$formattedStartDate= date("Y-m-d H:i:s", $requestObject->eventStartDateTime/1000);
+		$formattedEndDate = date("Y-m-d H:i:s", $requestObject->eventEndDateTime / 1000);
+		$formattedStartDate = date("Y-m-d H:i:s", $requestObject->eventStartDateTime / 1000);
 
-			if($formattedEndDate === false||$formattedStartDate === false) {
-				throw( new \InvalidArgumentException("Dates are not correctly formatted", 405));
-			}
-
-
+		if($formattedEndDate === false || $formattedStartDate === false) {
+			throw(new \InvalidArgumentException("Dates are not correctly formatted", 405));
 		}
+
 
 //		//make sure eventId exists
 //		if(empty($requestObject->eventId) === true) {
@@ -143,7 +141,8 @@ try {
 
 			//creation reply
 			$reply->message = "Event was successfully created.";
-	} else {
+		}
+	}else {
 			throw (new \InvalidArgumentException("Invalid HTTP method request.", 418));
 		}
 } catch(\Exception | \TypeError $exception) {

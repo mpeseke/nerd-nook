@@ -9,6 +9,7 @@
 				<label for="eventCategoryId" class="control-label">
 					Choose your Category
 				</label>
+
 				<select class="form-control" name="eventCategoryId" id="eventCategoryId" formControlName="eventCategoryId">
 					<option *ngFor="let category of categories" [ngValue]="category.categoryId">{{category.categoryType}}</option>
 				</select>
