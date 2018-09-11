@@ -49,6 +49,7 @@ export const allAppComponents = [
 export const routes: Routes = [
 	{path: "signin", component: SignInComponent},
 	{path: "profile", component: ProfileComponent},
+	{path: "profile/:username", component: ProfileComponent},
 	{path: "edit-profile", component: EditProfileComponent, canActivate: [AuthGuardService]},
 	{path: "add-event", component: AddEventComponent},
 	{path: "event", component: EventComponent},

@@ -76,6 +76,8 @@ try {
 //prepare and send the reply
 header("Content-type: application/json");
 if($reply->data === null) {
-	unset($reply->data);
+		unset($reply->data);
 }
-echo json_encode($reply);
+
+header("Location: ../../profile/". $profile->getProfileId()); /* Redirect browser */
+exit();

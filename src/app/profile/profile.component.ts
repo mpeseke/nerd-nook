@@ -11,15 +11,15 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 
 	export class ProfileComponent implements OnInit{
 
-	profile: Profile = new class implements Profile {
-		profileActivationToken: number = null;
-		profileAtHandle: string = null;
-		profileEmail: string = null;
-		profileHash: string = null;
-		profileId: string = null;
+	profile: Profile =  {
+		profileActivationToken: null,
+		profileAtHandle: null,
+		profileEmail: null,
+		profileHash: null,
+		profileId: null,
 	};
 
-	profileId : string = this.route.snapshot.params["id"];
+	profileAtHandle : string = this.route.snapshot.params["username"];
 
 	constructor(private profileService: ProfileService, private route: ActivatedRoute, private jwtHelper : JwtHelperService) {}
 
@@ -32,13 +32,13 @@ import {JwtHelperService} from "@auth0/angular-jwt";
 
 		const decodedJwt = this.jwtHelper.decodeToken(localStorage.getItem('jwt-token'));
 
-		this.profileService.getProfile(decodedJwt.auth.profileId)
+		this.profileService.getProfileByProfileAtHandle(decodedJwt.auth.profileId)
 			.subscribe(profile => this.profile = profile)
 
 	}
 
 	getProfile() {
-		this.profileService.getProfile(this.profileId)
+		this.profileService.getProfileByProfileAtHandle(this.profileAtHandle)
 			.subscribe(profile => this.profile = profile);
 
 	}

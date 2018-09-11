@@ -163,6 +163,3 @@ EOF;
 
 header("Content-type: application/json");
 echo json_encode($reply);
-
-header("Location: ../../profile/". $profile->getProfileId()); /* Redirect browser */
-exit();
