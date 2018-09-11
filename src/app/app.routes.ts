@@ -38,6 +38,7 @@ export const allAppComponents = [
 	CategoryComponent,
 	AddEventComponent,
 	EventComponent,
+	EventCommentComponent,
 	EventListComponent,
 	LandingPageComponent,
 	ProfileComponent,
