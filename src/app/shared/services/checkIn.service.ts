@@ -17,7 +17,7 @@ export class CheckInService {
 
 	//call to the checkIn API to create a checkIn
 	createCheckIn(checkIn : CheckIn) : Observable<Status> {
-		return (this.http.post<Status>(this.checkInUrl, checkIn));
+		return(this.http.post<Status>(this.checkInUrl, checkIn));
 	}
 
 	//call to the event

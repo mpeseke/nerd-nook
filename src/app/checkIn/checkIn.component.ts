@@ -10,7 +10,7 @@ import {ProfileService} from "../shared/services/profile.service";
 
 
 //Declare $ for use of jQuery
-declare let $: any;
+// declare let $: any;
 
 @Component({
 	template: require("./checkIn.component.html"),
@@ -21,8 +21,8 @@ export class CheckInComponent implements OnInit {
 
 	checkIn: CheckIn;
 	event: Event;
-	profile: Profile;
 	checkInEventId = this.route.snapshot.params["checkInEventId"];
+	profile: Profile;
 	status: Status;
 
 	constructor(protected checkInService: CheckInService, protected route: ActivatedRoute, private profileService: ProfileService, private jwtHelper: JwtHelperService) {
@@ -39,29 +39,24 @@ export class CheckInComponent implements OnInit {
 	}
 
 	rsvp(): void {
-		this.checkInService.createCheckIn(this.checkIn)
+
+		this.checkInService.createCheckIn(this.checkInEventId)
 			.subscribe(status => {
 				this.status = status;
 
 				if(this.status.status === 200) {
 					alert(status.message);
-					setTimeout(function() {
-						$("#RSVP").modal('hide');
-					}, 2000);
 				}
 			});
 	}
 
 	checkIntoEvent(): void {
-		this.checkInService.editCheckIn(this.checkIn)
+		this.checkInService.editCheckIn(this.checkInEventId)
 			.subscribe(status => {
 				this.status = status;
 
 				if(this.status.status === 200) {
 					alert(status.message);
-					setTimeout(function() {
-						$("#checkIn").modal('hide');
-					}, 2000);
 				}
 		});
 	}

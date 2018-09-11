@@ -53,9 +53,6 @@ export class SplashComponent implements OnInit {
 
 				if(this.status.status === 200) {
 					alert(status.message);
-					setTimeout(function() {
-						$("#signUp-modal").modal('hide');
-					}, 2000);
 					this.router.navigate([""])
 				}
 			});
