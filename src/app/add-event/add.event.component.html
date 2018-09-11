@@ -9,13 +9,8 @@
 				<label for="eventCategoryId" class="control-label">
 					Choose your Category
 				</label>
-				<select class="form-control" name="eventCategoryId" id="eventCategoryId" required>
-					<option selected>Choose...</option>
-					<option value="videoGames">Video Games</option>
-					<option value="tableGames">Table Games</option>
-					<option value="cosplay">Cosplay</option>
-					<option value="books">Books</option>
-					<option value="tvMovies">Movies and T.V.</option>
+				<select class="form-control" name="eventCategoryId" id="eventCategoryId" formControlName="eventCategoryId">
+					<option *ngFor="let category of categories" [ngValue]="category.categoryId" >{{category.categoryType}}  </option>
 				</select>
 			</div>
 
@@ -54,8 +49,6 @@
 				</label>
 				<input name="eventLocation" type="text" id="eventLocation" formControlName="eventLocation" class="form-control" autocomplete="off" required placeholder="Where is your event being held?">
 			</div>
-
-			<ngui-map center="Albuquerque, New Mexico"></ngui-map>
 
 			<!--<div class="alert alert-danger" *ngIf="eventLocation.controls.eventLocation?.invalid && createEvent.controls.eventLocation?.touched">-->
 				<!--<p *ngIf="eventLocation.controls.eventLocation?.errors.maxLength">Too many characters in event location</p>-->

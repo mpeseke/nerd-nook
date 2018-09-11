@@ -42,7 +42,7 @@ class Event implements \JsonSerializable {
 
 	/**
 	 * id for the event's End Time
-	 * @var \DateTime $eventEndDateTime ;
+	 * @var $eventEndDateTime ;
 	 */
 	private $eventEndDateTime;
 
@@ -60,7 +60,7 @@ class Event implements \JsonSerializable {
 
 	/**
 	 * id for the event Start Time
-	 * @var \DateTime $eventStartDateTime ;
+	 * @var  $eventStartDateTime ;
 	 */
 	private $eventStartDateTime;
 
@@ -69,10 +69,10 @@ class Event implements \JsonSerializable {
 	 * @param string|Uuid $newEventCategoryId the Uuid representation of the new event Category
 	 * @param string|Uuid $newEventProfileId the Uuid representation of the new event Creator
 	 * @param string $newEventDetails the string value containing the event's Details
-	 * @param \DateTime $newEventEndDateTime the End Time DateTime for the new Event
+	 * @param \DateTime|string $newEventEndDateTime the End Time DateTime for the new Event
 	 * @param float $newEventLat the latitudinal value of the new Event
 	 * @param float $newEventLong the longitudinal value of the new Event
-	 * @param \DateTime $newEventStartDateTime the Start Time DateTime for the new Event
+	 * @param \DateTime|string $newEventStartDateTime the Start Time DateTime for the new Event
 	 * @throws \InvalidArgumentException if values are invalid|
 	 * @throws \RangeException if the values are out of bound of the character limit|
 	 * @throws \TypeError if the argument does not match the corresponding function return|
@@ -211,7 +211,7 @@ class Event implements \JsonSerializable {
 
 	/**
 	 * mutator method for event End Time
-	 * @param \DateTime $newEventEndDateTime is a DateTime object
+	 * @param \DateTime|string $newEventEndDateTime is a DateTime object
 	 * @throws \InvalidArgumentException if $newEventEndDateTime is not a valid object
 	 * @throws \RangeException if $newEventEndDateTime is a date that does not exist
 	 * @throws \TypeError on invalid format
@@ -285,7 +285,7 @@ class Event implements \JsonSerializable {
 
 	/**
 	 * mutator method for event Start Time
-	 * @param \DateTime $newEventStartDateTime is a DateTime object
+	 * @param \DateTime|string $newEventStartDateTime is a DateTime object
 	 * @throws \InvalidArgumentException if $newEventStartDateTime is not a valid object
 	 * @throws \RangeException if $newEventStartDateTime is a date that does not exist
 	 * @throws \Exception on all other Exceptions

@@ -83,6 +83,10 @@ try {
 		//make sure the event Date is accurate
 		if(empty($requestObject->eventEndDateTime) === true && empty($requestObject->eventStartDateTime) === true)  {
 			throw (new \InvalidArgumentException("Invalid Event Date/Time."));
+		} else if(empty($requestObject->eventEndDateTime) !== true && empty($requestObject->eventStartDateTime) === true)  {
+			$formattedEndDate = date( "Y-m-d H:i:s", $requestObject->eventEndDateTime/1000);
+			$formattedStartDate= date("Y-m-d H:i:s", $requestObject->eventStartDateTime/1000);
+			}
 		}
 
 //		//make sure eventId exists
@@ -111,8 +115,8 @@ try {
 			$event->setEventDetails($requestObject->eventDetails);
 			$event->setEventLat($requestObject->eventLat);
 			$event->setEventLong($requestObject->eventLong);
-			$event->setEventEndDateTime($requestObject->eventEndDateTime);
-			$event->setEventStartDateTime($requestObject->eventStartDateTime);
+			$event->setEventEndDateTime($formattedEndDate);
+			$event->setEventStartDateTime($formattedStartDate);
 			$event->update($pdo);
 
 			//update reply
@@ -134,7 +138,6 @@ try {
 
 			//creation reply
 			$reply->message = "Event was successfully created.";
-		}
 	} else {
 			throw (new \InvalidArgumentException("Invalid HTTP method request.", 418));
 		}
@@ -142,7 +145,6 @@ try {
 	$reply->status = $exception->getCode();
 	$reply->message = $exception->getMessage();
 }
-
 //encode and return reply to front end caller
 header("Content-type:application/json");
 echo json_encode($reply);

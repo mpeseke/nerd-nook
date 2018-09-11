@@ -5,6 +5,10 @@ import {Event} from "../shared/interfaces/event";
 import {Status} from "../shared/interfaces/status";
 import {EventService} from "../shared/services/event.service";
 import {CategoryComponent} from "../category/category.component";
+import {CategoryService} from "../shared/services/category.service";
+import {Category} from "../shared/interfaces/category";
+import {getTime} from 'date-fns';
+import event = google.maps.event;
 
 
 @Component ({
@@ -17,9 +21,10 @@ export class AddEventComponent implements OnInit{
 	events: Event[] = [];
 	@ViewChild(CategoryComponent) categoryComponent: CategoryComponent;
 	status: Status = null;
+	categories: Category[] =[];
 
-	constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router) {
-		console.log("Event added successfully!")
+	constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router, private categoryService: CategoryService) {
+
 	}
 
 
@@ -31,13 +36,20 @@ export class AddEventComponent implements OnInit{
 			eventEndDateTime: ["", [Validators.maxLength(6), Validators.required]],
 			eventLocation: ["", [Validators.maxLength(255), Validators.required]]
 		});
+		this.categoryService.getAllCategories().subscribe(categories=>this.categories=categories);
 	}
 
 	createEvent() {
-	let event: Event = {eventId: null, eventCategoryId: this.createEventForm.value.categoryId , eventProfileId: null,
-		eventDetails: this.createEventForm.value.eventDetails, eventEndDateTime: this.createEventForm.value.eventEndDateTime,
+		console.log(this.createEventForm.value);
+
+		let endDateTime = getTime(this.createEventForm.value.eventEndDateTime);
+		let startDateTime = getTime(this.createEventForm.value.eventStartDateTime);
+	let event: Event = {eventId: null, eventCategoryId: this.createEventForm.value.eventCategoryId, eventProfileId: null,
+		eventDetails: this.createEventForm.value.eventDetails, eventEndDateTime: endDateTime ,
 		eventLat: this.createEventForm.value.eventLocation, eventLong: this.createEventForm.value.eventLocation,
-		eventStartDateTime: this.createEventForm.value. eventStartDateTime};
+		eventStartDateTime: startDateTime};
+
+	console.log(event);
 	this.eventService.createEvent(event).subscribe(status =>{
 		this.status = status;
 		if(status.status === 200) {
