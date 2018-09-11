@@ -1,11 +1,27 @@
-<h2>Comments Comments Comments </h2>
+<div class="container pb-5">
+	<div class="row">
+		<div class="card offset-lg-1 col-md-12 col-lg-10">
+			<br>
 
-<form [formGroup]="createCommentForm" (submit)="createEventComment();" novalidate>
+			<p><strong>Leave a Comment</strong></p>
+			<br>
+
+<form [formGroup]="newEventComment()" (submit)="createEventComment();" novalidate>
 						<textarea class="form-control" type="text" name="commentContent" id="commentText"
 									 placeholder="Write your comment here!" formControlName="commentText" rows="3"></textarea>
 		<div *ngIf="isAuthenticated === true">
 	<button class="btn submit-btn my-3" type="submit" >Submit Comment</button>
 </div>
-	<div *ngIf="isAuthenticated === false">
-	</div>
 </form>
+
+<!-- begin comment item -->
+<div class="row border-bottom" *ngFor="let tempComment of tempComments">
+	<div class="card-body">
+		<h4 class="card-title">{{tempComment.profileAtHandle}}</h4>
+		<p class="card-text">{{tempComment.comment.commentText}}</p>
+		<div class="small text-muted">{{tempComment.comment.commentDateTime | date:"short"}}</div>
+	</div>
+</div>
+		</div>
+	</div>
+</div>
