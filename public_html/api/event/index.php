@@ -70,10 +70,13 @@ try {
 		//decode the JSON package and stores the result in $requestObject
 		$requestObject = json_decode($requestContent);
 
+
 		//make sure event Category is available
+		echo $eventCategoryId;
 		if(empty($requestObject->eventCategoryId) === true) {
 			throw(new \InvalidArgumentException("Not a valid event Category Id ", 405));
 		}
+
 
 //		//make sure the event Profile Id exists
 //		if(empty($requestObject->eventProfileId) === true) {
