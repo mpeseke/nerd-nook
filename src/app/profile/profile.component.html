@@ -10,15 +10,19 @@
 <main>
 	<div class="row mx-0">
 		<div class="col-md-5 px-4">
-			<h2 class="profileAtHandle">At Handle:{{profile.profileAtHandle}}</h2>
-			<h2 class="profileEmail">Email:{{profile.profileEmail}}</h2>
+			<h2>At Handle:</h2>
+			<h2 class="profileAtHandle">{{profile.profileAtHandle}}</h2>
+			<h2>Email:</h2>
+			<h2 class="profileEmail">{{profile.profileEmail}}</h2>
 			<hr/>
 		</div>
 		<div class="col-md-7" id="profileInfo">
+			<br>
 			<h2 class="profileEvents">Events:  </h2>
+			<br>
 			<h2 class="profileRep">Rep:  </h2>
 			<hr/>
-		</div>
+		</div>npm
 		<div class="container-fluid text-center align-content-center" id="editInfoButton">
 			<button class="btn btn-primary" routerLink="/edit-profile"><i class="far fa-calendar-check fa-fw"></i>Edit Info</button>
 		</div>
