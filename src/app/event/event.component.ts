@@ -5,7 +5,8 @@ import {Profile} from "../shared/interfaces/profile";
 import {Status} from "../shared/interfaces/status";
 import {EventService} from "../shared/services/event.service";
 import {AuthService} from "../shared/services/auth.service";
-
+import {importType} from "@angular/compiler/src/output/output_ast";
+import {AddEventComponent} from "../add-event/add.event.component";
 
 @Component({
 	template: require("./event.component.html"),
@@ -19,7 +20,7 @@ export class EventComponent implements OnInit {
 	profile: Profile = {profileId: null, profileActivationToken: null, profileAtHandle: null, profileEmail: null, profileHash: null};
 	status: Status;
 
-	constructor(protected eventService: EventService, protected route: ActivatedRoute, private authService: AuthService){
+	constructor(protected eventService: EventService, protected route: ActivatedRoute, private authService: AuthService, protected addEventCoponent: AddEventComponent){
 
 	}
 	eventId = this.route.snapshot.params["eventId"];
