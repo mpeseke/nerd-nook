@@ -1,9 +1,10 @@
 <?php
 
 namespace NerdCore\NerdNook;
-require_once ("autoload.php");
+require_once("autoload.php");
 
-require_once (dirname(__DIR__, 2) . "/vendor/autoload.php");
+require_once(dirname(__DIR__, 2) . "/vendor/autoload.php");
+
 use Ramsey\Uuid\Uuid;
 
 /**
@@ -367,27 +368,27 @@ class CheckIn implements \JsonSerializable {
 			$statement->setFetchMode(\PDO::FETCH_ASSOC);
 			$row = $statement->fetch();
 			if($row !== false) {
-				$profileRep = $row["profileRep"]?? (int)0;
+				$profileRep = $row["profileRep"] ?? (int)0;
 			}
-		}catch
-			(\Exception $exception) {
-				// if the row cannot be converted, throw again
-				throw(new \PDOException($exception->getMessage(), 0, $exception));
-			}
-	return($profileRep);
+		} catch
+		(\Exception $exception) {
+			// if the row cannot be converted, throw again
+			throw(new \PDOException($exception->getMessage(), 0, $exception));
+		}
+		return ($profileRep);
 	}
 
 	/**
 	 * formats the variables for serialization
 	 * @return array of fields
 	 */
-	function jsonSerialize() : array{
+	function jsonSerialize(): array {
 		$fields = get_object_vars($this);
 
 		$fields["checkInEventId"] = $this->checkInEventId;
 		$fields["checkInProfileId"] = $this->checkInProfileId;
 		$fields["checkInDateTime"] = round(floatval($this->checkInDateTime->format("U.u")) * 1000);
 		$fields["checkInRep"] = $this->checkInRep;
-	return($fields);
+		return ($fields);
 	}
 }

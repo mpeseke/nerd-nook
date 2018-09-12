@@ -23,12 +23,16 @@
 
 
 
-			<button type="submit" id="submit"[disabled]="signInForm.invalid" class="button button-block">Log In</button>
+			<button type="submit" id="submit" [disabled]="signInForm.invalid" class="button button-block">Log In</button>
 		</form>
 		<!--<div *ngIf="status !== null" class="alert alert-dismissible" [class]="status.type" role="alert">-->
 			<!--<button type="button" class="close" aria-label="Close" (click)="status = null;"><span aria-hidden="true">&times;</span></button>-->
 			<!--{{ status.message }}-->
 		<!--</div>-->
+		<!--Link to sign up-->
+		<div class="splash text-success my-3">
+			<p>Don't have an account yet? <a routerLink="">Sign Up</a></p>
+		</div>
 
 	</div> <!-- closing sign-in -->
 </div><!-- closing form tag -->
