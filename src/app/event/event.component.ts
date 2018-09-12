@@ -4,9 +4,8 @@ import {ActivatedRoute} from "@angular/router";
 import {Profile} from "../shared/interfaces/profile";
 import {Status} from "../shared/interfaces/status";
 import {EventService} from "../shared/services/event.service";
-import {CheckInService} from "../shared/services/checkIn.service";
-import {ProfileService} from "../shared/services/profile.service";
-import {CategoryComponent} from "../category/category.component";
+import {AuthService} from "../shared/services/auth.service";
+
 
 @Component({
 	template: require("./event.component.html"),
@@ -15,18 +14,34 @@ import {CategoryComponent} from "../category/category.component";
 
 export class EventComponent implements OnInit {
 
-	event: Event;
-	profile: Profile;
-	eventId = this.route.snapshot.params["eventId"];
+	event: Event = null;
+	profile: Profile = {profileId: null, profileActivationToken: null, profileAtHandle: null, profileEmail: null, profileHash: null};
 	status: Status;
 
-	constructor(protected eventService: EventService, protected checkInService: CheckInService, protected route: ActivatedRoute, private profileService: ProfileService){
+	constructor(protected eventService: EventService, protected route: ActivatedRoute, private authService: AuthService){
 
 	}
-
-	ngOnInit(): void {
-		this.eventService.getEvent(this.eventId).subscribe(event => this.event = event);
+	eventId = this.route.snapshot.params["eventId"];
+	ngOnInit() {
+		window.sessionStorage.setItem('url', window.location.pathname);
+		this.loadEvent();
+		this.profile = this.getJwtProfileId();
 	}
+
+	loadEvent() {
+		this.eventService.getEvent(this.eventId).subscribe(reply => {
+			this.event = reply;
+		});
+	}
+
+	getJwtProfileId(): any {
+		if(this.authService.loggedIn()) {
+			return this.authService.decodeJwt().auth.profileId;
+		} else {
+			return false;
+		}
+	}
+
 
 
 }
