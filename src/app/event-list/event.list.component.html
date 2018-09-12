@@ -14,8 +14,8 @@
 	</div>
 
 	<div class="row mx-2 my-3">
-		<div class="card-deck">
-			<div class="card" *ngFor="let event of events">
+
+			<div class="card col-sm-12 col-md-6 col-lg-6" *ngFor="let event of events">
 				<div class="card-body">
 					<h5 class="card-title"> {{ event.eventName }}</h5>
 					<p class="card-text"> {{ event.eventDetails }}</p>
@@ -23,7 +23,7 @@
 					<button routerLink="/event" class="btn btn-success my-1">Go to Event</button>
 				</div>
 			</div>
-		</div>
+
 	</div>
 
 

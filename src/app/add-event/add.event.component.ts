@@ -26,7 +26,7 @@ export class AddEventComponent implements OnInit{
 	// @ViewChild(CategoryComponent) categoryComponent: CategoryComponent;
 	status: Status = null;
 	categories: Category[] =[];
-	returnObject = {lat: null, lng: null};
+	returnObject : any = null;
 
 	constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router, private categoryService: CategoryService, protected geoCoder: GeoCoder) {
 
@@ -57,11 +57,10 @@ export class AddEventComponent implements OnInit{
 		//console.log(results);
 
 		this.geoCoder.geocode(results).subscribe(reply => {
-		this.returnObject.lat = reply[0].geometry.bounds.f.b;
-		this.returnObject.lng = reply[0].geometry.bounds.b.b;
+		this.returnObject = reply[0].geometry.location;
 		});
 
-		// console.log(this.returnObject);
+		console.log(this.returnObject);
 
 		let endDateTime = getTime(this.createEventForm.value.eventEndDateTime);
 		let startDateTime = getTime(this.createEventForm.value.eventStartDateTime);
