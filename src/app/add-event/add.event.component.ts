@@ -4,7 +4,6 @@ import {Router} from "@angular/router";
 import {Event} from "../shared/interfaces/event";
 import {Status} from "../shared/interfaces/status";
 import {EventService} from "../shared/services/event.service";
-import {CategoryComponent} from "../category/category.component";
 import {CategoryService} from "../shared/services/category.service";
 import {Category} from "../shared/interfaces/category";
 import { getTime } from 'date-fns';

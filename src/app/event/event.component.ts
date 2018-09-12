@@ -14,7 +14,8 @@ import {AuthService} from "../shared/services/auth.service";
 
 export class EventComponent implements OnInit {
 
-	event: Event = null;
+	event: Event = {eventId: null, eventCategoryId: null, eventProfileId: null, eventDetails: null,
+		eventEndDateTime: null, eventLat: null, eventLong: null, eventName:null, eventStartDateTime: null};
 	profile: Profile = {profileId: null, profileActivationToken: null, profileAtHandle: null, profileEmail: null, profileHash: null};
 	status: Status;
 

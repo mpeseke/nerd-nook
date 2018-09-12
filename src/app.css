@@ -93,6 +93,7 @@ p.carousel-text {
 	color: #1ab188;
 }
 
+
 /****************************************************************************
 Homepage CSS
 ****************************************************************************/
@@ -226,7 +227,6 @@ input, textarea {
 	height: 100%;
 	padding: 5px 10px;
 	background: none;
-	background-image: none;
 	border: 1px solid var(--gray-light);
 	color: var(--white);
 	border-radius: 0;
