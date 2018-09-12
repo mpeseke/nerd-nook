@@ -13,6 +13,7 @@
 				<select class="form-control" name="eventCategoryId" id="eventCategoryId">
 					<option *ngFor="let category of categories" [ngValue]="category.categoryId">{{category.categoryType}}</option>
 				</select>
+
 			</div>
 
 			<div class="form-group">
@@ -22,18 +23,18 @@
 				<input name="eventName" type="text" id="eventName" formControlName="eventName" class="form-control" autocomplete="off" required placeholder="What are you calling your event?">
 			</div>
 
+			<div *ngIf="createEventForm.controls.eventName?.dirty && createEventForm.controls.eventName?.touched" class="alert alert-danger" role="alert">
+				<div *ngIf="createEventForm.controls.eventName?.errors.required">Event Name is required.</div>
+			</div>
+
+
+
 			<div class="form-group">
 				<label for="eventDetails" class="control-label">
 					Event Details
 				</label>
 				<textarea name="eventDetails" type="text" id="eventDetails" formControlName="eventDetails" class="form-control" autocomplete="off" required placeholder="Tell us the name and about your event!"></textarea>
 			</div>
-
-			<!--<div class="alert alert-danger" *ngIf="eventDetails.controls.eventDetails?.invalid && createEvent.controls.eventDetails?.touched">-->
-				<!--<p *ngIf="eventDetails.controls.eventDetails?.errors.maxLength">Too much detail...</p>-->
-				<!--<p *ngIf="eventDetails.controls.eventDetails?.errors.required">Event Details are required</p>-->
-			<!--</div>-->
-
 
 			<div class="form-group">
 				<label for="eventStartDateTime" class="control-label">
@@ -52,38 +53,33 @@
 
 
 			<div class="form-group" >
-				<h3>Event Address:</h3>
+				<h5 class="text-light">Event Address:</h5>
 				<label for="eventStreet">
 					Street:
 				</label>
-				<input type="text" formControlName="eventStreet" id="eventStreet">
+				<input type="text" formControlName="eventStreet" id="eventStreet" class="form-control">
 
 				<label for="eventStreet2">
 					Street 2:
 				</label>
-				<input type="text" formControlName="eventStreet2" id="eventStreet2">
+				<input type="text" formControlName="eventStreet2" id="eventStreet2" class="form-control">
 
 				<label for="eventCity">
 					City:
 				</label>
-				<input type="text" formControlName="eventCity" id="eventCity">
+				<input type="text" formControlName="eventCity" id="eventCity" class="form-control">
 
 				<label for="eventState">
 					State:
 				</label>
-				<input type="text" formControlName="eventState" id="eventState">
+				<input type="text" formControlName="eventState" id="eventState" class="form-control">
 
 				<label for="eventZip">
 					Zip Code:
 				</label>
-				<input type="text" formControlName="eventZip" id="eventZip">
+				<input type="text" formControlName="eventZip" id="eventZip" class="form-control">
 
 			</div>
-
-			<!--<div class="alert alert-danger" *ngIf="eventLocation.controls.eventLocation?.invalid && createEvent.controls.eventLocation?.touched">-->
-				<!--<p *ngIf="eventLocation.controls.eventLocation?.errors.maxLength">Too many characters in event location</p>-->
-				<!--<p *ngIf="eventLocation.controls.eventLocation?.errors.required">Event location is required</p>-->
-			<!--</div>-->
 
 			<ngui-map></ngui-map>
 
