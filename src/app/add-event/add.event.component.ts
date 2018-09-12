@@ -17,12 +17,13 @@ import { GeoCoder } from "@ngui/map";
 
 export class AddEventComponent implements OnInit{
 
-	event: Event = {eventId: null, eventCategoryId: null, eventProfileId: null, eventDetails: null, eventEndDateTime: null,
-	eventLat: null, eventLong: null, eventName: null, eventStartDateTime: null};
+	// event: Event = {eventId: null, eventCategoryId: null, eventProfileId: null, eventDetails: null, eventEndDateTime: null,
+	// eventLat: null, eventLong: null, eventName: null, eventStartDateTime: null};
+	category: Category = {categoryId: null, categoryName: null, categoryType: null};
 	eventCategoryId: string;
 	createEventForm: FormGroup;
 	events: Event[] = [];
-	@ViewChild(CategoryComponent) categoryComponent: CategoryComponent;
+	// @ViewChild(CategoryComponent) categoryComponent: CategoryComponent;
 	status: Status = null;
 	categories: Category[] =[];
 	returnObject = {lat: null, lng: null};
@@ -49,8 +50,7 @@ export class AddEventComponent implements OnInit{
 	}
 
 	createEvent() {
-		// console.log(this.createEventForm.value);
-		this.eventCategoryId = this.createEventForm.value.eventCategoryId;
+		 console.log(this.createEventForm.value);
 
 		//use the street address for decoding to obtain the lat and long; create the results object required by google
 		let results = {address: `${this.createEventForm.value.eventStreet} ${this.createEventForm.value.eventStreet2} ${this.createEventForm.value.eventCity}, ${this.createEventForm.value.eventState} ${this.createEventForm.value.eventZip}`};
@@ -66,7 +66,7 @@ export class AddEventComponent implements OnInit{
 		let endDateTime = getTime(this.createEventForm.value.eventEndDateTime);
 		let startDateTime = getTime(this.createEventForm.value.eventStartDateTime);
 		let event: Event = {eventId: null, eventCategoryId: this.createEventForm.value.eventCategoryId, eventProfileId: null,
-		eventName: this.createEventForm.value.eventName, eventDetails: this.createEventForm.value.eventDetails, eventEndDateTime: endDateTime, eventStartDateTime: startDateTime, eventLat: 	this.returnObject.lat, eventLong: this.returnObject.lng};
+		eventName: this.createEventForm.value.eventName, eventDetails: this.createEventForm.value.eventDetails, eventEndDateTime: endDateTime, eventStartDateTime: startDateTime, eventLat: 35.085810, eventLong: -106.650436};
 
 	// console.log(event);
 	this.eventService.createEvent(event).subscribe(status =>{
@@ -74,8 +74,6 @@ export class AddEventComponent implements OnInit{
 		if(status.status === 200) {
 			alert("Event created successfully!");
 			this.router.navigate(["/event-list"]);
-		} else {
-			alert("Probably fix what's wrong and then we can talk...");
 		}
 	});
 	}

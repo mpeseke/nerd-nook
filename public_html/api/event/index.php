@@ -72,7 +72,6 @@ try {
 
 
 		//make sure event Category is available
-		echo $eventCategoryId;
 		if(empty($requestObject->eventCategoryId) === true) {
 			throw(new \InvalidArgumentException("Not a valid event Category Id ", 405));
 		}

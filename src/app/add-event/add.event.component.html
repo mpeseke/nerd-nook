@@ -10,7 +10,7 @@
 					Choose your Category
 				</label>
 
-				<select class="form-control" name="eventCategoryId" id="eventCategoryId">
+				<select class="form-control" formControlName="eventCategoryId" name="eventCategoryId" id="eventCategoryId">
 					<option *ngFor="let category of categories" [ngValue]="category.categoryId">{{category.categoryType}}</option>
 				</select>
 
@@ -22,16 +22,6 @@
 				</label>
 				<input name="eventName" type="text" id="eventName" formControlName="eventName" class="form-control" autocomplete="off" required placeholder="What are you calling your event?">
 			</div>
-
-			<!--<div *ngIf="eventName.invalid && (eventName.dirty || eventName.touched)" class="alert alert-danger">-->
-
-				<!--<div *ngIf="eventName.errors.required">-->
-					<!--Event name is required.-->
-				<!--</div>-->
-				<!--<div *ngIf="eventName.errors.maxLength">-->
-					<!--Event name cannot be more than 32 characters.-->
-				<!--</div>-->
-			<!--</div>-->
 
 			<div class="form-group">
 				<label for="eventDetails" class="control-label">
