@@ -35,6 +35,7 @@ export class EventCommentComponent implements OnInit {
 	status: Status = null;
 	isAuthenticated: boolean = null;
 
+
 	constructor(
 		protected formBuilder: FormBuilder,
 		protected commentService: CommentService,
@@ -47,11 +48,12 @@ export class EventCommentComponent implements OnInit {
 
 ngOnInit(): void {
 	this.loadComments();
-	this.isAuthenticated = this.authService.isAuthenticated();
+	this.isAuthenticated = this.authService.loggedIn();
 	this.eventService.getEvent(this.eventId).subscribe(reply => this.event = reply);
 	this.createCommentForm = this.formBuilder.group({
 		commentContent: ["", [Validators.maxLength(500), Validators.required]]
 	});
+	console.log(this.isAuthenticated);
 }
 
 loadComments() : any {

@@ -12,8 +12,8 @@
 			<div *ngIf="isAuthenticated === true">
 				<button  type="submit">Submit Comment</button>
 			</div>
-			<div *ngIf="isAuthenticated === false">
-				<button  type="submit" routerLink="/signin">Please sign in to post a comment</button>
+			<div>
+				<button class="btn btn-primary" type="submit" routerLink="/signin">Please sign in to post a comment</button>
 			</div>
 		<div class="row border-bottom" *ngFor="let tempComment of tempComments">
 			<div class="card-body">
