@@ -4,6 +4,7 @@ export interface Comment {
 	commentEventId: string,
 	commentProfileId: string,
 	commentContent: string,
-	commentDateTime: any
+	commentDateTime: Date,
+	profileAtHandle: string
 
 }

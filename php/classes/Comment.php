@@ -337,7 +337,7 @@ class comment implements \JsonSerializable {
 		}
 
 		//create query template
-		$query = "SELECT commentId, commentEventId,commentProfileId,commentContent,commentDateTime FROM comment WHERE commentEventId = :commentEventId";
+		$query = "SELECT commentId, commentEventId,commentProfileId,commentContent,commentDateTime, profileAtHandle FROM comment INNER JOIN profile ON comment.commentProfileId = profile.profileId WHERE commentEventId = :commentEventId";
 		$statement = $pdo->prepare($query);
 		//bind the comment event id to the place holder in the template
 		$parameters = ["commentEventId" => $commentEventId->getBytes()];
@@ -348,7 +348,7 @@ class comment implements \JsonSerializable {
 		while(($row =$statement->fetch()) !== false) {
 			try {
 				$comment = new Comment($row["commentId"], $row["commentEventId"], $row["commentProfileId"],$row["commentContent"], $row["commentDateTime"]);
-				$comments[$comments->key()] = $comment;
+				$comments[$comments->key()] = (object) ["comment" => $comment, "profileAtHandle" => $row["profileAtHandle"]];
 				$comments->next();
 			} catch(\Exception $exception) {
 				//if the row couldn't be converted, rethrow it

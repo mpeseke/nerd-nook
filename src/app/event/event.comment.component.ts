@@ -17,11 +17,11 @@ import {CommentService} from "../shared/services/comment.service";
 // Status and router
 
 import {Status} from "../shared/interfaces/status";
-import {ActivatedRoute, Params} from "@angular/router";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
 	template: require("./event.comment.component.html"),
-	selector: "comments"
+	selector: "comment"
 })
 
 export class EventCommentComponent implements OnInit {
@@ -50,7 +50,7 @@ ngOnInit(): void {
 	this.isAuthenticated = this.authService.isAuthenticated();
 	this.eventService.getEvent(this.eventId).subscribe(reply => this.event = reply);
 	this.createCommentForm = this.formBuilder.group({
-		commentText: ["", [Validators.maxLength(500), Validators.required]]
+		commentContent: ["", [Validators.maxLength(500), Validators.required]]
 	});
 }
 
@@ -63,8 +63,9 @@ createEventComment(): any {
 		commentId: null,
 		commentEventId: this.eventId,
 		commentProfileId: null,
-		commentContent: this.createCommentForm.value.commentText,
+		commentContent: this.createCommentForm.value.commentContent,
 		commentDateTime: null,
+		profileAtHandle: null
 
 	};
 

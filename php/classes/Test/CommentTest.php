@@ -228,15 +228,17 @@ class CommentTest extends NerdNookTest {
 		$results = Comment::getCommentByCommentEventId($this->getPDO(), $comment->getCommentEventId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("comment"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("NerdCore\\NerdNook\\Comment", $results);
+//		$this->assertContainsOnlyInstancesOf("NerdCore\\NerdNook\\Comment", $results);
 		// grab the result from the array and validate it
 		$pdoComment = $results[0];
+		$pdoProfile = $results[0];
 
-		$this->assertEquals($pdoComment->getCommentId(), $commentId);
-		$this->assertEquals($pdoComment->getCommentEventId(), $this->event->getEventId());
-		$this->assertEquals($pdoComment->getCommentContent(), $this->VALID_COMMENTCONTENT);
+		$this->assertEquals($pdoComment->comment->getCommentId(), $commentId);
+		$this->assertEquals($pdoComment->comment->getCommentEventId(), $this->event->getEventId());
+		$this->assertEquals($pdoComment->comment->getCommentContent(), $this->VALID_COMMENTCONTENT);
 		//format the date too seconds since the beginning of time to avoid round off error
-		$this->assertEquals($pdoComment->getCommentDateTime()->getTimestamp(), $this->VALID_COMMENTDATE->getTimestamp());
+		$this->assertEquals($pdoComment->comment->getCommentDateTime()->getTimestamp(), $this->VALID_COMMENTDATE->getTimestamp());
+		$this->assertEquals($pdoProfile->profileAtHandle, $this->profile->getProfileAtHandle());
 	}
 	/**
 	 * test grabbing a Comment that does not exist
