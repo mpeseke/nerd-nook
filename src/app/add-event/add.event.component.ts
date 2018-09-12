@@ -7,7 +7,6 @@ import {EventService} from "../shared/services/event.service";
 import {CategoryComponent} from "../category/category.component";
 import {CategoryService} from "../shared/services/category.service";
 import {Category} from "../shared/interfaces/category";
-import { DatePipe } from "@angular/common";
 import { getTime } from 'date-fns';
 import { GeoCoder } from "@ngui/map";
 
@@ -23,6 +22,7 @@ export class AddEventComponent implements OnInit{
 	@ViewChild(CategoryComponent) categoryComponent: CategoryComponent;
 	status: Status = null;
 	categories: Category[] =[];
+	returnObject = {lat: null, lng: null};
 
 	constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router, private categoryService: CategoryService, protected geoCoder: GeoCoder) {
 
@@ -49,16 +49,23 @@ export class AddEventComponent implements OnInit{
 		console.log(this.createEventForm.value);
 
 		//use the street address for decoding to obtain the lat and long; create the results object required by google
-		let results = {address: `${this.createEventForm.value.eventStreet} ${this.createEventForm.value.eventStreet2} ${this.createEventForm.value.eventCity} ${this.createEventForm.value.eventState} ${this.createEventForm.value.eventZip}`};
-		console.log(results);
+		let results = {address: `${this.createEventForm.value.eventStreet} ${this.createEventForm.value.eventStreet2} ${this.createEventForm.value.eventCity}, ${this.createEventForm.value.eventState} ${this.createEventForm.value.eventZip}`};
+		//console.log(results);
 
-		// this.geoCoder.
+
+
+		this.geoCoder.geocode(results).subscribe(reply => {
+		this.returnObject.lat = reply[0].geometry.bounds.f.b;
+		this.returnObject.lng = reply[0].geometry.bounds.b.b;
+		});
+
+		console.log(this.returnObject);
+
 
 		let endDateTime = getTime(this.createEventForm.value.eventEndDateTime);
 		let startDateTime = getTime(this.createEventForm.value.eventStartDateTime);
 		let event: Event = {eventId: null, eventCategoryId: this.createEventForm.value.eventCategoryId, eventProfileId: null,
-		eventName: this.createEventForm.value.eventName, eventDetails: this.createEventForm.value.eventDetails, eventEndDateTime: endDateTime,
-		eventStartDateTime: startDateTime, eventLat: 120.55,eventLong:  120.44};
+		eventName: this.createEventForm.value.eventName, eventDetails: this.createEventForm.value.eventDetails, eventEndDateTime: 		endDateTime, eventStartDateTime: startDateTime, eventLat: this.returnObject.lat,eventLong: this.returnObject.lng};
 
 	console.log(event);
 	this.eventService.createEvent(event).subscribe(status =>{
