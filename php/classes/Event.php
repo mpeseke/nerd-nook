@@ -509,7 +509,7 @@ class Event implements \JsonSerializable {
 		}
 
 		//create a query template
-		$query = "SELECT eventId, eventCategoryId, eventProfileId, eventDetails, eventEndDateTime, eventLat, eventLong, eventName, eventStartDateTime FROM event WHERE eventProfileId = :eventProfileId";
+		$query = "SELECT eventId, eventCategoryId, eventProfileId, eventDetails, eventEndDateTime, eventLat, eventLong, eventName, eventStartDateTime, profileAtHandle FROM event INNER JOIN profile ON event.eventProfileId = profile.profileId WHERE eventProfileId = :eventProfileId";
 		$statement = $pdo->prepare($query);
 		//bind the event Profile Id to the placeholder in the template
 		$parameters = ["eventProfileId" => $eventProfileId->getBytes()];
@@ -520,7 +520,7 @@ class Event implements \JsonSerializable {
 		while(($row = $statement->fetch()) !== false) {
 			try {
 				$event = new Event($row["eventId"], $row["eventCategoryId"], $row["eventProfileId"], $row["eventDetails"], $row["eventEndDateTime"], $row["eventLat"], $row["eventLong"], $row["eventName"], $row["eventStartDateTime"]);
-				$events[$events->key()] = $event;
+				$events[$events->key()] = (object) ["event" => $event, "profileAtHandle" => $row["profileAtHandle"]];
 				$events->next();
 			} catch(\Exception $exception) {
 				//if the row cannot be converted, throw again

@@ -310,22 +310,23 @@ public final function setUp() : void {
 		$results = Event::getEventByEventProfileId($this->getPDO(), $event->getEventProfileId());
 		$this->assertEquals($numRows + 1, $this->getConnection()->getRowCount("event"));
 		$this->assertCount(1, $results);
-		$this->assertContainsOnlyInstancesOf("NerdCore\\NerdNook\\Event", $results);
+		$this->assertInstanceOf("NerdCore\\NerdNook\\Event", $results[0]->event);
 
 		//grab the array results and validate
 		$pdoEvent = $results[0];
 
-		$this->assertEquals($pdoEvent->getEventId(), $eventId);
-		$this->assertEquals($pdoEvent->getEventCategoryId(), $this->category->getCategoryId());
-		$this->assertEquals($pdoEvent->getEventProfileId(), $this->profile->getProfileId());
-		$this->assertEquals($pdoEvent->getEventDetails(), $this->VALID_EVENTDETAILS);
-		$this->assertEquals($pdoEvent->getEventName(), $this->VALID_EVENTNAME);
+		$this->assertEquals($pdoEvent->event->getEventId(), $eventId);
+		$this->assertEquals($pdoEvent->event->getEventCategoryId(), $this->category->getCategoryId());
+		$this->assertEquals($pdoEvent->event->getEventProfileId(), $this->profile->getProfileId());
+		$this->assertEquals($pdoEvent->event->getEventDetails(), $this->VALID_EVENTDETAILS);
+		$this->assertEquals($pdoEvent->event->getEventName(), $this->VALID_EVENTNAME);
 		//format the date to seconds since the beginning of time to avoid round off error
-		$this->assertEquals($pdoEvent->getEventEndDateTime()->getTimestamp(), $this->VALID_EVENTENDDATETIME->getTimestamp());
-		$this->assertEquals($pdoEvent->getEventStartDateTime()->getTimestamp(), $this->VALID_EVENTSTARTDATETIME->getTimestamp());
+		$this->assertEquals($pdoEvent->event->getEventEndDateTime()->getTimestamp(), $this->VALID_EVENTENDDATETIME->getTimestamp());
+		$this->assertEquals($pdoEvent->event->getEventStartDateTime()->getTimestamp(), $this->VALID_EVENTSTARTDATETIME->getTimestamp());
 		//GPS Coordinates
-		$this->assertEquals($pdoEvent->getEventLat(), $this->VALID_EVENTLAT);
-		$this->assertEquals($pdoEvent->getEventLong(), $this->VALID_EVENTLONG);
+		$this->assertEquals($pdoEvent->event->getEventLat(), $this->VALID_EVENTLAT);
+		$this->assertEquals($pdoEvent->event->getEventLong(), $this->VALID_EVENTLONG);
+		$this->assertEquals($pdoEvent->profileAtHandle, $this->profile->getProfileAtHandle());
 	}
 	/**
 	 * test grabbing an Event that does not exist; eventProfileId
