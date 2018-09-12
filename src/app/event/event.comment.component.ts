@@ -33,7 +33,7 @@ export class EventCommentComponent implements OnInit {
 	tempComments: any[];
 	createCommentForm: FormGroup;
 	status: Status = null;
-	isAuthenticated: boolean;
+	isAuthenticated: boolean = null;
 
 	constructor(
 		protected formBuilder: FormBuilder,
