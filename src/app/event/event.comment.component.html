@@ -6,15 +6,16 @@
 			<p><strong>Leave a comment here!</strong></p>
 			<br>
 			<form [formGroup]="createCommentForm" (submit)="createEventComment();" novalidate>
-				<textarea class="form-control" type="text" name="commentDetails" id="commentContent" placeholder="Write your comment here" formControlName="commentContent" rows="3"></textarea>
+				<textarea class="form-control" type="text" name="commentContent" id="commentContent" placeholder="Write your comment here" formControlName="commentContent" rows="3"></textarea>
 
-			</form>
+
+			<!--<div *ngIf="isAuthenticated === true">-->
+				<!--<button  type="submit">Submit Comment</button>-->
+			<!--</div>-->
 			<div *ngIf="isAuthenticated === true">
-				<button  type="submit">Submit Comment</button>
-			</div>
-			<div>
-				<button class="btn btn-primary" type="submit" routerLink="/signin">Please sign in to post a comment</button>
-			</div>
+				<button class="btn btn-primary" type="submit">Post a comment</button>
+				</div>
+			</form>
 		<div class="row border-bottom" *ngFor="let tempComment of tempComments">
 			<div class="card-body">
 				<h4 class="card-title">{{tempComment.profileAtHandle}}</h4>
