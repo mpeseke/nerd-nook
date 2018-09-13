@@ -301,3 +301,13 @@ textarea {
 	margin-top: 10px;
 	z-index: 9999;
 }
+
+#categoryFooter {
+	margin-bottom: 50px;
+	padding-bottom: 50px;
+}
+
+#landingFooter {
+	margin-bottom: 50px;
+	padding-bottom: 50px;
+}
