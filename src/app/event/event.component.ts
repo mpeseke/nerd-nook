@@ -20,7 +20,7 @@ export class EventComponent implements OnInit {
 	profile: Profile = {profileId: null, profileActivationToken: null, profileAtHandle: null, profileEmail: null, profileHash: null};
 	status: Status;
 
-	constructor(protected eventService: EventService, protected route: ActivatedRoute, private authService: AuthService, protected addEventCoponent: AddEventComponent){
+	constructor(protected eventService: EventService, protected route: ActivatedRoute, private authService: AuthService){
 
 	}
 	eventId = this.route.snapshot.params["eventId"];

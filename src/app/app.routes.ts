@@ -43,16 +43,17 @@ export const allAppComponents = [
 	ProfileComponent,
 	SignInComponent,
 	CheckInComponent,
-	SignInComponent
+	SignInComponent,
+	AddEventComponent
 ];
 
 export const routes: Routes = [
 	{path: "signin", component: SignInComponent},
-	{path: "profile", component: ProfileComponent},
 	{path: "profile/:username", component: ProfileComponent},
+	{path: "profile", component: ProfileComponent},
 	{path: "add-event", component: AddEventComponent},
-	{path: "event", component: EventComponent},
 	{path: "event-comment", component: EventCommentComponent},
+	{path: "event/:eventId", component: EventComponent},
 	{path: "event-list", component: EventListComponent},
 	{path: "category", component: CategoryComponent},
 	{path: "landing-page", component: LandingPageComponent},

@@ -20,7 +20,7 @@
 					<h5 class="card-title"> {{ event.eventName }}</h5>
 					<p class="card-text"> {{ event.eventDetails }}</p>
 					<p class="card-text"><small class="text-muted"> {{ event.eventEndDateTime | date: 'medium'}}</small></p>
-					<button routerLink="/event" class="btn btn-success my-1">Go to Event</button>
+					<button (click)="changeEvent(event)" class="btn btn-success my-1">Go to Event</button>
 				</div>
 			</div>
 

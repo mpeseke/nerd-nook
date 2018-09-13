@@ -22,6 +22,8 @@ export class CheckInComponent implements OnInit {
 	checkIn: CheckIn;
 	event: Event;
 	checkInEventId = this.route.snapshot.params["checkInEventId"];
+
+
 	profile: Profile;
 	status: Status;
 
