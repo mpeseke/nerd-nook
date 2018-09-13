@@ -78,7 +78,10 @@ createEventComment(): any {
 			if(status.status === 200) {
 				this.createCommentForm.reset();
 				this.loadComments();
+			} else {
+					alert(status.message);
 			}
+
 		});
 }
 

@@ -312,3 +312,8 @@ textarea {
 	margin-bottom: 50px;
 	padding-bottom: 50px;
 }
+
+#categoryFooter {
+	margin-bottom: 50%;
+	padding-bottom: 50%;
+}

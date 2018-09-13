@@ -1,6 +1,6 @@
 <div class="container-fluid pb-5">
 	<div class="row">
-		<div class="card col-12 p-2">
+		<div class="card col-12 p-2" id="commentFooter">
 			<h5 class="my-2">Leave a Comment Here!</h5>
 			<form [formGroup]="createCommentForm" (submit)="createEventComment();" novalidate>
 				<textarea class="form-control" type="text" name="commentContent" id="commentContent" placeholder="Write your comment here" formControlName="commentContent" rows="3"></textarea>
