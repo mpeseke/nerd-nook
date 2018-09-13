@@ -6,29 +6,33 @@
 	</div>
 </div>
 
-<main class="my-5">
-	<div class="row mx-0 mb-6">
+<div class="container-fluid">
+	<div class="my-5">
+		<div class="row mx-0 mb-6">
 
-		<div class="col-md-5 px-3 py-2">
-			<h1 class="eventTitle">{{event.eventName}}</h1>
-			<hr/>
-			<h4 class="eventDetails">{{event.eventDetails}}</h4>
-		</div>
-
-		<div class="col-md-7">
-			<h4 class="text-center">About this Event</h4>
-			<ul class="list-group">
-				<li class="list-group-item"><span class="list-span">Event Start Time:</span>{{event.eventStartDateTime | date:"medium"}}</li>
-				<li class="list-group-item"><span class="list-span">Event End Time:</span>{{event.eventEndDateTime | date:"medium"}}</li>
-				<li class="list-group-item"><span class="list-span"> Event Lat:</span>{{event.eventLat}}</li>
-				<li class="list-group-item"><span class="list-span"> Event Long:</span>{{event.eventLong}}</li>
-			</ul>
+			<div class="col-md-5 px-3 py-2">
+				<h1 class="eventTitle">{{event.eventName}}</h1>
 				<hr/>
-			<!--<checkIn></checkIn>-->
-			<comment></comment>
+				<h4 class="eventDetails">{{event.eventDetails}}</h4>
+			</div>
+
+			<div class="col-md-7">
+				<h4 class="text-center">About this Event</h4>
+				<ul class="list-group">
+					<li class="list-group-item"><span class="list-span">Event Start Time:</span>{{event.eventStartDateTime | date:"medium"}}</li>
+					<li class="list-group-item"><span class="list-span">Event End Time:</span>{{event.eventEndDateTime | date:"medium"}}</li>
+					<li class="list-group-item"><span class="list-span"> Event Lat:</span>{{event.eventLat}}</li>
+					<li class="list-group-item"><span class="list-span"> Event Long:</span>{{event.eventLong}}</li>
+				</ul>
+				<hr/>
+				<!--<checkIn></checkIn>-->
+				<comment></comment>
+			</div>
 		</div>
 	</div>
-</main>
+
+</div>
+
 
 
 

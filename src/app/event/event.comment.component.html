@@ -1,10 +1,7 @@
-<div class="container pb-5">
+<div class="container-fluid pb-5">
 	<div class="row">
-		<div class="card offset-lg-1 col-md-12 col-lg-10 mx-0 p-2">
-			<br>
-
-			<p><strong>Leave a comment here!</strong></p>
-			<br>
+		<div class="card col-md-12 col-lg-10 mx-0 p-2">
+			<h5 class="my-2">Leave a Comment Here!</h5>
 			<form [formGroup]="createCommentForm" (submit)="createEventComment();" novalidate>
 				<textarea class="form-control" type="text" name="commentContent" id="commentContent" placeholder="Write your comment here" formControlName="commentContent" rows="3"></textarea>
 
@@ -12,7 +9,7 @@
 			<!--<div *ngIf="isAuthenticated === true">-->
 				<!--<button  type="submit">Submit Comment</button>-->
 			<!--</div>-->
-			<div *ngIf="isAuthenticated === true">
+			<div class="mt-3" *ngIf="isAuthenticated === true">
 				<button class="btn btn-primary" type="submit">Post a comment</button>
 				</div>
 			</form>
