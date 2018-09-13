@@ -28,7 +28,7 @@ import {SignInComponent} from "./shared/components/sign.in.component";
 import {CategoryComponent} from "./category/category.component";
 import {EventListComponent} from "./event-list/event.list.component";
 import {AddEventComponent} from "./add-event/add.event.component";
-import {CheckInComponent} from "./checkIn/checkIn.component";
+// import {CheckInComponent} from "./checkIn/checkIn.component";
 import {EventCommentComponent} from "./event/event.comment.component";
 
 // an array of the components that will be passed off the the module
@@ -42,7 +42,7 @@ export const allAppComponents = [
 	LandingPageComponent,
 	ProfileComponent,
 	SignInComponent,
-	CheckInComponent,
+	// CheckInComponent,
 	SignInComponent,
 	AddEventComponent
 ];
