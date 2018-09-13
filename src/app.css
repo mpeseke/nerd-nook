@@ -27,24 +27,12 @@ body {
 	background-color: #c7c7c7;
 }
 
-.cardBG {
-	background-color: #888888;
-}
-
-.checkInIcon {
-	color: #000;
-	font-size: 15rem;
-}
-
 .checkInModal {
 	text-align: center;
-	background-color: #4d4d4d;
 	color: #53A451;
+	font-size: 2rem;
 }
 
-.checkInModalX {
-	color: #ffffff;
-}
 
 /****************************************************************************
 Category CSS
