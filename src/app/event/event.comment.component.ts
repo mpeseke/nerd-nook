@@ -11,7 +11,6 @@ import {Profile} from "../shared/interfaces/profile";
 //Services needed
 
 import {EventService} from "../shared/services/event.service";
-import {ProfileService} from "../shared/services/profile.service";
 import {CommentService} from "../shared/services/comment.service";
 
 // Status and router
@@ -40,7 +39,6 @@ export class EventCommentComponent implements OnInit {
 		protected formBuilder: FormBuilder,
 		protected commentService: CommentService,
 		protected eventService: EventService,
-		protected profileService: ProfileService,
 		protected route: ActivatedRoute,
 		protected authService: AuthService
 	) {

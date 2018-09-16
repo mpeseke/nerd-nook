@@ -5,15 +5,12 @@
 			<form [formGroup]="createCommentForm" (submit)="createEventComment();" novalidate>
 				<textarea class="form-control" type="text" name="commentContent" id="commentFooter" placeholder="Write your comment here" formControlName="commentContent" rows="3"></textarea>
 
-
-			<!--<div *ngIf="isAuthenticated === true">-->
-				<!--<button  type="submit">Submit Comment</button>-->
-			<!--</div>-->
 			<div class="mt-3" *ngIf="isAuthenticated === true">
 				<button class="btn btn-primary" type="submit">Post a comment</button>
-				</div>
+			</div>
 			</form>
 		<div class="row border-bottom" *ngFor="let tempComment of tempComments">
+			{{tempComment.commentContent}}
 			<div class="card-body">
 				<h4 class="card-title">{{tempComment.profileAtHandle}}</h4>
 				<p class="card-text">{{tempComment.comment.commentContent}}</p>
