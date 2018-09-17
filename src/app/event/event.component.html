@@ -24,44 +24,50 @@
 					<li class="list-group-item"><span class="list-span"> Event Lat:</span>{{event.eventLat}}</li>
 					<li class="list-group-item"><span class="list-span"> Event Long:</span>{{event.eventLong}}</li>
 				</ul>
+
+				<!-- Event Map location to go here... have to find the way to load the lat on lng on this map, but will work more tomorrow -->
+				<ngui-map></ngui-map>
+
 				<hr/>
-				<!-- Button trigger modal -->
+				<!-- RSVP Button trigger modal -->
 				<button type="button" class="btn btn-primary mb-3 mr-2" data-toggle="modal" data-target="#exampleModalCenter"><i class="far fa-calendar" aria-hidden="true"></i> RSVP</button>
 
-				<!-- Modal -->
-				<div class="modal fade pb-3" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true"><i class="far fa-times-circle" aria-hidden="true"></i></span>
-								</button>
-							</div>
-							<div class="modal-body checkInModal">Thank you for RSVP'ing. We look forward to seeing you there!</div>
-						</div>
-					</div>
-				</div>
-
-				<!-- Button trigger modal -->
+				<!-- Check In Button trigger modal -->
 				<button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#exampleModalCenter2"><i class="far fa-check-circle" aria-hidden="true"></i> Check In</button>
-
-				<!-- Modal -->
-				<div class="modal fade pb-3" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered" role="document">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true"><i class="far fa-times-circle" aria-hidden="true"></i></span>
-								</button>
-							</div>
-							<div class="modal-body checkInModal">Check In <br><i class="far fa-check-circle fa-4x" aria-hidden="true"></i><br>Successful</div>
-						</div>
-					</div>
-				</div>
 
 				<!--<a class="btn btn-primary" (click)="rsvp();"><i class="far fa-calendar" aria-hidden="true"></i> RSVP</a>-->
 				<!--<a class="btn btn-success" (click)="checkIntoEvent();"><i class="far fa-check-circle fa-fw"></i> Check In</a>-->
 				<comment></comment>
+			</div>
+
+		</div>
+	</div>
+
+
+	<!-- RSVP Modal -->
+	<div class="modal fade pb-3" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="far fa-times-circle" aria-hidden="true"></i></span>
+					</button>
+				</div>
+				<div class="modal-body checkInModal">Thank you for RSVP'ing. We look forward to seeing you there!</div>
+			</div>
+		</div>
+	</div>
+
+	<!--Check In Modal -->
+	<div class="modal fade pb-3" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true"><i class="far fa-times-circle" aria-hidden="true"></i></span>
+					</button>
+				</div>
+				<div class="modal-body checkInModal">Check In <br><i class="far fa-check-circle fa-4x" aria-hidden="true"></i><br>Successful</div>
 			</div>
 		</div>
 	</div>
