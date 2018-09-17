@@ -81,7 +81,9 @@ export class AddEventComponent implements OnInit{
 		if(status.status === 200) {
 			alert("Event created successfully!");
 			this.router.navigate(["/event-list"]);
-			}
+			} else {
+			alert("Check event details and resubmit. Something went wrong...")
+		}
 		});
 	});
 	}
