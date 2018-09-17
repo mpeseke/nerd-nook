@@ -25,7 +25,7 @@ export class AddEventComponent implements OnInit{
 	// @ViewChild(CategoryComponent) categoryComponent: CategoryComponent;
 	status: Status = null;
 	categories: Category[] =[];
-	returnObject : any = null;
+	returnObject : {lat: any, lng: any} = {lat: null, lng: null};
 
 	constructor(private formBuilder: FormBuilder, private eventService: EventService, private router: Router, private categoryService: CategoryService, protected geoCoder: GeoCoder) {
 
@@ -55,16 +55,25 @@ export class AddEventComponent implements OnInit{
 		let results = {address: `${this.createEventForm.value.eventStreet} ${this.createEventForm.value.eventStreet2} ${this.createEventForm.value.eventCity}, ${this.createEventForm.value.eventState} ${this.createEventForm.value.eventZip}`};
 		//console.log(results);
 
-		this.geoCoder.geocode(results).subscribe(reply => {
-		this.returnObject = reply[0].geometry.location;
-		});
+		let geocodeLocationResponse = null;
 
-		console.log(this.returnObject);
+		this.geoCoder.geocode(results).subscribe(
+			reply => {
+				console.log(reply);
+				geocodeLocationResponse = reply[0].geometry.location
+
+				// this.returnObject.lat = reply[0].geometry.bounds.f.b;
+				// this.returnObject.lng = reply[0].geometry.bounds.b.b;
+			},
+			error => {
+				console.log(error)
+			}, () => {
 
 		let endDateTime = getTime(this.createEventForm.value.eventEndDateTime);
 		let startDateTime = getTime(this.createEventForm.value.eventStartDateTime);
+
 		let event: Event = {eventId: null, eventCategoryId: this.createEventForm.value.eventCategoryId, eventProfileId: null,
-		eventName: this.createEventForm.value.eventName, eventDetails: this.createEventForm.value.eventDetails, eventEndDateTime: endDateTime, eventStartDateTime: startDateTime, eventLat: 35.085810, eventLong: -106.650436};
+		eventName: this.createEventForm.value.eventName, eventDetails: this.createEventForm.value.eventDetails, eventEndDateTime: endDateTime, eventStartDateTime: startDateTime, eventLat: geocodeLocationResponse.lat().toString(), eventLong: geocodeLocationResponse.lng().toString()};
 
 	// console.log(event);
 	this.eventService.createEvent(event).subscribe(status =>{
@@ -72,7 +81,9 @@ export class AddEventComponent implements OnInit{
 		if(status.status === 200) {
 			alert("Event created successfully!");
 			this.router.navigate(["/event-list"]);
-		}
+			}
+		});
 	});
 	}
 }
+
