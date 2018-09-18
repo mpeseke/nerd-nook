@@ -42,8 +42,10 @@ export class AppComponent implements OnInit{
 
 	ngOnInit(): void {
 		//this.getProfile();
+	 let loggedIn = this.authService.loggedIn();
+	 if(loggedIn) {
 		this.authAtHandle = this.authService.decodeJwt().auth.profileAtHandle;
-
+	 }
 	}
 
 	profilePageRedirect(): void {

@@ -9,6 +9,7 @@ import {AuthService} from "../shared/services/auth.service";
 import {CheckInService} from "../shared/services/checkIn.service";
 import {ProfileService} from "../shared/services/profile.service";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {GeoCoder} from "@ngui/map";
 
 @Component({
 	template: require("./event.component.html"),
@@ -34,9 +35,15 @@ export class EventComponent implements OnInit {
 		profileHash: null
 	};
 	status: Status;
-	checkIn: CheckIn;
-	constructor(protected eventService: EventService, protected checkInService: CheckInService, private profileService: ProfileService, private jwtHelper: JwtHelperService, protected route: ActivatedRoute, private authService: AuthService) {
+
+	// allOptions = {
+	// 	center: {lat: this.event.eventLat, lng: this.event.eventLong},
+	// 	zoom: 15
+	// };
+
+	constructor(protected eventService: EventService, protected checkInService: CheckInService, private profileService: ProfileService, private jwtHelper: JwtHelperService, protected route: ActivatedRoute, private authService: AuthService, protected geoCoder: GeoCoder) {
 	}
+
 	eventId = this.route.snapshot.params["eventId"];
 	ngOnInit() {
 		window.sessionStorage.setItem('url', window.location.pathname);
@@ -44,6 +51,23 @@ export class EventComponent implements OnInit {
 		this.currentlySignedIn();
 		this.profile = this.getJwtProfileId();
 	}
+
+	// getAddress() {
+	// 	let location = [];
+	// 	location["lat"] = this.event.eventLat;
+	// 	location["lng"] = this.event.eventLong;
+	// 	let results = {location: this.event.eventLat + this.event.eventLong};
+	//
+	// 	let geocodeLocationResponse = null;
+	//
+	// 	this.geoCoder.geocode(results).subscribe(
+	// 		reply => {
+	// 			console.log(reply);
+	// 			geocodeLocationResponse = reply[0].geometry.location
+	//
+	// });
+	// }
+
 	loadEvent() {
 		this.eventService.getEvent(this.eventId).subscribe(reply => {
 			this.event = reply;
@@ -78,4 +102,13 @@ export class EventComponent implements OnInit {
 				}
 			});
 	}
+
+	// clicked(event) {
+	// 	let marker = event.target;
+	// 	console.log(marker);
+	//
+	// 	marker.nguiMapComp.openInfoWindow('event', marker);
+	// }
+
 }
+

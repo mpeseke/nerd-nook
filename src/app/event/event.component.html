@@ -26,7 +26,17 @@
 				</ul>
 
 				<!-- Event Map location to go here... have to find the way to load the lat on lng on this map, but will work more tomorrow -->
-				<ngui-map></ngui-map>
+
+				<ngui-map center="{{event.eventLat}}, {{event.eventLong}}">
+
+					<marker position="{{event.eventLat}}, {{event.eventLong}}"  (click)="clicked($event)">
+					</marker>
+
+					<info-window id="event">
+						I like turtles.
+					</info-window>
+
+				</ngui-map>
 
 				<hr/>
 				<!-- RSVP Button trigger modal -->
