@@ -21,8 +21,9 @@
 				<ul class="list-group">
 					<li class="list-group-item"><span class="list-span">Event Start Time:</span>{{event.eventStartDateTime | date:"medium"}}</li>
 					<li class="list-group-item"><span class="list-span">Event End Time:</span>{{event.eventEndDateTime | date:"medium"}}</li>
-					<li class="list-group-item"><span class="list-span"> Event Lat:</span>{{event.eventLat}}</li>
-					<li class="list-group-item"><span class="list-span"> Event Long:</span>{{event.eventLong}}</li>
+					<li class="list-group-item"><span class="list-span">Event Address:</span> {{eventAddress}} </li>
+					<!--<li class="list-group-item"><span class="list-span"> Event Lat:</span>{{event.eventLat}}</li>-->
+					<!--<li class="list-group-item"><span class="list-span"> Event Long:</span>{{event.eventLong}}</li>-->
 				</ul>
 
 				<!-- Event Map location to go here... have to find the way to load the lat on lng on this map, but will work more tomorrow -->

@@ -36,6 +36,8 @@ export class EventComponent implements OnInit {
 	};
 	status: Status;
 
+	eventAddress: string;
+
 	// allOptions = {
 	// 	center: {lat: this.event.eventLat, lng: this.event.eventLong},
 	// 	zoom: 15
@@ -45,34 +47,50 @@ export class EventComponent implements OnInit {
 	}
 
 	eventId = this.route.snapshot.params["eventId"];
+
 	ngOnInit() {
 		window.sessionStorage.setItem('url', window.location.pathname);
 		this.loadEvent();
 		this.currentlySignedIn();
 		this.profile = this.getJwtProfileId();
+
 	}
 
-	// getAddress() {
-	// 	let location = [];
-	// 	location["lat"] = this.event.eventLat;
-	// 	location["lng"] = this.event.eventLong;
-	// 	let results = {location: this.event.eventLat + this.event.eventLong};
-	//
-	// 	let geocodeLocationResponse = null;
-	//
-	// 	this.geoCoder.geocode(results).subscribe(
-	// 		reply => {
-	// 			console.log(reply);
-	// 			geocodeLocationResponse = reply[0].geometry.location
-	//
-	// });
-	// }
+	getAddress() {
+		console.log(this.event);
+		let results = {location: {lat: this.event.eventLat, lng: this.event.eventLong}};
+
+		let geocodeLocationResponse = null;
+
+		this.geoCoder.geocode(results).subscribe(
+			reply => {
+				console.log(reply);
+				geocodeLocationResponse = reply[0].formatted_address
+
+			},
+			error=>{},
+			()=>{
+				this.eventAddress = geocodeLocationResponse;
+
+			}
+			);
+
+	}
 
 	loadEvent() {
-		this.eventService.getEvent(this.eventId).subscribe(reply => {
-			this.event = reply;
-		});
+		this.eventService.getEvent(this.eventId).subscribe(
+			reply => {
+				this.event = reply;
+			}, error => {
+				console.log(error)
+			}
+			, () => {
+				this.getAddress();
+			}
+		);
+
 	}
+
 	getJwtProfileId(): any {
 		if(this.authService.loggedIn()) {
 			return this.authService.decodeJwt().auth.profileId;
@@ -80,10 +98,12 @@ export class EventComponent implements OnInit {
 			return false;
 		}
 	}
+
 	currentlySignedIn(): void {
 		const decodedJwt = this.jwtHelper.decodeToken(localStorage.getItem('jwt-token'));
 		this.profileService.getProfile(decodedJwt.auth.profileId).subscribe(profile => this.profile = profile)
 	}
+
 	rsvp(): void {
 		this.checkInService.createCheckIn(this.eventId)
 			.subscribe(status => {
@@ -93,6 +113,7 @@ export class EventComponent implements OnInit {
 				}
 			});
 	}
+
 	checkIntoEvent(): void {
 		this.checkInService.editCheckIn(this.eventId)
 			.subscribe(status => {
