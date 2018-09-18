@@ -9,8 +9,8 @@
 				<li class="nav-item active">
 					<a class="nav-link text-success text-monospace" (click)="profilePageRedirect()"><i class="fas fa-user-secret fa-fw pr-2"></i>Profile</a>
 				</li>
-				<li class="nav-item active">
-					<a class="nav-link text-success text-monospace" routerLink="/category"><i class="fas fa-archive fa-fw pr-2"></i>Categories</a>
+				<li class="nav-item active" *ngIf="loggedIn === true">
+					<a  class="nav-link text-success text-monospace" routerLink="/category"><i class="fas fa-archive fa-fw pr-2"></i>Categories</a>
 				</li>
 				<li class="nav-item active">
 					<a class="nav-link text-success text-monospace" routerLink="/event-list"><i class="fas fa-calendar-check fa-fw pr-2"></i>Events</a>

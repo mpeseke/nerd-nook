@@ -28,6 +28,8 @@ export class AppComponent implements OnInit{
 		profileId: null,
 	};
 
+	loggedIn = this.authService.loggedIn();
+
 
 	constructor(protected sessionService : SessionService, private signInService : SignInService, private authService: AuthService, private router: Router, private route: ActivatedRoute) {
 		this.sessionService.setSession()
@@ -42,8 +44,8 @@ export class AppComponent implements OnInit{
 
 	ngOnInit(): void {
 		//this.getProfile();
-	 let loggedIn = this.authService.loggedIn();
-	 if(loggedIn) {
+
+	 if(this.loggedIn) {
 		this.authAtHandle = this.authService.decodeJwt().auth.profileAtHandle;
 	 }
 	}
