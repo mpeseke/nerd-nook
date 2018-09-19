@@ -310,7 +310,7 @@ class Event implements \JsonSerializable {
 		}
 		//verify content will fit into the database
 		if(strlen($newEventName) > 36) {
-			throw(new \RangeException("Please limit event name to 36 characters or less."));
+			throw(new \RangeException("Please limit event details to 36 characters or less."));
 		}
 		//store Detail content
 		$this->eventName = $newEventName;
