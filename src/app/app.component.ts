@@ -39,7 +39,7 @@ export class AppComponent implements OnInit{
 	signOut() : void {
 		localStorage.clear();
 		this.signInService.signOut().subscribe(status=>this.status=status);
-		this.router.navigate(["/signin/"]);
+		window.location.replace("/signin");
 	}
 
 	ngOnInit(): void {
